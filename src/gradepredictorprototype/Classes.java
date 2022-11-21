@@ -205,9 +205,10 @@ public class Classes extends javax.swing.JFrame {
     private void createClassBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createClassBtnActionPerformed
         // TODO add your handling code here:
         DatabaseManipulation.createClass(createClassFld.getText(), GradePredictorPrototype.getTeacher());
-        leaveBox.setModel(new javax.swing.DefaultComboBoxModel<>(DatabaseManipulation.getClasses(GradePredictorPrototype.getTeacher()).stream().filter(x -> x.getSubject().equals(GradePredictorPrototype.getSubject())).map(x -> x.getName()).toArray(String[]::new)));
-        currentBox.setModel(new javax.swing.DefaultComboBoxModel<>(DatabaseManipulation.getClasses(GradePredictorPrototype.getTeacher()).stream().filter(x -> x.getSubject().equals(GradePredictorPrototype.getSubject())).map(x -> x.getName()).toArray(String[]::new)));
-        removeBox.setModel(new javax.swing.DefaultComboBoxModel<>(DatabaseManipulation.getClasses(GradePredictorPrototype.getTeacher()).stream().filter(x -> x.getSubject().equals(GradePredictorPrototype.getSubject())).map(x -> x.getName()).toArray(String[]::new)));
+        String[] classes = DatabaseManipulation.getClasses(GradePredictorPrototype.getTeacher()).stream().filter(x -> x.getSubject().equals(GradePredictorPrototype.getSubject())).map(x -> x.getName()).toArray(String[]::new);
+        leaveBox.setModel(new javax.swing.DefaultComboBoxModel<>(classes));
+        currentBox.setModel(new javax.swing.DefaultComboBoxModel<>(classes));
+        removeBox.setModel(new javax.swing.DefaultComboBoxModel<>(classes));
     }//GEN-LAST:event_createClassBtnActionPerformed
 
     private void subjectBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subjectBtnActionPerformed

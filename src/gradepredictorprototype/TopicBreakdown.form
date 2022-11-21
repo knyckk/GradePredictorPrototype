@@ -63,18 +63,18 @@
                           <Component id="meanMarksLbl1" alignment="0" min="-2" pref="199" max="-2" attributes="0"/>
                           <Component id="meanLbl1" alignment="0" min="-2" pref="258" max="-2" attributes="0"/>
                           <Component id="testedLbl1" alignment="0" min="-2" pref="297" max="-2" attributes="0"/>
+                          <Component id="marksLbl1" alignment="0" min="-2" pref="147" max="-2" attributes="0"/>
+                          <Component id="overallLbl1" min="-2" pref="179" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="leftBtn1" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="rightBtn1" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="subjectBtn" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="profileBtn" alignment="0" min="-2" pref="117" max="-2" attributes="0"/>
+                                  <Component id="profileBtn" alignment="0" min="-2" pref="126" max="-2" attributes="0"/>
+                                  <Component id="subjectBtn" min="-2" pref="126" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <Component id="marksLbl1" alignment="0" min="-2" pref="147" max="-2" attributes="0"/>
-                          <Component id="overallLbl1" min="-2" pref="179" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Component id="titleLbl" min="-2" pref="146" max="-2" attributes="0"/>
@@ -140,12 +140,10 @@
                               <Component id="leftBtn1" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="rightBtn1" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" attributes="0">
-                              <Component id="subjectBtn" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="5" pref="5" max="-2" attributes="0"/>
-                              <Component id="profileBtn" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="subjectBtn" min="-2" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                      <Component id="profileBtn" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                   </Group>
               </Group>

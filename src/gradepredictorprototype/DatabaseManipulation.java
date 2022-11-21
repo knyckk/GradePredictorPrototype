@@ -241,15 +241,14 @@ public class DatabaseManipulation {
         int i = 0;
         Classroom[] classes = getClasses().toArray(Classroom[]::new);
         try (Connection conn = DriverManager.getConnection(URL, "THope", DATABASEPASSWORD);
-                Statement statement = conn.createStatement()) {
-            if (classes.length > 0) {
-                while (willAdd) {
+                Statement statement = conn.createStatement()) {            
+                while (willAdd && i < classes.length) {
                     if (classes[i].getName().equals(name)) {
                         willAdd = false;
                     }
-                }
-            }
-            if (willAdd) {
+                    i++;
+                }            
+            if (willAdd) {                
                 while (newCode) {
                     i = 0;
                     newCode = false;
@@ -266,7 +265,7 @@ public class DatabaseManipulation {
             }
 
             statement.execute("INSERT INTO " + CLASSES
-                    + " \n VALUES('" + name + "','" + studentCode + "','" + teacherCode + "');");
+                    + " \n VALUES('" + name + "','" + studentCode + "','" + teacherCode + "', " + GradePredictorPrototype.getSubject().getID() + ");");
             statement.execute("INSERT INTO " + CLASSUSERS + "\n VALUES('" + teacher.getEmail() + name + "','" + teacher.getEmail() + "','" + name + "')");
 
         } catch (SQLException e) {
@@ -387,7 +386,8 @@ public class DatabaseManipulation {
         ArrayList<Classroom> classes = new ArrayList<>();
         try (Connection conn = DriverManager.getConnection(URL, "THope", DATABASEPASSWORD);
                 Statement statement = conn.createStatement()) {
-            try (ResultSet result = statement.executeQuery("SELECT * FROM " + CLASSES + " WHERE " + CLASSNAME + " = (SELECT " + CLASSNAME + " FROM " + CLASSUSERS + " WHERE " + EMAIL + " = '" + teacher.getEmail() + "')")) {
+            try (ResultSet result = statement.executeQuery("SELECT Classes.ClassName, StudCode, TeacherCode, SubjectID FROM Classes\n" +
+"join ClassUsers on Classes.ClassName = ClassUsers.ClassName " + " WHERE " + EMAIL + " = '" + teacher.getEmail() + "'")) {
                 while (result.next()) {
                     classes.add(new Classroom(result.getString(CLASSNAME), result.getString(STUDENTCODE), result.getString(TEACHERCODE), subjectFromID(result.getInt(SUBJECTID))));
                 }
