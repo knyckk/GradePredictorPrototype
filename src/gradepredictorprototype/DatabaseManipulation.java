@@ -248,7 +248,7 @@ public class DatabaseManipulation {
                     }
                     i++;
                 }            
-            if (willAdd) {                
+            if (willAdd) {     
                 while (newCode) {
                     i = 0;
                     newCode = false;
@@ -262,12 +262,10 @@ public class DatabaseManipulation {
                         i++;
                     }
                 }
-            }
-
             statement.execute("INSERT INTO " + CLASSES
                     + " \n VALUES('" + name + "','" + studentCode + "','" + teacherCode + "', " + GradePredictorPrototype.getSubject().getID() + ");");
             statement.execute("INSERT INTO " + CLASSUSERS + "\n VALUES('" + teacher.getEmail() + name + "','" + teacher.getEmail() + "','" + name + "')");
-
+            }
         } catch (SQLException e) {
             System.out.println("ERROR MESSAGE 1!!!!" + e);
         }
