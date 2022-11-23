@@ -214,8 +214,8 @@ public class SignUp extends javax.swing.JFrame {
                     MimeMessage message = new MimeMessage(session);
                     message.setFrom(new InternetAddress(from));
                     message.addRecipient(Message.RecipientType.TO, new InternetAddress(emailFld.getText()));
-                    message.setSubject("Verification code (sry Sir its cuz im testing my program and cant use +1 since my validation says + signs arent allowed)");
-                    message.setText("Hi, (sry Sir its cuz im testing my program and cant use +1 since my validation says + signs arent allowed)\nYour verification code is: " + code);
+                    message.setSubject("Verification code");
+                    message.setText("Hi, \nYour verification code is: " + code);
                     Transport transport = session.getTransport("smtp");
                     transport.connect(host, from, password);
                     transport.sendMessage(message, message.getAllRecipients());

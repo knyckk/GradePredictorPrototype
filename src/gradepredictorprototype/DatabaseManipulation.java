@@ -286,14 +286,40 @@ public class DatabaseManipulation {
                 System.out.println("ERROR MESSAGE 2!!!!" + e);
             }
             if (willAdd) {
-                statement.execute("INSERT INTO " + CLASSUSERS + "("
+                
+                statement.execute("INSERT INTO " + CLASSUSERS 
                         + "\n VALUES('" + teacher.getEmail() + className + "','" + teacher.getEmail() + "','" + className + "')");
             }
         } catch (SQLException e) {
             System.out.println("ERROR MESSAGE 1!!!!" + e);
         }
     }
-
+    public static void updateClass(String name, String newName) {
+        boolean willAdd = true;
+        int i = 0;
+        int j = -1;
+        Classroom[] classes = getClasses().toArray(Classroom[]::new);
+        String[] emails = 
+        try (Connection conn = DriverManager.getConnection(URL, "THope", DATABASEPASSWORD);
+                Statement statement = conn.createStatement()) {            
+                while (willAdd && (i < classes.length || j < 0)) {
+                    if (classes[i].getName().equals(newName)) {
+                        willAdd = false;
+                    }
+                    if(classes[i].getName().equals(name)) {
+                        j = i;
+                    }
+                    i++;
+                }            
+            if (willAdd) {     
+                
+                ArrayList
+            statement.execute("UPDATE " + CLASSUSERS + "\nSET " + CLASSNAME + " = ', \nSET " + CLASSUSERID + " = '" + newName + "' \nWHERE " + CLASSNAME + " = '" + name + "'");
+            }
+        } catch (SQLException e) {
+            System.out.println("ERROR MESSAGE 1!!!!" + e);
+        }
+    }
     public static void joinClass(String code, Student student) {
         boolean willAdd = false;
         String className = "";
@@ -302,6 +328,7 @@ public class DatabaseManipulation {
             try (ResultSet result = statement.executeQuery("SELECT " + CLASSNAME + " FROM " + CLASSES + " WHERE " + STUDENTCODE + " = '" + code + "'")) {
                 if (result.next()) {
                     className = result.getString(CLASSNAME);
+                    System.out.println(className);
                     willAdd = true;
                 }
 
@@ -309,7 +336,7 @@ public class DatabaseManipulation {
                 System.out.println("ERROR MESSAGE 2!!!!" + e);
             }
             if (willAdd) {
-                statement.execute("INSERT INTO " + CLASSUSERS + "("
+                statement.execute("INSERT INTO " + CLASSUSERS 
                         + "\n VALUES('" + student.getEmail() + className + "','" + student.getEmail() + "','" + className + "')");
             }
         } catch (SQLException e) {
@@ -359,7 +386,25 @@ public class DatabaseManipulation {
         return subjects;
 
     }
+    public static ArrayList<String> getClassUsers(String name) {
+        ArrayList<String> users = new ArrayList<>();
+        try (Connection conn = DriverManager.getConnection(URL, "THope", DATABASEPASSWORD);
+                Statement statement = conn.createStatement()) {
+            try (ResultSet result = statement.executeQuery("SELECT " + EMAIL + " FROM " + CLASSUSERS + " WHERE " + CLASSNAME + " = '" + name + "'")) {
+                while (result.next()) {
+                    users.add(result.getString(EMAIL));
+                }
 
+            } catch (SQLException e) {
+                System.out.println("ERROR MESSAGE 2!!!!" + e);
+            }
+
+        } catch (SQLException e) {
+            System.out.println("ERROR MESSAGE 1!!!!" + e);
+        }
+        return users;
+
+    }
     public static ArrayList<Classroom> getClasses() {
         ArrayList<Classroom> classes = new ArrayList<>();
         try (Connection conn = DriverManager.getConnection(URL, "THope", DATABASEPASSWORD);
@@ -574,8 +619,8 @@ public class DatabaseManipulation {
     public static void deleteClass(String className) {
         try (Connection conn = DriverManager.getConnection(URL, "THope", DATABASEPASSWORD);
                 Statement statement = conn.createStatement()) {
-            statement.execute("DELETE FROM " + CLASSES + " WHERE " + CLASSNAME + " = '" + className + "'");
             statement.execute("DELETE FROM " + CLASSUSERS + " WHERE " + CLASSNAME + " = '" + className + "'");
+            statement.execute("DELETE FROM " + CLASSES + " WHERE " + CLASSNAME + " = '" + className + "'");
         } catch (SQLException e) {
             System.out.println("ERROR MESSAGE 1!!!!" + e);
         }
