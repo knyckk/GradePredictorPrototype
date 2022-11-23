@@ -20,13 +20,13 @@ public class User {
         this.password = password;
         this.type = type;
     }
-    public User(String email) {
-        this.email = email;
-    }
     public String getEmail() {
         return email;
     }
     public String getPassword() {
         return password;
+    }
+    public int getType() {
+        return type;
     }
 }

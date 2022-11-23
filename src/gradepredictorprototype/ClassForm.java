@@ -34,6 +34,8 @@ public class ClassForm extends javax.swing.JFrame {
         nameFld = new javax.swing.JTextField();
         studentsBox = new javax.swing.JComboBox<>();
         studentBtn = new javax.swing.JButton();
+        subjectBtn = new javax.swing.JButton();
+        profileBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -53,7 +55,23 @@ public class ClassForm extends javax.swing.JFrame {
 
         nameFld.setText("New Name");
 
+        studentsBox.setModel(new javax.swing.DefaultComboBoxModel<>(DatabaseManipulation.getClassUsers(classroom.getName()).stream().filter(x -> x.getType() == 1).map(x -> x.getEmail()).toArray(String[]::new)));
+
         studentBtn.setText("View Student");
+
+        subjectBtn.setText("Return to Subject");
+        subjectBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                subjectBtnActionPerformed(evt);
+            }
+        });
+
+        profileBtn.setText("Return to Profile");
+        profileBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                profileBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -62,15 +80,22 @@ public class ClassForm extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(nameFld, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(nameBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(studentsBox, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(studentBtn)
-                        .addComponent(teacherCodeLbl, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                        .addComponent(studentCodeLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(titleLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(238, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(nameFld, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(nameBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(studentsBox, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(studentBtn)
+                            .addComponent(teacherCodeLbl, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                            .addComponent(studentCodeLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 98, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(subjectBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(profileBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(titleLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -89,9 +114,17 @@ public class ClassForm extends javax.swing.JFrame {
                 .addComponent(nameFld, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(studentsBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(studentBtn)
-                .addContainerGap(84, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(studentBtn)
+                        .addContainerGap(84, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(subjectBtn)
+                        .addGap(17, 17, 17)
+                        .addComponent(profileBtn)
+                        .addGap(20, 20, 20))))
         );
 
         pack();
@@ -99,7 +132,23 @@ public class ClassForm extends javax.swing.JFrame {
 
     private void nameBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameBtnActionPerformed
         // TODO add your handling code here:
+        boolean changed = DatabaseManipulation.updateClass(classroom.getName(), nameFld.getText());
+        if(changed) {
+            titleLbl.setText(nameFld.getText());
+        }
     }//GEN-LAST:event_nameBtnActionPerformed
+
+    private void subjectBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subjectBtnActionPerformed
+        // TODO add your handling code here:
+        new TeacherSubject().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_subjectBtnActionPerformed
+
+    private void profileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileBtnActionPerformed
+        // TODO add your handling code here:
+        new TeacherProfile().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_profileBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -140,9 +189,11 @@ public class ClassForm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton nameBtn;
     private javax.swing.JTextField nameFld;
+    private javax.swing.JButton profileBtn;
     private javax.swing.JButton studentBtn;
     private javax.swing.JLabel studentCodeLbl;
     private javax.swing.JComboBox<String> studentsBox;
+    private javax.swing.JButton subjectBtn;
     private javax.swing.JLabel teacherCodeLbl;
     private javax.swing.JLabel titleLbl;
     // End of variables declaration//GEN-END:variables

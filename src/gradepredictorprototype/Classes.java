@@ -254,7 +254,7 @@ public class Classes extends javax.swing.JFrame {
     private void viewBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewBtnActionPerformed
         // TODO add your handling code here:
         new ClassForm(currentBox.getSelectedItem().toString()).setVisible(true);
-                
+        this.dispose();
         
     }//GEN-LAST:event_viewBtnActionPerformed
 

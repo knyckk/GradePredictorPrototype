@@ -294,31 +294,29 @@ public class DatabaseManipulation {
             System.out.println("ERROR MESSAGE 1!!!!" + e);
         }
     }
-    public static void updateClass(String name, String newName) {
+    public static boolean updateClass(String name, String newName) {
         boolean willAdd = true;
         int i = 0;
-        int j = -1;
         Classroom[] classes = getClasses().toArray(Classroom[]::new);
-        String[] emails = 
         try (Connection conn = DriverManager.getConnection(URL, "THope", DATABASEPASSWORD);
                 Statement statement = conn.createStatement()) {            
-                while (willAdd && (i < classes.length || j < 0)) {
+                while (willAdd && i < classes.length) {
                     if (classes[i].getName().equals(newName)) {
                         willAdd = false;
-                    }
-                    if(classes[i].getName().equals(name)) {
-                        j = i;
                     }
                     i++;
                 }            
             if (willAdd) {     
+                statement.execute("Update Classes,ClassUsers"
+                        + "\nSet Classes.ClassName = '" + newName + "', ClassUsers.ClassuserID = Concat(Email,'" + newName + "') "
+                        + "\nWhere Classes.ClassName = ClassUsers.ClassName and ClassUsers.ClassName = '" + name + "';");
                 
-                ArrayList
-            statement.execute("UPDATE " + CLASSUSERS + "\nSET " + CLASSNAME + " = ', \nSET " + CLASSUSERID + " = '" + newName + "' \nWHERE " + CLASSNAME + " = '" + name + "'");
+                
             }
         } catch (SQLException e) {
             System.out.println("ERROR MESSAGE 1!!!!" + e);
         }
+        return willAdd;
     }
     public static void joinClass(String code, Student student) {
         boolean willAdd = false;
@@ -386,13 +384,15 @@ public class DatabaseManipulation {
         return subjects;
 
     }
-    public static ArrayList<String> getClassUsers(String name) {
-        ArrayList<String> users = new ArrayList<>();
+    public static ArrayList<User> getClassUsers(String name) {
+        ArrayList<User> users = new ArrayList<>();
         try (Connection conn = DriverManager.getConnection(URL, "THope", DATABASEPASSWORD);
                 Statement statement = conn.createStatement()) {
-            try (ResultSet result = statement.executeQuery("SELECT " + EMAIL + " FROM " + CLASSUSERS + " WHERE " + CLASSNAME + " = '" + name + "'")) {
+            try (ResultSet result = statement.executeQuery("SELECT * FROM Users \n" +
+"JOIN ClassUsers on Users.Email = ClassUsers.Email\n" +
+"WHERE ClassUsers.ClassName = '" + name + "'")) {
                 while (result.next()) {
-                    users.add(result.getString(EMAIL));
+                    users.add(new User(result.getString(EMAIL), result.getString(PASSWORD), result.getInt(TYPE)));
                 }
 
             } catch (SQLException e) {
