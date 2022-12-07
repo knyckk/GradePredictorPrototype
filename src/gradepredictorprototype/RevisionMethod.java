@@ -5,6 +5,9 @@
  */
 package gradepredictorprototype;
 
+import java.awt.Color;
+import javax.swing.UIManager;
+
 /**
  *
  * @author 1-thope
@@ -41,6 +44,7 @@ public class RevisionMethod extends javax.swing.JFrame {
         renameBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(51, 51, 51));
 
         titleLbl.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         titleLbl.setText("Revision Methods");
@@ -216,6 +220,9 @@ public class RevisionMethod extends javax.swing.JFrame {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
+                    UIManager.put("nimbusBase", new Color(53,53,53));
+                    UIManager.put("nimbusBlueGrey", new Color(53,53,53));
+                    UIManager.put("control", new Color(53,53,53)); 
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }

@@ -75,6 +75,7 @@ public class StudentSubject extends javax.swing.JFrame {
         topic3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(0, 0, 0));
 
         titleLbl.setText(GradePredictorPrototype.getSubject().getName());
         titleLbl.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N

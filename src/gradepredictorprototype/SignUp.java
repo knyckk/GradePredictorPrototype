@@ -4,9 +4,11 @@
  */
 package gradepredictorprototype;
 
+import java.awt.Color;
 import java.util.*;
 import javax.mail.*;
 import javax.mail.internet.*;
+import javax.swing.UIManager;
 
 /**
  *
@@ -48,11 +50,15 @@ public class SignUp extends javax.swing.JFrame {
         setTitle("SignUp");
         setBackground(new java.awt.Color(51, 51, 51));
 
+        signUpAsLbl.setBackground(new java.awt.Color(51, 51, 51));
         signUpAsLbl.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        signUpAsLbl.setForeground(new java.awt.Color(255, 255, 255));
         signUpAsLbl.setText("Sign up as:");
 
+        studentRdio.setBackground(new java.awt.Color(51, 51, 51));
         radios.add(studentRdio);
         studentRdio.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        studentRdio.setForeground(new java.awt.Color(255, 255, 255));
         studentRdio.setText("Student");
         studentRdio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -60,8 +66,10 @@ public class SignUp extends javax.swing.JFrame {
             }
         });
 
+        teacherRdio.setBackground(new java.awt.Color(51, 51, 51));
         radios.add(teacherRdio);
         teacherRdio.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        teacherRdio.setForeground(new java.awt.Color(255, 255, 255));
         teacherRdio.setText("Teacher");
         teacherRdio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -69,10 +77,16 @@ public class SignUp extends javax.swing.JFrame {
             }
         });
 
+        emailFld.setBackground(new java.awt.Color(51, 51, 51));
         emailFld.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        emailFld.setForeground(new java.awt.Color(255, 255, 255));
         emailFld.setText("Email");
+        emailFld.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        emailFld.setCaretColor(new java.awt.Color(255, 255, 255));
 
+        passwordFld.setBackground(new java.awt.Color(51, 51, 51));
         passwordFld.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        passwordFld.setForeground(new java.awt.Color(255, 255, 255));
         passwordFld.setText("Password");
         passwordFld.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -80,7 +94,9 @@ public class SignUp extends javax.swing.JFrame {
             }
         });
 
+        confirmFld.setBackground(new java.awt.Color(51, 51, 51));
         confirmFld.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        confirmFld.setForeground(new java.awt.Color(255, 255, 255));
         confirmFld.setText("Confirm Password");
 
         codeBtn.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
@@ -91,7 +107,9 @@ public class SignUp extends javax.swing.JFrame {
             }
         });
 
+        codeFld.setBackground(new java.awt.Color(51, 51, 51));
         codeFld.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        codeFld.setForeground(new java.awt.Color(255, 255, 255));
         codeFld.setText("Verification Code");
         codeFld.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -112,7 +130,7 @@ public class SignUp extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(102, 102, 102)
+                .addGap(109, 109, 109)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(12, 12, 12)
@@ -131,12 +149,12 @@ public class SignUp extends javax.swing.JFrame {
                             .addComponent(studentRdio)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(teacherRdio))))
-                .addContainerGap(105, Short.MAX_VALUE))
+                .addContainerGap(109, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(16, 16, 16)
+                .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(signUpAsLbl)
                     .addComponent(studentRdio)
@@ -153,7 +171,7 @@ public class SignUp extends javax.swing.JFrame {
                 .addComponent(codeFld, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(enterBtn)
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         pack();
@@ -261,7 +279,7 @@ public class SignUp extends javax.swing.JFrame {
 
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Dark Metal".equals(info.getName())) {
+                if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }

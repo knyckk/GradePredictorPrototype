@@ -4,8 +4,11 @@
  */
 package gradepredictorprototype;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Random;
+import javax.swing.BorderFactory;
+import javax.swing.UIManager;
 
 /**
  *
@@ -21,7 +24,28 @@ public class GradePredictorPrototype {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    
+                    UIManager.put("nimbusBase", new Color(130,130,130));
+                    UIManager.put("nimbusBlueGrey", new Color(130,130,130));
+                    UIManager.put("control", new Color(53,53,53)); 
+                    UIManager.getDefaults().put("TextField.border", BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+                    UIManager.getDefaults().put("TextField.foreground", new Color(255,255,255));
+                    UIManager.getDefaults().put("Label.foreground", new Color(255,255,255));
+                    UIManager.getDefaults().put("TextField.background", new Color(53,53,53));
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+        } catch (InstantiationException ex) {
+        } catch (IllegalAccessException ex) {
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        }
         new StudentProfile().setVisible(true);
+        new SignUp().setVisible(true);
     }
     public static void setTeacher(String email) {
         teacher = DatabaseManipulation.teacherFromEmail(email);
@@ -149,6 +173,7 @@ public class GradePredictorPrototype {
             top3Topics(topics, tmplow, high);
         }
     }
+    
     public static String getTrend() {
         ArrayList<Double[]> coordinates = DatabaseManipulation.getPercentages(GradePredictorPrototype.getStudent(), GradePredictorPrototype.getSubject(), new Date(student.getDate()));
         double sigmaX = 0;
