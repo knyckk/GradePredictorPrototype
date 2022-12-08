@@ -5,6 +5,7 @@
 package gradepredictorprototype;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.BorderFactory;
@@ -27,15 +28,16 @@ public class GradePredictorPrototype {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
-                    
-                    UIManager.put("nimbusBase", new Color(130,130,130));
-                    UIManager.put("nimbusBlueGrey", new Color(130,130,130));
-                    UIManager.put("control", new Color(53,53,53)); 
+                     
+                    UIManager.put("background", new Color(53,53,53)); 
+                    UIManager.put("Label.foreground", new Color(255,255,255));
+                    UIManager.put("ComboBox.foreground", new Color(0,0,0));
+                    UIManager.put("ComboBox.background", new Color(130,130,130));                   
                     UIManager.getDefaults().put("TextField.border", BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
                     UIManager.getDefaults().put("TextField.foreground", new Color(255,255,255));
-                    UIManager.getDefaults().put("Label.foreground", new Color(255,255,255));
                     UIManager.getDefaults().put("TextField.background", new Color(53,53,53));
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    
                     break;
                 }
             }
@@ -65,6 +67,15 @@ public class GradePredictorPrototype {
     public static Subject getSubject() {
         return subject;
     }
+    public static void setUIFont (javax.swing.plaf.FontUIResource f){
+    java.util.Enumeration keys = UIManager.getDefaults().keys();
+    while (keys.hasMoreElements()) {
+      Object key = keys.nextElement();
+      Object value = UIManager.get (key);
+      if (value instanceof javax.swing.plaf.FontUIResource)
+        UIManager.put (key, f);
+      }
+    } 
     public static String getCode() {
         String code;
         Random random = new Random();
