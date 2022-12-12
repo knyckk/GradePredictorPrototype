@@ -28,17 +28,17 @@ public class GradePredictorPrototype {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
-                     
-                    UIManager.put("background", new Color(53,53,53)); 
-                    UIManager.put("Label.foreground", new Color(255,255,255));
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    UIManager.put("control" , new Color(53,53,53));
+                    UIManager.put("Button.background", new Color(110,110,110)); 
+                    UIManager.put("Label.font", new Font("Forte",Font.PLAIN,12));
+                    UIManager.put("text", new Color(255,255,255));
                     UIManager.put("ComboBox.foreground", new Color(0,0,0));
                     UIManager.put("ComboBox.background", new Color(130,130,130));                   
                     UIManager.getDefaults().put("TextField.border", BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
                     UIManager.getDefaults().put("TextField.foreground", new Color(255,255,255));
                     UIManager.getDefaults().put("TextField.background", new Color(53,53,53));
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     
-                    break;
                 }
             }
         } catch (ClassNotFoundException ex) {
@@ -47,7 +47,7 @@ public class GradePredictorPrototype {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
         }
         new StudentProfile().setVisible(true);
-        new SignUp().setVisible(true);
+        
     }
     public static void setTeacher(String email) {
         teacher = DatabaseManipulation.teacherFromEmail(email);
