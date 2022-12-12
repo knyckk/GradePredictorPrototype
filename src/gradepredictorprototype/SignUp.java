@@ -36,19 +36,25 @@ public class SignUp extends javax.swing.JFrame {
     private void initComponents() {
 
         radios = new javax.swing.ButtonGroup();
+        confirmLbl = new javax.swing.JLabel();
+        passwordLbl = new javax.swing.JLabel();
         signUpAsLbl = new javax.swing.JLabel();
         studentRdio = new javax.swing.JRadioButton();
         teacherRdio = new javax.swing.JRadioButton();
         emailFld = new javax.swing.JTextField();
-        passwordFld = new javax.swing.JTextField();
-        confirmFld = new javax.swing.JTextField();
         codeBtn = new javax.swing.JButton();
         codeFld = new javax.swing.JTextField();
         enterBtn = new javax.swing.JButton();
+        passwordFld = new javax.swing.JPasswordField();
+        confirmFld = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("SignUp");
         setBackground(new java.awt.Color(51, 51, 51));
+
+        confirmLbl.setText("Confirm Password");
+
+        passwordLbl.setText("Password");
 
         signUpAsLbl.setBackground(new java.awt.Color(51, 51, 51));
         signUpAsLbl.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
@@ -83,21 +89,16 @@ public class SignUp extends javax.swing.JFrame {
         emailFld.setText("Email");
         emailFld.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         emailFld.setCaretColor(new java.awt.Color(255, 255, 255));
-
-        passwordFld.setBackground(new java.awt.Color(51, 51, 51));
-        passwordFld.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        passwordFld.setForeground(new java.awt.Color(255, 255, 255));
-        passwordFld.setText("Password");
-        passwordFld.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passwordFldActionPerformed(evt);
+        emailFld.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                emailFldFocusGained(evt);
             }
         });
-
-        confirmFld.setBackground(new java.awt.Color(51, 51, 51));
-        confirmFld.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        confirmFld.setForeground(new java.awt.Color(255, 255, 255));
-        confirmFld.setText("Confirm Password");
+        emailFld.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                emailFldActionPerformed(evt);
+            }
+        });
 
         codeBtn.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         codeBtn.setText("Send verification code");
@@ -111,6 +112,11 @@ public class SignUp extends javax.swing.JFrame {
         codeFld.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         codeFld.setForeground(new java.awt.Color(255, 255, 255));
         codeFld.setText("Verification Code");
+        codeFld.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                codeFldFocusGained(evt);
+            }
+        });
         codeFld.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 codeFldActionPerformed(evt);
@@ -125,74 +131,113 @@ public class SignUp extends javax.swing.JFrame {
             }
         });
 
+        passwordFld.setBackground(new java.awt.Color(53, 53, 53));
+        passwordFld.setForeground(new java.awt.Color(255, 255, 255));
+        passwordFld.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        passwordFld.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                passwordFldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                passwordFldFocusLost(evt);
+            }
+        });
+
+        confirmFld.setBackground(new java.awt.Color(53, 53, 53));
+        confirmFld.setForeground(new java.awt.Color(255, 255, 255));
+        confirmFld.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        confirmFld.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                confirmFldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                confirmFldFocusLost(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(109, 109, 109)
+                .addGap(257, 257, 257)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(signUpAsLbl)
+                        .addGap(8, 8, 8)
+                        .addComponent(studentRdio)
+                        .addGap(4, 4, 4)
+                        .addComponent(teacherRdio))
+                    .addComponent(emailFld, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(passwordLbl))
+                    .addComponent(passwordFld, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(confirmLbl))
+                    .addComponent(confirmFld, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(12, 12, 12)
-                        .addComponent(enterBtn))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(codeFld)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(12, 12, 12)
-                            .addComponent(codeBtn))
-                        .addComponent(confirmFld)
-                        .addComponent(passwordFld)
-                        .addComponent(emailFld)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(signUpAsLbl)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(studentRdio)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(teacherRdio))))
-                .addContainerGap(109, Short.MAX_VALUE))
+                        .addComponent(codeBtn))
+                    .addComponent(codeFld, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(enterBtn)))
+                .addGap(276, 276, 276))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(signUpAsLbl)
+                .addGap(55, 55, 55)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addComponent(signUpAsLbl))
                     .addComponent(studentRdio)
                     .addComponent(teacherRdio))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(2, 2, 2)
                 .addComponent(emailFld, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(passwordFld, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(confirmFld, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(6, 6, 6)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(passwordLbl))
+                    .addComponent(passwordFld, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(6, 6, 6)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(9, 9, 9)
+                        .addComponent(confirmLbl))
+                    .addComponent(confirmFld, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(6, 6, 6)
                 .addComponent(codeBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(5, 5, 5)
                 .addComponent(codeFld, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(6, 6, 6)
                 .addComponent(enterBtn)
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addGap(84, 84, 84))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void studentRdioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_studentRdioActionPerformed
-        // TODO add your handling code here:
+        
         type = 2;
     }//GEN-LAST:event_studentRdioActionPerformed
 
     private void teacherRdioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_teacherRdioActionPerformed
-        // TODO add your handling code here:
+        
         type = 1;
     }//GEN-LAST:event_teacherRdioActionPerformed
 
     private void codeFldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codeFldActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_codeFldActionPerformed
 
     private void enterBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterBtnActionPerformed
-        // TODO add your handling code here:
+        
         if (((passwordFld.getText().equals(confirmFld.getText())) && codeFld.getText().equals(code)) && type == 2) {
             DatabaseManipulation.signUp(emailFld.getText(), passwordFld.getText(), 1);
             GradePredictorPrototype.setStudent(emailFld.getText());
@@ -207,7 +252,7 @@ public class SignUp extends javax.swing.JFrame {
     }//GEN-LAST:event_enterBtnActionPerformed
 
     private void codeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codeBtnActionPerformed
-        // TODO add your handling code here:
+        
         String from = "GradePredictorNEA@gmail.com";
         String host = "smtp.gmail.com";
         String password = "ahsv fdgi aqou uwll";
@@ -263,9 +308,45 @@ public class SignUp extends javax.swing.JFrame {
 
     }//GEN-LAST:event_codeBtnActionPerformed
 
-    private void passwordFldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordFldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_passwordFldActionPerformed
+    private void emailFldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_emailFldFocusGained
+        
+        emailFld.selectAll();
+    }//GEN-LAST:event_emailFldFocusGained
+
+    private void emailFldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailFldActionPerformed
+        
+    }//GEN-LAST:event_emailFldActionPerformed
+
+    private void passwordFldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_passwordFldFocusGained
+        
+        passwordLbl.hide();
+        passwordFld.selectAll();
+    }//GEN-LAST:event_passwordFldFocusGained
+
+    private void confirmFldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_confirmFldFocusGained
+        
+        confirmLbl.hide();
+        confirmFld.selectAll();
+    }//GEN-LAST:event_confirmFldFocusGained
+
+    private void passwordFldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_passwordFldFocusLost
+        
+        if(passwordFld.getPassword().length == 0) {
+            passwordLbl.show();
+        }
+    }//GEN-LAST:event_passwordFldFocusLost
+
+    private void confirmFldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_confirmFldFocusLost
+        
+        if(confirmFld.getPassword().length == 0) {
+            confirmLbl.show();
+        }
+    }//GEN-LAST:event_confirmFldFocusLost
+
+    private void codeFldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_codeFldFocusGained
+        
+        codeFld.selectAll();
+    }//GEN-LAST:event_codeFldFocusGained
 
     /**
      * @param args the command line arguments
@@ -308,10 +389,12 @@ public class SignUp extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton codeBtn;
     private javax.swing.JTextField codeFld;
-    private javax.swing.JTextField confirmFld;
+    private javax.swing.JPasswordField confirmFld;
+    private javax.swing.JLabel confirmLbl;
     private javax.swing.JTextField emailFld;
     private javax.swing.JButton enterBtn;
-    private javax.swing.JTextField passwordFld;
+    private javax.swing.JPasswordField passwordFld;
+    private javax.swing.JLabel passwordLbl;
     private javax.swing.ButtonGroup radios;
     private javax.swing.JLabel signUpAsLbl;
     private javax.swing.JRadioButton studentRdio;

@@ -32,18 +32,17 @@ public class Graph extends JPanel{
         double sigmaX = 0;
         double sigmaY = 0;
         double sigmaXY = 0;
-        double sigmaXSquared = 0;
+        double sigmaXSquared = 0;        
         for(int i=0;i<coordinates.size() - 1;i++){
             double y1= coordinates.get(i)[0];
             double x1= coordinates.get(i)[1];
+            System.out.println("X1: " + x1 + ", Y1: " + y1);
             sigmaX += x1;
             sigmaXSquared += x1*x1;
             sigmaY += y1;
             sigmaXY += x1 * y1;
-        }
-        for(int i=0;i<coordinates.size() - 1;i++){
-            double y1= height-mar-coordinates.get(i)[0]*scale;
-            double x1= mar+coordinates.get(i)[1]*x;
+            y1= height-mar-y1*scale;
+            x1= mar+x1*x;
             g1.fill(new Ellipse2D.Double(x1-2,y1-2,4,4));
         }
         double constant = (sigmaY * sigmaXSquared - sigmaX * sigmaXY) / ((coordinates.size() - 1) * sigmaXSquared - sigmaX * sigmaX);

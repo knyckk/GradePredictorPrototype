@@ -155,6 +155,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Enter Mark"/>
       </Properties>
+      <Events>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="markFldFocusGained"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="topicLbl">
       <Properties>
@@ -181,6 +184,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Enter Question"/>
       </Properties>
+      <Events>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="questionFldFocusGained"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="subjectBtn">
       <Properties>

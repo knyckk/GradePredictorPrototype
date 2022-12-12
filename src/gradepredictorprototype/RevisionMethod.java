@@ -58,6 +58,11 @@ public class RevisionMethod extends javax.swing.JFrame {
         toLbl.setText("to:");
 
         nameFld.setText("Method");
+        nameFld.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                nameFldFocusGained(evt);
+            }
+        });
 
         replaceBox.setModel(new javax.swing.DefaultComboBoxModel<>(DatabaseManipulation.getMethods().stream().map(x -> x.getName()).toArray(String[]::new)));
 
@@ -175,13 +180,13 @@ public class RevisionMethod extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void createMethodBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createMethodBtnActionPerformed
-        // TODO add your handling code here:
+        
         new CreateMethod().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_createMethodBtnActionPerformed
 
     private void removeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeBtnActionPerformed
-        // TODO add your handling code here:
+        
         DatabaseManipulation.deleteMethod(removeBox.getSelectedItem().toString());
         methodsBox.setModel(new javax.swing.DefaultComboBoxModel<>(DatabaseManipulation.getMethods().stream().map(x -> x.getName()).toArray(String[]::new)));
         removeBox.setModel(new javax.swing.DefaultComboBoxModel<>(DatabaseManipulation.getMethods().stream().map(x -> x.getName()).toArray(String[]::new)));
@@ -189,24 +194,29 @@ public class RevisionMethod extends javax.swing.JFrame {
     }//GEN-LAST:event_removeBtnActionPerformed
 
     private void subjectBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subjectBtnActionPerformed
-        // TODO add your handling code here:
+        
         new TeacherSubject().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_subjectBtnActionPerformed
 
     private void profileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileBtnActionPerformed
-        // TODO add your handling code here:
+        
         new TeacherProfile().setVisible(true);
         this.dispose();       
     }//GEN-LAST:event_profileBtnActionPerformed
 
     private void renameBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_renameBtnActionPerformed
-        // TODO add your handling code here:
+        
         DatabaseManipulation.updateMethod(removeBox.getSelectedItem().toString(), nameFld.getText());
         methodsBox.setModel(new javax.swing.DefaultComboBoxModel<>(DatabaseManipulation.getMethods().stream().map(x -> x.getName()).toArray(String[]::new)));
         removeBox.setModel(new javax.swing.DefaultComboBoxModel<>(DatabaseManipulation.getMethods().stream().map(x -> x.getName()).toArray(String[]::new)));
         replaceBox.setModel(new javax.swing.DefaultComboBoxModel<>(DatabaseManipulation.getMethods().stream().map(x -> x.getName()).toArray(String[]::new)));
     }//GEN-LAST:event_renameBtnActionPerformed
+
+    private void nameFldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nameFldFocusGained
+        
+        nameFld.selectAll();
+    }//GEN-LAST:event_nameFldFocusGained
 
     /**
      * @param args the command line arguments

@@ -61,6 +61,11 @@ public class PaperInfo extends javax.swing.JFrame {
         numberLbl.setText("What number is the paper?");
 
         howManyFld.setText("Number Of Questions");
+        howManyFld.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                howManyFldFocusGained(evt);
+            }
+        });
         howManyFld.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 howManyFldActionPerformed(evt);
@@ -73,8 +78,18 @@ public class PaperInfo extends javax.swing.JFrame {
         });
 
         yearFld.setText("Paper Year");
+        yearFld.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                yearFldFocusGained(evt);
+            }
+        });
 
         numberFld.setText("Paper Number");
+        numberFld.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                numberFldFocusGained(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel1.setText("Grade Boundaries");
@@ -92,16 +107,46 @@ public class PaperInfo extends javax.swing.JFrame {
         BLbl.setText("B");
 
         AStarFld.setText("Enter Mark");
+        AStarFld.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                AStarFldFocusGained(evt);
+            }
+        });
 
         AFld.setText("Enter Mark");
+        AFld.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                AFldFocusGained(evt);
+            }
+        });
 
         BFld.setText("Enter Mark");
+        BFld.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                BFldFocusGained(evt);
+            }
+        });
 
         CFld.setText("Enter Mark");
+        CFld.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                CFldFocusGained(evt);
+            }
+        });
 
         EFld.setText("Enter Mark");
+        EFld.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                EFldFocusGained(evt);
+            }
+        });
 
         DFld.setText("Enter Mark");
+        DFld.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                DFldFocusGained(evt);
+            }
+        });
 
         enterBtn.setText("Enter");
         enterBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -245,30 +290,75 @@ public class PaperInfo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void subjectBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subjectBtnActionPerformed
-        // TODO add your handling code here:
+        
         new TeacherSubject().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_subjectBtnActionPerformed
 
     private void profileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileBtnActionPerformed
-        // TODO add your handling code here:
+        
         new TeacherProfile().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_profileBtnActionPerformed
 
     private void enterBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterBtnActionPerformed
-        // TODO add your handling code here:
+        
         Paper paper = new Paper(Integer.valueOf(howManyFld.getText()), Integer.valueOf(yearFld.getText()), Integer.valueOf(numberFld.getText()), Integer.valueOf(AStarFld.getText()),Integer.valueOf(AFld.getText()),Integer.valueOf(BFld.getText()),Integer.valueOf(CFld.getText()),Integer.valueOf(DFld.getText()),Integer.valueOf(EFld.getText()));
         new CreatePaper(paper).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_enterBtnActionPerformed
 
     private void howManyFldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_howManyFldActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_howManyFldActionPerformed
 
     private void howManyFldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_howManyFldKeyPressed
     }//GEN-LAST:event_howManyFldKeyPressed
+
+    private void howManyFldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_howManyFldFocusGained
+        
+        howManyFld.selectAll();
+    }//GEN-LAST:event_howManyFldFocusGained
+
+    private void yearFldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_yearFldFocusGained
+        
+        yearFld.selectAll();
+    }//GEN-LAST:event_yearFldFocusGained
+
+    private void numberFldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_numberFldFocusGained
+        
+        numberFld.selectAll();
+    }//GEN-LAST:event_numberFldFocusGained
+
+    private void AStarFldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_AStarFldFocusGained
+        
+        AStarFld.selectAll();
+    }//GEN-LAST:event_AStarFldFocusGained
+
+    private void AFldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_AFldFocusGained
+        
+        AFld.selectAll();
+    }//GEN-LAST:event_AFldFocusGained
+
+    private void BFldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_BFldFocusGained
+        
+        BFld.selectAll();
+    }//GEN-LAST:event_BFldFocusGained
+
+    private void CFldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_CFldFocusGained
+        
+        CFld.selectAll();
+    }//GEN-LAST:event_CFldFocusGained
+
+    private void DFldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_DFldFocusGained
+        
+        DFld.selectAll();
+    }//GEN-LAST:event_DFldFocusGained
+
+    private void EFldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_EFldFocusGained
+        
+        EFld.selectAll();
+    }//GEN-LAST:event_EFldFocusGained
 
     /**
      * @param args the command line arguments

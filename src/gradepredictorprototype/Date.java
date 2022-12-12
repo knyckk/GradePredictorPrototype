@@ -13,9 +13,9 @@ public class Date {
     private int month;
     private int year;
     public Date(String date) { // date in form yyyy/mm/dd
-        year = Integer.valueOf(date.substring(0, 4));
-        month = Integer.valueOf(date.substring(5,7));
-        day = Integer.valueOf(date.substring(8,10));
+        year = Integer.parseInt(date.substring(0, 4));
+        month = Integer.parseInt(date.substring(5,7));
+        day = Integer.parseInt(date.substring(8,10));
     }
     public int getMonth() {
         return this.month;

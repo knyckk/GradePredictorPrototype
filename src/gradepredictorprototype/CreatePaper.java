@@ -72,6 +72,11 @@ public class CreatePaper extends javax.swing.JFrame {
         maxMarkLbl.setText("Question max mark:");
 
         markFld.setText("Enter Mark");
+        markFld.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                markFldFocusGained(evt);
+            }
+        });
 
         topicLbl.setText("Question topic:");
 
@@ -80,6 +85,11 @@ public class CreatePaper extends javax.swing.JFrame {
         questionLbl.setText("Question:");
 
         questionFld.setText("Enter Question");
+        questionFld.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                questionFldFocusGained(evt);
+            }
+        });
 
         subjectBtn.setText("Return to Subject");
         subjectBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -178,19 +188,19 @@ public class CreatePaper extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void subjectBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subjectBtnActionPerformed
-        // TODO add your handling code here:
+        
         new TeacherSubject().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_subjectBtnActionPerformed
 
     private void profileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileBtnActionPerformed
-        // TODO add your handling code here:
+        
         new TeacherProfile().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_profileBtnActionPerformed
 
     private void rightBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rightBtnActionPerformed
-        // TODO add your handling code here:
+        
         if (index < paper.numOfQuestions() - 1) {
             paper.addQuestion(index, new Question(Integer.valueOf(markFld.getText()), questionFld.getText(), topicsBox.getSelectedItem().toString()));
             topics[index] = topicsBox.getSelectedIndex();
@@ -203,7 +213,7 @@ public class CreatePaper extends javax.swing.JFrame {
     }//GEN-LAST:event_rightBtnActionPerformed
 
     private void leftBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leftBtnActionPerformed
-        // TODO add your handling code here:
+        
         if (index > 0) {
             paper.addQuestion(index, new Question(Integer.valueOf(markFld.getText()), questionFld.getText(), topicsBox.getSelectedItem().toString()));
             topics[index] = topicsBox.getSelectedIndex();
@@ -216,12 +226,22 @@ public class CreatePaper extends javax.swing.JFrame {
     }//GEN-LAST:event_leftBtnActionPerformed
 
     private void createBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBtnActionPerformed
-        // TODO add your handling code here:
+        
         paper.addQuestion(index, new Question(Integer.valueOf(markFld.getText()), questionFld.getText(), topicsBox.getSelectedItem().toString()));
         DatabaseManipulation.createPaper(paper, GradePredictorPrototype.getSubject());
         new TeacherSubject().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_createBtnActionPerformed
+
+    private void markFldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_markFldFocusGained
+        
+        markFld.selectAll();
+    }//GEN-LAST:event_markFldFocusGained
+
+    private void questionFldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_questionFldFocusGained
+        
+        questionFld.selectAll();
+    }//GEN-LAST:event_questionFldFocusGained
 
     /**
      * @param args the command line arguments

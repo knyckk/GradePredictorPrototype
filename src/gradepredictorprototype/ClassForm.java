@@ -54,6 +54,11 @@ public class ClassForm extends javax.swing.JFrame {
         });
 
         nameFld.setText("New Name");
+        nameFld.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                nameFldFocusGained(evt);
+            }
+        });
 
         studentsBox.setModel(new javax.swing.DefaultComboBoxModel<>(DatabaseManipulation.getClassUsers(classroom.getName()).stream().filter(x -> x.getType() == 1).map(x -> x.getEmail()).toArray(String[]::new)));
 
@@ -131,7 +136,7 @@ public class ClassForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void nameBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameBtnActionPerformed
-        // TODO add your handling code here:
+        
         boolean changed = DatabaseManipulation.updateClass(classroom.getName(), nameFld.getText());
         if(changed) {
             titleLbl.setText(nameFld.getText());
@@ -139,16 +144,20 @@ public class ClassForm extends javax.swing.JFrame {
     }//GEN-LAST:event_nameBtnActionPerformed
 
     private void subjectBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subjectBtnActionPerformed
-        // TODO add your handling code here:
+        
         new TeacherSubject().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_subjectBtnActionPerformed
 
     private void profileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileBtnActionPerformed
-        // TODO add your handling code here:
+        
         new TeacherProfile().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_profileBtnActionPerformed
+
+    private void nameFldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nameFldFocusGained
+        nameFld.selectAll();
+    }//GEN-LAST:event_nameFldFocusGained
 
     /**
      * @param args the command line arguments

@@ -198,6 +198,7 @@
         <Property name="text" type="java.lang.String" value="Number Of Questions"/>
       </Properties>
       <Events>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="howManyFldFocusGained"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="howManyFldActionPerformed"/>
         <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="howManyFldKeyPressed"/>
       </Events>
@@ -206,11 +207,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Paper Year"/>
       </Properties>
+      <Events>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="yearFldFocusGained"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="numberFld">
       <Properties>
         <Property name="text" type="java.lang.String" value="Paper Number"/>
       </Properties>
+      <Events>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="numberFldFocusGained"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
@@ -254,31 +261,49 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Enter Mark"/>
       </Properties>
+      <Events>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="AStarFldFocusGained"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="AFld">
       <Properties>
         <Property name="text" type="java.lang.String" value="Enter Mark"/>
       </Properties>
+      <Events>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="AFldFocusGained"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="BFld">
       <Properties>
         <Property name="text" type="java.lang.String" value="Enter Mark"/>
       </Properties>
+      <Events>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="BFldFocusGained"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="CFld">
       <Properties>
         <Property name="text" type="java.lang.String" value="Enter Mark"/>
       </Properties>
+      <Events>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="CFldFocusGained"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="EFld">
       <Properties>
         <Property name="text" type="java.lang.String" value="Enter Mark"/>
       </Properties>
+      <Events>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="EFldFocusGained"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="DFld">
       <Properties>
         <Property name="text" type="java.lang.String" value="Enter Mark"/>
       </Properties>
+      <Events>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="DFldFocusGained"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="enterBtn">
       <Properties>

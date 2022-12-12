@@ -126,6 +126,11 @@ public class StudentSubject extends javax.swing.JFrame {
         });
 
         joinFld.setText("Code");
+        joinFld.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                joinFldFocusGained(evt);
+            }
+        });
 
         profileBtn.setText("Return to Profile");
         profileBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -346,6 +351,10 @@ public class StudentSubject extends javax.swing.JFrame {
         new FinalGrade().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_finalBtnActionPerformed
+
+    private void joinFldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_joinFldFocusGained
+        joinFld.selectAll();
+    }//GEN-LAST:event_joinFldFocusGained
 
     /**
      * @param args the command line arguments

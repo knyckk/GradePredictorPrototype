@@ -104,12 +104,16 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Name"/>
       </Properties>
+      <Events>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="nameFldFocusGained"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="descriptionFld">
       <Properties>
         <Property name="text" type="java.lang.String" value="Description"/>
       </Properties>
       <Events>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="descriptionFldFocusGained"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="descriptionFldActionPerformed"/>
       </Events>
     </Component>

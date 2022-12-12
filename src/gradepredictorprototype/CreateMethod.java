@@ -44,8 +44,18 @@ public class CreateMethod extends javax.swing.JFrame {
         descriptionLbl.setText("Please describle the method:");
 
         nameFld.setText("Name");
+        nameFld.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                nameFldFocusGained(evt);
+            }
+        });
 
         descriptionFld.setText("Description");
+        descriptionFld.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                descriptionFldFocusGained(evt);
+            }
+        });
         descriptionFld.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 descriptionFldActionPerformed(evt);
@@ -127,27 +137,37 @@ public class CreateMethod extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void descriptionFldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_descriptionFldActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_descriptionFldActionPerformed
 
     private void subjectBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subjectBtnActionPerformed
-        // TODO add your handling code here:
+        
         new TeacherSubject().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_subjectBtnActionPerformed
 
     private void profileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileBtnActionPerformed
-        // TODO add your handling code here:
+        
         new TeacherProfile().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_profileBtnActionPerformed
 
     private void enterBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterBtnActionPerformed
-        // TODO add your handling code here:
+        
         DatabaseManipulation.createMethod(nameFld.getText(), descriptionFld.getText());
         new RevisionMethod().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_enterBtnActionPerformed
+
+    private void nameFldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nameFldFocusGained
+        
+        nameFld.selectAll();
+    }//GEN-LAST:event_nameFldFocusGained
+
+    private void descriptionFldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_descriptionFldFocusGained
+        
+        descriptionFld.selectAll();
+    }//GEN-LAST:event_descriptionFldFocusGained
 
     /**
      * @param args the command line arguments

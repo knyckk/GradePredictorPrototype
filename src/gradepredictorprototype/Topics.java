@@ -60,6 +60,11 @@ public class Topics extends javax.swing.JFrame {
         });
 
         newTopicFld.setText("New Topic");
+        newTopicFld.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                newTopicFldFocusGained(evt);
+            }
+        });
 
         removeLbl.setText("Remove Topic:");
 
@@ -74,6 +79,11 @@ public class Topics extends javax.swing.JFrame {
         replaceBox.setModel(new javax.swing.DefaultComboBoxModel<>(DatabaseManipulation.getTopicsFromSubject(GradePredictorPrototype.getSubject()).stream().map(x -> x.getTopic()).toArray(String[]::new)));
 
         replaceFld.setText("Topic");
+        replaceFld.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                replaceFldFocusGained(evt);
+            }
+        });
 
         replaceBtn.setText("Replace");
 
@@ -168,7 +178,7 @@ public class Topics extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
-        // TODO add your handling code here:
+        
         DatabaseManipulation.createTopic(newTopicFld.getText(), GradePredictorPrototype.getSubject());
         topicsBox.setModel(new javax.swing.DefaultComboBoxModel<>(DatabaseManipulation.getTopicsFromSubject(GradePredictorPrototype.getSubject()).stream().map(x -> x.getTopic()).toArray(String[]::new)));
         removeBox.setModel(new javax.swing.DefaultComboBoxModel<>(DatabaseManipulation.getTopicsFromSubject(GradePredictorPrototype.getSubject()).stream().map(x -> x.getTopic()).toArray(String[]::new)));
@@ -176,20 +186,28 @@ public class Topics extends javax.swing.JFrame {
     }//GEN-LAST:event_addBtnActionPerformed
 
     private void subjectBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subjectBtnActionPerformed
-        // TODO add your handling code here:
+        
         new TeacherSubject().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_subjectBtnActionPerformed
 
     private void profileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileBtnActionPerformed
-        // TODO add your handling code here:
+        
         new TeacherProfile().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_profileBtnActionPerformed
 
     private void topicsBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_topicsBoxActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_topicsBoxActionPerformed
+
+    private void newTopicFldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_newTopicFldFocusGained
+        newTopicFld.selectAll();
+    }//GEN-LAST:event_newTopicFldFocusGained
+
+    private void replaceFldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_replaceFldFocusGained
+        replaceFld.selectAll();
+    }//GEN-LAST:event_replaceFldFocusGained
 
     /**
      * @param args the command line arguments

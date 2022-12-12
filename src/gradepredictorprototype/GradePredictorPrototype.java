@@ -30,23 +30,32 @@ public class GradePredictorPrototype {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     UIManager.put("control" , new Color(53,53,53));
+                    UIManager.put("nimbusLightBackground" , new Color(70,70,70));
+                    UIManager.put("info" , new Color(255,255,255));
+                    UIManager.put("nimbusAlertYellow" , new Color(0,255,255));
+                    UIManager.put("nimbusBase" , new Color(40,40,40));
+                    UIManager.put("nimbusDisabledText" , new Color(255,0,255));
+                    UIManager.put("nimbusFocus" , new Color(210,210,210));
+                    UIManager.put("nimbusGreen" , new Color(0,255,0));
+                    UIManager.put("nimbusInfoBlue" , new Color(110,110,110));
+                    UIManager.put("nimbusOrange" , new Color(81,83,255));
+                    UIManager.put("nimbusRed" , new Color(255,100,255));
+                    UIManager.put("nimbusSelectedText" , new Color(200,200,200));
+                    UIManager.put("nimbusSelectionBackground" , new Color(110,110,110));
                     UIManager.put("Button.background", new Color(110,110,110)); 
-                    UIManager.put("Label.font", new Font("Forte",Font.PLAIN,12));
-                    UIManager.put("text", new Color(255,255,255));
-                    UIManager.put("ComboBox.foreground", new Color(0,0,0));
-                    UIManager.put("ComboBox.background", new Color(130,130,130));                   
+                    UIManager.put("font", new Font("Arial",Font.PLAIN,12));
+                    UIManager.put("text", new Color(255,255,255));                                   
                     UIManager.getDefaults().put("TextField.border", BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
                     UIManager.getDefaults().put("TextField.foreground", new Color(255,255,255));
                     UIManager.getDefaults().put("TextField.background", new Color(53,53,53));
                     
                 }
             }
-        } catch (ClassNotFoundException ex) {
-        } catch (InstantiationException ex) {
-        } catch (IllegalAccessException ex) {
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
+            System.out.println("Error: " + ex);
         }
-        new StudentProfile().setVisible(true);
+        new SignUp().setVisible(true);
+        
         
     }
     public static void setTeacher(String email) {

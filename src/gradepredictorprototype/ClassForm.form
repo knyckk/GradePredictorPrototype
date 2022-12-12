@@ -120,6 +120,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="New Name"/>
       </Properties>
+      <Events>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="nameFldFocusGained"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JComboBox" name="studentsBox">
       <Properties>

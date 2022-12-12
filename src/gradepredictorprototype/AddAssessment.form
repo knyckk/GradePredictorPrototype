@@ -222,6 +222,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Enter Mark"/>
       </Properties>
+      <Events>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="questionMarkFldFocusGained"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="createPaperBtn">
       <Properties>
@@ -251,6 +254,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Enter Mark"/>
       </Properties>
+      <Events>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="totalFldFocusGained"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="totalFld.setVisible(false);"/>
       </AuxValues>
@@ -259,6 +265,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Enter Mark"/>
       </Properties>
+      <Events>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="scoreFldFocusGained"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="scoreFld.setVisible(false);"/>
       </AuxValues>

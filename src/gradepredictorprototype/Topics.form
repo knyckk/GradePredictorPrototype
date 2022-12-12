@@ -144,6 +144,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="New Topic"/>
       </Properties>
+      <Events>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="newTopicFldFocusGained"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="removeLbl">
       <Properties>
@@ -191,6 +194,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Topic"/>
       </Properties>
+      <Events>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="replaceFldFocusGained"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="replaceBtn">
       <Properties>

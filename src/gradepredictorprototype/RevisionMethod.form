@@ -158,6 +158,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Method"/>
       </Properties>
+      <Events>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="nameFldFocusGained"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JComboBox" name="replaceBox">
       <Properties>

@@ -111,6 +111,11 @@ public class AddAssessment extends javax.swing.JFrame {
         });
 
         questionMarkFld.setText("Enter Mark");
+        questionMarkFld.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                questionMarkFldFocusGained(evt);
+            }
+        });
 
         createPaperBtn.setText("Add Paper");
         createPaperBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -127,9 +132,19 @@ public class AddAssessment extends javax.swing.JFrame {
 
         totalFld.setText("Enter Mark");
         totalFld.setVisible(false);
+        totalFld.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                totalFldFocusGained(evt);
+            }
+        });
 
         scoreFld.setText("Enter Mark");
         scoreFld.setVisible(false);
+        scoreFld.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                scoreFldFocusGained(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -226,19 +241,19 @@ public class AddAssessment extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void profileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileBtnActionPerformed
-        // TODO add your handling code here:
+        
         new StudentProfile().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_profileBtnActionPerformed
 
     private void subjectBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subjectBtnActionPerformed
-        // TODO add your handling code here:
+        
         new StudentSubject().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_subjectBtnActionPerformed
 
     private void leftBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leftBtnActionPerformed
-        // TODO add your handling code here:
+        
         if(questionIndex > 0) {
             papers.get(papersBox.getSelectedIndex()).getQuestion(questionIndex).setScore(Integer.valueOf(questionMarkFld.getText()));
             questionIndex--;
@@ -248,7 +263,7 @@ public class AddAssessment extends javax.swing.JFrame {
     }//GEN-LAST:event_leftBtnActionPerformed
 
     private void rightBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rightBtnActionPerformed
-        // TODO add your handling code here:
+        
         if(questionIndex < papers.get(papersBox.getSelectedIndex()).numOfQuestions() - 1) {
             papers.get(papersBox.getSelectedIndex()).getQuestion(questionIndex).setScore(Integer.valueOf(questionMarkFld.getText()));
             questionIndex++;
@@ -258,22 +273,22 @@ public class AddAssessment extends javax.swing.JFrame {
     }//GEN-LAST:event_rightBtnActionPerformed
 
     private void papersBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_papersBoxActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_papersBoxActionPerformed
 
     private void papersBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_papersBoxItemStateChanged
-        // TODO add your handling code here:
+        
         questionIndex = 0;
         questionLbl.setText("Question: " + papers.get(papersBox.getSelectedIndex()).getQuestion(questionIndex).getQuestion());
         questionMarkFld.setText(String.valueOf(papers.get(papersBox.getSelectedIndex()).getQuestion(questionIndex).getScore()));
     }//GEN-LAST:event_papersBoxItemStateChanged
 
     private void typeBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_typeBoxActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_typeBoxActionPerformed
 
     private void typeBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_typeBoxItemStateChanged
-        // TODO add your handling code here:
+        
         if(typeBox.getSelectedIndex() == 0) {
             totalLbl.setVisible(false);
             scoreLbl.setVisible(false);
@@ -298,7 +313,7 @@ public class AddAssessment extends javax.swing.JFrame {
     }//GEN-LAST:event_typeBoxItemStateChanged
 
     private void createPaperBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createPaperBtnActionPerformed
-        // TODO add your handling code here:
+        
         if(typeBox.getSelectedIndex() == 0) {
             DatabaseManipulation.addFormalPaper(GradePredictorPrototype.getStudent(), papers.get(papersBox.getSelectedIndex()));
             new StudentSubject().setVisible(true);
@@ -309,6 +324,21 @@ public class AddAssessment extends javax.swing.JFrame {
             this.dispose();
         }
     }//GEN-LAST:event_createPaperBtnActionPerformed
+
+    private void totalFldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_totalFldFocusGained
+        
+        totalFld.selectAll();
+    }//GEN-LAST:event_totalFldFocusGained
+
+    private void scoreFldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_scoreFldFocusGained
+        
+        scoreFld.selectAll();
+    }//GEN-LAST:event_scoreFldFocusGained
+
+    private void questionMarkFldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_questionMarkFldFocusGained
+        
+        questionMarkFld.selectAll();
+    }//GEN-LAST:event_questionMarkFldFocusGained
 
     /**
      * @param args the command line arguments

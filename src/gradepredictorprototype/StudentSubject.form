@@ -220,6 +220,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Code"/>
       </Properties>
+      <Events>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="joinFldFocusGained"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="profileBtn">
       <Properties>

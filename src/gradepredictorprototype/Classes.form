@@ -147,6 +147,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Class name"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="createClassFldActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="joinClassBtn">
       <Properties>
@@ -160,6 +163,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Teacher code"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="joinFldActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="leaveLbl">
       <Properties>

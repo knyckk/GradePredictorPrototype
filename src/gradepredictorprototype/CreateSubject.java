@@ -41,6 +41,11 @@ public class CreateSubject extends javax.swing.JFrame {
 
         nameFld.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         nameFld.setText("Enter name");
+        nameFld.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                nameFldFocusGained(evt);
+            }
+        });
         nameFld.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nameFldActionPerformed(evt);
@@ -88,13 +93,18 @@ public class CreateSubject extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void nameFldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameFldActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_nameFldActionPerformed
 
     private void enterBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterBtnActionPerformed
-        // TODO add your handling code here:
+        
         DatabaseManipulation.makeSubject(nameFld.getText());
     }//GEN-LAST:event_enterBtnActionPerformed
+
+    private void nameFldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nameFldFocusGained
+        
+        nameFld.selectAll();
+    }//GEN-LAST:event_nameFldFocusGained
 
     /**
      * @param args the command line arguments
