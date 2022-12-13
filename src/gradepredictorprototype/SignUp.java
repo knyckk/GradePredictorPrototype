@@ -47,6 +47,8 @@ public class SignUp extends javax.swing.JFrame {
         enterBtn = new javax.swing.JButton();
         passwordFld = new javax.swing.JPasswordField();
         confirmFld = new javax.swing.JPasswordField();
+        orLbl = new javax.swing.JLabel();
+        login = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("SignUp");
@@ -155,6 +157,16 @@ public class SignUp extends javax.swing.JFrame {
             }
         });
 
+        orLbl.setText("or you can login");
+
+        login.setForeground(new java.awt.Color(153, 153, 153));
+        login.setText("here");
+        login.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                loginMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -162,6 +174,10 @@ public class SignUp extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(257, 257, 257)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(orLbl)
+                        .addGap(3, 3, 3)
+                        .addComponent(login))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(signUpAsLbl)
                         .addGap(8, 8, 8)
@@ -216,7 +232,11 @@ public class SignUp extends javax.swing.JFrame {
                 .addComponent(codeFld, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(6, 6, 6)
                 .addComponent(enterBtn)
-                .addGap(84, 84, 84))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(orLbl)
+                    .addComponent(login))
+                .addGap(48, 48, 48))
         );
 
         pack();
@@ -348,6 +368,11 @@ public class SignUp extends javax.swing.JFrame {
         codeFld.selectAll();
     }//GEN-LAST:event_codeFldFocusGained
 
+    private void loginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginMouseClicked
+        new Login().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_loginMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -393,6 +418,8 @@ public class SignUp extends javax.swing.JFrame {
     private javax.swing.JLabel confirmLbl;
     private javax.swing.JTextField emailFld;
     private javax.swing.JButton enterBtn;
+    private javax.swing.JLabel login;
+    private javax.swing.JLabel orLbl;
     private javax.swing.JPasswordField passwordFld;
     private javax.swing.JLabel passwordLbl;
     private javax.swing.ButtonGroup radios;

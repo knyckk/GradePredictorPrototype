@@ -22,21 +22,7 @@ public class ValidationRoutines {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        //System.out.println(validatePostcode("LK77 7HH"));
-//        System.out.println(validateEmail("thope7002@gmail.com"));
-//        System.out.println(validateEmail("thope7002gmail.com"));
-//        System.out.println(validateEmail("thope@7002gmailcom"));
-//        System.out.println(validateEmail("1-thope@bayhouse.gfmat.org"));
-//        printDate("28-02-2000");
-//        printDate("29/02-2001");
-//        printDate("29-02-2000");
-        System.out.println(isDate("28-02-2000"));
-        System.out.println(isDate("29-02-2001"));
-        System.out.println(isDate("29-02-2000"));
-        System.out.println(isDate("30-04-2000"));
-        System.out.println(isDate("31-04-2001"));
-        System.out.println(isDate("30-05-2000"));
-        //new SelectValidate().setVisible(true);
+
     }
 
     public static boolean validatePostcode(String inPost) {
@@ -114,8 +100,6 @@ public class ValidationRoutines {
 
     }
 
-    public static void printDate(String date) {
-        System.out.println(date.substring(0, 2) + "day\n" + date.substring(3, 5) + "month\n" + date.substring(6) + "year");
-    }
+    
 
 }

@@ -54,12 +54,18 @@ public class GradePredictorPrototype {
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             System.out.println("Error: " + ex);
         }
-        new SignUp().setVisible(true);
+        new Login().setVisible(true);
         
         
     }
     public static void setTeacher(String email) {
         teacher = DatabaseManipulation.teacherFromEmail(email);
+    }
+    public static void setTeacher(User user) {
+        teacher = new  Teacher(user.getEmail(),user.getPassword());
+    }
+    public static void setStudent(User user) {
+        student = new Student(user.getEmail(),user.getPassword());
     }
     public static void setStudent(String email) {
         student = DatabaseManipulation.studentFromEmail(email);

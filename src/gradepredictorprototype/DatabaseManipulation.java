@@ -763,7 +763,23 @@ public class DatabaseManipulation {
         }
         return toReturn;
     }
+    public static User userFromEmail(String email){
+        User toReturn = new User("", "",0);
+        try (Connection conn = DriverManager.getConnection(URL, "THope", DATABASEPASSWORD);
+                Statement statement = conn.createStatement()) {
+            try (ResultSet result = statement.executeQuery("SELECT * FROM " + USERS + " WHERE " + EMAIL + " = '" + email + "'")) {
+                while (result.next()) {
+                    toReturn = new User(result.getString(EMAIL), result.getString(PASSWORD), result.getInt(TYPE));
+                }
 
+            } catch (SQLException e) {
+                System.out.println("ERROR MESSAGE 2!!!!" + e);
+            }
+        } catch (SQLException e) {
+            System.out.println("ERROR MESSAGE 1!!!!" + e);
+        }
+        return toReturn;
+    }
     public static Subject subjectFromID(int ID) {
         Subject toReturn = new Subject(ID, "");
         try (Connection conn = DriverManager.getConnection(URL, "THope", DATABASEPASSWORD);
