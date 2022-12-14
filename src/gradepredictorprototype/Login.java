@@ -198,10 +198,12 @@ public class Login extends javax.swing.JFrame {
 
                 if (user.getType() == 0) {
                     GradePredictorPrototype.setTeacher(user);
+                    GradePredictorPrototype.setType(0);
                     new TeacherProfile().setVisible(true);
                     this.dispose();
                 } else if (user.getType() == 1) {
                     GradePredictorPrototype.setStudent(user);
+                    GradePredictorPrototype.setType(1);
                     new StudentProfile().setVisible(true);
                     this.dispose();
                 }

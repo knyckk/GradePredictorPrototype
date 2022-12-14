@@ -20,8 +20,18 @@ public class User {
         this.password = password;
         this.type = type;
     }
+    public User(String email, String password, int type, String username, String name) {
+        this.email = email;
+        this.password = password;
+        this.type = type;
+        this.username = username;
+        this.name = name;
+    }
     public String getEmail() {
         return email;
+    }
+    public String getName() {
+        return name;
     }
     public String getPassword() {
         return password;

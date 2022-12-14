@@ -260,15 +260,15 @@ public class SignUp extends javax.swing.JFrame {
         
         if (((passwordFld.getText().equals(confirmFld.getText())) && codeFld.getText().equals(code)) && type == 2) {
             DatabaseManipulation.signUp(emailFld.getText(), passwordFld.getText(), 1);
-            GradePredictorPrototype.setStudent(emailFld.getText());
-            new StudentProfile().setVisible(true);
-            this.dispose();
+            GradePredictorPrototype.setStudent(new User(emailFld.getText(), passwordFld.getText(), 1));
+            GradePredictorPrototype.setType(1);
         } else if (((passwordFld.getText().equals(confirmFld.getText())) && codeFld.getText().equals(code)) && type == 1) {
             DatabaseManipulation.signUp(emailFld.getText(), passwordFld.getText(), 0);
-            GradePredictorPrototype.setTeacher(emailFld.getText());
-            new TeacherProfile().setVisible(true);
-            this.dispose();
+            GradePredictorPrototype.setTeacher(new User(emailFld.getText(), passwordFld.getText(), 0));
+            GradePredictorPrototype.setType(0);
         }
+        new AboutYou().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_enterBtnActionPerformed
 
     private void codeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codeBtnActionPerformed

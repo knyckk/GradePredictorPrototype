@@ -20,6 +20,8 @@ public class GradePredictorPrototype {
     private static Student student = new Student("1-thope@bayhouse.gfmat.org" , "BH147685!");
     private static Subject subject = new Subject(1, "Mathematics");
     private static double[] averageBoundaries = new double[] {0.74, 0.63, 0.54, 0.47, 0.40, 0.31};
+    private static int type = 1;
+    private static boolean viewing = false;
     /**
      * @param args the command line arguments
      */
@@ -76,21 +78,25 @@ public class GradePredictorPrototype {
     public static Teacher getTeacher() {
         return teacher;
     }
+    public static User getUser() {
+        User toReturn = new User("","",1);
+        if(type == 0) {
+            toReturn = teacher;
+        } else if(type == 1) {
+            toReturn = student;
+        }
+        return  toReturn;
+    }
+    public static void setType(int input) {
+        type = input;
+    }
     public static Student getStudent() {
         return student;
     }
     public static Subject getSubject() {
         return subject;
     }
-    public static void setUIFont (javax.swing.plaf.FontUIResource f){
-    java.util.Enumeration keys = UIManager.getDefaults().keys();
-    while (keys.hasMoreElements()) {
-      Object key = keys.nextElement();
-      Object value = UIManager.get (key);
-      if (value instanceof javax.swing.plaf.FontUIResource)
-        UIManager.put (key, f);
-      }
-    } 
+    
     public static String getCode() {
         String code;
         Random random = new Random();

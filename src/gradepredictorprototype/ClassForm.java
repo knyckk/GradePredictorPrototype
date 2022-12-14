@@ -4,17 +4,21 @@
  */
 package gradepredictorprototype;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author kingt
  */
 public class ClassForm extends javax.swing.JFrame {
     private Classroom classroom;
+    private ArrayList<User> students;
     /**
      * Creates new form ClassFrom
      */
     public ClassForm(String name) {
         classroom = DatabaseManipulation.classFromName(name);
+        students = DatabaseManipulation.getClassStudents(name);
         initComponents();
     }
 
@@ -60,7 +64,12 @@ public class ClassForm extends javax.swing.JFrame {
             }
         });
 
-        studentsBox.setModel(new javax.swing.DefaultComboBoxModel<>(DatabaseManipulation.getClassUsers(classroom.getName()).stream().filter(x -> x.getType() == 1).map(x -> x.getEmail()).toArray(String[]::new)));
+        studentsBox.setModel(new javax.swing.DefaultComboBoxModel<>(students.stream().map(x -> x.getName()).toArray(String[]::new)));
+        studentsBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                studentsBoxActionPerformed(evt);
+            }
+        });
 
         studentBtn.setText("View Student");
 
@@ -158,6 +167,10 @@ public class ClassForm extends javax.swing.JFrame {
     private void nameFldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nameFldFocusGained
         nameFld.selectAll();
     }//GEN-LAST:event_nameFldFocusGained
+
+    private void studentsBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_studentsBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_studentsBoxActionPerformed
 
     /**
      * @param args the command line arguments

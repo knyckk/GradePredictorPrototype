@@ -130,8 +130,11 @@
           <StringArray count="0"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="studentsBoxActionPerformed"/>
+      </Events>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="studentsBox.setModel(new javax.swing.DefaultComboBoxModel&lt;&gt;(DatabaseManipulation.getClassUsers(classroom.getName()).stream().filter(x -&gt; x.getType() == 1).map(x -&gt; x.getEmail()).toArray(String[]::new)));"/>
+        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="studentsBox.setModel(new javax.swing.DefaultComboBoxModel&lt;&gt;(students.stream().map(x -&gt; x.getName()).toArray(String[]::new)));"/>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
     </Component>

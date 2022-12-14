@@ -35,4 +35,7 @@ public class Date {
         System.out.println(Math.abs(date1.subtract(date2)));
         
     }
+    public static int nextYear() {   
+        return Integer.parseInt(java.time.LocalDate.now().toString().substring(0,4)) + 1;
+    }
 }
