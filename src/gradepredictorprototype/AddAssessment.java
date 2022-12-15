@@ -48,6 +48,8 @@ public class AddAssessment extends javax.swing.JFrame {
         scoreLbl = new javax.swing.JLabel();
         totalFld = new javax.swing.JTextField();
         scoreFld = new javax.swing.JTextField();
+        classBtn = new javax.swing.JButton();
+        classBtn.setVisible(GradePredictorPrototype.getViewing());
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -146,6 +148,13 @@ public class AddAssessment extends javax.swing.JFrame {
             }
         });
 
+        classBtn.setText("Return to Class");
+        classBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                classBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -156,7 +165,10 @@ public class AddAssessment extends javax.swing.JFrame {
                 .addGap(74, 74, 74))
             .addGroup(layout.createSequentialGroup()
                 .addGap(12, 12, 12)
-                .addComponent(titleLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(titleLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(111, 111, 111)
+                .addComponent(classBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18))
             .addGroup(layout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addComponent(typeLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -181,7 +193,7 @@ public class AddAssessment extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(totalLbl)
                         .addGap(4, 4, 4)
-                        .addComponent(totalFld, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
+                        .addComponent(totalFld)
                         .addGap(10, 10, 10))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(scoreLbl)
@@ -192,15 +204,17 @@ public class AddAssessment extends javax.swing.JFrame {
                 .addGap(272, 272, 272)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(subjectBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(profileBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE))
+                    .addComponent(profileBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(3, 3, 3))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(titleLbl)
-                .addGap(12, 12, 12)
+                .addGap(10, 10, 10)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(titleLbl)
+                    .addComponent(classBtn))
+                .addGap(8, 8, 8)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(5, 5, 5)
@@ -340,6 +354,12 @@ public class AddAssessment extends javax.swing.JFrame {
         questionMarkFld.selectAll();
     }//GEN-LAST:event_questionMarkFldFocusGained
 
+    private void classBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classBtnActionPerformed
+        // TODO add your handling code here:
+        new Classes().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_classBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -376,6 +396,7 @@ public class AddAssessment extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton classBtn;
     private javax.swing.JButton createPaperBtn;
     private javax.swing.JButton leftBtn;
     private javax.swing.JComboBox<String> papersBox;

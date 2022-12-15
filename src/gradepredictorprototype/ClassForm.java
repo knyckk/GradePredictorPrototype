@@ -72,6 +72,11 @@ public class ClassForm extends javax.swing.JFrame {
         });
 
         studentBtn.setText("View Student");
+        studentBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                studentBtnActionPerformed(evt);
+            }
+        });
 
         subjectBtn.setText("Return to Subject");
         subjectBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -171,6 +176,13 @@ public class ClassForm extends javax.swing.JFrame {
     private void studentsBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_studentsBoxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_studentsBoxActionPerformed
+
+    private void studentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_studentBtnActionPerformed
+        GradePredictorPrototype.setViewing(true);
+        GradePredictorPrototype.setStudent(students.get(studentsBox.getSelectedIndex()));
+        new StudentProfile().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_studentBtnActionPerformed
 
     /**
      * @param args the command line arguments

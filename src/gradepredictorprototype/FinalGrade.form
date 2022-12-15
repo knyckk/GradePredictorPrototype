@@ -23,25 +23,28 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
+          <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="enterBtn" min="-2" pref="95" max="-2" attributes="0"/>
                   <Component id="subjectLbl" min="-2" pref="85" max="-2" attributes="0"/>
-                  <Component id="titleLbl" min="-2" pref="111" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Component id="titleLbl" min="-2" pref="111" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="159" max="-2" attributes="0"/>
+                      <Component id="classBtn" max="32767" attributes="0"/>
+                  </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="gradeLbl" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                       <Component id="gradesBox" min="-2" pref="103" max="-2" attributes="0"/>
                   </Group>
-              </Group>
-              <EmptySpace pref="198" max="32767" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="subjectBtn" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="profileBtn" alignment="0" min="-2" pref="117" max="-2" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="subjectBtn" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="profileBtn" alignment="0" min="-2" pref="117" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -51,7 +54,10 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="titleLbl" min="-2" pref="30" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="titleLbl" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                  <Component id="classBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="subjectLbl" min="-2" pref="21" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
@@ -129,6 +135,17 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="subjectBtnActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="classBtn">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Return to Class"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="classBtnActionPerformed"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="classBtn.setVisible(GradePredictorPrototype.getViewing());"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>

@@ -78,6 +78,9 @@ public class GradePredictorPrototype {
     public static Teacher getTeacher() {
         return teacher;
     }
+    public static void setViewing(boolean view) {
+        viewing = view;
+    }
     public static User getUser() {
         User toReturn = new User("","",1);
         if(type == 0) {
@@ -96,7 +99,9 @@ public class GradePredictorPrototype {
     public static Subject getSubject() {
         return subject;
     }
-    
+    public static boolean getViewing() {
+        return viewing;
+    }
     public static String getCode() {
         String code;
         Random random = new Random();
