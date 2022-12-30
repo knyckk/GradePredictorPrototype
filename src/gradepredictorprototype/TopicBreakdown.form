@@ -1,10 +1,39 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <NonVisualComponents>
+    <Menu class="javax.swing.JMenuBar" name="menuBar">
+      <SubComponents>
+        <Menu class="javax.swing.JMenu" name="logout">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Log out"/>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="logoutMouseClicked"/>
+          </Events>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="exit">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Exit"/>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="exitMouseClicked"/>
+          </Events>
+        </Menu>
+      </SubComponents>
+    </Menu>
+  </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+      <Dimension value="[1200, 600]"/>
+    </Property>
+    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+      <Dimension value="[1200, 600]"/>
+    </Property>
   </Properties>
   <SyntheticProperties>
+    <SyntheticProperty name="menuBar" type="java.lang.String" value="menuBar"/>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
     <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
   </SyntheticProperties>
@@ -23,144 +52,153 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" max="-2" attributes="0"/>
+          <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="overallLbl" max="32767" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="881" max="-2" attributes="0"/>
+                      <Component id="subjectBtn" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="881" pref="881" max="-2" attributes="0"/>
+                      <Component id="profileBtn" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="leftBtn" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="rightBtn" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
+                      <Component id="titleLbl" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="881" pref="881" max="-2" attributes="0"/>
+                      <Component id="classBtn" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="gradeLbl" max="32767" attributes="0"/>
+                              <EmptySpace min="66" pref="66" max="-2" attributes="0"/>
+                              <Component id="leftBtn" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="40" pref="40" max="-2" attributes="0"/>
+                              <Component id="rightBtn" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
+                              <Component id="questionLbl" min="-2" pref="215" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="questionLbl" pref="363" max="32767" attributes="0"/>
-                              <EmptySpace min="212" pref="212" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="topicsBox" alignment="0" min="-2" pref="146" max="-2" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="meanMarksLbl" max="32767" attributes="0"/>
-                              <EmptySpace min="376" pref="376" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="meanLbl" max="32767" attributes="0"/>
-                              <EmptySpace min="317" pref="317" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="testedLbl" max="32767" attributes="0"/>
-                              <EmptySpace min="278" pref="278" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="gradeLbl1" alignment="0" min="-2" pref="563" max="-2" attributes="0"/>
-                          <Component id="questionLbl1" alignment="0" min="-2" pref="351" max="-2" attributes="0"/>
-                          <Component id="meanMarksLbl1" alignment="0" min="-2" pref="199" max="-2" attributes="0"/>
-                          <Component id="meanLbl1" alignment="0" min="-2" pref="258" max="-2" attributes="0"/>
-                          <Component id="marksLbl1" alignment="0" min="-2" pref="147" max="-2" attributes="0"/>
-                          <Component id="overallLbl1" min="-2" pref="179" max="-2" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="leftBtn1" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="rightBtn1" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
+                              <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="profileBtn" alignment="0" min="-2" pref="126" max="-2" attributes="0"/>
-                                  <Component id="subjectBtn" min="-2" pref="126" max="-2" attributes="0"/>
+                                  <Component id="meanLbl" min="-2" pref="215" max="-2" attributes="0"/>
+                                  <Component id="gradeLbl" min="-2" pref="215" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="marksLbl" min="-2" pref="215" max="-2" attributes="0"/>
+                                  <Component id="meanMarksLbl" min="-2" pref="215" max="-2" attributes="0"/>
+                                  <Component id="overallLbl" min="-2" pref="215" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="topicsBox1" alignment="0" min="-2" pref="146" max="-2" attributes="0"/>
-                                  <Component id="testedLbl1" alignment="0" min="-2" pref="297" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="classBtn" min="-2" pref="122" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                              <Component id="topicsBox" min="-2" pref="191" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                              <Component id="testedLbl" min="-2" pref="215" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                  </Group>
-                  <Component id="titleLbl" min="-2" pref="146" max="-2" attributes="0"/>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="marksLbl" max="32767" attributes="0"/>
-                      <EmptySpace min="429" pref="429" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="225" max="-2" attributes="0"/>
+                              <Component id="leftBtn1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="50" pref="50" max="-2" attributes="0"/>
+                              <Component id="rightBtn1" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="214" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="topicsBox1" min="-2" pref="214" max="-2" attributes="0"/>
+                                  <Component id="questionLbl1" alignment="0" min="-2" pref="215" max="-2" attributes="0"/>
+                                  <Component id="meanLbl1" alignment="0" min="-2" pref="215" max="-2" attributes="0"/>
+                                  <Component id="gradeLbl1" alignment="0" min="-2" pref="215" max="-2" attributes="0"/>
+                                  <Component id="marksLbl1" alignment="0" min="-2" pref="215" max="-2" attributes="0"/>
+                                  <Component id="meanMarksLbl1" alignment="0" min="-2" pref="215" max="-2" attributes="0"/>
+                                  <Component id="overallLbl1" alignment="0" min="-2" pref="215" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="testedLbl1" min="-2" pref="215" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
                   </Group>
               </Group>
-              <EmptySpace min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="324" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
+          <Group type="102" attributes="0">
+              <EmptySpace min="9" pref="9" max="-2" attributes="0"/>
+              <Component id="titleLbl" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+              <Component id="classBtn" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="topicsBox" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
+                  <Component id="topicsBox1" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="classBtn" min="-2" pref="31" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="testedLbl1" min="-2" pref="31" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+                      <Component id="marksLbl1" min="-2" pref="28" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+                      <Component id="meanMarksLbl1" min="-2" pref="31" max="-2" attributes="0"/>
+                      <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                      <Component id="overallLbl1" min="-2" pref="36" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                      <Component id="meanLbl1" min="-2" pref="35" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="gradeLbl1" min="-2" pref="36" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                      <Component id="questionLbl1" min="-2" pref="45" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
-                      <Component id="titleLbl" min="-2" max="-2" attributes="0"/>
+                      <Component id="testedLbl" min="-2" pref="31" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="marksLbl" min="-2" pref="28" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+                      <Component id="meanMarksLbl" min="-2" pref="31" max="-2" attributes="0"/>
+                      <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                      <Component id="overallLbl" min="-2" pref="36" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                      <Component id="meanLbl" min="-2" pref="35" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="gradeLbl" min="-2" pref="36" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                      <Component id="questionLbl" min="-2" pref="45" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="leftBtn" min="-2" max="-2" attributes="0"/>
+                          <Component id="rightBtn" min="-2" max="-2" attributes="0"/>
                           <Group type="102" attributes="0">
-                              <EmptySpace type="unrelated" max="32767" attributes="0"/>
-                              <Component id="topicsBox" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="testedLbl" min="-2" pref="14" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="marksLbl" min="-2" pref="14" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="meanMarksLbl" min="-2" pref="16" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="overallLbl" min="-2" pref="18" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="meanLbl" min="-2" pref="13" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="gradeLbl" min="-2" pref="16" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="questionLbl" min="-2" pref="20" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="leftBtn" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="rightBtn" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace pref="22" max="32767" attributes="0"/>
-                              <Component id="topicsBox1" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="testedLbl1" min="-2" pref="14" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="marksLbl1" min="-2" pref="14" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="meanMarksLbl1" min="-2" pref="16" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="overallLbl1" min="-2" pref="18" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="meanLbl1" min="-2" pref="13" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="gradeLbl1" min="-2" pref="16" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="questionLbl1" min="-2" pref="20" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
+                              <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="leftBtn1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="rightBtn1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Component id="subjectBtn" min="-2" max="-2" attributes="0"/>
+                                  <Component id="leftBtn1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="rightBtn1" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
-                              <Component id="profileBtn" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                           </Group>
                       </Group>
+                      <EmptySpace min="29" pref="29" max="-2" attributes="0"/>
+                      <Component id="subjectBtn" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                      <Component id="profileBtn" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
+              <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -238,14 +276,6 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="subjectBtnActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="meanMarksLbl1">
-    </Component>
-    <Component class="javax.swing.JLabel" name="overallLbl1">
-    </Component>
-    <Component class="javax.swing.JLabel" name="meanLbl1">
-    </Component>
-    <Component class="javax.swing.JLabel" name="gradeLbl1">
-    </Component>
     <Component class="javax.swing.JButton" name="leftBtn1">
       <Properties>
         <Property name="text" type="java.lang.String" value="&lt;"/>
@@ -253,8 +283,6 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="leftBtn1ActionPerformed"/>
       </Events>
-    </Component>
-    <Component class="javax.swing.JLabel" name="questionLbl1">
     </Component>
     <Component class="javax.swing.JButton" name="rightBtn1">
       <Properties>
@@ -279,13 +307,6 @@
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JLabel" name="testedLbl1">
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="setLabels1();&#xd; "/>
-      </AuxValues>
-    </Component>
-    <Component class="javax.swing.JLabel" name="marksLbl1">
-    </Component>
     <Component class="javax.swing.JButton" name="classBtn">
       <Properties>
         <Property name="text" type="java.lang.String" value="Return to Class"/>
@@ -296,6 +317,23 @@
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="classBtn.setVisible(GradePredictorPrototype.getViewing());"/>
       </AuxValues>
+    </Component>
+    <Component class="javax.swing.JLabel" name="testedLbl1">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="setLabels1();"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JLabel" name="marksLbl1">
+    </Component>
+    <Component class="javax.swing.JLabel" name="meanMarksLbl1">
+    </Component>
+    <Component class="javax.swing.JLabel" name="overallLbl1">
+    </Component>
+    <Component class="javax.swing.JLabel" name="meanLbl1">
+    </Component>
+    <Component class="javax.swing.JLabel" name="gradeLbl1">
+    </Component>
+    <Component class="javax.swing.JLabel" name="questionLbl1">
     </Component>
   </SubComponents>
 </Form>

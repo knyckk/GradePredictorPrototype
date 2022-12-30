@@ -42,6 +42,9 @@ public class Classes extends javax.swing.JFrame {
         profileBtn = new javax.swing.JButton();
         leaveBtn = new javax.swing.JButton();
         removeBtn = new javax.swing.JButton();
+        menuBar = new javax.swing.JMenuBar();
+        logout = new javax.swing.JMenu();
+        exit = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -126,6 +129,24 @@ public class Classes extends javax.swing.JFrame {
             }
         });
 
+        logout.setText("Log out");
+        logout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                logoutMouseClicked(evt);
+            }
+        });
+        menuBar.add(logout);
+
+        exit.setText("Exit");
+        exit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                exitMouseClicked(evt);
+            }
+        });
+        menuBar.add(exit);
+
+        setJMenuBar(menuBar);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -145,7 +166,7 @@ public class Classes extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(75, 75, 75)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(currentBox, 0, 151, Short.MAX_VALUE)
+                                    .addComponent(currentBox, 0, 935, Short.MAX_VALUE)
                                     .addComponent(viewBtn))
                                 .addGap(54, 54, 54))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -167,7 +188,7 @@ public class Classes extends javax.swing.JFrame {
                                 .addComponent(joinClassBtn)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(joinFld, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(54, Short.MAX_VALUE))))
+                        .addContainerGap(838, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -193,7 +214,7 @@ public class Classes extends javax.swing.JFrame {
                         .addComponent(currentBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(viewBtn)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(subjectBtn)
@@ -281,6 +302,15 @@ public class Classes extends javax.swing.JFrame {
         joinFld.selectAll();
     }//GEN-LAST:event_joinFldActionPerformed
 
+    private void logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseClicked
+        new Login().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_logoutMouseClicked
+
+    private void exitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_exitMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -320,11 +350,14 @@ public class Classes extends javax.swing.JFrame {
     private javax.swing.JButton createClassBtn;
     private javax.swing.JTextField createClassFld;
     private javax.swing.JComboBox<String> currentBox;
+    private javax.swing.JMenu exit;
     private javax.swing.JButton joinClassBtn;
     private javax.swing.JTextField joinFld;
     private javax.swing.JComboBox<String> leaveBox;
     private javax.swing.JButton leaveBtn;
     private javax.swing.JLabel leaveLbl;
+    private javax.swing.JMenu logout;
+    private javax.swing.JMenuBar menuBar;
     private javax.swing.JButton profileBtn;
     private javax.swing.JComboBox<String> removeBox;
     private javax.swing.JButton removeBtn;

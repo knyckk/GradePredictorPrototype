@@ -49,7 +49,7 @@ public class Graph extends JPanel{
         double gradient = ((coordinates.size() - 1) * sigmaXY - sigmaX * sigmaY) / ((coordinates.size() - 1) * sigmaXSquared - sigmaX*sigmaX);
         double finalX = coordinates.get(coordinates.size() - 1)[0];
         finalY = (gradient*finalX) + constant;
-        
+         
         g1.setPaint(Color.WHITE);
         g1.draw(new Line2D.Double(mar,height-mar-constant*scale,mar + finalX*x,height-mar - finalY*scale));
         g1.setPaint(Color.LIGHT_GRAY);

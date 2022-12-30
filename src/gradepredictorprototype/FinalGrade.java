@@ -4,6 +4,8 @@
  */
 package gradepredictorprototype;
 
+import java.awt.event.KeyEvent;
+
 /**
  *
  * @author kingt
@@ -35,8 +37,12 @@ public class FinalGrade extends javax.swing.JFrame {
         subjectBtn = new javax.swing.JButton();
         classBtn = new javax.swing.JButton();
         classBtn.setVisible(GradePredictorPrototype.getViewing());
+        menuBar = new javax.swing.JMenuBar();
+        logout = new javax.swing.JMenu();
+        exit = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1200, 600));
 
         titleLbl.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         titleLbl.setText("Final Grade");
@@ -46,6 +52,11 @@ public class FinalGrade extends javax.swing.JFrame {
         gradeLbl.setText("Grade achieved: ");
 
         gradesBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A*", "A", "B", "C", "D", "E" }));
+        gradesBox.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                gradesBoxKeyPressed(evt);
+            }
+        });
 
         enterBtn.setText("Set Grade");
         enterBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -75,6 +86,24 @@ public class FinalGrade extends javax.swing.JFrame {
             }
         });
 
+        logout.setText("Log out");
+        logout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                logoutMouseClicked(evt);
+            }
+        });
+        menuBar.add(logout);
+
+        exit.setText("Exit");
+        exit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                exitMouseClicked(evt);
+            }
+        });
+        menuBar.add(exit);
+
+        setJMenuBar(menuBar);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -91,12 +120,13 @@ public class FinalGrade extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(gradeLbl)
                         .addGap(4, 4, 4)
-                        .addComponent(gradesBox, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(subjectBtn)
-                            .addComponent(profileBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(gradesBox, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(998, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(subjectBtn)
+                    .addComponent(profileBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -114,7 +144,7 @@ public class FinalGrade extends javax.swing.JFrame {
                     .addComponent(gradesBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(enterBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 374, Short.MAX_VALUE)
                 .addComponent(subjectBtn)
                 .addGap(5, 5, 5)
                 .addComponent(profileBtn)
@@ -148,6 +178,22 @@ public class FinalGrade extends javax.swing.JFrame {
         new Classes().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_classBtnActionPerformed
+    private void logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseClicked
+        new Login().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_logoutMouseClicked
+
+    private void exitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_exitMouseClicked
+
+    private void gradesBoxKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_gradesBoxKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
+           DatabaseManipulation.updateFinal(gradesBox.getSelectedItem().toString(), GradePredictorPrototype.getStudent().getEmail() + GradePredictorPrototype.getSubject().getID());
+        new StudentSubject().setVisible(true);
+        this.dispose();
+       }
+    }//GEN-LAST:event_gradesBoxKeyPressed
 
     /**
      * @param args the command line arguments
@@ -187,8 +233,11 @@ public class FinalGrade extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton classBtn;
     private javax.swing.JButton enterBtn;
+    private javax.swing.JMenu exit;
     private javax.swing.JLabel gradeLbl;
     private javax.swing.JComboBox<String> gradesBox;
+    private javax.swing.JMenu logout;
+    private javax.swing.JMenuBar menuBar;
     private javax.swing.JButton profileBtn;
     private javax.swing.JButton subjectBtn;
     private javax.swing.JLabel subjectLbl;

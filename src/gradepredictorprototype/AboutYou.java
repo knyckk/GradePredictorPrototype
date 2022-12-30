@@ -4,6 +4,8 @@
  */
 package gradepredictorprototype;
 
+import java.awt.event.KeyEvent;
+
 /**
  *
  * @author kingt
@@ -48,6 +50,16 @@ public class AboutYou extends javax.swing.JFrame {
                 usernameFldMouseClicked(evt);
             }
         });
+        usernameFld.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usernameFldActionPerformed(evt);
+            }
+        });
+        usernameFld.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                usernameFldKeyPressed(evt);
+            }
+        });
 
         saveBtn.setText("Save");
         saveBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -67,7 +79,7 @@ public class AboutYou extends javax.swing.JFrame {
                     .addComponent(usernameFld, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(nameFld, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(titleLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(144, Short.MAX_VALUE))
+                .addContainerGap(944, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -80,7 +92,7 @@ public class AboutYou extends javax.swing.JFrame {
                 .addComponent(usernameFld, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(saveBtn)
-                .addContainerGap(66, Short.MAX_VALUE))
+                .addContainerGap(366, Short.MAX_VALUE))
         );
 
         pack();
@@ -105,6 +117,24 @@ public class AboutYou extends javax.swing.JFrame {
              this.dispose();
         }
     }//GEN-LAST:event_saveBtnActionPerformed
+
+    private void usernameFldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameFldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_usernameFldActionPerformed
+
+    private void usernameFldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_usernameFldKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
+           User user = GradePredictorPrototype.getUser();
+        DatabaseManipulation.aboutYou(nameFld.getText(), usernameFld.getText(), user);
+        if(user.getType() == 0) {
+            new TeacherProfile().setVisible(true);
+            this.dispose();
+        } else if(user.getType() == 1) {
+             new StudentProfile().setVisible(true);
+             this.dispose();
+        }
+       }
+    }//GEN-LAST:event_usernameFldKeyPressed
 
     /**
      * @param args the command line arguments

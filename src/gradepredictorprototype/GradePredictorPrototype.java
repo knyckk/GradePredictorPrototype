@@ -79,6 +79,7 @@ public class GradePredictorPrototype {
         return teacher;
     }
     public static void setViewing(boolean view) {
+        System.out.println(viewing);
         viewing = view;
     }
     public static User getUser() {

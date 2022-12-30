@@ -73,8 +73,11 @@ public class StudentSubject extends javax.swing.JFrame {
         topic1 = new javax.swing.JLabel();
         topic2 = new javax.swing.JLabel();
         topic3 = new javax.swing.JLabel();
-        returnClassBtn1 = new javax.swing.JButton();
-        classBtn.setVisible(GradePredictorPrototype.getViewing());
+        returnClassBtn = new javax.swing.JButton();
+        returnClassBtn.setVisible(GradePredictorPrototype.getViewing());
+        menuBar = new javax.swing.JMenuBar();
+        logout = new javax.swing.JMenu();
+        exit = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 0, 0));
@@ -196,12 +199,30 @@ public class StudentSubject extends javax.swing.JFrame {
             topic3.setText("Third Worst topic: " + topics.get(topics.size() - 3).getTopic());
         }
 
-        returnClassBtn1.setText("Return to Class");
-        returnClassBtn1.addActionListener(new java.awt.event.ActionListener() {
+        returnClassBtn.setText("Return to Class");
+        returnClassBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                returnClassBtn1ActionPerformed(evt);
+                returnClassBtnActionPerformed(evt);
             }
         });
+
+        logout.setText("Log out");
+        logout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                logoutMouseClicked(evt);
+            }
+        });
+        menuBar.add(logout);
+
+        exit.setText("Exit");
+        exit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                exitMouseClicked(evt);
+            }
+        });
+        menuBar.add(exit);
+
+        setJMenuBar(menuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -250,7 +271,7 @@ public class StudentSubject extends javax.swing.JFrame {
                             .addComponent(profileBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(51, 51, 51))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(returnClassBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(returnClassBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
         );
         layout.setVerticalGroup(
@@ -259,7 +280,7 @@ public class StudentSubject extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(returnClassBtn1)
+                        .addComponent(returnClassBtn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(trendsBtn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -372,11 +393,19 @@ public class StudentSubject extends javax.swing.JFrame {
         joinFld.selectAll();
     }//GEN-LAST:event_joinFldFocusGained
 
-    private void returnClassBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnClassBtn1ActionPerformed
+    private void returnClassBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnClassBtnActionPerformed
         // TODO add your handling code here:
         new Classes().setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_returnClassBtn1ActionPerformed
+    }//GEN-LAST:event_returnClassBtnActionPerformed
+    private void logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseClicked
+        new Login().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_logoutMouseClicked
+
+    private void exitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_exitMouseClicked
 
     /**
      * @param args the command line arguments
@@ -417,8 +446,11 @@ public class StudentSubject extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel assessmentLbl;
     private javax.swing.JButton classBtn;
+    private javax.swing.JMenu exit;
     private javax.swing.JButton finalBtn;
     private javax.swing.JTextField joinFld;
+    private javax.swing.JMenu logout;
+    private javax.swing.JMenuBar menuBar;
     private javax.swing.JLabel method1;
     private javax.swing.JLabel method2;
     private javax.swing.JLabel method3;
@@ -427,7 +459,7 @@ public class StudentSubject extends javax.swing.JFrame {
     private javax.swing.JButton paperBtn;
     private javax.swing.JLabel predictedLbl;
     private javax.swing.JButton profileBtn;
-    private javax.swing.JButton returnClassBtn1;
+    private javax.swing.JButton returnClassBtn;
     private javax.swing.JComboBox<String> targetBox;
     private javax.swing.JLabel targetLbl;
     private javax.swing.JLabel titleLbl;

@@ -4,6 +4,8 @@
  */
 package gradepredictorprototype;
 
+import java.awt.event.KeyEvent;
+
 /**
  *
  * @author kingt
@@ -33,6 +35,9 @@ public class CreateMethod extends javax.swing.JFrame {
         enterBtn = new javax.swing.JButton();
         subjectBtn = new javax.swing.JButton();
         profileBtn = new javax.swing.JButton();
+        menuBar = new javax.swing.JMenuBar();
+        logout = new javax.swing.JMenu();
+        exit = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -61,6 +66,11 @@ public class CreateMethod extends javax.swing.JFrame {
                 descriptionFldActionPerformed(evt);
             }
         });
+        descriptionFld.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                descriptionFldKeyPressed(evt);
+            }
+        });
 
         enterBtn.setText("Enter");
         enterBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -83,6 +93,24 @@ public class CreateMethod extends javax.swing.JFrame {
             }
         });
 
+        logout.setText("Log out");
+        logout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                logoutMouseClicked(evt);
+            }
+        });
+        menuBar.add(logout);
+
+        exit.setText("Exit");
+        exit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                exitMouseClicked(evt);
+            }
+        });
+        menuBar.add(exit);
+
+        setJMenuBar(menuBar);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -100,7 +128,7 @@ public class CreateMethod extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(enterBtn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 189, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 989, Short.MAX_VALUE)
                         .addComponent(profileBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -126,7 +154,7 @@ public class CreateMethod extends javax.swing.JFrame {
                         .addComponent(enterBtn)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 52, Short.MAX_VALUE)
+                        .addGap(0, 332, Short.MAX_VALUE)
                         .addComponent(subjectBtn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(profileBtn)))
@@ -169,6 +197,23 @@ public class CreateMethod extends javax.swing.JFrame {
         descriptionFld.selectAll();
     }//GEN-LAST:event_descriptionFldFocusGained
 
+    private void logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseClicked
+        new Login().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_logoutMouseClicked
+
+    private void exitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_exitMouseClicked
+
+    private void descriptionFldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_descriptionFldKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
+           DatabaseManipulation.createMethod(nameFld.getText(), descriptionFld.getText());
+        new RevisionMethod().setVisible(true);
+        this.dispose();
+       }
+    }//GEN-LAST:event_descriptionFldKeyPressed
+
     /**
      * @param args the command line arguments
      */
@@ -208,6 +253,9 @@ public class CreateMethod extends javax.swing.JFrame {
     private javax.swing.JTextField descriptionFld;
     private javax.swing.JLabel descriptionLbl;
     private javax.swing.JButton enterBtn;
+    private javax.swing.JMenu exit;
+    private javax.swing.JMenu logout;
+    private javax.swing.JMenuBar menuBar;
     private javax.swing.JTextField nameFld;
     private javax.swing.JLabel nameLbl;
     private javax.swing.JButton profileBtn;

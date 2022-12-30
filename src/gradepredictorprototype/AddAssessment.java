@@ -50,6 +50,9 @@ public class AddAssessment extends javax.swing.JFrame {
         scoreFld = new javax.swing.JTextField();
         classBtn = new javax.swing.JButton();
         classBtn.setVisible(GradePredictorPrototype.getViewing());
+        menuBar = new javax.swing.JMenuBar();
+        logout = new javax.swing.JMenu();
+        exit = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -154,6 +157,23 @@ public class AddAssessment extends javax.swing.JFrame {
                 classBtnActionPerformed(evt);
             }
         });
+        logout.setText("Log out");
+        logout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                logoutMouseClicked(evt);
+            }
+        });
+        menuBar.add(logout);
+
+        exit.setText("Exit");
+        exit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                exitMouseClicked(evt);
+            }
+        });
+        menuBar.add(exit);
+
+        setJMenuBar(menuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -193,6 +213,7 @@ public class AddAssessment extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(totalLbl)
                         .addGap(4, 4, 4)
+                        .addComponent(totalFld, javax.swing.GroupLayout.DEFAULT_SIZE, 870, Short.MAX_VALUE)
                         .addComponent(totalFld)
                         .addGap(10, 10, 10))
                     .addGroup(layout.createSequentialGroup()
@@ -204,7 +225,7 @@ public class AddAssessment extends javax.swing.JFrame {
                 .addGap(272, 272, 272)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(subjectBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(profileBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(profileBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 925, Short.MAX_VALUE))
                 .addGap(3, 3, 3))
         );
         layout.setVerticalGroup(
@@ -359,6 +380,14 @@ public class AddAssessment extends javax.swing.JFrame {
         new Classes().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_classBtnActionPerformed
+    private void logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseClicked
+        new Login().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_logoutMouseClicked
+
+    private void exitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_exitMouseClicked
 
     /**
      * @param args the command line arguments
@@ -398,7 +427,10 @@ public class AddAssessment extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton classBtn;
     private javax.swing.JButton createPaperBtn;
+    private javax.swing.JMenu exit;
     private javax.swing.JButton leftBtn;
+    private javax.swing.JMenu logout;
+    private javax.swing.JMenuBar menuBar;
     private javax.swing.JComboBox<String> papersBox;
     private javax.swing.JButton profileBtn;
     private javax.swing.JLabel questionLbl;

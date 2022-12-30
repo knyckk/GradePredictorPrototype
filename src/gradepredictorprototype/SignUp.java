@@ -5,6 +5,7 @@
 package gradepredictorprototype;
 
 import java.awt.Color;
+import java.awt.event.KeyEvent;
 import java.util.*;
 import javax.mail.*;
 import javax.mail.internet.*;
@@ -122,6 +123,11 @@ public class SignUp extends javax.swing.JFrame {
         codeFld.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 codeFldActionPerformed(evt);
+            }
+        });
+        codeFld.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                codeFldKeyPressed(evt);
             }
         });
 
@@ -372,6 +378,23 @@ public class SignUp extends javax.swing.JFrame {
         new Login().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_loginMouseClicked
+
+    private void codeFldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_codeFldKeyPressed
+         if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
+           if (((passwordFld.getText().equals(confirmFld.getText())) && codeFld.getText().equals(code)) && type == 2) {
+            DatabaseManipulation.signUp(emailFld.getText(), passwordFld.getText(), 1);
+            GradePredictorPrototype.setStudent(new User(emailFld.getText(), passwordFld.getText(), 1));
+            GradePredictorPrototype.setType(1);
+        } else if (((passwordFld.getText().equals(confirmFld.getText())) && codeFld.getText().equals(code)) && type == 1) {
+            DatabaseManipulation.signUp(emailFld.getText(), passwordFld.getText(), 0);
+            GradePredictorPrototype.setTeacher(new User(emailFld.getText(), passwordFld.getText(), 0));
+            GradePredictorPrototype.setType(0);
+        }
+        new AboutYou().setVisible(true);
+        this.dispose();
+       }
+         
+    }//GEN-LAST:event_codeFldKeyPressed
 
     /**
      * @param args the command line arguments

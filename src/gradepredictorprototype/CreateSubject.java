@@ -4,6 +4,8 @@
  */
 package gradepredictorprototype;
 
+import java.awt.event.KeyEvent;
+
 /**
  *
  * @author kingt
@@ -30,6 +32,9 @@ public class CreateSubject extends javax.swing.JFrame {
         nameLbl = new javax.swing.JLabel();
         nameFld = new javax.swing.JTextField();
         enterBtn = new javax.swing.JButton();
+        menuBar = new javax.swing.JMenuBar();
+        logout = new javax.swing.JMenu();
+        exit = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -51,6 +56,11 @@ public class CreateSubject extends javax.swing.JFrame {
                 nameFldActionPerformed(evt);
             }
         });
+        nameFld.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                nameFldKeyPressed(evt);
+            }
+        });
 
         enterBtn.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         enterBtn.setText("Create");
@@ -59,6 +69,24 @@ public class CreateSubject extends javax.swing.JFrame {
                 enterBtnActionPerformed(evt);
             }
         });
+
+        logout.setText("Log out");
+        logout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                logoutMouseClicked(evt);
+            }
+        });
+        menuBar.add(logout);
+
+        exit.setText("Exit");
+        exit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                exitMouseClicked(evt);
+            }
+        });
+        menuBar.add(exit);
+
+        setJMenuBar(menuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -73,7 +101,7 @@ public class CreateSubject extends javax.swing.JFrame {
                         .addGap(3, 3, 3)
                         .addComponent(nameFld, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(titleLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(231, Short.MAX_VALUE))
+                .addContainerGap(1031, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -86,7 +114,7 @@ public class CreateSubject extends javax.swing.JFrame {
                     .addComponent(nameFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(enterBtn)
-                .addContainerGap(190, Short.MAX_VALUE))
+                .addContainerGap(469, Short.MAX_VALUE))
         );
 
         pack();
@@ -105,6 +133,21 @@ public class CreateSubject extends javax.swing.JFrame {
         
         nameFld.selectAll();
     }//GEN-LAST:event_nameFldFocusGained
+
+    private void logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseClicked
+        new Login().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_logoutMouseClicked
+
+    private void exitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_exitMouseClicked
+
+    private void nameFldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nameFldKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
+           DatabaseManipulation.makeSubject(nameFld.getText());
+       }
+    }//GEN-LAST:event_nameFldKeyPressed
 
     /**
      * @param args the command line arguments
@@ -143,6 +186,9 @@ public class CreateSubject extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton enterBtn;
+    private javax.swing.JMenu exit;
+    private javax.swing.JMenu logout;
+    private javax.swing.JMenuBar menuBar;
     private javax.swing.JTextField nameFld;
     private javax.swing.JLabel nameLbl;
     private javax.swing.JLabel titleLbl;

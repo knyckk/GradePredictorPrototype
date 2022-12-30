@@ -4,8 +4,7 @@
  */
 package gradepredictorprototype;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.awt.event.KeyEvent;
 
 /**
  *
@@ -60,6 +59,11 @@ public class Login extends javax.swing.JFrame {
         passwordFld.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 passwordFldActionPerformed(evt);
+            }
+        });
+        passwordFld.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                passwordFldKeyPressed(evt);
             }
         });
 
@@ -152,7 +156,7 @@ public class Login extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(orLbl)
                     .addComponent(signUp))
-                .addContainerGap(90, Short.MAX_VALUE))
+                .addContainerGap(390, Short.MAX_VALUE))
         );
 
         pack();
@@ -222,6 +226,36 @@ public class Login extends javax.swing.JFrame {
         new SignUp().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_signUpMouseClicked
+
+    private void passwordFldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passwordFldKeyPressed
+       if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
+           User user = DatabaseManipulation.userFromEmail(emailFld.getText());
+        if (user.getEmail().equals("")) {
+            errorLbl.setText("Email not found");
+            errorLbl.setVisible(true);
+        } else {
+            errorLbl.setVisible(false);
+
+            if (passwordFld.getText().equals(user.getPassword()) && ValidationRoutines.presenceCheck(passwordFld.getText())) {
+
+                if (user.getType() == 0) {
+                    GradePredictorPrototype.setTeacher(user);
+                    GradePredictorPrototype.setType(0);
+                    new TeacherProfile().setVisible(true);
+                    this.dispose();
+                } else if (user.getType() == 1) {
+                    GradePredictorPrototype.setStudent(user);
+                    GradePredictorPrototype.setType(1);
+                    new StudentProfile().setVisible(true);
+                    this.dispose();
+                }
+            } else {
+                errorLbl.setText("Password not found");
+                errorLbl.setVisible(true);
+            }
+        }
+       }
+    }//GEN-LAST:event_passwordFldKeyPressed
 
     /**
      * @param args the command line arguments
