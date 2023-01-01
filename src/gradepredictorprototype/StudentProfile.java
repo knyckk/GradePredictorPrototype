@@ -31,6 +31,7 @@ public class StudentProfile extends javax.swing.JFrame {
         enterBtn = new javax.swing.JButton();
         classBtn = new javax.swing.JButton();
         classBtn.setVisible(GradePredictorPrototype.getViewing());
+        iconLbl = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         logout = new javax.swing.JMenu();
         exit = new javax.swing.JMenu();
@@ -64,6 +65,8 @@ public class StudentProfile extends javax.swing.JFrame {
             }
         });
 
+        iconLbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/profile1.jpeg"))); // NOI18N
+
         logout.setText("Log out");
         logout.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -87,27 +90,34 @@ public class StudentProfile extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(881, Short.MAX_VALUE)
+                .addContainerGap(1048, Short.MAX_VALUE)
+                .addComponent(classBtn)
+                .addGap(44, 44, 44))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(55, 55, 55)
+                .addComponent(iconLbl)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(classBtn)
-                        .addGap(44, 44, 44))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(enterBtn)
-                            .addComponent(addBox, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(129, 129, 129))))
+                    .addComponent(enterBtn)
+                    .addComponent(addBox, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(129, 129, 129))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(classBtn)
-                .addGap(45, 45, 45)
-                .addComponent(addBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(enterBtn)
-                .addContainerGap(427, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(iconLbl)
+                        .addGap(189, 189, 189))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addComponent(classBtn)
+                        .addGap(45, 45, 45)
+                        .addComponent(addBox, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(enterBtn)))
+                .addContainerGap(153, Short.MAX_VALUE))
         );
 
         pack();
@@ -190,6 +200,7 @@ public class StudentProfile extends javax.swing.JFrame {
     private javax.swing.JButton classBtn;
     private javax.swing.JButton enterBtn;
     private javax.swing.JMenu exit;
+    private javax.swing.JLabel iconLbl;
     private javax.swing.JMenu logout;
     private javax.swing.JMenuBar menuBar;
     // End of variables declaration//GEN-END:variables

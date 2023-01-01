@@ -24,29 +24,29 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="120" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="432" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="saveBtn" min="-2" max="-2" attributes="0"/>
-                  <Component id="usernameFld" min="-2" pref="136" max="-2" attributes="0"/>
-                  <Component id="nameFld" min="-2" pref="136" max="-2" attributes="0"/>
+                  <Component id="usernameFld" min="-2" pref="335" max="-2" attributes="0"/>
+                  <Component id="nameFld" min="-2" pref="335" max="-2" attributes="0"/>
                   <Component id="titleLbl" min="-2" pref="94" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="944" max="32767" attributes="0"/>
+              <EmptySpace pref="433" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="79" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="200" max="-2" attributes="0"/>
               <Component id="titleLbl" min="-2" pref="30" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="nameFld" min="-2" pref="41" max="-2" attributes="0"/>
+              <Component id="nameFld" min="-2" pref="55" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="usernameFld" min="-2" pref="41" max="-2" attributes="0"/>
+              <Component id="usernameFld" min="-2" pref="55" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="saveBtn" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="366" max="32767" attributes="0"/>
+              <EmptySpace pref="217" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

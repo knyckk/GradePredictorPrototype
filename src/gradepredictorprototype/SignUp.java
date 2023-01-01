@@ -54,15 +54,22 @@ public class SignUp extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("SignUp");
         setBackground(new java.awt.Color(51, 51, 51));
+        setPreferredSize(new java.awt.Dimension(1200, 600));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        confirmLbl.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         confirmLbl.setText("Confirm Password");
+        getContentPane().add(confirmLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(434, 206, 252, 40));
 
+        passwordLbl.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         passwordLbl.setText("Password");
+        getContentPane().add(passwordLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(434, 149, 174, 33));
 
         signUpAsLbl.setBackground(new java.awt.Color(51, 51, 51));
         signUpAsLbl.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         signUpAsLbl.setForeground(new java.awt.Color(255, 255, 255));
         signUpAsLbl.setText("Sign up as:");
+        getContentPane().add(signUpAsLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(432, 59, -1, -1));
 
         studentRdio.setBackground(new java.awt.Color(51, 51, 51));
         radios.add(studentRdio);
@@ -74,6 +81,7 @@ public class SignUp extends javax.swing.JFrame {
                 studentRdioActionPerformed(evt);
             }
         });
+        getContentPane().add(studentRdio, new org.netbeans.lib.awtextra.AbsoluteConstraints(494, 55, -1, -1));
 
         teacherRdio.setBackground(new java.awt.Color(51, 51, 51));
         radios.add(teacherRdio);
@@ -85,9 +93,10 @@ public class SignUp extends javax.swing.JFrame {
                 teacherRdioActionPerformed(evt);
             }
         });
+        getContentPane().add(teacherRdio, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 55, -1, -1));
 
         emailFld.setBackground(new java.awt.Color(51, 51, 51));
-        emailFld.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        emailFld.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         emailFld.setForeground(new java.awt.Color(255, 255, 255));
         emailFld.setText("Email");
         emailFld.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
@@ -102,6 +111,7 @@ public class SignUp extends javax.swing.JFrame {
                 emailFldActionPerformed(evt);
             }
         });
+        getContentPane().add(emailFld, new org.netbeans.lib.awtextra.AbsoluteConstraints(432, 78, 335, 55));
 
         codeBtn.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         codeBtn.setText("Send verification code");
@@ -110,6 +120,7 @@ public class SignUp extends javax.swing.JFrame {
                 codeBtnActionPerformed(evt);
             }
         });
+        getContentPane().add(codeBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(444, 261, -1, -1));
 
         codeFld.setBackground(new java.awt.Color(51, 51, 51));
         codeFld.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
@@ -130,6 +141,7 @@ public class SignUp extends javax.swing.JFrame {
                 codeFldKeyPressed(evt);
             }
         });
+        getContentPane().add(codeFld, new org.netbeans.lib.awtextra.AbsoluteConstraints(432, 289, 335, 55));
 
         enterBtn.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         enterBtn.setText("Enter");
@@ -138,6 +150,7 @@ public class SignUp extends javax.swing.JFrame {
                 enterBtnActionPerformed(evt);
             }
         });
+        getContentPane().add(enterBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(444, 350, -1, -1));
 
         passwordFld.setBackground(new java.awt.Color(53, 53, 53));
         passwordFld.setForeground(new java.awt.Color(255, 255, 255));
@@ -150,6 +163,7 @@ public class SignUp extends javax.swing.JFrame {
                 passwordFldFocusLost(evt);
             }
         });
+        getContentPane().add(passwordFld, new org.netbeans.lib.awtextra.AbsoluteConstraints(432, 140, 335, 55));
 
         confirmFld.setBackground(new java.awt.Color(53, 53, 53));
         confirmFld.setForeground(new java.awt.Color(255, 255, 255));
@@ -162,8 +176,10 @@ public class SignUp extends javax.swing.JFrame {
                 confirmFldFocusLost(evt);
             }
         });
+        getContentPane().add(confirmFld, new org.netbeans.lib.awtextra.AbsoluteConstraints(432, 200, 335, 55));
 
         orLbl.setText("or you can login");
+        getContentPane().add(orLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(432, 378, -1, -1));
 
         login.setForeground(new java.awt.Color(153, 153, 153));
         login.setText("here");
@@ -172,78 +188,7 @@ public class SignUp extends javax.swing.JFrame {
                 loginMouseClicked(evt);
             }
         });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(257, 257, 257)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(orLbl)
-                        .addGap(3, 3, 3)
-                        .addComponent(login))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(signUpAsLbl)
-                        .addGap(8, 8, 8)
-                        .addComponent(studentRdio)
-                        .addGap(4, 4, 4)
-                        .addComponent(teacherRdio))
-                    .addComponent(emailFld, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(passwordLbl))
-                    .addComponent(passwordFld, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(confirmLbl))
-                    .addComponent(confirmFld, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(codeBtn))
-                    .addComponent(codeFld, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(enterBtn)))
-                .addGap(276, 276, 276))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(55, 55, 55)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(4, 4, 4)
-                        .addComponent(signUpAsLbl))
-                    .addComponent(studentRdio)
-                    .addComponent(teacherRdio))
-                .addGap(2, 2, 2)
-                .addComponent(emailFld, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(6, 6, 6)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(passwordLbl))
-                    .addComponent(passwordFld, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(6, 6, 6)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addComponent(confirmLbl))
-                    .addComponent(confirmFld, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(6, 6, 6)
-                .addComponent(codeBtn)
-                .addGap(5, 5, 5)
-                .addComponent(codeFld, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(6, 6, 6)
-                .addComponent(enterBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(orLbl)
-                    .addComponent(login))
-                .addGap(48, 48, 48))
-        );
+        getContentPane().add(login, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 378, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

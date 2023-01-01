@@ -55,6 +55,8 @@ public class AddAssessment extends javax.swing.JFrame {
         exit = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(1200, 600));
+        setPreferredSize(new java.awt.Dimension(1200, 600));
 
         titleLbl.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         titleLbl.setText("Add Assessment");
@@ -85,14 +87,16 @@ public class AddAssessment extends javax.swing.JFrame {
             }
         });
 
-        profileBtn.setText("Return to Profile");
+        profileBtn.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        profileBtn.setText("<html>Return to<br/> Profile</html>");
         profileBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 profileBtnActionPerformed(evt);
             }
         });
 
-        subjectBtn.setText("Return to Subject");
+        subjectBtn.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        subjectBtn.setText("<html>Return to<br/> Subject<html>");
         subjectBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 subjectBtnActionPerformed(evt);
@@ -157,6 +161,7 @@ public class AddAssessment extends javax.swing.JFrame {
                 classBtnActionPerformed(evt);
             }
         });
+
         logout.setText("Log out");
         logout.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -187,7 +192,7 @@ public class AddAssessment extends javax.swing.JFrame {
                 .addGap(12, 12, 12)
                 .addComponent(titleLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(111, 111, 111)
-                .addComponent(classBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(classBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 899, Short.MAX_VALUE)
                 .addGap(18, 18, 18))
             .addGroup(layout.createSequentialGroup()
                 .addGap(12, 12, 12)
@@ -197,23 +202,12 @@ public class AddAssessment extends javax.swing.JFrame {
                 .addGap(177, 177, 177))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(leftBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(questionMarkFld, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(rightBtn))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(createPaperBtn))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(papersBox, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(totalLbl)
                         .addGap(4, 4, 4)
-                        .addComponent(totalFld, javax.swing.GroupLayout.DEFAULT_SIZE, 870, Short.MAX_VALUE)
                         .addComponent(totalFld)
                         .addGap(10, 10, 10))
                     .addGroup(layout.createSequentialGroup()
@@ -222,11 +216,24 @@ public class AddAssessment extends javax.swing.JFrame {
                         .addComponent(scoreFld)))
                 .addGap(70, 70, 70))
             .addGroup(layout.createSequentialGroup()
-                .addGap(272, 272, 272)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(subjectBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(profileBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 925, Short.MAX_VALUE))
-                .addGap(3, 3, 3))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(createPaperBtn))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(leftBtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(questionMarkFld, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rightBtn)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(subjectBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(profileBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -266,10 +273,11 @@ public class AddAssessment extends javax.swing.JFrame {
                         .addComponent(rightBtn)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(createPaperBtn)
-                .addGap(23, 23, 23)
-                .addComponent(subjectBtn)
-                .addGap(5, 5, 5)
-                .addComponent(profileBtn))
+                .addGap(15, 15, 15)
+                .addComponent(subjectBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(profileBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
