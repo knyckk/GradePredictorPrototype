@@ -61,40 +61,37 @@
           </Group>
           <Group type="102" attributes="0">
               <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
-              <Component id="methodsBox" min="-2" pref="157" max="-2" attributes="0"/>
-              <EmptySpace min="30" pref="30" max="-2" attributes="0"/>
-              <Component id="newNameLbl" min="-2" max="-2" attributes="0"/>
-          </Group>
-          <Group type="102" attributes="0">
-              <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
-              <Component id="createMethodBtn" min="-2" pref="157" max="-2" attributes="0"/>
-              <EmptySpace min="30" pref="30" max="-2" attributes="0"/>
-              <Component id="replaceBox" min="-2" pref="129" max="-2" attributes="0"/>
-          </Group>
-          <Group type="102" attributes="0">
-              <EmptySpace min="199" pref="199" max="-2" attributes="0"/>
-              <Component id="toLbl" min="-2" max="-2" attributes="0"/>
-          </Group>
-          <Group type="102" attributes="0">
-              <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jLabel1" min="-2" pref="127" max="-2" attributes="0"/>
-                  <Component id="removeBox" min="-2" pref="157" max="-2" attributes="0"/>
-                  <Component id="removeBtn" min="-2" pref="91" max="-2" attributes="0"/>
+                  <Component id="removeBox" min="-2" pref="335" max="-2" attributes="0"/>
+                  <Component id="removeBtn" min="-2" pref="165" max="-2" attributes="0"/>
+                  <Component id="jLabel1" alignment="0" min="-2" pref="173" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="31" pref="31" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="nameFld" min="-2" pref="129" max="-2" attributes="0"/>
-                  <Component id="renameBtn" min="-2" max="-2" attributes="0"/>
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="62" pref="62" max="-2" attributes="0"/>
-                      <Component id="subjectBtn" min="-2" pref="129" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="nameFld" min="-2" pref="335" max="-2" attributes="0"/>
+                  <Component id="renameBtn" min="-2" pref="165" max="-2" attributes="0"/>
               </Group>
           </Group>
           <Group type="102" attributes="0">
-              <EmptySpace min="262" pref="262" max="-2" attributes="0"/>
-              <Component id="profileBtn" min="-2" pref="129" max="-2" attributes="0"/>
+              <EmptySpace min="1060" pref="1060" max="-2" attributes="0"/>
+              <Component id="subjectBtn" min="-2" pref="165" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" attributes="0">
+              <EmptySpace min="1060" pref="1060" max="-2" attributes="0"/>
+              <Component id="profileBtn" min="-2" pref="165" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="methodsBox" alignment="0" min="-2" pref="335" max="-2" attributes="0"/>
+                  <Component id="createMethodBtn" alignment="0" min="-2" pref="165" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="toLbl" min="-2" max="-2" attributes="0"/>
+                  <Component id="replaceBox" min="-2" pref="335" max="-2" attributes="0"/>
+                  <Component id="newNameLbl" min="-2" max="-2" attributes="0"/>
+              </Group>
           </Group>
       </Group>
     </DimensionLayout>
@@ -103,41 +100,38 @@
           <Group type="102" attributes="0">
               <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
               <Component id="titleLbl" min="-2" pref="31" max="-2" attributes="0"/>
-              <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="methodsBox" min="-2" pref="35" max="-2" attributes="0"/>
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
-                      <Component id="newNameLbl" min="-2" max="-2" attributes="0"/>
-                  </Group>
+              <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="methodsBox" min="-2" pref="55" max="-2" attributes="0"/>
+                  <Component id="newNameLbl" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="createMethodBtn" min="-2" pref="33" max="-2" attributes="0"/>
-                  <Component id="replaceBox" min="-2" pref="36" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="createMethodBtn" alignment="3" min="-2" pref="55" max="-2" attributes="0"/>
+                  <Component id="replaceBox" alignment="3" min="-2" pref="55" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
               <Component id="toLbl" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="3" pref="3" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                      <Component id="removeBox" min="-2" pref="36" max="-2" attributes="0"/>
+                      <Component id="removeBox" min="-2" pref="55" max="-2" attributes="0"/>
                       <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                      <Component id="removeBtn" min="-2" pref="34" max="-2" attributes="0"/>
+                      <Component id="removeBtn" min="-2" pref="55" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <EmptySpace min="4" pref="4" max="-2" attributes="0"/>
-                      <Component id="nameFld" min="-2" pref="35" max="-2" attributes="0"/>
+                      <Component id="nameFld" min="-2" pref="55" max="-2" attributes="0"/>
                       <EmptySpace min="5" pref="5" max="-2" attributes="0"/>
-                      <Component id="renameBtn" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="15" pref="15" max="-2" attributes="0"/>
-                      <Component id="subjectBtn" min="-2" max="-2" attributes="0"/>
+                      <Component id="renameBtn" min="-2" pref="55" max="-2" attributes="0"/>
                   </Group>
               </Group>
+              <EmptySpace min="230" pref="230" max="-2" attributes="0"/>
+              <Component id="subjectBtn" min="-2" pref="55" max="-2" attributes="0"/>
               <EmptySpace min="17" pref="17" max="-2" attributes="0"/>
-              <Component id="profileBtn" min="-2" max="-2" attributes="0"/>
+              <Component id="profileBtn" min="-2" pref="55" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -157,6 +151,9 @@
           <StringArray count="0"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="methodsBoxActionPerformed"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="methodsBox.setModel(new javax.swing.DefaultComboBoxModel&lt;&gt;(DatabaseManipulation.getMethods().stream().map(x -&gt; x.getName()).toArray(String[]::new)));"/>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -164,6 +161,9 @@
     </Component>
     <Component class="javax.swing.JLabel" name="newNameLbl">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="14" style="0"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Change name of:"/>
       </Properties>
     </Component>
@@ -180,6 +180,9 @@
     </Component>
     <Component class="javax.swing.JLabel" name="toLbl">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="14" style="0"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="to:"/>
       </Properties>
     </Component>
@@ -204,6 +207,9 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="14" style="0"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Remove revision method:"/>
       </Properties>
     </Component>

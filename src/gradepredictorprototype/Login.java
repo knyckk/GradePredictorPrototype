@@ -102,14 +102,14 @@ public class Login extends javax.swing.JFrame {
                 enterBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(enterBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(432, 307, -1, -1));
+        getContentPane().add(enterBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(432, 307, 165, 55));
 
         errorLbl.setForeground(new java.awt.Color(255, 0, 0));
         errorLbl.setText("Email not found");
         getContentPane().add(errorLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 164, 962, -1));
 
         orLbl.setText("or you can sign up");
-        getContentPane().add(orLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(432, 337, -1, -1));
+        getContentPane().add(orLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(432, 370, -1, 20));
 
         signUp.setForeground(new java.awt.Color(153, 153, 153));
         signUp.setText("here");
@@ -118,7 +118,7 @@ public class Login extends javax.swing.JFrame {
                 signUpMouseClicked(evt);
             }
         });
-        getContentPane().add(signUp, new org.netbeans.lib.awtextra.AbsoluteConstraints(535, 337, -1, -1));
+        getContentPane().add(signUp, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 370, -1, 20));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

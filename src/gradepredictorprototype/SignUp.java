@@ -17,7 +17,7 @@ import javax.swing.UIManager;
  */
 public class SignUp extends javax.swing.JFrame {
 
-    private String code;
+    private String code = "completely random and unpredictable";
     private int type = 0;
 
     /**
@@ -120,7 +120,7 @@ public class SignUp extends javax.swing.JFrame {
                 codeBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(codeBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(444, 261, -1, -1));
+        getContentPane().add(codeBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(444, 261, 165, 55));
 
         codeFld.setBackground(new java.awt.Color(51, 51, 51));
         codeFld.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
@@ -141,7 +141,7 @@ public class SignUp extends javax.swing.JFrame {
                 codeFldKeyPressed(evt);
             }
         });
-        getContentPane().add(codeFld, new org.netbeans.lib.awtextra.AbsoluteConstraints(432, 289, 335, 55));
+        getContentPane().add(codeFld, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 320, 335, 55));
 
         enterBtn.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         enterBtn.setText("Enter");
@@ -150,7 +150,7 @@ public class SignUp extends javax.swing.JFrame {
                 enterBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(enterBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(444, 350, -1, -1));
+        getContentPane().add(enterBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 380, 165, 55));
 
         passwordFld.setBackground(new java.awt.Color(53, 53, 53));
         passwordFld.setForeground(new java.awt.Color(255, 255, 255));
@@ -179,7 +179,7 @@ public class SignUp extends javax.swing.JFrame {
         getContentPane().add(confirmFld, new org.netbeans.lib.awtextra.AbsoluteConstraints(432, 200, 335, 55));
 
         orLbl.setText("or you can login");
-        getContentPane().add(orLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(432, 378, -1, -1));
+        getContentPane().add(orLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 440, -1, 20));
 
         login.setForeground(new java.awt.Color(153, 153, 153));
         login.setText("here");
@@ -188,7 +188,7 @@ public class SignUp extends javax.swing.JFrame {
                 loginMouseClicked(evt);
             }
         });
-        getContentPane().add(login, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 378, -1, -1));
+        getContentPane().add(login, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 440, -1, 20));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -213,13 +213,16 @@ public class SignUp extends javax.swing.JFrame {
             DatabaseManipulation.signUp(emailFld.getText(), passwordFld.getText(), 1);
             GradePredictorPrototype.setStudent(new User(emailFld.getText(), passwordFld.getText(), 1));
             GradePredictorPrototype.setType(1);
+            new AboutYou().setVisible(true);
+            this.dispose();
         } else if (((passwordFld.getText().equals(confirmFld.getText())) && codeFld.getText().equals(code)) && type == 1) {
             DatabaseManipulation.signUp(emailFld.getText(), passwordFld.getText(), 0);
             GradePredictorPrototype.setTeacher(new User(emailFld.getText(), passwordFld.getText(), 0));
             GradePredictorPrototype.setType(0);
+            new AboutYou().setVisible(true);
+            this.dispose();
         }
-        new AboutYou().setVisible(true);
-        this.dispose();
+        
     }//GEN-LAST:event_enterBtnActionPerformed
 
     private void codeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codeBtnActionPerformed
