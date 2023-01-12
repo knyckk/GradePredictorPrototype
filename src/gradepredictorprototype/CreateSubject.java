@@ -44,7 +44,7 @@ public class CreateSubject extends javax.swing.JFrame {
         nameLbl.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         nameLbl.setText("Subject name:");
 
-        nameFld.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        nameFld.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         nameFld.setText("Enter name");
         nameFld.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {

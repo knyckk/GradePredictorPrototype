@@ -22,7 +22,7 @@ public class ValidationRoutines {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-
+        System.out.println(isDate("2004-02-29"));
     }
 
     public static boolean validatePostcode(String inPost) {
@@ -69,30 +69,52 @@ public class ValidationRoutines {
     }
 
     public static boolean isInt(String check) {
-        String regex = "^[0-9]{1,11}$";
-        Pattern PC = Pattern.compile(regex);
-        Matcher matcher = PC.matcher(check);
-        return matcher.find();
+        check = check.trim();
+        boolean toReturn = true;
+        for(char character : check.toCharArray()) {
+            if(!isDigit(character)) {
+                toReturn = false;
+            }
+        }
+        return toReturn;
     }
 
     public static boolean isReal(String check) {
-        String regex = "^[0-9]{1,11}.[0-9]{1,11}$";
-        return check.matches(regex);
+        check = check.trim();
+        boolean toReturn = true;
+        int count = 0;
+        for(char character : check.toCharArray()) {
+            if(!isDigit(character)) {
+                if(character == '.') {
+                    count ++;
+                    if(count > 1) {
+                        toReturn = false;
+                    }
+                } else if (character != '.') {
+                    toReturn = false;
+                }
+                
+            }
+        }
+        return toReturn;
     }
 
     public static boolean isDate(String date) {
 
         int year = 0;
-        String regex = "^(((31-(01|03|05|07|08|10|12))|([0-2][0-9]-(0[0-9])|(1[0-2]))|(30-(0[0-13-9])|(1[0-2])))-(1|2)[0-9]{3})$";
-        boolean toReturn = false;
+        String regex = "^((1|2)[0-9]{3}-(((01|03|05|07|08|10|12)-31)|(((0[0-9])|(1[0-2]))-[0-2][0-9])|(((0[0-13-9])|(1[0-2]))-30)))$";
+        boolean toReturn;
         toReturn = date.matches(regex);
         if (toReturn) {         
             if ((date.substring(0, 2).equals("29")
                     && Integer.valueOf(date.substring(3, 5)) == 2)) {
                 toReturn = false;
                 year = Integer.valueOf(date.substring(6));
-                if (year % 400 == 0 || (year % 100 != 0 && year % 4 == 0)) {
-                    toReturn = true;
+                if (year % 4 == 0) {
+                    if(year % 100 == 0 && !(year % 400 == 0)) {
+                        toReturn = true;
+                    }
+                    
                 }
             }
         }
