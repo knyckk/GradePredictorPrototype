@@ -136,7 +136,7 @@
               </Group>
               <EmptySpace min="7" pref="7" max="-2" attributes="0"/>
               <Component id="createPaperBtn" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="33" max="32767" attributes="0"/>
+              <EmptySpace pref="32" max="32767" attributes="0"/>
               <Component id="subjectBtn" min="-2" pref="65" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="profileBtn" min="-2" pref="65" max="-2" attributes="0"/>
@@ -257,6 +257,7 @@
       </Properties>
       <Events>
         <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="questionMarkFldFocusGained"/>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="questionMarkFldKeyReleased"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="createPaperBtn">

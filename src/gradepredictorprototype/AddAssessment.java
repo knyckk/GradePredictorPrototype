@@ -131,6 +131,11 @@ public class AddAssessment extends javax.swing.JFrame {
                 questionMarkFldFocusGained(evt);
             }
         });
+        questionMarkFld.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                questionMarkFldKeyReleased(evt);
+            }
+        });
 
         createPaperBtn.setText("Add Paper");
         createPaperBtn.setPreferredSize(new java.awt.Dimension(165, 55));
@@ -294,7 +299,7 @@ public class AddAssessment extends javax.swing.JFrame {
                     .addComponent(rightBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(7, 7, 7)
                 .addComponent(createPaperBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addComponent(subjectBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(profileBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -318,8 +323,7 @@ public class AddAssessment extends javax.swing.JFrame {
 
     private void leftBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leftBtnActionPerformed
         
-        if(questionIndex > 0 && ValidationRoutines.isInt(questionMarkFld.getText())) {
-            papers.get(papersBox.getSelectedIndex()).getQuestion(questionIndex).setScore(Integer.valueOf(questionMarkFld.getText()));
+        if(questionIndex > 0) {
             questionIndex--;
             questionLbl.setText("<html><p style=\"width:250px\">"+"Question: " + papers.get(papersBox.getSelectedIndex()).getQuestion(questionIndex).getQuestion()+"</p></html>");
             questionMarkFld.setText(String.valueOf(papers.get(papersBox.getSelectedIndex()).getQuestion(questionIndex).getScore()));
@@ -328,8 +332,7 @@ public class AddAssessment extends javax.swing.JFrame {
 
     private void rightBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rightBtnActionPerformed
         
-        if(questionIndex < (papers.get(papersBox.getSelectedIndex()).numOfQuestions() - 1) && ValidationRoutines.isInt(questionMarkFld.getText())) {
-            papers.get(papersBox.getSelectedIndex()).getQuestion(questionIndex).setScore(Integer.valueOf(questionMarkFld.getText()));
+        if(questionIndex < (papers.get(papersBox.getSelectedIndex()).numOfQuestions() - 1)) {
             questionIndex++;
             questionLbl.setText("<html><p style=\"width:250px\">"+"Question: " + papers.get(papersBox.getSelectedIndex()).getQuestion(questionIndex).getQuestion()+"</p></html>");
             questionMarkFld.setText(String.valueOf(papers.get(papersBox.getSelectedIndex()).getQuestion(questionIndex).getScore()));
@@ -382,7 +385,7 @@ public class AddAssessment extends javax.swing.JFrame {
             DatabaseManipulation.addFormalPaper(GradePredictorPrototype.getStudent(), papers.get(papersBox.getSelectedIndex()));
             new StudentSubject().setVisible(true);
             this.dispose();
-        } else if(typeBox.getSelectedIndex() == 1) {
+        } else if(typeBox.getSelectedIndex() == 1 && ValidationRoutines.isInt(scoreFld.getText()) && ValidationRoutines.isInt(totalFld.getText())) {
             DatabaseManipulation.addInformalPaper(GradePredictorPrototype.getStudent(), GradePredictorPrototype.getSubject(), Integer.valueOf(scoreFld.getText()), Integer.valueOf(totalFld.getText()));
             new StudentSubject().setVisible(true);
             this.dispose();
@@ -417,6 +420,16 @@ public class AddAssessment extends javax.swing.JFrame {
     private void exitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMouseClicked
         System.exit(0);
     }//GEN-LAST:event_exitMouseClicked
+
+    private void questionMarkFldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_questionMarkFldKeyReleased
+        // TODO add your handling code here:
+        if(ValidationRoutines.isInt(questionMarkFld.getText())) {
+            if(ValidationRoutines.rangeCheck("0", questionMarkFld.getText(),String.valueOf(papers.get(papersBox.getSelectedIndex()).getQuestion(questionIndex).getMark()) )) {
+                papers.get(papersBox.getSelectedIndex()).setQuestionScore(questionIndex,Integer.valueOf(questionMarkFld.getText()));
+            }
+            
+        }
+    }//GEN-LAST:event_questionMarkFldKeyReleased
 
     /**
      * @param args the command line arguments

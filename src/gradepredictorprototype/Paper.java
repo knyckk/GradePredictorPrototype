@@ -79,4 +79,9 @@ public class Paper {
     public int getScore() {
         return score;
     }
+    public void setQuestionScore(int questionIndex, int score) {
+        this.score -= questions[questionIndex].getScore();
+        questions[questionIndex].setScore(score);
+        this.score += score;
+    }
 }
