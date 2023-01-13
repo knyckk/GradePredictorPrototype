@@ -70,9 +70,7 @@ public class DatabaseManipulation {
     private static final String USERNAME = "UserName";
     private static final String NAME = "Name";
 
-    public static void main(String[] args) {
-
-    }
+    
 
     public static void signUp(String email, String password, int type) {
         boolean willAdd = true;

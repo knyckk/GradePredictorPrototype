@@ -52,50 +52,48 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
-                      <Component id="titleLbl" min="-2" pref="160" max="-2" attributes="0"/>
-                      <EmptySpace min="845" pref="845" max="-2" attributes="0"/>
-                      <Component id="classBtn" min="-2" pref="165" max="-2" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="profileBtn" min="-2" pref="165" max="-2" attributes="0"/>
+                      <Component id="subjectBtn" min="-2" pref="165" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
-                      <Component id="typeLbl" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="4" pref="4" max="-2" attributes="0"/>
-                      <Component id="typeBox" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="questionLbl" min="-2" pref="416" max="-2" attributes="0"/>
-                          <Component id="informalPanel" min="-2" max="-2" attributes="0"/>
-                          <Component id="papersBox" min="-2" pref="335" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
+                          <Component id="titleLbl" min="-2" pref="160" max="-2" attributes="0"/>
+                          <EmptySpace min="845" pref="845" max="-2" attributes="0"/>
+                          <Component id="classBtn" min="-2" pref="165" max="-2" attributes="0"/>
                       </Group>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                      <Component id="leftBtn" min="-2" pref="83" max="-2" attributes="0"/>
-                      <EmptySpace min="3" pref="3" max="-2" attributes="0"/>
-                      <Component id="questionMarkFld" min="-2" pref="165" max="-2" attributes="0"/>
-                      <EmptySpace min="5" pref="5" max="-2" attributes="0"/>
-                      <Component id="rightBtn" min="-2" pref="82" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                      <Component id="createPaperBtn" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
+                          <Component id="typeLbl" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="4" pref="4" max="-2" attributes="0"/>
+                          <Component id="typeBox" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="questionLbl" min="-2" pref="335" max="-2" attributes="0"/>
+                              <Component id="informalPanel" min="-2" max="-2" attributes="0"/>
+                              <Component id="papersBox" min="-2" pref="335" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                          <Component id="leftBtn" min="-2" pref="83" max="-2" attributes="0"/>
+                          <EmptySpace min="3" pref="3" max="-2" attributes="0"/>
+                          <Component id="questionMarkFld" min="-2" pref="165" max="-2" attributes="0"/>
+                          <EmptySpace min="5" pref="5" max="-2" attributes="0"/>
+                          <Component id="rightBtn" min="-2" pref="82" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                          <Component id="createPaperBtn" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
               </Group>
               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="profileBtn" min="-2" pref="165" max="-2" attributes="0"/>
-                  <Component id="subjectBtn" min="-2" pref="165" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -138,11 +136,11 @@
               </Group>
               <EmptySpace min="7" pref="7" max="-2" attributes="0"/>
               <Component id="createPaperBtn" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+              <EmptySpace pref="33" max="32767" attributes="0"/>
               <Component id="subjectBtn" min="-2" pref="65" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="profileBtn" min="-2" pref="65" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -242,7 +240,7 @@
         </Property>
       </Properties>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="questionLbl.setText(&quot;Question: &quot; + papers.get(papersBox.getSelectedIndex()).getQuestion(questionIndex).getQuestion());"/>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="questionLbl.setText(&quot;&lt;html&gt;&lt;p style=\&quot;width:250px\&quot;&gt;&quot;+&quot;Question: &quot; + papers.get(papersBox.getSelectedIndex()).getQuestion(questionIndex).getQuestion()+&quot;&lt;/p&gt;&lt;/html&gt;&quot;);"/>
       </AuxValues>
     </Component>
     <Component class="javax.swing.JButton" name="rightBtn">

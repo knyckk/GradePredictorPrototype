@@ -17,8 +17,8 @@ public class Graph extends JPanel{
     int mar = 50;
     double finalY;
     double average;
+    @Override
     protected void paintComponent(Graphics g){
-        System.out.println("Should only appear once");
         super.paintComponent(g);
         Graphics2D g1=(Graphics2D)g;
         g1.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
@@ -36,7 +36,6 @@ public class Graph extends JPanel{
         for(int i=0;i<coordinates.size() - 1;i++){
             double y1= coordinates.get(i)[0];
             double x1= coordinates.get(i)[1];
-            System.out.println("X1: " + x1 + ", Y1: " + y1);
             sigmaX += x1;
             sigmaXSquared += x1*x1;
             sigmaY += y1;

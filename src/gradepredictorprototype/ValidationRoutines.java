@@ -21,27 +21,9 @@ public class ValidationRoutines {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        System.out.println(isDate("2004-02-29"));
-    }
+   
 
-    public static boolean validatePostcode(String inPost) {
-        inPost = inPost.trim();
-        if (inPost.length() != 8) {
-            System.out.println("Wrong length");
-            return false;
-        }
-
-        return isDigit(inPost.charAt(2))
-                && isDigit(inPost.charAt(3))
-                && isDigit(inPost.charAt(5))
-                && isLetter(inPost.charAt(0))
-                && isLetter(inPost.charAt(1))
-                && isLetter(inPost.charAt(6))
-                && isLetter(inPost.charAt(7))
-                && inPost.charAt(4) == ' ';
-
-    }
+    
 
     public static boolean studentEmail(String inEmail) {
         inEmail = inEmail.trim();
