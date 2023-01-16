@@ -160,7 +160,7 @@ public class Login extends javax.swing.JFrame {
             errorLbl.setVisible(false);
 
             if (passwordFld.getText().equals(user.getPassword()) && ValidationRoutines.presenceCheck(passwordFld.getText())) {
-
+                
                 if (user.getType() == 0) {
                     GradePredictorPrototype.setTeacher(user);
                     GradePredictorPrototype.setType(0);

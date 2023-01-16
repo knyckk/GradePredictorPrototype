@@ -14,11 +14,17 @@ public class User {
     private String name;
     private String username;
     private int type; // 0 is teacher, 1 is student
-    private int icon;
+    public int icon;
     public User(String email, String password, int type) {
         this.email = email;
         this.password = password;
         this.type = type;
+    }
+    public User(String email, String password, int type, int icon) {
+        this.email = email;
+        this.password = password;
+        this.type = type;
+        this.icon = icon;
     }
     public User(String email, String password, int type, String username, String name) {
         this.email = email;
@@ -27,8 +33,19 @@ public class User {
         this.username = username;
         this.name = name;
     }
+    public User(String email, String password, int type, String username, String name, int icon) {
+        this.email = email;
+        this.password = password;
+        this.type = type;
+        this.username = username;
+        this.name = name;
+        this.icon = icon;
+    }
     public String getEmail() {
         return email;
+    }
+    public void setIcon(int icon) {
+        this.icon = icon;
     }
     public String getName() {
         return name;
@@ -38,5 +55,8 @@ public class User {
     }
     public int getType() {
         return type;
+    }
+    public int getIcon() {
+        return icon;
     }
 }

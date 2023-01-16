@@ -30,6 +30,8 @@ public class TeacherProfile extends javax.swing.JFrame {
         addBox = new javax.swing.JComboBox<>();
         createLbl = new javax.swing.JLabel();
         enterBtn = new javax.swing.JButton();
+        iconLbl = new javax.swing.JLabel();
+        iconBox = new javax.swing.JComboBox<>();
         menuBar = new javax.swing.JMenuBar();
         logout = new javax.swing.JMenu();
         exit = new javax.swing.JMenu();
@@ -58,6 +60,21 @@ public class TeacherProfile extends javax.swing.JFrame {
             }
         });
 
+        iconLbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/profile"+(GradePredictorPrototype.getTeacher().getIcon()+1)+".jpeg")));
+
+        iconBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Icon 1", "Icon 2", "Icon 3", "Icon 4", "Icon 5", "Icon 6", "Icon 7" }));
+        iconBox.setSelectedIndex(GradePredictorPrototype.getTeacher().getIcon());
+        iconBox.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                iconBoxItemStateChanged(evt);
+            }
+        });
+        iconBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                iconBoxActionPerformed(evt);
+            }
+        });
+
         logout.setText("Log out");
         logout.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -81,7 +98,11 @@ public class TeacherProfile extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(782, Short.MAX_VALUE)
+                .addGap(34, 34, 34)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(iconBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(iconLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 525, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(enterBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -93,12 +114,18 @@ public class TeacherProfile extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(71, 71, 71)
-                .addComponent(addBox, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(enterBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(1, 1, 1)
-                .addComponent(createLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(363, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(iconLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(iconBox, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(addBox, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(enterBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(1, 1, 1)
+                        .addComponent(createLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(243, Short.MAX_VALUE))
         );
 
         pack();
@@ -128,6 +155,18 @@ public class TeacherProfile extends javax.swing.JFrame {
     private void exitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMouseClicked
         System.exit(0);
     }//GEN-LAST:event_exitMouseClicked
+
+    private void iconBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_iconBoxItemStateChanged
+        // TODO add your handling code here:
+        iconLbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/profile"+(iconBox.getSelectedIndex() + 1)+".jpeg")));
+        GradePredictorPrototype.setTeacherIcon(iconBox.getSelectedIndex());
+        DatabaseManipulation.updateUserIcon(iconBox.getSelectedIndex(), GradePredictorPrototype.getStudent().getEmail());
+
+    }//GEN-LAST:event_iconBoxItemStateChanged
+
+    private void iconBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iconBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_iconBoxActionPerformed
 
     /**
      * @param args the command line arguments
@@ -169,6 +208,8 @@ public class TeacherProfile extends javax.swing.JFrame {
     private javax.swing.JLabel createLbl;
     private javax.swing.JButton enterBtn;
     private javax.swing.JMenu exit;
+    private javax.swing.JComboBox<String> iconBox;
+    private javax.swing.JLabel iconLbl;
     private javax.swing.JMenu logout;
     private javax.swing.JMenuBar menuBar;
     // End of variables declaration//GEN-END:variables

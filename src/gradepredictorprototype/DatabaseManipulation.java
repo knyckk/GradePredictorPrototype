@@ -639,7 +639,13 @@ public class DatabaseManipulation {
             System.out.println("ERROR MESSAGE 1!!!!" + e);
         }
     }
-
+    public static void updateUserIcon(int newIcon, String userID) {
+        try ( Connection conn = DriverManager.getConnection(URL, "THope", DATABASEPASSWORD);  Statement statement = conn.createStatement()) {
+            statement.execute("UPDATE " + USERS + "\nSET " + ICON + " = " + newIcon + " \nWHERE " + EMAIL + " = '" + userID + "'");
+        } catch (SQLException e) {
+            System.out.println("ERROR MESSAGE 1!!!!" + e);
+        }
+    }
     public static void updateExamDate(String year, String studentSubId) {
         try ( Connection conn = DriverManager.getConnection(URL, "THope", DATABASEPASSWORD);  Statement statement = conn.createStatement()) {
             statement.execute("UPDATE " + STUDENTSUB + "\nSET " + DATE + " = '" + year + "-06-01" + "' \nWHERE " + STUDENTSUBID + " = '" + studentSubId + "'");
@@ -681,7 +687,7 @@ public class DatabaseManipulation {
         try ( Connection conn = DriverManager.getConnection(URL, "THope", DATABASEPASSWORD);  Statement statement = conn.createStatement()) {
             try ( ResultSet result = statement.executeQuery("SELECT * FROM " + USERS + " WHERE " + EMAIL + " = '" + email + "'")) {
                 while (result.next()) {
-                    toReturn = new Student(result.getString(EMAIL), result.getString(PASSWORD));
+                    toReturn = new Student(result.getString(EMAIL), result.getString(PASSWORD), result.getInt(ICON));
                 }
 
             } catch (SQLException e) {
@@ -732,7 +738,7 @@ public class DatabaseManipulation {
         try ( Connection conn = DriverManager.getConnection(URL, "THope", DATABASEPASSWORD);  Statement statement = conn.createStatement()) {
             try ( ResultSet result = statement.executeQuery("SELECT * FROM " + USERS + " WHERE " + EMAIL + " = '" + email + "'")) {
                 while (result.next()) {
-                    toReturn = new Teacher(result.getString(EMAIL), result.getString(PASSWORD));
+                    toReturn = new Teacher(result.getString(EMAIL), result.getString(PASSWORD), result.getInt(ICON));
                 }
 
             } catch (SQLException e) {
@@ -743,13 +749,13 @@ public class DatabaseManipulation {
         }
         return toReturn;
     }
-
+    
     public static User userFromEmail(String email) {
         User toReturn = new User("", "", 0);
         try ( Connection conn = DriverManager.getConnection(URL, "THope", DATABASEPASSWORD);  Statement statement = conn.createStatement()) {
             try ( ResultSet result = statement.executeQuery("SELECT * FROM " + USERS + " WHERE " + EMAIL + " = '" + email + "'")) {
                 while (result.next()) {
-                    toReturn = new User(result.getString(EMAIL), result.getString(PASSWORD), result.getInt(TYPE));
+                    toReturn = new User(result.getString(EMAIL), result.getString(PASSWORD), result.getInt(TYPE), result.getInt(ICON));
                 }
 
             } catch (SQLException e) {

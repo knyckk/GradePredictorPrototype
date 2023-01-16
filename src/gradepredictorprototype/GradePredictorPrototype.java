@@ -16,11 +16,11 @@ import javax.swing.UIManager;
  * @author kingt
  */
 public class GradePredictorPrototype {
-    private static Teacher teacher = new Teacher("clees@bayhouse.gfmat.org", "1234");
-    private static Student student = new Student("1-thope@bayhouse.gfmat.org" , "BH147685!");
-    private static Subject subject = new Subject(1, "Mathematics");
-    private static double[] averageBoundaries = new double[] {0.74, 0.63, 0.54, 0.47, 0.40, 0.31};
-    private static int type = 1;
+    private static Teacher teacher;
+    private static Student student;
+    private static Subject subject;
+    private static double[] averageBoundaries;
+    private static int type;
     private static boolean viewing = false;
     /**
      * @param args the command line arguments
@@ -64,10 +64,15 @@ public class GradePredictorPrototype {
         teacher = DatabaseManipulation.teacherFromEmail(email);
     }
     public static void setTeacher(User user) {
-        teacher = new  Teacher(user.getEmail(),user.getPassword());
+        teacher = new  Teacher(user.getEmail(),user.getPassword(), user.getIcon());
     }
     public static void setStudent(User user) {
-        student = new Student(user.getEmail(),user.getPassword());
+        student = new Student(user.getEmail(),user.getPassword(), user.getIcon());
+    }
+    public static void setStudentIcon(int newIcon) {
+        student.setIcon(newIcon);
+    }public static void setTeacherIcon(int newIcon) {
+        teacher.setIcon(newIcon);
     }
     public static void setStudent(String email) {
         student = DatabaseManipulation.studentFromEmail(email);
@@ -79,7 +84,6 @@ public class GradePredictorPrototype {
         return teacher;
     }
     public static void setViewing(boolean view) {
-        System.out.println(viewing);
         viewing = view;
     }
     public static User getUser() {

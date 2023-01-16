@@ -66,12 +66,18 @@ public class StudentProfile extends javax.swing.JFrame {
             }
         });
 
-        iconLbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/profile1.jpeg"))); // NOI18N
+        iconLbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/profile"+(GradePredictorPrototype.getStudent().getIcon()+1)+".jpeg")));
 
         iconBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Icon 1", "Icon 2", "Icon 3", "Icon 4", "Icon 5", "Icon 6", "Icon 7" }));
+        iconBox.setSelectedIndex(GradePredictorPrototype.getStudent().getIcon());
         iconBox.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 iconBoxItemStateChanged(evt);
+            }
+        });
+        iconBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                iconBoxActionPerformed(evt);
             }
         });
 
@@ -100,9 +106,9 @@ public class StudentProfile extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(55, 55, 55)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(iconBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(iconBox, 0, 223, Short.MAX_VALUE)
                     .addComponent(iconLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 455, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 452, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(classBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -116,20 +122,18 @@ public class StudentProfile extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(29, 29, 29)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
                         .addComponent(classBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(45, 45, 45)
                         .addComponent(addBox, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(enterBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(46, 46, 46)
-                        .addComponent(iconLbl)))
+                    .addComponent(iconLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(iconBox, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(246, Short.MAX_VALUE))
+                .addContainerGap(247, Short.MAX_VALUE))
         );
 
         pack();
@@ -175,7 +179,14 @@ public class StudentProfile extends javax.swing.JFrame {
     private void iconBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_iconBoxItemStateChanged
         // TODO add your handling code here:
         iconLbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/profile"+(iconBox.getSelectedIndex() + 1)+".jpeg")));
+        GradePredictorPrototype.setStudentIcon(iconBox.getSelectedIndex());
+        DatabaseManipulation.updateUserIcon(iconBox.getSelectedIndex(), GradePredictorPrototype.getStudent().getEmail());
+        
     }//GEN-LAST:event_iconBoxItemStateChanged
+
+    private void iconBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iconBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_iconBoxActionPerformed
 
     /**
      * @param args the command line arguments

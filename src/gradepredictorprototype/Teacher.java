@@ -13,5 +13,8 @@ public class Teacher extends User{
     public Teacher(String email, String password) {
         super(email, password, 0);
     }
+    public Teacher(String email, String password, int icon) {
+        super(email, password, 0, icon);
+    }
     
 }
