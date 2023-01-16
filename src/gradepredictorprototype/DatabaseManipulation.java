@@ -23,6 +23,7 @@ public class DatabaseManipulation {
     private static final String EMAIL = "email";
     private static final String PASSWORD = "password";
     private static final String TYPE = "type";
+    private static final String ICON = "Icon";
     private static final String USERS = "Users";
     private static final String SUBJECTNAME = "SubjectName";
     private static final String SUBJECTID = "SubjectID";
@@ -86,8 +87,8 @@ public class DatabaseManipulation {
                 System.out.println("ERROR MESSAGE 2!!!!" + e);
             }
             if (willAdd) {
-                statement.execute("INSERT INTO " + USERS + "(" + EMAIL + "," + PASSWORD + "," + TYPE
-                        + ") \n VALUES('" + email + "','" + password + "'," + type + ")");
+                statement.execute("INSERT INTO " + USERS + "(" + EMAIL + "," + PASSWORD + "," + TYPE + "," + ICON
+                        + ") \n VALUES('" + email + "','" + password + "'," + type + ",0)");
             }
         } catch (SQLException e) {
             System.out.println("ERROR MESSAGE 1!!!!" + e);
@@ -844,7 +845,7 @@ public class DatabaseManipulation {
                     + "where StudentSub.MethodName = '" + method.getName() + "' and StudentSub.SubjectID = " + subject.getID())) {
                 while (result.next()) {
                     count++;
-                    toReturn += (double) result.getInt(SCORE) / result.getInt(MAXMARK);
+                    toReturn += (double) result.getInt(MARK) / result.getInt(MAXMARK);
                 }
 
             } catch (SQLException e) {

@@ -32,6 +32,7 @@ public class StudentProfile extends javax.swing.JFrame {
         classBtn = new javax.swing.JButton();
         classBtn.setVisible(GradePredictorPrototype.getViewing());
         iconLbl = new javax.swing.JLabel();
+        iconBox = new javax.swing.JComboBox<>();
         menuBar = new javax.swing.JMenuBar();
         logout = new javax.swing.JMenu();
         exit = new javax.swing.JMenu();
@@ -67,6 +68,13 @@ public class StudentProfile extends javax.swing.JFrame {
 
         iconLbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/profile1.jpeg"))); // NOI18N
 
+        iconBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Icon 1", "Icon 2", "Icon 3", "Icon 4", "Icon 5", "Icon 6", "Icon 7" }));
+        iconBox.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                iconBoxItemStateChanged(evt);
+            }
+        });
+
         logout.setText("Log out");
         logout.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -91,7 +99,9 @@ public class StudentProfile extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(55, 55, 55)
-                .addComponent(iconLbl)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(iconBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(iconLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 455, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -117,7 +127,9 @@ public class StudentProfile extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(46, 46, 46)
                         .addComponent(iconLbl)))
-                .addContainerGap(307, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(iconBox, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(246, Short.MAX_VALUE))
         );
 
         pack();
@@ -160,6 +172,11 @@ public class StudentProfile extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_classBtnActionPerformed
 
+    private void iconBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_iconBoxItemStateChanged
+        // TODO add your handling code here:
+        iconLbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/profile"+(iconBox.getSelectedIndex() + 1)+".jpeg")));
+    }//GEN-LAST:event_iconBoxItemStateChanged
+
     /**
      * @param args the command line arguments
      */
@@ -200,6 +217,7 @@ public class StudentProfile extends javax.swing.JFrame {
     private javax.swing.JButton classBtn;
     private javax.swing.JButton enterBtn;
     private javax.swing.JMenu exit;
+    private javax.swing.JComboBox<String> iconBox;
     private javax.swing.JLabel iconLbl;
     private javax.swing.JMenu logout;
     private javax.swing.JMenuBar menuBar;
