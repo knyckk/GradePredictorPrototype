@@ -16,6 +16,9 @@ public class Student extends User{
     public Student(String email, String password, int icon) {
         super(email, password, 1, icon);
     }
+    public Student(String email, String password,String username, String name, int icon) {
+        super(email, password, 1,username,name, icon);
+    }
     public void setYear(String date) {
         year = date;
     }

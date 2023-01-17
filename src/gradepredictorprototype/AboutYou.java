@@ -107,9 +107,10 @@ public class AboutYou extends javax.swing.JFrame {
     }//GEN-LAST:event_usernameFldMouseClicked
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
-        if (ValidationRoutines.presenceCheck(nameFld.getText()) && ValidationRoutines.presenceCheck(usernameFld.getText()) && !nameFld.getText().equals("name") && !nameFld.getText().equals("name")) {
+        if (ValidationRoutines.presenceCheck(nameFld.getText()) && ValidationRoutines.presenceCheck(usernameFld.getText()) && !nameFld.getText().equals("Name") && !usernameFld.getText().equals("Username")) {
             User user = GradePredictorPrototype.getUser();
             DatabaseManipulation.aboutYou(nameFld.getText(), usernameFld.getText(), user);
+            GradePredictorPrototype.setNames(usernameFld.getText(), nameFld.getText(), user.getType());
             if (user.getType() == 0) {
                 new TeacherProfile().setVisible(true);
                 this.dispose();

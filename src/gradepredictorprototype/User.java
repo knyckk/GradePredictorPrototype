@@ -44,11 +44,18 @@ public class User {
     public String getEmail() {
         return email;
     }
+    public void setNames(String username, String name) {
+        this.username = username;
+        this.name = name;
+    }
     public void setIcon(int icon) {
         this.icon = icon;
     }
     public String getName() {
         return name;
+    }
+    public String getUsername() {
+        return username;
     }
     public String getPassword() {
         return password;

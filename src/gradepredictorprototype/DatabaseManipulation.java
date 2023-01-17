@@ -687,7 +687,7 @@ public class DatabaseManipulation {
         try ( Connection conn = DriverManager.getConnection(URL, "THope", DATABASEPASSWORD);  Statement statement = conn.createStatement()) {
             try ( ResultSet result = statement.executeQuery("SELECT * FROM " + USERS + " WHERE " + EMAIL + " = '" + email + "'")) {
                 while (result.next()) {
-                    toReturn = new Student(result.getString(EMAIL), result.getString(PASSWORD), result.getInt(ICON));
+                    toReturn = new Student(result.getString(EMAIL), result.getString(PASSWORD),result.getString(USERNAME), result.getString(NAME), result.getInt(ICON));
                 }
 
             } catch (SQLException e) {
@@ -738,7 +738,7 @@ public class DatabaseManipulation {
         try ( Connection conn = DriverManager.getConnection(URL, "THope", DATABASEPASSWORD);  Statement statement = conn.createStatement()) {
             try ( ResultSet result = statement.executeQuery("SELECT * FROM " + USERS + " WHERE " + EMAIL + " = '" + email + "'")) {
                 while (result.next()) {
-                    toReturn = new Teacher(result.getString(EMAIL), result.getString(PASSWORD), result.getInt(ICON));
+                    toReturn = new Teacher(result.getString(EMAIL), result.getString(PASSWORD),result.getString(USERNAME), result.getString(NAME), result.getInt(ICON));
                 }
 
             } catch (SQLException e) {
@@ -755,7 +755,7 @@ public class DatabaseManipulation {
         try ( Connection conn = DriverManager.getConnection(URL, "THope", DATABASEPASSWORD);  Statement statement = conn.createStatement()) {
             try ( ResultSet result = statement.executeQuery("SELECT * FROM " + USERS + " WHERE " + EMAIL + " = '" + email + "'")) {
                 while (result.next()) {
-                    toReturn = new User(result.getString(EMAIL), result.getString(PASSWORD), result.getInt(TYPE), result.getInt(ICON));
+                    toReturn = new User(result.getString(EMAIL), result.getString(PASSWORD), result.getInt(TYPE),result.getString(USERNAME), result.getString(NAME), result.getInt(ICON));
                 }
 
             } catch (SQLException e) {

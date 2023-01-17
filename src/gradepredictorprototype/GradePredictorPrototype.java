@@ -64,10 +64,10 @@ public class GradePredictorPrototype {
         teacher = DatabaseManipulation.teacherFromEmail(email);
     }
     public static void setTeacher(User user) {
-        teacher = new  Teacher(user.getEmail(),user.getPassword(), user.getIcon());
+        teacher = new  Teacher(user.getEmail(),user.getPassword(),user.getUsername(), user.getName(), user.getIcon());
     }
     public static void setStudent(User user) {
-        student = new Student(user.getEmail(),user.getPassword(), user.getIcon());
+        student = new Student(user.getEmail(),user.getPassword(),user.getUsername(),user.getName(), user.getIcon());
     }
     public static void setStudentIcon(int newIcon) {
         student.setIcon(newIcon);
@@ -85,6 +85,13 @@ public class GradePredictorPrototype {
     }
     public static void setViewing(boolean view) {
         viewing = view;
+    }
+    public static void setNames(String username, String name, int type) {
+        if (type == 0){
+            teacher.setNames(username, name);
+        } else if(type == 1){
+            student.setNames(username, name);
+        }
     }
     public static User getUser() {
         User toReturn = new User("","",1);
