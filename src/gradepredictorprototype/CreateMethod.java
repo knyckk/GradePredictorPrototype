@@ -11,6 +11,7 @@ import java.awt.event.KeyEvent;
  * @author kingt
  */
 public class CreateMethod extends javax.swing.JFrame {
+
     /**
      * Creates new form CreateMethod
      */
@@ -169,35 +170,36 @@ public class CreateMethod extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void descriptionFldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_descriptionFldActionPerformed
-        
+
     }//GEN-LAST:event_descriptionFldActionPerformed
 
     private void subjectBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subjectBtnActionPerformed
-        
+
         new TeacherSubject().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_subjectBtnActionPerformed
 
     private void profileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileBtnActionPerformed
-        
+
         new TeacherProfile().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_profileBtnActionPerformed
 
     private void enterBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterBtnActionPerformed
-        
-        DatabaseManipulation.createMethod(nameFld.getText(), descriptionFld.getText());
-        new RevisionMethod().setVisible(true);
-        this.dispose();
+        if (ValidationRoutines.presenceCheck(nameFld.getText())) {
+            DatabaseManipulation.createMethod(nameFld.getText(), descriptionFld.getText());
+            new RevisionMethod().setVisible(true);
+            this.dispose();
+        }
     }//GEN-LAST:event_enterBtnActionPerformed
 
     private void nameFldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nameFldFocusGained
-        
+
         nameFld.selectAll();
     }//GEN-LAST:event_nameFldFocusGained
 
     private void descriptionFldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_descriptionFldFocusGained
-        
+
         descriptionFld.selectAll();
     }//GEN-LAST:event_descriptionFldFocusGained
 
@@ -211,11 +213,11 @@ public class CreateMethod extends javax.swing.JFrame {
     }//GEN-LAST:event_exitMouseClicked
 
     private void descriptionFldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_descriptionFldKeyPressed
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
-           DatabaseManipulation.createMethod(nameFld.getText(), descriptionFld.getText());
-        new RevisionMethod().setVisible(true);
-        this.dispose();
-       }
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            DatabaseManipulation.createMethod(nameFld.getText(), descriptionFld.getText());
+            new RevisionMethod().setVisible(true);
+            this.dispose();
+        }
     }//GEN-LAST:event_descriptionFldKeyPressed
 
     /**

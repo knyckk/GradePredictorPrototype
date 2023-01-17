@@ -236,41 +236,43 @@ public class Classes extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void createClassBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createClassBtnActionPerformed
-        
-        DatabaseManipulation.createClass(createClassFld.getText(), GradePredictorPrototype.getTeacher());
-        String[] classes = DatabaseManipulation.getClasses(GradePredictorPrototype.getTeacher()).stream().filter(x -> x.getSubject().equals(GradePredictorPrototype.getSubject())).map(x -> x.getName()).toArray(String[]::new);
-        leaveBox.setModel(new javax.swing.DefaultComboBoxModel<>(classes));
-        currentBox.setModel(new javax.swing.DefaultComboBoxModel<>(classes));
-        removeBox.setModel(new javax.swing.DefaultComboBoxModel<>(classes));
+        if (ValidationRoutines.presenceCheck(createClassFld.getText())) {
+            DatabaseManipulation.createClass(createClassFld.getText(), GradePredictorPrototype.getTeacher());
+            String[] classes = DatabaseManipulation.getClasses(GradePredictorPrototype.getTeacher()).stream().filter(x -> x.getSubject().equals(GradePredictorPrototype.getSubject())).map(x -> x.getName()).toArray(String[]::new);
+            leaveBox.setModel(new javax.swing.DefaultComboBoxModel<>(classes));
+            currentBox.setModel(new javax.swing.DefaultComboBoxModel<>(classes));
+            removeBox.setModel(new javax.swing.DefaultComboBoxModel<>(classes));
+        }
     }//GEN-LAST:event_createClassBtnActionPerformed
 
     private void subjectBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subjectBtnActionPerformed
-        
+
         new TeacherSubject().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_subjectBtnActionPerformed
 
     private void profileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileBtnActionPerformed
-        
+
         new TeacherProfile().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_profileBtnActionPerformed
 
     private void leaveBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leaveBoxActionPerformed
-        
+
     }//GEN-LAST:event_leaveBoxActionPerformed
 
     private void joinClassBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_joinClassBtnActionPerformed
-        
-        DatabaseManipulation.joinClass(joinFld.getText(), GradePredictorPrototype.getTeacher());
-        String[] classes = DatabaseManipulation.getClasses(GradePredictorPrototype.getTeacher()).stream().filter(x -> x.getSubject().equals(GradePredictorPrototype.getSubject())).map(x -> x.getName()).toArray(String[]::new);
-        leaveBox.setModel(new javax.swing.DefaultComboBoxModel<>(classes));
-        currentBox.setModel(new javax.swing.DefaultComboBoxModel<>(classes));
-        removeBox.setModel(new javax.swing.DefaultComboBoxModel<>(classes));
+        if (ValidationRoutines.presenceCheck(joinFld.getText())) {
+            DatabaseManipulation.joinClass(joinFld.getText(), GradePredictorPrototype.getTeacher());
+            String[] classes = DatabaseManipulation.getClasses(GradePredictorPrototype.getTeacher()).stream().filter(x -> x.getSubject().equals(GradePredictorPrototype.getSubject())).map(x -> x.getName()).toArray(String[]::new);
+            leaveBox.setModel(new javax.swing.DefaultComboBoxModel<>(classes));
+            currentBox.setModel(new javax.swing.DefaultComboBoxModel<>(classes));
+            removeBox.setModel(new javax.swing.DefaultComboBoxModel<>(classes));
+        }
     }//GEN-LAST:event_joinClassBtnActionPerformed
 
     private void removeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeBtnActionPerformed
-        
+
         DatabaseManipulation.deleteClass(removeBox.getSelectedItem().toString());
         String[] classes = DatabaseManipulation.getClasses(GradePredictorPrototype.getTeacher()).stream().filter(x -> x.getSubject().equals(GradePredictorPrototype.getSubject())).map(x -> x.getName()).toArray(String[]::new);
         leaveBox.setModel(new javax.swing.DefaultComboBoxModel<>(classes));
@@ -279,7 +281,7 @@ public class Classes extends javax.swing.JFrame {
     }//GEN-LAST:event_removeBtnActionPerformed
 
     private void leaveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leaveBtnActionPerformed
-        
+
         DatabaseManipulation.leaveClass(leaveBox.getSelectedItem().toString(), GradePredictorPrototype.getTeacher());
         String[] classes = DatabaseManipulation.getClasses(GradePredictorPrototype.getTeacher()).stream().filter(x -> x.getSubject().equals(GradePredictorPrototype.getSubject())).map(x -> x.getName()).toArray(String[]::new);
         leaveBox.setModel(new javax.swing.DefaultComboBoxModel<>(classes));
@@ -288,19 +290,19 @@ public class Classes extends javax.swing.JFrame {
     }//GEN-LAST:event_leaveBtnActionPerformed
 
     private void viewBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewBtnActionPerformed
-        
+
         new ClassForm(currentBox.getSelectedItem().toString()).setVisible(true);
         this.dispose();
-        
+
     }//GEN-LAST:event_viewBtnActionPerformed
 
     private void createClassFldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createClassFldActionPerformed
-        
+
         createClassFld.selectAll();
     }//GEN-LAST:event_createClassFldActionPerformed
 
     private void joinFldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_joinFldActionPerformed
-        
+
         joinFld.selectAll();
     }//GEN-LAST:event_joinFldActionPerformed
 

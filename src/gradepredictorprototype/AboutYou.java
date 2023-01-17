@@ -107,14 +107,25 @@ public class AboutYou extends javax.swing.JFrame {
     }//GEN-LAST:event_usernameFldMouseClicked
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
-        User user = GradePredictorPrototype.getUser();
-        DatabaseManipulation.aboutYou(nameFld.getText(), usernameFld.getText(), user);
-        if(user.getType() == 0) {
-            new TeacherProfile().setVisible(true);
-            this.dispose();
-        } else if(user.getType() == 1) {
-             new StudentProfile().setVisible(true);
-             this.dispose();
+        if (ValidationRoutines.presenceCheck(nameFld.getText()) && ValidationRoutines.presenceCheck(usernameFld.getText()) && !nameFld.getText().equals("name") && !nameFld.getText().equals("name")) {
+            User user = GradePredictorPrototype.getUser();
+            DatabaseManipulation.aboutYou(nameFld.getText(), usernameFld.getText(), user);
+            if (user.getType() == 0) {
+                new TeacherProfile().setVisible(true);
+                this.dispose();
+            } else if (user.getType() == 1) {
+                new StudentProfile().setVisible(true);
+                this.dispose();
+            }
+        } else {
+            User user = GradePredictorPrototype.getUser();
+            if (user.getType() == 0) {
+                new TeacherProfile().setVisible(true);
+                this.dispose();
+            } else if (user.getType() == 1) {
+                new StudentProfile().setVisible(true);
+                this.dispose();
+            }
         }
     }//GEN-LAST:event_saveBtnActionPerformed
 
@@ -123,17 +134,17 @@ public class AboutYou extends javax.swing.JFrame {
     }//GEN-LAST:event_usernameFldActionPerformed
 
     private void usernameFldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_usernameFldKeyPressed
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
-           User user = GradePredictorPrototype.getUser();
-        DatabaseManipulation.aboutYou(nameFld.getText(), usernameFld.getText(), user);
-        if(user.getType() == 0) {
-            new TeacherProfile().setVisible(true);
-            this.dispose();
-        } else if(user.getType() == 1) {
-             new StudentProfile().setVisible(true);
-             this.dispose();
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            User user = GradePredictorPrototype.getUser();
+            DatabaseManipulation.aboutYou(nameFld.getText(), usernameFld.getText(), user);
+            if (user.getType() == 0) {
+                new TeacherProfile().setVisible(true);
+                this.dispose();
+            } else if (user.getType() == 1) {
+                new StudentProfile().setVisible(true);
+                this.dispose();
+            }
         }
-       }
     }//GEN-LAST:event_usernameFldKeyPressed
 
     /**

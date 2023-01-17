@@ -87,8 +87,8 @@ public class DatabaseManipulation {
                 System.out.println("ERROR MESSAGE 2!!!!" + e);
             }
             if (willAdd) {
-                statement.execute("INSERT INTO " + USERS + "(" + EMAIL + "," + PASSWORD + "," + TYPE + "," + ICON
-                        + ") \n VALUES('" + email + "','" + password + "'," + type + ",0)");
+                statement.execute("INSERT INTO " + USERS + "(" + EMAIL + "," + PASSWORD + "," + TYPE + "," + ICON + "," + USERNAME + "," + NAME 
+                        + ") \n VALUES('" + email + "','" + password + "'," + type + ",0,'" + email.split("@")[0] +"','" + email.split("@")[0] +"')");
             }
         } catch (SQLException e) {
             System.out.println("ERROR MESSAGE 1!!!!" + e);

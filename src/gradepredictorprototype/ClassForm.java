@@ -11,8 +11,10 @@ import java.util.ArrayList;
  * @author kingt
  */
 public class ClassForm extends javax.swing.JFrame {
+
     private Classroom classroom;
     private ArrayList<User> students;
+
     /**
      * Creates new form ClassFrom
      */
@@ -181,21 +183,22 @@ public class ClassForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void nameBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameBtnActionPerformed
-        
-        boolean changed = DatabaseManipulation.updateClass(classroom.getName(), nameFld.getText());
-        if(changed) {
-            titleLbl.setText(nameFld.getText());
+        if (ValidationRoutines.presenceCheck(nameFld.getText())) {
+            boolean changed = DatabaseManipulation.updateClass(classroom.getName(), nameFld.getText());
+            if (changed) {
+                titleLbl.setText(nameFld.getText());
+            }
         }
     }//GEN-LAST:event_nameBtnActionPerformed
 
     private void subjectBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subjectBtnActionPerformed
-        
+
         new TeacherSubject().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_subjectBtnActionPerformed
 
     private void profileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileBtnActionPerformed
-        
+
         new TeacherProfile().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_profileBtnActionPerformed
