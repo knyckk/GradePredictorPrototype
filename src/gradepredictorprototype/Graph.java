@@ -19,16 +19,22 @@ public class Graph extends JPanel{
     double average;
     @Override
     protected void paintComponent(Graphics g){
+        double finalX = coordinates.get(coordinates.size() - 1)[0];
         super.paintComponent(g);
         Graphics2D g1=(Graphics2D)g;
         g1.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
         int width=getWidth();
         int height=getHeight();
-        g1.draw(new Line2D.Double(mar,mar,mar,height-mar));
-        g1.draw(new Line2D.Double(mar,height-mar,width-mar,height-mar));
         double x=(double)(width-2*mar)/(coordinates.get(coordinates.size() - 1)[0]);
-        g1.setPaint(Color.BLUE);
         double scale=(double)(height-1)/(2 * getMaxY());
+        g1.draw(new Line2D.Double(mar,height - mar,mar,height-mar-scale));
+        g1.draw(new Line2D.Double(mar,height-mar,width-mar,height-mar));
+        g1.drawString("Percentage in assessment", mar, (int)(height-scale-mar)/1);
+        g1.drawString("Date of assessment", (int)(width-mar-x), height-mar);
+        for(double i = 0.1; i<=1;i+= 0.1 ){
+        g1.draw(new Line2D.Double(mar,height - mar - i*scale,mar + finalX * x,height - mar - i*scale)); 
+        }
+        
         double sigmaX = 0;
         double sigmaY = 0;
         double sigmaXY = 0;
@@ -46,7 +52,7 @@ public class Graph extends JPanel{
         }
         double constant = (sigmaY * sigmaXSquared - sigmaX * sigmaXY) / ((coordinates.size() - 1) * sigmaXSquared - sigmaX * sigmaX);
         double gradient = ((coordinates.size() - 1) * sigmaXY - sigmaX * sigmaY) / ((coordinates.size() - 1) * sigmaXSquared - sigmaX*sigmaX);
-        double finalX = coordinates.get(coordinates.size() - 1)[0];
+        
         finalY = (gradient*finalX) + constant;
          
         g1.setPaint(Color.WHITE);
@@ -54,7 +60,7 @@ public class Graph extends JPanel{
         g1.setPaint(Color.LIGHT_GRAY);
         g1.draw(new Line2D.Double(mar,height-mar-average*scale,mar + finalX*x,height-mar - average*scale));
         double x1 = coordinates.get(coordinates.size() - 2)[1];        
-        double y1 = coordinates.get(coordinates.size() - 2)[0];
+        double y1 = x1*gradient + constant;
         gradient *= 0.9;
         finalY = (gradient*finalX) - (gradient * x1) + y1;
         g1.setPaint(Color.RED);

@@ -26,8 +26,6 @@ public class Trends extends javax.swing.JFrame {
     private void initComponents() {
 
         graph = new javax.swing.JPanel();
-        percentageLbl = new javax.swing.JLabel();
-        dateLbl = new javax.swing.JLabel();
         titleLbl = new javax.swing.JLabel();
         trendLbl = new javax.swing.JLabel();
         averageLbl = new javax.swing.JLabel();
@@ -43,28 +41,15 @@ public class Trends extends javax.swing.JFrame {
 
         Graph graph = new Graph();
 
-        percentageLbl.setText("Percentage in \npast assessments");
-        percentageLbl.setText("Percentage in past assessments");
-
-        dateLbl.setText("Date Of Assessment");
-
         javax.swing.GroupLayout graphLayout = new javax.swing.GroupLayout(graph);
         graph.setLayout(graphLayout);
         graphLayout.setHorizontalGroup(
             graphLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(graphLayout.createSequentialGroup()
-                .addComponent(percentageLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 492, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, graphLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(dateLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGap(0, 700, Short.MAX_VALUE)
         );
         graphLayout.setVerticalGroup(
             graphLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, graphLayout.createSequentialGroup()
-                .addComponent(percentageLbl, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
-                .addGap(328, 328, 328)
-                .addComponent(dateLbl))
+            .addGap(0, 529, Short.MAX_VALUE)
         );
 
         titleLbl.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -124,24 +109,32 @@ public class Trends extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(titleLbl)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(43, 43, 43)
                         .addComponent(graph, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(averageLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(trendLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(profileBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
-                    .addComponent(subjectBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(32, 32, 32))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(179, 179, 179)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(averageLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(trendLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(361, 361, 361)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(profileBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(subjectBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                .addGap(47, 47, 47))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addContainerGap()
+                .addComponent(titleLbl)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(titleLbl)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(graph, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(123, 123, 123)
                         .addComponent(trendLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -149,11 +142,8 @@ public class Trends extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(subjectBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(profileBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(61, 61, 61)
-                        .addComponent(graph, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(69, 69, 69))
+                        .addComponent(profileBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(35, 35, 35))))
         );
 
         trendLbl.setText(GradePredictorPrototype.getTrend());
@@ -227,12 +217,10 @@ public class Trends extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel averageLbl;
     private javax.swing.JButton classBtn;
-    private javax.swing.JLabel dateLbl;
     private javax.swing.JMenu exit;
     private javax.swing.JPanel graph;
     private javax.swing.JMenu logout;
     private javax.swing.JMenuBar menuBar;
-    private javax.swing.JLabel percentageLbl;
     private javax.swing.JButton profileBtn;
     private javax.swing.JButton subjectBtn;
     private javax.swing.JLabel titleLbl;
