@@ -107,7 +107,13 @@ public class AboutYou extends javax.swing.JFrame {
     }//GEN-LAST:event_usernameFldMouseClicked
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
-        if (ValidationRoutines.presenceCheck(nameFld.getText()) && ValidationRoutines.presenceCheck(usernameFld.getText()) && !nameFld.getText().equals("Name") && !usernameFld.getText().equals("Username")) {
+        if (ValidationRoutines.presenceCheck(nameFld.getText()) 
+                    && ValidationRoutines.presenceCheck(usernameFld.getText()) 
+                    && !nameFld.getText().equals("Name") 
+                    && !usernameFld.getText().equals("Username")
+                    && ValidationRoutines.lengthCheck(0,nameFld.getText(),32)
+                    && ValidationRoutines.lengthCheck(0,usernameFld.getText(),32)) {
+                    
             User user = GradePredictorPrototype.getUser();
             DatabaseManipulation.aboutYou(nameFld.getText(), usernameFld.getText(), user);
             GradePredictorPrototype.setNames(usernameFld.getText(), nameFld.getText(), user.getType());
@@ -136,8 +142,16 @@ public class AboutYou extends javax.swing.JFrame {
 
     private void usernameFldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_usernameFldKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            if (ValidationRoutines.presenceCheck(nameFld.getText()) 
+                    && ValidationRoutines.presenceCheck(usernameFld.getText()) 
+                    && !nameFld.getText().equals("Name") 
+                    && !usernameFld.getText().equals("Username")
+                    && ValidationRoutines.lengthCheck(0,nameFld.getText(),32)
+                    && ValidationRoutines.lengthCheck(0,usernameFld.getText(),32)) {
+                    
             User user = GradePredictorPrototype.getUser();
             DatabaseManipulation.aboutYou(nameFld.getText(), usernameFld.getText(), user);
+            GradePredictorPrototype.setNames(usernameFld.getText(), nameFld.getText(), user.getType());
             if (user.getType() == 0) {
                 new TeacherProfile().setVisible(true);
                 this.dispose();
@@ -145,6 +159,16 @@ public class AboutYou extends javax.swing.JFrame {
                 new StudentProfile().setVisible(true);
                 this.dispose();
             }
+        } else {
+            User user = GradePredictorPrototype.getUser();
+            if (user.getType() == 0) {
+                new TeacherProfile().setVisible(true);
+                this.dispose();
+            } else if (user.getType() == 1) {
+                new StudentProfile().setVisible(true);
+                this.dispose();
+            }
+        }
         }
     }//GEN-LAST:event_usernameFldKeyPressed
 

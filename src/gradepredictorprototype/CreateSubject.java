@@ -125,8 +125,9 @@ public class CreateSubject extends javax.swing.JFrame {
     }//GEN-LAST:event_nameFldActionPerformed
 
     private void enterBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterBtnActionPerformed
-        
-        DatabaseManipulation.makeSubject(nameFld.getText());
+        if(ValidationRoutines.lengthCheck(0,nameFld.getText(),32)) {
+            DatabaseManipulation.makeSubject(nameFld.getText());
+        }
     }//GEN-LAST:event_enterBtnActionPerformed
 
     private void nameFldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nameFldFocusGained

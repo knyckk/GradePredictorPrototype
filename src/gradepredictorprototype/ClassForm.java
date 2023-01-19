@@ -183,7 +183,8 @@ public class ClassForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void nameBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameBtnActionPerformed
-        if (ValidationRoutines.presenceCheck(nameFld.getText())) {
+        if (ValidationRoutines.presenceCheck(nameFld.getText())
+                && ValidationRoutines.lengthCheck(0,nameFld.getText(),32)) {
             boolean changed = DatabaseManipulation.updateClass(classroom.getName(), nameFld.getText());
             if (changed) {
                 titleLbl.setText(nameFld.getText());

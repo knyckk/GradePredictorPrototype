@@ -49,6 +49,9 @@ public class ValidationRoutines {
     public static boolean rangeCheck(String min, String check, String max) {
         return Integer.valueOf(check) >= Integer.valueOf(min) && Integer.valueOf(check) <= Integer.valueOf(max);  //returns whether or not check is between min and max
     }
+    public static boolean lengthCheck(int min, String check, int max) {
+        return (min <= check.length() && max >= check.length());
+    }
 
     public static boolean isInt(String check) {
         check = check.trim();

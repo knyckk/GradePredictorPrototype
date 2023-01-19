@@ -9,6 +9,7 @@ package gradepredictorprototype;
  * @author kingt
  */
 public class PaperInfo extends javax.swing.JFrame {
+
     /**
      * Creates new form PaperInfo
      */
@@ -32,7 +33,7 @@ public class PaperInfo extends javax.swing.JFrame {
         howManyFld = new javax.swing.JTextField();
         yearFld = new javax.swing.JTextField();
         numberFld = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
+        boundariesLbl = new javax.swing.JLabel();
         CLbl = new javax.swing.JLabel();
         AStarLbl = new javax.swing.JLabel();
         ALbl = new javax.swing.JLabel();
@@ -53,6 +54,7 @@ public class PaperInfo extends javax.swing.JFrame {
         exit = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(1200, 600));
         setPreferredSize(new java.awt.Dimension(1200, 600));
 
         titleLbl.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -98,8 +100,8 @@ public class PaperInfo extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel1.setText("Grade Boundaries");
+        boundariesLbl.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        boundariesLbl.setText("Grade Boundaries");
 
         CLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         CLbl.setText("C");
@@ -205,12 +207,6 @@ public class PaperInfo extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(profileBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(subjectBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -247,12 +243,16 @@ public class PaperInfo extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(ELbl)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(EFld, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(EFld, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 384, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(profileBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(subjectBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(titleLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(197, 197, 197)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(600, Short.MAX_VALUE))
+                        .addComponent(boundariesLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(53, 53, 53))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -262,125 +262,138 @@ public class PaperInfo extends javax.swing.JFrame {
                     .addComponent(titleLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(8, 8, 8)
-                        .addComponent(jLabel1)))
-                .addGap(20, 20, 20)
+                        .addComponent(boundariesLbl)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(AStarLbl)
-                            .addComponent(AStarFld, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(20, 20, 20)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(AStarLbl)
+                                    .addComponent(AStarFld, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(ALbl)
+                                    .addComponent(AFld, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(BLbl)
+                                    .addComponent(BFld, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(CLbl)
+                                    .addComponent(CFld, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(DLbl)
+                                    .addComponent(DFld, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(ELbl)
+                                    .addComponent(EFld, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(howManyLbl)
+                                .addGap(6, 6, 6)
+                                .addComponent(howManyFld, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(yearLbl)
+                                .addGap(5, 5, 5)
+                                .addComponent(yearFld, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(numberLbl)
+                                .addGap(5, 5, 5)
+                                .addComponent(numberFld, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(enterBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(131, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(subjectBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(ALbl)
-                            .addComponent(AFld, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(BLbl)
-                            .addComponent(BFld, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(CLbl)
-                            .addComponent(CFld, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(DLbl)
-                            .addComponent(DFld, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(ELbl)
-                            .addComponent(EFld, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(howManyLbl)
-                        .addGap(6, 6, 6)
-                        .addComponent(howManyFld, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(yearLbl)
-                        .addGap(5, 5, 5)
-                        .addComponent(yearFld, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(numberLbl)
-                        .addGap(5, 5, 5)
-                        .addComponent(numberFld, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(enterBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(subjectBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(profileBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26))
+                        .addComponent(profileBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(79, 79, 79))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void subjectBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subjectBtnActionPerformed
-        
+
         new TeacherSubject().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_subjectBtnActionPerformed
 
     private void profileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileBtnActionPerformed
-        
+
         new TeacherProfile().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_profileBtnActionPerformed
 
     private void enterBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterBtnActionPerformed
-        
-        Paper paper = new Paper(Integer.valueOf(howManyFld.getText()), Integer.valueOf(yearFld.getText()), Integer.valueOf(numberFld.getText()), Integer.valueOf(AStarFld.getText()),Integer.valueOf(AFld.getText()),Integer.valueOf(BFld.getText()),Integer.valueOf(CFld.getText()),Integer.valueOf(DFld.getText()),Integer.valueOf(EFld.getText()));
-        new CreatePaper(paper).setVisible(true);
-        this.dispose();
+        if (ValidationRoutines.isInt(AStarFld.getText())
+                && ValidationRoutines.isInt(AFld.getText())
+                && ValidationRoutines.isInt(BFld.getText())
+                && ValidationRoutines.isInt(CFld.getText())
+                && ValidationRoutines.isInt(DFld.getText())
+                && ValidationRoutines.isInt(EFld.getText())
+                && ValidationRoutines.isDate(yearFld.getText() + "-01-01")
+                && ValidationRoutines.isInt(howManyFld.getText())
+                && ValidationRoutines.isInt(numberFld.getText())) {
+                    Paper paper = new Paper(Integer.valueOf(howManyFld.getText()), Integer.valueOf(yearFld.getText()), Integer.valueOf(numberFld.getText()), Integer.valueOf(AStarFld.getText()), Integer.valueOf(AFld.getText()), Integer.valueOf(BFld.getText()), Integer.valueOf(CFld.getText()), Integer.valueOf(DFld.getText()), Integer.valueOf(EFld.getText()));
+                    new CreatePaper(paper).setVisible(true);
+                    this.dispose();
+        }
     }//GEN-LAST:event_enterBtnActionPerformed
 
     private void howManyFldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_howManyFldActionPerformed
-        
+
     }//GEN-LAST:event_howManyFldActionPerformed
 
     private void howManyFldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_howManyFldKeyPressed
     }//GEN-LAST:event_howManyFldKeyPressed
 
     private void howManyFldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_howManyFldFocusGained
-        
+
         howManyFld.selectAll();
     }//GEN-LAST:event_howManyFldFocusGained
 
     private void yearFldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_yearFldFocusGained
-        
+
         yearFld.selectAll();
     }//GEN-LAST:event_yearFldFocusGained
 
     private void numberFldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_numberFldFocusGained
-        
+
         numberFld.selectAll();
     }//GEN-LAST:event_numberFldFocusGained
 
     private void AStarFldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_AStarFldFocusGained
-        
+
         AStarFld.selectAll();
     }//GEN-LAST:event_AStarFldFocusGained
 
     private void AFldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_AFldFocusGained
-        
+
         AFld.selectAll();
     }//GEN-LAST:event_AFldFocusGained
 
     private void BFldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_BFldFocusGained
-        
+
         BFld.selectAll();
     }//GEN-LAST:event_BFldFocusGained
 
     private void CFldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_CFldFocusGained
-        
+
         CFld.selectAll();
     }//GEN-LAST:event_CFldFocusGained
 
     private void DFldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_DFldFocusGained
-        
+
         DFld.selectAll();
     }//GEN-LAST:event_DFldFocusGained
 
     private void EFldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_EFldFocusGained
-        
+
         EFld.selectAll();
     }//GEN-LAST:event_EFldFocusGained
 
@@ -441,11 +454,11 @@ public class PaperInfo extends javax.swing.JFrame {
     private javax.swing.JLabel DLbl;
     private javax.swing.JTextField EFld;
     private javax.swing.JLabel ELbl;
+    private javax.swing.JLabel boundariesLbl;
     private javax.swing.JButton enterBtn;
     private javax.swing.JMenu exit;
     private javax.swing.JTextField howManyFld;
     private javax.swing.JLabel howManyLbl;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu logout;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JTextField numberFld;

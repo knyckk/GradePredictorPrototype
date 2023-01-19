@@ -236,7 +236,8 @@ public class Classes extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void createClassBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createClassBtnActionPerformed
-        if (ValidationRoutines.presenceCheck(createClassFld.getText())) {
+        if (ValidationRoutines.presenceCheck(createClassFld.getText())
+                && ValidationRoutines.lengthCheck(0,createClassFld.getText(),32)) {
             DatabaseManipulation.createClass(createClassFld.getText(), GradePredictorPrototype.getTeacher());
             String[] classes = DatabaseManipulation.getClasses(GradePredictorPrototype.getTeacher()).stream().filter(x -> x.getSubject().equals(GradePredictorPrototype.getSubject())).map(x -> x.getName()).toArray(String[]::new);
             leaveBox.setModel(new javax.swing.DefaultComboBoxModel<>(classes));

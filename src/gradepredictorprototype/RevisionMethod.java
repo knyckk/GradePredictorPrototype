@@ -13,6 +13,7 @@ import javax.swing.UIManager;
  * @author 1-thope
  */
 public class RevisionMethod extends javax.swing.JFrame {
+
     /**
      * Creates new form RevisionMethod
      */
@@ -206,13 +207,13 @@ public class RevisionMethod extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void createMethodBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createMethodBtnActionPerformed
-        
+
         new CreateMethod().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_createMethodBtnActionPerformed
 
     private void removeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeBtnActionPerformed
-        
+
         DatabaseManipulation.deleteMethod(removeBox.getSelectedItem().toString());
         methodsBox.setModel(new javax.swing.DefaultComboBoxModel<>(DatabaseManipulation.getMethods().stream().map(x -> x.getName()).toArray(String[]::new)));
         removeBox.setModel(new javax.swing.DefaultComboBoxModel<>(DatabaseManipulation.getMethods().stream().map(x -> x.getName()).toArray(String[]::new)));
@@ -220,27 +221,27 @@ public class RevisionMethod extends javax.swing.JFrame {
     }//GEN-LAST:event_removeBtnActionPerformed
 
     private void subjectBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subjectBtnActionPerformed
-        
+
         new TeacherSubject().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_subjectBtnActionPerformed
 
     private void profileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileBtnActionPerformed
-        
+
         new TeacherProfile().setVisible(true);
-        this.dispose();       
+        this.dispose();
     }//GEN-LAST:event_profileBtnActionPerformed
 
     private void renameBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_renameBtnActionPerformed
-        
-        DatabaseManipulation.updateMethod(removeBox.getSelectedItem().toString(), nameFld.getText());
-        methodsBox.setModel(new javax.swing.DefaultComboBoxModel<>(DatabaseManipulation.getMethods().stream().map(x -> x.getName()).toArray(String[]::new)));
-        removeBox.setModel(new javax.swing.DefaultComboBoxModel<>(DatabaseManipulation.getMethods().stream().map(x -> x.getName()).toArray(String[]::new)));
-        replaceBox.setModel(new javax.swing.DefaultComboBoxModel<>(DatabaseManipulation.getMethods().stream().map(x -> x.getName()).toArray(String[]::new)));
+        if (ValidationRoutines.lengthCheck(0, nameFld.getText(), 32)) {
+            DatabaseManipulation.updateMethod(removeBox.getSelectedItem().toString(), nameFld.getText());
+            methodsBox.setModel(new javax.swing.DefaultComboBoxModel<>(DatabaseManipulation.getMethods().stream().map(x -> x.getName()).toArray(String[]::new)));
+            removeBox.setModel(new javax.swing.DefaultComboBoxModel<>(DatabaseManipulation.getMethods().stream().map(x -> x.getName()).toArray(String[]::new)));
+            replaceBox.setModel(new javax.swing.DefaultComboBoxModel<>(DatabaseManipulation.getMethods().stream().map(x -> x.getName()).toArray(String[]::new)));
     }//GEN-LAST:event_renameBtnActionPerformed
-
+    }
     private void nameFldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nameFldFocusGained
-        
+
         nameFld.selectAll();
     }//GEN-LAST:event_nameFldFocusGained
 
@@ -269,9 +270,9 @@ public class RevisionMethod extends javax.swing.JFrame {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
-                    UIManager.put("nimbusBase", new Color(53,53,53));
-                    UIManager.put("nimbusBlueGrey", new Color(53,53,53));
-                    UIManager.put("control", new Color(53,53,53)); 
+                    UIManager.put("nimbusBase", new Color(53, 53, 53));
+                    UIManager.put("nimbusBlueGrey", new Color(53, 53, 53));
+                    UIManager.put("control", new Color(53, 53, 53));
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }

@@ -81,6 +81,11 @@ public class CreatePaper extends javax.swing.JFrame {
                 markFldFocusGained(evt);
             }
         });
+        markFld.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                markFldKeyReleased(evt);
+            }
+        });
 
         topicLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         topicLbl.setText("Question topic:");
@@ -91,6 +96,7 @@ public class CreatePaper extends javax.swing.JFrame {
         questionLbl.setText("Question:");
 
         questionFld.setText("Enter Question");
+        questionFld.setToolTipText("Write or summerise the Question in up to 256 characters");
         questionFld.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 questionFldFocusGained(evt);
@@ -208,58 +214,64 @@ public class CreatePaper extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void subjectBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subjectBtnActionPerformed
-        
+
         new TeacherSubject().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_subjectBtnActionPerformed
 
     private void profileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileBtnActionPerformed
-        
+
         new TeacherProfile().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_profileBtnActionPerformed
 
     private void rightBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rightBtnActionPerformed
-        
-        if (index < paper.numOfQuestions() - 1) {
-            paper.addQuestion(index, new Question(Integer.valueOf(markFld.getText()), questionFld.getText(), topicsBox.getSelectedItem().toString()));
-            topics[index] = topicsBox.getSelectedIndex();
-            index += 1;
-            questionNumLbl.setText("Question " + (index + 1));
-            markFld.setText(String.valueOf(paper.getQuestion(index).getMark()));
-            questionFld.setText(paper.getQuestion(index).getQuestion());
-            topicsBox.setSelectedIndex(topics[index]);
+        if (ValidationRoutines.isInt(markFld.getText())
+                && ValidationRoutines.lengthCheck(0,questionFld.getText(),256)) {
+            if (index < paper.numOfQuestions() - 1) {
+                paper.addQuestion(index, new Question(Integer.valueOf(markFld.getText()), questionFld.getText(), topicsBox.getSelectedItem().toString()));
+                topics[index] = topicsBox.getSelectedIndex();
+                index += 1;
+                questionNumLbl.setText("Question " + (index + 1));
+                markFld.setText(String.valueOf(paper.getQuestion(index).getMark()));
+                questionFld.setText(paper.getQuestion(index).getQuestion());
+                topicsBox.setSelectedIndex(topics[index]);
+            }
+        } else {            
+            markFld.setText("Please enter a number");
         }
     }//GEN-LAST:event_rightBtnActionPerformed
 
     private void leftBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leftBtnActionPerformed
-        
-        if (index > 0) {
-            paper.addQuestion(index, new Question(Integer.valueOf(markFld.getText()), questionFld.getText(), topicsBox.getSelectedItem().toString()));
-            topics[index] = topicsBox.getSelectedIndex();
-            index -= 1;
-            questionNumLbl.setText("Question " + (index + 1));
-            markFld.setText(String.valueOf(paper.getQuestion(index).getMark()));
-            questionFld.setText(paper.getQuestion(index).getQuestion());
-            topicsBox.setSelectedIndex(topics[index]);
+        if (ValidationRoutines.isInt(markFld.getText())
+                && ValidationRoutines.lengthCheck(0,questionFld.getText(), 256)) {
+            if (index > 0) {
+                paper.addQuestion(index, new Question(Integer.valueOf(markFld.getText()), questionFld.getText(), topicsBox.getSelectedItem().toString()));
+                topics[index] = topicsBox.getSelectedIndex();
+                index -= 1;
+                questionNumLbl.setText("Question " + (index + 1));
+                markFld.setText(String.valueOf(paper.getQuestion(index).getMark()));
+                questionFld.setText(paper.getQuestion(index).getQuestion());
+                topicsBox.setSelectedIndex(topics[index]);
+            }
+        }   else {
+                markFld.setText("Please enter a number");
         }
+
     }//GEN-LAST:event_leftBtnActionPerformed
 
     private void createBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBtnActionPerformed
-        
-        paper.addQuestion(index, new Question(Integer.valueOf(markFld.getText()), questionFld.getText(), topicsBox.getSelectedItem().toString()));
-        DatabaseManipulation.createPaper(paper, GradePredictorPrototype.getSubject());
-        new TeacherSubject().setVisible(true);
-        this.dispose();
+
+
     }//GEN-LAST:event_createBtnActionPerformed
 
     private void markFldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_markFldFocusGained
-        
+
         markFld.selectAll();
     }//GEN-LAST:event_markFldFocusGained
 
     private void questionFldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_questionFldFocusGained
-        
+
         questionFld.selectAll();
     }//GEN-LAST:event_questionFldFocusGained
 
@@ -271,6 +283,11 @@ public class CreatePaper extends javax.swing.JFrame {
     private void exitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMouseClicked
         System.exit(0);
     }//GEN-LAST:event_exitMouseClicked
+
+    private void markFldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_markFldKeyReleased
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_markFldKeyReleased
 
     /**
      * @param args the command line arguments

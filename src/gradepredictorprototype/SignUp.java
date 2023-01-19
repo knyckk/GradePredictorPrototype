@@ -194,39 +194,39 @@ public class SignUp extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void studentRdioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_studentRdioActionPerformed
-        
+
         type = 2;
     }//GEN-LAST:event_studentRdioActionPerformed
 
     private void teacherRdioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_teacherRdioActionPerformed
-        
+
         type = 1;
     }//GEN-LAST:event_teacherRdioActionPerformed
 
     private void codeFldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codeFldActionPerformed
-        
+
     }//GEN-LAST:event_codeFldActionPerformed
 
     private void enterBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterBtnActionPerformed
-        
-        if (((passwordFld.getText().equals(confirmFld.getText())) && codeFld.getText().equals(code)) && type == 2) {
-            DatabaseManipulation.signUp(emailFld.getText(), passwordFld.getText(), 1);
-            GradePredictorPrototype.setStudent(new User(emailFld.getText(), passwordFld.getText(), 1));
-            GradePredictorPrototype.setType(1);
-            new AboutYou().setVisible(true);
-            this.dispose();
-        } else if (((passwordFld.getText().equals(confirmFld.getText())) && codeFld.getText().equals(code)) && type == 1) {
-            DatabaseManipulation.signUp(emailFld.getText(), passwordFld.getText(), 0);
-            GradePredictorPrototype.setTeacher(new User(emailFld.getText(), passwordFld.getText(), 0));
-            GradePredictorPrototype.setType(0);
-            new AboutYou().setVisible(true);
-            this.dispose();
+        if (ValidationRoutines.lengthCheck(0, passwordFld.getText(), 64)) {
+            if (((passwordFld.getText().equals(confirmFld.getText())) && codeFld.getText().equals(code)) && type == 2) {
+                DatabaseManipulation.signUp(emailFld.getText(), passwordFld.getText(), 1);
+                GradePredictorPrototype.setStudent(new User(emailFld.getText(), passwordFld.getText(), 1));
+                GradePredictorPrototype.setType(1);
+                new AboutYou().setVisible(true);
+                this.dispose();
+            } else if (((passwordFld.getText().equals(confirmFld.getText())) && codeFld.getText().equals(code)) && type == 1) {
+                DatabaseManipulation.signUp(emailFld.getText(), passwordFld.getText(), 0);
+                GradePredictorPrototype.setTeacher(new User(emailFld.getText(), passwordFld.getText(), 0));
+                GradePredictorPrototype.setType(0);
+                new AboutYou().setVisible(true);
+                this.dispose();
+            }
         }
-        
     }//GEN-LAST:event_enterBtnActionPerformed
 
     private void codeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codeBtnActionPerformed
-        
+
         String from = "GradePredictorNEA@gmail.com";
         String host = "smtp.gmail.com";
         String password = "ahsv fdgi aqou uwll";
@@ -246,7 +246,7 @@ public class SignUp extends javax.swing.JFrame {
         });
         this.code = GradePredictorPrototype.getCode();
         if (type == 1) {
-            if (ValidationRoutines.teacherEmail(emailFld.getText())) {                
+            if (ValidationRoutines.teacherEmail(emailFld.getText())) {
                 try {
                     MimeMessage message = new MimeMessage(session);
                     message.setFrom(new InternetAddress(from));
@@ -262,7 +262,7 @@ public class SignUp extends javax.swing.JFrame {
                 }
             }
         } else if (type == 2) {
-            if (ValidationRoutines.studentEmail(emailFld.getText())) {                
+            if (ValidationRoutines.studentEmail(emailFld.getText())) {
                 try {
                     MimeMessage message = new MimeMessage(session);
                     message.setFrom(new InternetAddress(from));
@@ -283,42 +283,42 @@ public class SignUp extends javax.swing.JFrame {
     }//GEN-LAST:event_codeBtnActionPerformed
 
     private void emailFldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_emailFldFocusGained
-        
+
         emailFld.selectAll();
     }//GEN-LAST:event_emailFldFocusGained
 
     private void emailFldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailFldActionPerformed
-        
+
     }//GEN-LAST:event_emailFldActionPerformed
 
     private void passwordFldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_passwordFldFocusGained
-        
+
         passwordLbl.hide();
         passwordFld.selectAll();
     }//GEN-LAST:event_passwordFldFocusGained
 
     private void confirmFldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_confirmFldFocusGained
-        
+
         confirmLbl.hide();
         confirmFld.selectAll();
     }//GEN-LAST:event_confirmFldFocusGained
 
     private void passwordFldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_passwordFldFocusLost
-        
-        if(passwordFld.getPassword().length == 0) {
+
+        if (passwordFld.getPassword().length == 0) {
             passwordLbl.show();
         }
     }//GEN-LAST:event_passwordFldFocusLost
 
     private void confirmFldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_confirmFldFocusLost
-        
-        if(confirmFld.getPassword().length == 0) {
+
+        if (confirmFld.getPassword().length == 0) {
             confirmLbl.show();
         }
     }//GEN-LAST:event_confirmFldFocusLost
 
     private void codeFldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_codeFldFocusGained
-        
+
         codeFld.selectAll();
     }//GEN-LAST:event_codeFldFocusGained
 
@@ -328,20 +328,22 @@ public class SignUp extends javax.swing.JFrame {
     }//GEN-LAST:event_loginMouseClicked
 
     private void codeFldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_codeFldKeyPressed
-         if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
-           if (((passwordFld.getText().equals(confirmFld.getText())) && codeFld.getText().equals(code)) && type == 2) {
-            DatabaseManipulation.signUp(emailFld.getText(), passwordFld.getText(), 1);
-            GradePredictorPrototype.setStudent(new User(emailFld.getText(), passwordFld.getText(), 1));
-            GradePredictorPrototype.setType(1);
-        } else if (((passwordFld.getText().equals(confirmFld.getText())) && codeFld.getText().equals(code)) && type == 1) {
-            DatabaseManipulation.signUp(emailFld.getText(), passwordFld.getText(), 0);
-            GradePredictorPrototype.setTeacher(new User(emailFld.getText(), passwordFld.getText(), 0));
-            GradePredictorPrototype.setType(0);
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            if (ValidationRoutines.lengthCheck(0, passwordFld.getText(), 64)) {
+                if (((passwordFld.getText().equals(confirmFld.getText())) && codeFld.getText().equals(code)) && type == 2) {
+                    DatabaseManipulation.signUp(emailFld.getText(), passwordFld.getText(), 1);
+                    GradePredictorPrototype.setStudent(new User(emailFld.getText(), passwordFld.getText(), 1));
+                    GradePredictorPrototype.setType(1);
+                } else if (((passwordFld.getText().equals(confirmFld.getText())) && codeFld.getText().equals(code)) && type == 1) {
+                    DatabaseManipulation.signUp(emailFld.getText(), passwordFld.getText(), 0);
+                    GradePredictorPrototype.setTeacher(new User(emailFld.getText(), passwordFld.getText(), 0));
+                    GradePredictorPrototype.setType(0);
+                }
+                new AboutYou().setVisible(true);
+                this.dispose();
+
+            }
         }
-        new AboutYou().setVisible(true);
-        this.dispose();
-       }
-         
     }//GEN-LAST:event_codeFldKeyPressed
 
     /**
@@ -380,7 +382,6 @@ public class SignUp extends javax.swing.JFrame {
         });
     }
 
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton codeBtn;

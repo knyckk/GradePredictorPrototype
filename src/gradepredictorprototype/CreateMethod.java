@@ -186,7 +186,9 @@ public class CreateMethod extends javax.swing.JFrame {
     }//GEN-LAST:event_profileBtnActionPerformed
 
     private void enterBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterBtnActionPerformed
-        if (ValidationRoutines.presenceCheck(nameFld.getText())) {
+        if (ValidationRoutines.presenceCheck(nameFld.getText())
+                && ValidationRoutines.lengthCheck(0,nameFld.getText(),32)
+                && ValidationRoutines.lengthCheck(0,descriptionFld.getText(),128)) {
             DatabaseManipulation.createMethod(nameFld.getText(), descriptionFld.getText());
             new RevisionMethod().setVisible(true);
             this.dispose();
