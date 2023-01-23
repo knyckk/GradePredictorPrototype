@@ -299,12 +299,12 @@ public class Classes extends javax.swing.JFrame {
 
     private void createClassFldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createClassFldActionPerformed
 
-        createClassFld.selectAll();
+        createClassFld.selectAll();//automatically selects all text when clicked
     }//GEN-LAST:event_createClassFldActionPerformed
 
     private void joinFldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_joinFldActionPerformed
 
-        joinFld.selectAll();
+        joinFld.selectAll();//automatically selects all text when clicked
     }//GEN-LAST:event_joinFldActionPerformed
 
     private void logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseClicked

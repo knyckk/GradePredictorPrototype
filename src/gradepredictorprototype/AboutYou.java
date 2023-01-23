@@ -99,38 +99,38 @@ public class AboutYou extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void nameFldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nameFldMouseClicked
-        nameFld.selectAll();
+        nameFld.selectAll(); //automatically selects all text when clicked
     }//GEN-LAST:event_nameFldMouseClicked
 
     private void usernameFldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_usernameFldMouseClicked
-        usernameFld.selectAll();
+        usernameFld.selectAll();//automatically selects all text when clicked
     }//GEN-LAST:event_usernameFldMouseClicked
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
-        if (ValidationRoutines.presenceCheck(nameFld.getText()) 
-                    && ValidationRoutines.presenceCheck(usernameFld.getText()) 
-                    && !nameFld.getText().equals("Name") 
-                    && !usernameFld.getText().equals("Username")
-                    && ValidationRoutines.lengthCheck(0,nameFld.getText(),32)
-                    && ValidationRoutines.lengthCheck(0,usernameFld.getText(),32)) {
+        if (ValidationRoutines.presenceCheck(nameFld.getText()) //checks name field is not empty
+                    && ValidationRoutines.presenceCheck(usernameFld.getText()) //checks username field is not empty
+                    && !nameFld.getText().equals("Name") //checks name field has not been left unchanged
+                    && !usernameFld.getText().equals("Username") //checks username field has not been left unchanged
+                    && ValidationRoutines.lengthCheck(0,nameFld.getText(),32) //checks name will fit in database
+                    && ValidationRoutines.lengthCheck(0,usernameFld.getText(),32)) { //checks username will fit into database
                     
-            User user = GradePredictorPrototype.getUser();
-            DatabaseManipulation.aboutYou(nameFld.getText(), usernameFld.getText(), user);
-            GradePredictorPrototype.setNames(usernameFld.getText(), nameFld.getText(), user.getType());
-            if (user.getType() == 0) {
-                new TeacherProfile().setVisible(true);
-                this.dispose();
-            } else if (user.getType() == 1) {
-                new StudentProfile().setVisible(true);
-                this.dispose();
+            User user = GradePredictorPrototype.getUser(); //gets the current user
+            DatabaseManipulation.aboutYou(nameFld.getText(), usernameFld.getText(), user); //sets the users name and username to new name
+            GradePredictorPrototype.setNames(usernameFld.getText(), nameFld.getText(), user.getType()); //sets local variables storing name and username to new name
+            if (user.getType() == 0) { //checks if current user is a teacher
+                new TeacherProfile().setVisible(true); //if user is teacher opens teacher profile                
+                this.dispose(); //and closes this form
+            } else if (user.getType() == 1) { //checks if current user is a student
+                new StudentProfile().setVisible(true);//if so opens student profile
+                this.dispose();//and closes this form
             }
-        } else {
-            User user = GradePredictorPrototype.getUser();
+        } else { //if validation rouitines were failed
+            User user = GradePredictorPrototype.getUser(); //gets the current user
             if (user.getType() == 0) {
-                new TeacherProfile().setVisible(true);
+                new TeacherProfile().setVisible(true); //goes into teacher profile if user is a teacher
                 this.dispose();
             } else if (user.getType() == 1) {
-                new StudentProfile().setVisible(true);
+                new StudentProfile().setVisible(true); // goes into student profile if user is a student
                 this.dispose();
             }
         }
@@ -141,8 +141,8 @@ public class AboutYou extends javax.swing.JFrame {
     }//GEN-LAST:event_usernameFldActionPerformed
 
     private void usernameFldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_usernameFldKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            if (ValidationRoutines.presenceCheck(nameFld.getText()) 
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) { //method checks if enter key is presses
+            if (ValidationRoutines.presenceCheck(nameFld.getText()) //if it is, it continues on in the same way as the 'saveButtonActionPerformed' method 
                     && ValidationRoutines.presenceCheck(usernameFld.getText()) 
                     && !nameFld.getText().equals("Name") 
                     && !usernameFld.getText().equals("Username")

@@ -267,12 +267,12 @@ public class CreatePaper extends javax.swing.JFrame {
 
     private void markFldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_markFldFocusGained
 
-        markFld.selectAll();
+        markFld.selectAll();//automatically selects all text when clicked
     }//GEN-LAST:event_markFldFocusGained
 
     private void questionFldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_questionFldFocusGained
 
-        questionFld.selectAll();
+        questionFld.selectAll();//automatically selects all text when clicked
     }//GEN-LAST:event_questionFldFocusGained
 
     private void logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseClicked

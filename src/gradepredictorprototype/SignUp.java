@@ -284,7 +284,7 @@ public class SignUp extends javax.swing.JFrame {
 
     private void emailFldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_emailFldFocusGained
 
-        emailFld.selectAll();
+        emailFld.selectAll();//automatically selects all text when clicked
     }//GEN-LAST:event_emailFldFocusGained
 
     private void emailFldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailFldActionPerformed
@@ -293,14 +293,14 @@ public class SignUp extends javax.swing.JFrame {
 
     private void passwordFldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_passwordFldFocusGained
 
-        passwordLbl.hide();
-        passwordFld.selectAll();
+        passwordLbl.hide();//hide password text if it is there
+        passwordFld.selectAll();//automatically selects all text when clicked
     }//GEN-LAST:event_passwordFldFocusGained
 
     private void confirmFldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_confirmFldFocusGained
 
-        confirmLbl.hide();
-        confirmFld.selectAll();
+        confirmLbl.hide();//hide confirm password text if it is there
+        confirmFld.selectAll();//automatically selects all text when clicked
     }//GEN-LAST:event_confirmFldFocusGained
 
     private void passwordFldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_passwordFldFocusLost
@@ -319,7 +319,7 @@ public class SignUp extends javax.swing.JFrame {
 
     private void codeFldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_codeFldFocusGained
 
-        codeFld.selectAll();
+        codeFld.selectAll();//automatically selects all text when clicked
     }//GEN-LAST:event_codeFldFocusGained
 
     private void loginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginMouseClicked
@@ -329,7 +329,9 @@ public class SignUp extends javax.swing.JFrame {
 
     private void codeFldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_codeFldKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            if (ValidationRoutines.lengthCheck(0, passwordFld.getText(), 64)) {
+            if (ValidationRoutines.lengthCheck(0, passwordFld.getText(), 64)
+                    && ((type == 1 && ValidationRoutines.teacherEmail(emailFld.getText())) || (type == 2 && ValidationRoutines.studentEmail(emailFld.getText())))
+                    && ValidationRoutines.lengthCheck(0,emailFld.getText(),64)) {
                 if (((passwordFld.getText().equals(confirmFld.getText())) && codeFld.getText().equals(code)) && type == 2) {
                     DatabaseManipulation.signUp(emailFld.getText(), passwordFld.getText(), 1);
                     GradePredictorPrototype.setStudent(new User(emailFld.getText(), passwordFld.getText(), 1));

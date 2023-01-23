@@ -218,7 +218,7 @@ public class DatabaseManipulation {
             statement.execute("INSERT INTO " + BOUNDARIES + " \n VALUES(NULL, " + paper.getBoundaries()[0] + "," + paper.getBoundaries()[1] + ","
                     + paper.getBoundaries()[2] + "," + paper.getBoundaries()[3] + "," + paper.getBoundaries()[4] + ","
                     + paper.getBoundaries()[5] + ")");
-            try ( ResultSet result = statement.executeQuery("SELECT " + BOUNDARYID + " FROM " + BOUNDARIES + " ORDER BY " + BOUNDARYID + " DESC")) {
+            try ( ResultSet result = statement.executeQuery("SELECT MAX(" + BOUNDARYID + ") FROM " + BOUNDARIES)) {
                 result.next();
                 ID = result.getInt(BOUNDARYID);
 
@@ -630,7 +630,15 @@ public class DatabaseManipulation {
             System.out.println("ERROR MESSAGE 1!!!!" + e);
         }
     }
-
+    public static void updateTopic(String topicName, String newName) {
+        try ( Connection conn = DriverManager.getConnection(URL, "THope", DATABASEPASSWORD);  Statement statement = conn.createStatement()) {
+            if (!(methodExists(newName))) {
+                statement.execute("UPDATE " + TOPICS + "\nSET " + TOPIC + " = '" + newName + "' \nWHERE " + TOPIC + " = '" + topicName + "'");
+            }
+        } catch (SQLException e) {
+            System.out.println("ERROR MESSAGE 1!!!!" + e);
+        }
+    }
     public static void updateTarget(String newTarget, String studentSubId) {
         try ( Connection conn = DriverManager.getConnection(URL, "THope", DATABASEPASSWORD);  Statement statement = conn.createStatement()) {
             statement.execute("UPDATE " + STUDENTSUB + "\nSET " + TARGETGRADE + " = '" + newTarget + "' \nWHERE " + STUDENTSUBID + " = '" + studentSubId + "'");

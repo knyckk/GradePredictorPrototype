@@ -197,12 +197,12 @@ public class CreateMethod extends javax.swing.JFrame {
 
     private void nameFldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nameFldFocusGained
 
-        nameFld.selectAll();
+        nameFld.selectAll();//automatically selects all text when clicked
     }//GEN-LAST:event_nameFldFocusGained
 
     private void descriptionFldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_descriptionFldFocusGained
 
-        descriptionFld.selectAll();
+        descriptionFld.selectAll();//automatically selects all text when clicked
     }//GEN-LAST:event_descriptionFldFocusGained
 
     private void logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseClicked

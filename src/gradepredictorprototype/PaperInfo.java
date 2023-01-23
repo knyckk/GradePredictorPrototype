@@ -354,47 +354,47 @@ public class PaperInfo extends javax.swing.JFrame {
 
     private void howManyFldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_howManyFldFocusGained
 
-        howManyFld.selectAll();
+        howManyFld.selectAll();//automatically selects all text when clicked
     }//GEN-LAST:event_howManyFldFocusGained
 
     private void yearFldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_yearFldFocusGained
 
-        yearFld.selectAll();
+        yearFld.selectAll();//automatically selects all text when clicked
     }//GEN-LAST:event_yearFldFocusGained
 
     private void numberFldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_numberFldFocusGained
 
-        numberFld.selectAll();
+        numberFld.selectAll();//automatically selects all text when clicked
     }//GEN-LAST:event_numberFldFocusGained
 
     private void AStarFldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_AStarFldFocusGained
 
-        AStarFld.selectAll();
+        AStarFld.selectAll();//automatically selects all text when clicked
     }//GEN-LAST:event_AStarFldFocusGained
 
     private void AFldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_AFldFocusGained
 
-        AFld.selectAll();
+        AFld.selectAll();//automatically selects all text when clicked
     }//GEN-LAST:event_AFldFocusGained
 
     private void BFldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_BFldFocusGained
 
-        BFld.selectAll();
+        BFld.selectAll();//automatically selects all text when clicked
     }//GEN-LAST:event_BFldFocusGained
 
     private void CFldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_CFldFocusGained
 
-        CFld.selectAll();
+        CFld.selectAll();//automatically selects all text when clicked
     }//GEN-LAST:event_CFldFocusGained
 
     private void DFldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_DFldFocusGained
 
-        DFld.selectAll();
+        DFld.selectAll();//automatically selects all text when clicked
     }//GEN-LAST:event_DFldFocusGained
 
     private void EFldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_EFldFocusGained
 
-        EFld.selectAll();
+        EFld.selectAll();//automatically selects all text when clicked
     }//GEN-LAST:event_EFldFocusGained
 
     private void logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseClicked

@@ -205,7 +205,7 @@ public class ClassForm extends javax.swing.JFrame {
     }//GEN-LAST:event_profileBtnActionPerformed
 
     private void nameFldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nameFldFocusGained
-        nameFld.selectAll();
+        nameFld.selectAll();//automatically selects all text when clicked
     }//GEN-LAST:event_nameFldFocusGained
 
     private void studentsBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_studentsBoxActionPerformed

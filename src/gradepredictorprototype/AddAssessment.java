@@ -11,16 +11,15 @@ import java.util.ArrayList;
  * @author kingt
  */
 public class AddAssessment extends javax.swing.JFrame {
-    private ArrayList<Paper> papers;
-    private int questionIndex;
-    private int maxMark;
-    private int score;
+    private ArrayList<Paper> papers; // a variable to store all past assessments
+    private int questionIndex; // a variable to store the question number being viewed
+    
     /**
      * Creates new form AddAssessment
      */
     public AddAssessment() {
-        papers = DatabaseManipulation.getPapers(GradePredictorPrototype.getSubject());
-        questionIndex = 0;
+        papers = DatabaseManipulation.getPapers(GradePredictorPrototype.getSubject()); // initialises papers variable 
+        questionIndex = 0; //initialises questionIndex variable
         initComponents();
     }
 
@@ -311,31 +310,31 @@ public class AddAssessment extends javax.swing.JFrame {
 
     private void profileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileBtnActionPerformed
         
-        new StudentProfile().setVisible(true);
+        new StudentProfile().setVisible(true); //returns user to their profile
         this.dispose();
     }//GEN-LAST:event_profileBtnActionPerformed
 
     private void subjectBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subjectBtnActionPerformed
         
-        new StudentSubject().setVisible(true);
+        new StudentSubject().setVisible(true); //returns user to their subject
         this.dispose();
     }//GEN-LAST:event_subjectBtnActionPerformed
 
     private void leftBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leftBtnActionPerformed
         
-        if(questionIndex > 0) {
-            questionIndex--;
-            questionLbl.setText("<html><p style=\"width:250px\">"+"Question: " + papers.get(papersBox.getSelectedIndex()).getQuestion(questionIndex).getQuestion()+"</p></html>");
-            questionMarkFld.setText(String.valueOf(papers.get(papersBox.getSelectedIndex()).getQuestion(questionIndex).getScore()));
+        if(questionIndex > 0) { //checks that question will not go below 1 if reduced
+            questionIndex--; //if it wont, it reduces question index
+            questionLbl.setText("<html><p style=\"width:250px\">"+"Question: " + papers.get(papersBox.getSelectedIndex()).getQuestion(questionIndex).getQuestion()+"</p></html>"); //and sets a label to be the correct question, at a maximum size of 250 pixles 
+            questionMarkFld.setText(String.valueOf(papers.get(papersBox.getSelectedIndex()).getQuestion(questionIndex).getScore())); // sets the label to be the stored mark incase they are returning to a question
         }
     }//GEN-LAST:event_leftBtnActionPerformed
 
     private void rightBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rightBtnActionPerformed
         
-        if(questionIndex < (papers.get(papersBox.getSelectedIndex()).numOfQuestions() - 1)) {
-            questionIndex++;
-            questionLbl.setText("<html><p style=\"width:250px\">"+"Question: " + papers.get(papersBox.getSelectedIndex()).getQuestion(questionIndex).getQuestion()+"</p></html>");
-            questionMarkFld.setText(String.valueOf(papers.get(papersBox.getSelectedIndex()).getQuestion(questionIndex).getScore()));
+        if(questionIndex < (papers.get(papersBox.getSelectedIndex()).numOfQuestions() - 1)) { //checks question will not become greater than the number of questions their are
+            questionIndex++;//if it wont it increments the question
+            questionLbl.setText("<html><p style=\"width:250px\">"+"Question: " + papers.get(papersBox.getSelectedIndex()).getQuestion(questionIndex).getQuestion()+"</p></html>");//and sets a label to be the correct question, at a maximum size of 250 pixles 
+            questionMarkFld.setText(String.valueOf(papers.get(papersBox.getSelectedIndex()).getQuestion(questionIndex).getScore()));// sets the label to be the stored mark incase they are returning to a question
         }
     }//GEN-LAST:event_rightBtnActionPerformed
 
@@ -345,9 +344,9 @@ public class AddAssessment extends javax.swing.JFrame {
 
     private void papersBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_papersBoxItemStateChanged
         
-        questionIndex = 0;
-        questionLbl.setText("<html><p style=\"width:250px\">"+"Question: " + papers.get(papersBox.getSelectedIndex()).getQuestion(questionIndex).getQuestion()+"</p></html>");
-        questionMarkFld.setText(String.valueOf(papers.get(papersBox.getSelectedIndex()).getQuestion(questionIndex).getScore()));
+        questionIndex = 0; // when the selected paper changes resets to question 1
+        questionLbl.setText("<html><p style=\"width:250px\">"+"Question: " + papers.get(papersBox.getSelectedIndex()).getQuestion(questionIndex).getQuestion()+"</p></html>");//and sets a label to be the correct question, at a maximum size of 250 pixles 
+        questionMarkFld.setText(String.valueOf(papers.get(papersBox.getSelectedIndex()).getQuestion(questionIndex).getScore()));// sets the label to be the stored mark incase they are returning to a question
     }//GEN-LAST:event_papersBoxItemStateChanged
 
     private void typeBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_typeBoxActionPerformed
@@ -356,11 +355,11 @@ public class AddAssessment extends javax.swing.JFrame {
 
     private void typeBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_typeBoxItemStateChanged
         
-        if(typeBox.getSelectedIndex() == 0) {
+        if(typeBox.getSelectedIndex() == 0) { //checks the paper type is set to formal, if so hides informal components and shows formal components
             totalLbl.setVisible(false);
             scoreLbl.setVisible(false);
             scoreFld.setVisible(false);
-            totalFld.setVisible(false);
+            totalFld.setVisible(false); 
             papersBox.setVisible(true);
             rightBtn.setVisible(true);
             leftBtn.setVisible(true);
@@ -394,17 +393,17 @@ public class AddAssessment extends javax.swing.JFrame {
 
     private void totalFldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_totalFldFocusGained
         
-        totalFld.selectAll();
+        totalFld.selectAll();//automatically selects all text when clicked
     }//GEN-LAST:event_totalFldFocusGained
 
     private void scoreFldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_scoreFldFocusGained
         
-        scoreFld.selectAll();
+        scoreFld.selectAll();//automatically selects all text when clicked
     }//GEN-LAST:event_scoreFldFocusGained
 
     private void questionMarkFldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_questionMarkFldFocusGained
         
-        questionMarkFld.selectAll();
+        questionMarkFld.selectAll();//automatically selects all text when clicked
     }//GEN-LAST:event_questionMarkFldFocusGained
 
     private void classBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classBtnActionPerformed

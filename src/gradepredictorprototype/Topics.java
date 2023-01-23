@@ -4,11 +4,14 @@
  */
 package gradepredictorprototype;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author kingt
  */
 public class Topics extends javax.swing.JFrame {
+
     /**
      * Creates new form Topics
      */
@@ -92,6 +95,11 @@ public class Topics extends javax.swing.JFrame {
         });
 
         replaceBtn.setText("Replace");
+        replaceBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                replaceBtnActionPerformed(evt);
+            }
+        });
 
         subjectBtn.setText("Return to Subject");
         subjectBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -194,35 +202,37 @@ public class Topics extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
-        
-        DatabaseManipulation.createTopic(newTopicFld.getText(), GradePredictorPrototype.getSubject());
-        topicsBox.setModel(new javax.swing.DefaultComboBoxModel<>(DatabaseManipulation.getTopicsFromSubject(GradePredictorPrototype.getSubject()).stream().map(x -> x.getTopic()).toArray(String[]::new)));
-        removeBox.setModel(new javax.swing.DefaultComboBoxModel<>(DatabaseManipulation.getTopicsFromSubject(GradePredictorPrototype.getSubject()).stream().map(x -> x.getTopic()).toArray(String[]::new)));
-        replaceBox.setModel(new javax.swing.DefaultComboBoxModel<>(DatabaseManipulation.getTopicsFromSubject(GradePredictorPrototype.getSubject()).stream().map(x -> x.getTopic()).toArray(String[]::new)));
+        if (ValidationRoutines.presenceCheck(newTopicFld.getText()) && ValidationRoutines.lengthCheck(0, newTopicFld.getText(), 128)) {
+            DatabaseManipulation.createTopic(newTopicFld.getText(), GradePredictorPrototype.getSubject());
+            ArrayList<Topic> topics = DatabaseManipulation.getTopicsFromSubject(GradePredictorPrototype.getSubject());
+            topicsBox.setModel(new javax.swing.DefaultComboBoxModel<>(topics.stream().map(x -> x.getTopic()).toArray(String[]::new)));
+            removeBox.setModel(new javax.swing.DefaultComboBoxModel<>(topics.stream().map(x -> x.getTopic()).toArray(String[]::new)));
+            replaceBox.setModel(new javax.swing.DefaultComboBoxModel<>(topics.stream().map(x -> x.getTopic()).toArray(String[]::new)));
+        }
     }//GEN-LAST:event_addBtnActionPerformed
 
     private void subjectBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subjectBtnActionPerformed
-        
+
         new TeacherSubject().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_subjectBtnActionPerformed
 
     private void profileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileBtnActionPerformed
-        
+
         new TeacherProfile().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_profileBtnActionPerformed
 
     private void topicsBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_topicsBoxActionPerformed
-        
+
     }//GEN-LAST:event_topicsBoxActionPerformed
 
     private void newTopicFldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_newTopicFldFocusGained
-        newTopicFld.selectAll();
+        newTopicFld.selectAll();//automatically selects all text when clicked
     }//GEN-LAST:event_newTopicFldFocusGained
 
     private void replaceFldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_replaceFldFocusGained
-        replaceFld.selectAll();
+        replaceFld.selectAll();//automatically selects all text when clicked
     }//GEN-LAST:event_replaceFldFocusGained
 
     private void logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseClicked
@@ -233,6 +243,16 @@ public class Topics extends javax.swing.JFrame {
     private void exitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMouseClicked
         System.exit(0);
     }//GEN-LAST:event_exitMouseClicked
+
+    private void replaceBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_replaceBtnActionPerformed
+        if (ValidationRoutines.presenceCheck(replaceFld.getText()) && ValidationRoutines.lengthCheck(0, replaceFld.getText(), 128)) {
+            DatabaseManipulation.updateTopic(replaceBox.getSelectedItem().toString(), replaceFld.getText());
+            ArrayList<Topic> topics = DatabaseManipulation.getTopicsFromSubject(GradePredictorPrototype.getSubject());
+            topicsBox.setModel(new javax.swing.DefaultComboBoxModel<>(topics.stream().map(x -> x.getTopic()).toArray(String[]::new)));
+            removeBox.setModel(new javax.swing.DefaultComboBoxModel<>(topics.stream().map(x -> x.getTopic()).toArray(String[]::new)));
+            replaceBox.setModel(new javax.swing.DefaultComboBoxModel<>(topics.stream().map(x -> x.getTopic()).toArray(String[]::new)));
+        }
+    }//GEN-LAST:event_replaceBtnActionPerformed
 
     /**
      * @param args the command line arguments

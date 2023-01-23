@@ -125,8 +125,8 @@ public class Login extends javax.swing.JFrame {
 
     private void passwordFldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_passwordFldFocusGained
 
-        passwordLbl.hide();
-        passwordFld.selectAll();
+        passwordLbl.hide();//hide password text if it is there
+        passwordFld.selectAll();//automatically selects all text when clicked
     }//GEN-LAST:event_passwordFldFocusGained
 
     private void passwordFldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_passwordFldFocusLost
@@ -138,7 +138,7 @@ public class Login extends javax.swing.JFrame {
 
     private void emailFldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_emailFldFocusGained
 
-        emailFld.selectAll();
+        emailFld.selectAll();//automatically selects all text when clicked
     }//GEN-LAST:event_emailFldFocusGained
 
     private void emailFldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailFldActionPerformed
@@ -159,7 +159,8 @@ public class Login extends javax.swing.JFrame {
         } else {
             errorLbl.setVisible(false);
 
-            if (passwordFld.getText().equals(user.getPassword()) && ValidationRoutines.presenceCheck(passwordFld.getText())) {
+            if (passwordFld.getText().equals(user.getPassword()) 
+                    && ValidationRoutines.presenceCheck(passwordFld.getText())) {
                 
                 if (user.getType() == 0) {
                     GradePredictorPrototype.setTeacher(user);
