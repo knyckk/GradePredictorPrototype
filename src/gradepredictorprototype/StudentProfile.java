@@ -11,6 +11,7 @@ import java.awt.event.KeyEvent;
  * @author kingt
  */
 public class StudentProfile extends javax.swing.JFrame {
+
     /**
      * Creates new form StudentProfile
      */
@@ -193,26 +194,27 @@ public class StudentProfile extends javax.swing.JFrame {
     }//GEN-LAST:event_exitMouseClicked
 
     private void enterBtnKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_enterBtnKeyPressed
-       if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
-        GradePredictorPrototype.setSubject(addBox.getSelectedIndex() + 1, addBox.getSelectedItem().toString());
-        GradePredictorPrototype.setBoundaries(GradePredictorPrototype.getSubject());
-        DatabaseManipulation.createStudentSub(GradePredictorPrototype.getStudent(), GradePredictorPrototype.getSubject());
-        new StudentSubject().setVisible(true);
-        this.dispose();
-       }
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            GradePredictorPrototype.setSubject(addBox.getSelectedIndex() + 1, addBox.getSelectedItem().toString());
+            GradePredictorPrototype.setBoundaries(GradePredictorPrototype.getSubject());
+            DatabaseManipulation.createStudentSub(GradePredictorPrototype.getStudent(), GradePredictorPrototype.getSubject());
+            new StudentSubject().setVisible(true);
+            this.dispose();
+        }
     }//GEN-LAST:event_enterBtnKeyPressed
     private void classBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classBtnActionPerformed
-        // TODO add your handling code here:
-        new Classes().setVisible(true);
-        this.dispose();
+        if (GradePredictorPrototype.getViewing()) {
+            new Classes().setVisible(true);
+            this.dispose();
+        }
     }//GEN-LAST:event_classBtnActionPerformed
 
     private void iconBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_iconBoxItemStateChanged
         // TODO add your handling code here:
-        iconLbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/profile"+(iconBox.getSelectedIndex() + 1)+".jpeg")));
+        iconLbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/profile" + (iconBox.getSelectedIndex() + 1) + ".jpeg")));
         GradePredictorPrototype.setStudentIcon(iconBox.getSelectedIndex());
         DatabaseManipulation.updateUserIcon(iconBox.getSelectedIndex(), GradePredictorPrototype.getStudent().getEmail());
-        
+
     }//GEN-LAST:event_iconBoxItemStateChanged
 
     private void iconBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iconBoxActionPerformed

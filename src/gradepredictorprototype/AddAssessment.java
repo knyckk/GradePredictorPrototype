@@ -43,20 +43,19 @@ public class AddAssessment extends javax.swing.JFrame {
         rightBtn = new javax.swing.JButton();
         questionMarkFld = new javax.swing.JTextField();
         createPaperBtn = new javax.swing.JButton();
-        classBtn = new javax.swing.JButton();
-        classBtn.setVisible(GradePredictorPrototype.getViewing());
         informalPanel = new javax.swing.JPanel();
         totalLbl = new javax.swing.JLabel();
         scoreLbl = new javax.swing.JLabel();
         totalFld = new javax.swing.JTextField();
         scoreFld = new javax.swing.JTextField();
+        classBtn = new javax.swing.JButton();
+        classBtn.setVisible(GradePredictorPrototype.getViewing());
         menuBar = new javax.swing.JMenuBar();
         logout = new javax.swing.JMenu();
         exit = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1200, 600));
-        setPreferredSize(new java.awt.Dimension(1200, 600));
 
         titleLbl.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         titleLbl.setText("Add Assessment");
@@ -144,14 +143,6 @@ public class AddAssessment extends javax.swing.JFrame {
             }
         });
 
-        classBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        classBtn.setText("Return to Class");
-        classBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                classBtnActionPerformed(evt);
-            }
-        });
-
         totalLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         totalLbl.setText("Total Mark:");
         totalLbl.setPreferredSize(new java.awt.Dimension(55, 25));
@@ -211,6 +202,14 @@ public class AddAssessment extends javax.swing.JFrame {
                 .addGap(46, 46, 46))
         );
 
+        classBtn.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        classBtn.setText("Return to Class");
+        classBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                classBtnActionPerformed(evt);
+            }
+        });
+
         logout.setText("Log out");
         logout.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -238,45 +237,46 @@ public class AddAssessment extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(profileBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(subjectBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(12, 12, 12)
-                            .addComponent(titleLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(845, 845, 845)
-                            .addComponent(classBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(12, 12, 12)
-                            .addComponent(typeLbl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(4, 4, 4)
-                            .addComponent(typeBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(10, 10, 10)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(questionLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(informalPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(papersBox, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(10, 10, 10)
-                            .addComponent(leftBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(3, 3, 3)
-                            .addComponent(questionMarkFld, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(5, 5, 5)
-                            .addComponent(rightBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(10, 10, 10)
-                            .addComponent(createPaperBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(18, 18, 18))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addComponent(typeLbl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(4, 4, 4)
+                                .addComponent(typeBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(questionLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(informalPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(papersBox, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(leftBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(3, 3, 3)
+                                .addComponent(questionMarkFld, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(5, 5, 5)
+                                .addComponent(rightBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(createPaperBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(834, 834, 834)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addComponent(titleLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(classBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(titleLbl))
+                .addGap(11, 11, 11)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(titleLbl)
                     .addComponent(classBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(13, 13, 13)
+                .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(typeLbl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
@@ -380,13 +380,13 @@ public class AddAssessment extends javax.swing.JFrame {
 
     private void createPaperBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createPaperBtnActionPerformed
         
-        if(typeBox.getSelectedIndex() == 0) {
-            DatabaseManipulation.addFormalPaper(GradePredictorPrototype.getStudent(), papers.get(papersBox.getSelectedIndex()));
-            new StudentSubject().setVisible(true);
-            this.dispose();
-        } else if(typeBox.getSelectedIndex() == 1 && ValidationRoutines.isInt(scoreFld.getText()) && ValidationRoutines.isInt(totalFld.getText())) {
-            DatabaseManipulation.addInformalPaper(GradePredictorPrototype.getStudent(), GradePredictorPrototype.getSubject(), Integer.valueOf(scoreFld.getText()), Integer.valueOf(totalFld.getText()));
-            new StudentSubject().setVisible(true);
+        if(typeBox.getSelectedIndex() == 0) { //checks if the user is entering a formal paper
+            DatabaseManipulation.addFormalPaper(GradePredictorPrototype.getStudent(), papers.get(papersBox.getSelectedIndex())); /*if so this paper's informationn is stored in the database*/
+            new StudentSubject().setVisible(true);//returns to the student subject form
+            this.dispose(); //closes this form
+        } else if(typeBox.getSelectedIndex() == 1 && ValidationRoutines.isInt(scoreFld.getText()) && ValidationRoutines.isInt(totalFld.getText())) { /*checks if an informal paper has been selected*/
+            DatabaseManipulation.addInformalPaper(GradePredictorPrototype.getStudent(), GradePredictorPrototype.getSubject(), Integer.parseInt(scoreFld.getText()), Integer.parseInt(totalFld.getText())); //paper data is stored in database
+            new StudentSubject().setVisible(true);//returns to the subject form
             this.dispose();
         }
     }//GEN-LAST:event_createPaperBtnActionPerformed
@@ -406,29 +406,30 @@ public class AddAssessment extends javax.swing.JFrame {
         questionMarkFld.selectAll();//automatically selects all text when clicked
     }//GEN-LAST:event_questionMarkFldFocusGained
 
-    private void classBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classBtnActionPerformed
-        // TODO add your handling code here:
-        new Classes().setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_classBtnActionPerformed
     private void logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseClicked
-        new Login().setVisible(true);
+        new Login().setVisible(true); //returns to login form
         this.dispose();
     }//GEN-LAST:event_logoutMouseClicked
 
     private void exitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMouseClicked
-        System.exit(0);
+        System.exit(0); //closes the application
     }//GEN-LAST:event_exitMouseClicked
 
     private void questionMarkFldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_questionMarkFldKeyReleased
-        // TODO add your handling code here:
-        if(ValidationRoutines.isInt(questionMarkFld.getText())) {
-            if(ValidationRoutines.rangeCheck("0", questionMarkFld.getText(),String.valueOf(papers.get(papersBox.getSelectedIndex()).getQuestion(questionIndex).getMark()) )) {
-                papers.get(papersBox.getSelectedIndex()).setQuestionScore(questionIndex,Integer.valueOf(questionMarkFld.getText()));
+        if(ValidationRoutines.isInt(questionMarkFld.getText())) { //when the user types in the mark field, checks if they typed a number
+            if(ValidationRoutines.rangeCheck("0", questionMarkFld.getText(),String.valueOf(papers.get(papersBox.getSelectedIndex()).getQuestion(questionIndex).getMark()) )) {//if it was a number,checks the number of marks scored is greater than 0 but less that the maximum marks for the paper
+                papers.get(papersBox.getSelectedIndex()).setQuestionScore(questionIndex,Integer.parseInt(questionMarkFld.getText())); //saves  the number of marks locally
             }
             
         }
     }//GEN-LAST:event_questionMarkFldKeyReleased
+
+    private void classBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classBtnActionPerformed
+        if (GradePredictorPrototype.getViewing()) { //checks if a teacher is viewing this form
+            new Classes().setVisible(true);//if  they are, returns them to the class form when they click the button
+            this.dispose();
+        }
+    }//GEN-LAST:event_classBtnActionPerformed
 
     /**
      * @param args the command line arguments
