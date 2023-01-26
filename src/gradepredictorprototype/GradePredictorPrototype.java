@@ -6,6 +6,13 @@ package gradepredictorprototype;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.Transferable;
+import java.awt.datatransfer.UnsupportedFlavorException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.BorderFactory;
@@ -320,5 +327,24 @@ public class GradePredictorPrototype {
                 return 0;
         }
     }
-    
+    public Image getImageFromClipboard() {
+        Clipboard cb = Toolkit.getDefaultToolkit().getSystemClipboard();
+        DataFlavor[] flavors = cb.getAvailableDataFlavors();
+        flavors = cb.getAvailableDataFlavors();
+        for (DataFlavor flavor : flavors) {
+            System.out.println(flavor);
+        }
+        Transferable transferable = cb.getContents(null);
+        if (transferable != null && transferable.isDataFlavorSupported(DataFlavor.imageFlavor)) {
+            try {
+                return (Image) transferable.getTransferData(DataFlavor.imageFlavor);
+            } catch (UnsupportedFlavorException | IOException e) {
+                
+                e.printStackTrace();
+            }
+            
+            
+        }
+        return null;
+    }
 }
