@@ -236,13 +236,13 @@ public class Classes extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void createClassBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createClassBtnActionPerformed
-        if (ValidationRoutines.presenceCheck(createClassFld.getText())
-                && ValidationRoutines.lengthCheck(0,createClassFld.getText(),32)) {
-            DatabaseManipulation.createClass(createClassFld.getText(), GradePredictorPrototype.getTeacher());
-            String[] classes = DatabaseManipulation.getClasses(GradePredictorPrototype.getTeacher()).stream().filter(x -> x.getSubject().equals(GradePredictorPrototype.getSubject())).map(x -> x.getName()).toArray(String[]::new);
-            leaveBox.setModel(new javax.swing.DefaultComboBoxModel<>(classes));
-            currentBox.setModel(new javax.swing.DefaultComboBoxModel<>(classes));
-            removeBox.setModel(new javax.swing.DefaultComboBoxModel<>(classes));
+        if (ValidationRoutines.presenceCheck(createClassFld.getText()) //checks if data has been entered
+                && ValidationRoutines.lengthCheck(0,createClassFld.getText(),32)) {//checks entered data will fit into the database
+            DatabaseManipulation.createClass(createClassFld.getText(), GradePredictorPrototype.getTeacher());//creates the class            
+            leaveBox.addItem(createClassFld.getText());
+            currentBox.addItem(createClassFld.getText());
+            removeBox.addItem(createClassFld.getText());
+            
         }
     }//GEN-LAST:event_createClassBtnActionPerformed
 

@@ -19,8 +19,8 @@ public class ClassForm extends javax.swing.JFrame {
      * Creates new form ClassFrom
      */
     public ClassForm(String name) {
-        classroom = DatabaseManipulation.classFromName(name);
-        students = DatabaseManipulation.getClassStudents(name);
+        classroom = DatabaseManipulation.classFromName(name);//creates a classroom datatype with the classname provided as a parameter
+        students = DatabaseManipulation.getClassStudents(name);//creates an array list of students in the class
         initComponents();
     }
 
@@ -183,10 +183,10 @@ public class ClassForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void nameBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameBtnActionPerformed
-        if (ValidationRoutines.presenceCheck(nameFld.getText())
-                && ValidationRoutines.lengthCheck(0,nameFld.getText(),32)) {
-            boolean changed = DatabaseManipulation.updateClass(classroom.getName(), nameFld.getText());
-            if (changed) {
+        if (ValidationRoutines.presenceCheck(nameFld.getText())  //checks a new name has been entered
+                && ValidationRoutines.lengthCheck(0,nameFld.getText(),32)) { //and it will fit in the database
+            boolean changed = DatabaseManipulation.updateClass(classroom.getName(), nameFld.getText()); //checks if the class name was updated
+            if (changed) { //if it was it will change the name locally in the form
                 titleLbl.setText(nameFld.getText());
             }
         }
@@ -194,13 +194,13 @@ public class ClassForm extends javax.swing.JFrame {
 
     private void subjectBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subjectBtnActionPerformed
 
-        new TeacherSubject().setVisible(true);
+        new TeacherSubject().setVisible(true); // returns to subject
         this.dispose();
     }//GEN-LAST:event_subjectBtnActionPerformed
 
     private void profileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileBtnActionPerformed
 
-        new TeacherProfile().setVisible(true);
+        new TeacherProfile().setVisible(true); //returns to profile
         this.dispose();
     }//GEN-LAST:event_profileBtnActionPerformed
 
@@ -209,22 +209,22 @@ public class ClassForm extends javax.swing.JFrame {
     }//GEN-LAST:event_nameFldFocusGained
 
     private void studentsBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_studentsBoxActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_studentsBoxActionPerformed
 
     private void studentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_studentBtnActionPerformed
-        GradePredictorPrototype.setViewing(true);
-        GradePredictorPrototype.setStudent(students.get(studentsBox.getSelectedIndex()));
-        new StudentProfile().setVisible(true);
+        GradePredictorPrototype.setViewing(true); //when a teacher chooses to view a student sets a boolean to flag that as true
+        GradePredictorPrototype.setStudent(students.get(studentsBox.getSelectedIndex()));//sets the student to the student the teacher selected
+        new StudentProfile().setVisible(true);//opens that student's profile
         this.dispose();
     }//GEN-LAST:event_studentBtnActionPerformed
     private void logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseClicked
-        new Login().setVisible(true);
+        new Login().setVisible(true);//returns to login form
         this.dispose();
     }//GEN-LAST:event_logoutMouseClicked
 
     private void exitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMouseClicked
-        System.exit(0);
+        System.exit(0);//closes the program
     }//GEN-LAST:event_exitMouseClicked
 
     /**
