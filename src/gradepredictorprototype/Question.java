@@ -4,28 +4,30 @@
  */
 package gradepredictorprototype;
 
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author kingt
  */
 public class Question {
     private int maxMark = 0;
-    private String question;
+    private ImageIcon question;
     private Topic topic;
     private int score = 0;
     private int QuestionID;
-    public Question(int max, String question, String topic) {
+    public Question(int max, ImageIcon question, String topic) {
         this.topic = DatabaseManipulation.topicFromTopic(topic);
         maxMark = max;
         this.question = question;
     }
-    public Question(int ID,int max, String question, Topic topic) {
+    public Question(int ID,int max, ImageIcon question, Topic topic) {
         this.topic = topic;
         this.QuestionID = ID;
         maxMark = max;
         this.question = question;
     }
-    public Question(int ID, int max, int score, String question, Topic topic) {
+    public Question(int ID, int max, int score, ImageIcon question, Topic topic) {
         this.topic = topic;
         this.QuestionID = ID;
         this.score = score;
@@ -35,7 +37,7 @@ public class Question {
     public int getMark() {
         return maxMark;
     }
-    public String getQuestion() {
+    public ImageIcon getQuestion() {
         return question;
     }
     public Topic getTopic() {
