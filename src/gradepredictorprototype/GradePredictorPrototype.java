@@ -14,11 +14,10 @@ import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Base64;
 import java.util.Random;
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
@@ -366,26 +365,20 @@ public class GradePredictorPrototype {
     }
 
     public static ImageIcon getImageFromClipboard() {
-        Clipboard cb = Toolkit.getDefaultToolkit().getSystemClipboard();
-        DataFlavor[] flavors = cb.getAvailableDataFlavors();
-        flavors = cb.getAvailableDataFlavors();
-        for (DataFlavor flavor : flavors) {
-            System.out.println(flavor);
-        }
+        Clipboard cb = Toolkit.getDefaultToolkit().getSystemClipboard();        
         Transferable transferable = cb.getContents(null);
         if (transferable != null && transferable.isDataFlavorSupported(DataFlavor.imageFlavor)) {
             try {
                 return new ImageIcon((Image) transferable.getTransferData(DataFlavor.imageFlavor));
             } catch (UnsupportedFlavorException | IOException e) {
-
-                e.printStackTrace();
+                System.out.println("Error: " + e);
             }
 
         }
         return null;
     }
 
-    public static String imageToBinary(ImageIcon img) {
+    public static ByteArrayInputStream imageToBinary(ImageIcon img) {
         try {
             BufferedImage sourceImage = new BufferedImage(
                     img.getIconWidth(),
@@ -394,13 +387,14 @@ public class GradePredictorPrototype {
             Graphics g = sourceImage.createGraphics();
             img.paintIcon(null, g, 0, 0);
             g.dispose();
-            ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-            ImageIO.write(sourceImage, "jpeg", bytes);
-            String resultantimage = Base64.encode(bytes.toByteArray());
-            System.out.println(resultantimage);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
+            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+            ImageIO.write(sourceImage, "jpg", outputStream);
+            ByteArrayInputStream toReturn = new ByteArrayInputStream(outputStream.toByteArray());
+            return toReturn;
+        } catch (IOException e) {
+            System.out.println("Error: " + e);
+        }
+        return null;
     }
 }

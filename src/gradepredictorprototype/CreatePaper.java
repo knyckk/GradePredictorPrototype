@@ -4,10 +4,7 @@
  */
 package gradepredictorprototype;
 
-import java.awt.Graphics;
-import java.awt.Image;
-import java.awt.image.ImageObserver;
-import java.awt.image.ImageProducer;
+
 import javax.swing.ImageIcon;
 
 /**
@@ -49,7 +46,6 @@ public class CreatePaper extends javax.swing.JFrame {
         topicLbl = new javax.swing.JLabel();
         topicsBox = new javax.swing.JComboBox<>();
         questionLbl = new javax.swing.JLabel();
-        questionFld = new javax.swing.JTextField();
         subjectBtn = new javax.swing.JButton();
         profileBtn = new javax.swing.JButton();
         createBtn = new javax.swing.JButton();
@@ -102,14 +98,6 @@ public class CreatePaper extends javax.swing.JFrame {
 
         questionLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         questionLbl.setText("Question:");
-
-        questionFld.setText("Enter Question");
-        questionFld.setToolTipText("Write or summerise the Question in up to 256 characters");
-        questionFld.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                questionFldFocusGained(evt);
-            }
-        });
 
         subjectBtn.setText("Return to Subject");
         subjectBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -174,26 +162,27 @@ public class CreatePaper extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(topicLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(topicsBox, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(questionBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(titleLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(questionLbl, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
+                                .addGap(614, 614, 614))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(maxMarkLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(markFld, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(leftBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(questionNumLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(rightBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(85, 85, 85)
-                                .addComponent(questionFld, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(questionLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(614, 614, 614)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(topicLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(topicsBox, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(questionBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(titleLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(maxMarkLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(markFld, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(leftBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(questionNumLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(rightBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 0, Short.MAX_VALUE)))
                         .addGap(486, 486, 486)))
                 .addContainerGap())
         );
@@ -206,8 +195,7 @@ public class CreatePaper extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(questionNumLbl)
                     .addComponent(rightBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(leftBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(questionFld, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(leftBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(maxMarkLbl)
@@ -250,7 +238,7 @@ public class CreatePaper extends javax.swing.JFrame {
 
     private void rightBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rightBtnActionPerformed
         if (ValidationRoutines.isInt(markFld.getText())
-                && ValidationRoutines.lengthCheck(0,questionFld.getText(),256)) {
+                ) {
             if (index < paper.numOfQuestions() - 1) {
                 paper.addQuestion(index, new Question(Integer.valueOf(markFld.getText()), question, topicsBox.getSelectedItem().toString()));
                 topics[index] = topicsBox.getSelectedIndex();
@@ -258,6 +246,7 @@ public class CreatePaper extends javax.swing.JFrame {
                 questionNumLbl.setText("Question " + (index + 1));
                 markFld.setText(String.valueOf(paper.getQuestion(index).getMark()));
                 questionLbl.setIcon(paper.getQuestion(index).getQuestion());
+                question = paper.getQuestion(index).getQuestion();
                 topicsBox.setSelectedIndex(topics[index]);
             }
         } else {            
@@ -267,7 +256,7 @@ public class CreatePaper extends javax.swing.JFrame {
 
     private void leftBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leftBtnActionPerformed
         if (ValidationRoutines.isInt(markFld.getText())
-                && ValidationRoutines.lengthCheck(0,questionFld.getText(), 256)) {
+                ) {
             if (index > 0) {
                 paper.addQuestion(index, new Question(Integer.valueOf(markFld.getText()), question, topicsBox.getSelectedItem().toString()));
                 topics[index] = topicsBox.getSelectedIndex();
@@ -275,6 +264,7 @@ public class CreatePaper extends javax.swing.JFrame {
                 questionNumLbl.setText("Question " + (index + 1));
                 markFld.setText(String.valueOf(paper.getQuestion(index).getMark()));
                 questionLbl.setIcon(paper.getQuestion(index).getQuestion());
+                question = paper.getQuestion(index).getQuestion();
                 topicsBox.setSelectedIndex(topics[index]);
             }
         }   else {
@@ -284,7 +274,10 @@ public class CreatePaper extends javax.swing.JFrame {
     }//GEN-LAST:event_leftBtnActionPerformed
 
     private void createBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBtnActionPerformed
-
+        paper.addQuestion(index, new Question(Integer.valueOf(markFld.getText()), question, topicsBox.getSelectedItem().toString()));
+        DatabaseManipulation.createPaper(paper, GradePredictorPrototype.getSubject());
+        new TeacherSubject().setVisible(true);
+        this.dispose();
 
     }//GEN-LAST:event_createBtnActionPerformed
 
@@ -292,11 +285,6 @@ public class CreatePaper extends javax.swing.JFrame {
 
         markFld.selectAll();//automatically selects all text when clicked
     }//GEN-LAST:event_markFldFocusGained
-
-    private void questionFldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_questionFldFocusGained
-
-        questionFld.selectAll();//automatically selects all text when clicked
-    }//GEN-LAST:event_questionFldFocusGained
 
     private void logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseClicked
         new Login().setVisible(true);
@@ -362,7 +350,6 @@ public class CreatePaper extends javax.swing.JFrame {
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JButton profileBtn;
     private javax.swing.JButton questionBtn;
-    private javax.swing.JTextField questionFld;
     private javax.swing.JLabel questionLbl;
     private javax.swing.JLabel questionNumLbl;
     private javax.swing.JButton rightBtn;

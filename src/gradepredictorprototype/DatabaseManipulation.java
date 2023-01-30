@@ -5,8 +5,14 @@
  */
 package gradepredictorprototype;
 
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -218,7 +224,7 @@ public class DatabaseManipulation {
             statement.execute("INSERT INTO " + BOUNDARIES + " \n VALUES(NULL, " + paper.getBoundaries()[0] + "," + paper.getBoundaries()[1] + ","
                     + paper.getBoundaries()[2] + "," + paper.getBoundaries()[3] + "," + paper.getBoundaries()[4] + ","
                     + paper.getBoundaries()[5] + ")");
-            try ( ResultSet result = statement.executeQuery("SELECT MAX(" + BOUNDARYID + ") FROM " + BOUNDARIES)) {
+            try ( ResultSet result = statement.executeQuery("SELECT " + BOUNDARYID + " FROM " + BOUNDARIES + " ORDER BY " + BOUNDARYID + " DESC")) {
                 result.next();
                 ID = result.getInt(BOUNDARYID);
 
@@ -228,8 +234,11 @@ public class DatabaseManipulation {
             statement.execute("INSERT INTO " + PAPERS + " \n VALUES(NULL, '" + paper.getYear() + "-06-01'," + paper.getNum() + ","
                     + ID + "," + subject.getID() + "," + paper.getMax() + ")");
             for (Question question : paper.getQuestions()) {
-                statement.execute("INSERT INTO " + QUESTIONS + " \n VALUES(NULL, " + question.getMark() + "," + question.getTopic().getID() + ","
-                        + ID + ",'" + question.getQuestion() + "')");
+                PreparedStatement state = conn.prepareStatement("INSERT INTO " + QUESTIONS + " \n VALUES(NULL, " + question.getMark() + "," + question.getTopic().getID() + ","
+                        + ID + ",(?))");
+                state.setBinaryStream(1,GradePredictorPrototype.imageToBinary(question.getQuestion()));
+                state.execute();
+                
             }
         } catch (SQLException e) {
             System.out.println("ERROR MESSAGE 1!!!!" + e);
@@ -487,7 +496,12 @@ public class DatabaseManipulation {
         try ( Connection conn = DriverManager.getConnection(URL, "THope", DATABASEPASSWORD);  Statement statement = conn.createStatement()) {
             try ( ResultSet result = statement.executeQuery("SELECT * FROM " + QUESTIONS + " WHERE " + PAPERID + " = " + paperID)) {
                 while (result.next()) {
-                    questions.add(new Question(result.getInt(QUESTIONID), result.getInt(MAXMARK), result.getString(QUESTION), topicFromTopicID(result.getInt(TOPICID))));
+               
+                    try {
+                        questions.add(new Question(result.getInt(QUESTIONID), result.getInt(MAXMARK), new ImageIcon((BufferedImage)ImageIO.read(result.getBlob(QUESTION).getBinaryStream())), topicFromTopicID(result.getInt(TOPICID))));
+                    } catch (IOException e) {
+                        System.out.println("Error: " + e);
+                    }
                 }
 
             } catch (SQLException e) {
@@ -509,7 +523,12 @@ public class DatabaseManipulation {
                     + "inner join Papers on Questions.PaperID = Papers.PaperID\n"
                     + "WHERE Papers.SubjectID = " + subject.getID() + " and StudQuestion.Email = '" + student.getEmail() + "';")) {
                 while (result.next()) {
-                    questions.add(new Question(result.getInt(QUESTIONID), result.getInt(MAXMARK), result.getInt(MARK), result.getString(QUESTION), topicFromTopicID(result.getInt(TOPICID))));
+               
+                    try {
+                        questions.add(new Question(result.getInt(QUESTIONID), result.getInt(MAXMARK), result.getInt(MARK), new ImageIcon((BufferedImage)ImageIO.read(result.getBlob(QUESTION).getBinaryStream())), topicFromTopicID(result.getInt(TOPICID))));
+                    } catch (IOException e) {
+                        System.out.println("Error: " + e);
+                    }
                 }
 
             } catch (SQLException e) {

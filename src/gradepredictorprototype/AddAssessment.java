@@ -324,7 +324,7 @@ public class AddAssessment extends javax.swing.JFrame {
         
         if(questionIndex > 0) { //checks that question will not go below 1 if reduced
             questionIndex--; //if it wont, it reduces question index
-            questionLbl.setText("<html><p style=\"width:250px\">"+"Question: " + papers.get(papersBox.getSelectedIndex()).getQuestion(questionIndex).getQuestion()+"</p></html>"); //and sets a label to be the correct question, at a maximum size of 250 pixles 
+            questionLbl.setIcon(papers.get(papersBox.getSelectedIndex()).getQuestion(questionIndex).getQuestion()); //and sets a label to be the correct question, at a maximum size of 250 pixles 
             questionMarkFld.setText(String.valueOf(papers.get(papersBox.getSelectedIndex()).getQuestion(questionIndex).getScore())); // sets the label to be the stored mark incase they are returning to a question
         }
     }//GEN-LAST:event_leftBtnActionPerformed
@@ -333,7 +333,7 @@ public class AddAssessment extends javax.swing.JFrame {
         
         if(questionIndex < (papers.get(papersBox.getSelectedIndex()).numOfQuestions() - 1)) { //checks question will not become greater than the number of questions their are
             questionIndex++;//if it wont it increments the question
-            questionLbl.setText("<html><p style=\"width:250px\">"+"Question: " + papers.get(papersBox.getSelectedIndex()).getQuestion(questionIndex).getQuestion()+"</p></html>");//and sets a label to be the correct question, at a maximum size of 250 pixles 
+            questionLbl.setIcon(papers.get(papersBox.getSelectedIndex()).getQuestion(questionIndex).getQuestion());//and sets a label to be the correct question, at a maximum size of 250 pixles 
             questionMarkFld.setText(String.valueOf(papers.get(papersBox.getSelectedIndex()).getQuestion(questionIndex).getScore()));// sets the label to be the stored mark incase they are returning to a question
         }
     }//GEN-LAST:event_rightBtnActionPerformed
@@ -345,7 +345,7 @@ public class AddAssessment extends javax.swing.JFrame {
     private void papersBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_papersBoxItemStateChanged
         
         questionIndex = 0; // when the selected paper changes resets to question 1
-        questionLbl.setText("<html><p style=\"width:250px\">"+"Question: " + papers.get(papersBox.getSelectedIndex()).getQuestion(questionIndex).getQuestion()+"</p></html>");//and sets a label to be the correct question, at a maximum size of 250 pixles 
+        questionLbl.setIcon(papers.get(papersBox.getSelectedIndex()).getQuestion(questionIndex).getQuestion());//and sets a label to be the correct question, at a maximum size of 250 pixles 
         questionMarkFld.setText(String.valueOf(papers.get(papersBox.getSelectedIndex()).getQuestion(questionIndex).getScore()));// sets the label to be the stored mark incase they are returning to a question
     }//GEN-LAST:event_papersBoxItemStateChanged
 
