@@ -300,10 +300,10 @@ public class TopicBreakdown extends javax.swing.JFrame {
                 questionIndex--;
             }
             if(uniqueQuestions.get(questionIndex).getTopic().equals(topics.get(topicsBox.getSelectedIndex()))) {
-                questionLbl.setText("<html><p style=\"width:250px\">"+"Question: " + uniqueQuestions.get(questionIndex).getQuestion()+"</p></html>");
+                questionLbl.setIcon(uniqueQuestions.get(questionIndex).getQuestion());
             } else{
                 questionIndex = prior;
-                questionLbl.setText("<html><p style=\"width:250px\">"+"Question: " + uniqueQuestions.get(questionIndex).getQuestion()+"</p></html>");
+                questionLbl.setIcon(uniqueQuestions.get(questionIndex).getQuestion());
             }
         }
     }//GEN-LAST:event_leftBtnActionPerformed
@@ -318,10 +318,10 @@ public class TopicBreakdown extends javax.swing.JFrame {
                 questionIndex++;
             }
             if(uniqueQuestions.get(questionIndex).getTopic().equals(topics.get(topicsBox.getSelectedIndex()))) {
-                questionLbl.setText("<html><p style=\"width:250px\">"+"Question: " + uniqueQuestions.get(questionIndex).getQuestion()+"</p></html>");
+                questionLbl.setIcon(uniqueQuestions.get(questionIndex).getQuestion());
             } else {
                 questionIndex = prior;
-                questionLbl.setText("<html><p style=\"width:250px\">"+"Question: " + uniqueQuestions.get(questionIndex).getQuestion()+"</p></html>");
+                questionLbl.setIcon(uniqueQuestions.get(questionIndex).getQuestion());
             }
             
         }
@@ -353,10 +353,10 @@ public class TopicBreakdown extends javax.swing.JFrame {
                 questionIndex1--;
             }
             if(uniqueQuestions.get(questionIndex1).getTopic().equals(topics.get(topicsBox1.getSelectedIndex()))) {
-                questionLbl1.setText("<html><p style=\"width:250px\">"+"Question: " + uniqueQuestions.get(questionIndex1).getQuestion()+"</p></html>");
+                questionLbl1.setIcon(uniqueQuestions.get(questionIndex1).getQuestion());
             } else{
                 questionIndex1 = prior;
-                questionLbl1.setText("<html><p style=\"width:250px\">"+"Question: " + uniqueQuestions.get(questionIndex1).getQuestion()+"</p></html>");
+                questionLbl1.setIcon(uniqueQuestions.get(questionIndex1).getQuestion());
             }
         }
     }//GEN-LAST:event_leftBtn1ActionPerformed
@@ -370,10 +370,10 @@ public class TopicBreakdown extends javax.swing.JFrame {
                 questionIndex1++;
             }
             if(uniqueQuestions.get(questionIndex1).getTopic().equals(topics.get(topicsBox1.getSelectedIndex()))) {
-                questionLbl1.setText("<html><p style=\"width:250px\">"+"Question: " + uniqueQuestions.get(questionIndex1).getQuestion()+"</p></html>");
+                questionLbl1.setIcon(uniqueQuestions.get(questionIndex1).getQuestion());
             } else {
                 questionIndex1 = prior;
-                questionLbl1.setText("<html><p style=\"width:250px\">"+"Question: " + uniqueQuestions.get(questionIndex1).getQuestion()+"</p></html>");
+                questionLbl1.setIcon(uniqueQuestions.get(questionIndex1).getQuestion());
             }
             
         }
@@ -465,7 +465,7 @@ public class TopicBreakdown extends javax.swing.JFrame {
         if(!(uniqueQuestions.get(questionIndex).getTopic().equals(topics.get(topicsBox.getSelectedIndex())))) {
             questionLbl.setText("Question not found");
         } else {
-            questionLbl.setText("<html><p style=\"width:250px\">"+"Question: " + uniqueQuestions.get(questionIndex).getQuestion()+"</p></html>");
+            questionLbl.setIcon(uniqueQuestions.get(questionIndex).getQuestion());
         }
     }
     public void setLabels1() {
@@ -494,7 +494,7 @@ public class TopicBreakdown extends javax.swing.JFrame {
         if(!(uniqueQuestions.get(questionIndex1).getTopic().equals(topics.get(topicsBox1.getSelectedIndex())))) {
             questionLbl1.setText("Question not found");
         } else {
-            questionLbl1.setText("<html><p style=\"width:250px\">"+"Question: " + uniqueQuestions.get(questionIndex1).getQuestion()+"</p></html>");
+            questionLbl1.setIcon(uniqueQuestions.get(questionIndex1).getQuestion());
         }
     }
 

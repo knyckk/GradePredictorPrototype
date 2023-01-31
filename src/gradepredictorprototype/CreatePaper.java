@@ -121,7 +121,7 @@ public class CreatePaper extends javax.swing.JFrame {
         });
 
         questionBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        questionBtn.setText("Question");
+        questionBtn.setText("Paste Question");
         questionBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 questionBtnActionPerformed(evt);

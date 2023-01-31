@@ -458,7 +458,7 @@ public class DatabaseManipulation {
             try ( ResultSet result = statement.executeQuery("SELECT * FROM " + PAPERS + " WHERE " + SUBJECTID + " = " + subject.getID())) {
                 while (result.next()) {
                     int[] boundaries = getPaperBoundaries(result.getInt(PAPERID));
-                    papers.add(new Paper(questionsFromPaper(result.getInt(PAPERID)).toArray(Question[]::new), result.getInt(PAPERID), Integer.valueOf(result.getString(DATE).substring(0, 4)), result.getInt(PAPERNUM), boundaries[0], boundaries[1], boundaries[2], boundaries[3], boundaries[4], boundaries[5], result.getInt(SUBJECTID), result.getInt(MAXMARK)));
+                    papers.add(new Paper(questionsFromPaper(result.getInt(PAPERID)).toArray(Question[]::new), result.getInt(PAPERID), Integer.parseInt(result.getString(DATE).substring(0, 4)), result.getInt(PAPERNUM), boundaries[0], boundaries[1], boundaries[2], boundaries[3], boundaries[4], boundaries[5], result.getInt(SUBJECTID), result.getInt(MAXMARK)));
                 }
 
             } catch (SQLException e) {
@@ -917,7 +917,10 @@ public class DatabaseManipulation {
         int score = 0;
         int paperid = 1;
         try ( Connection conn = DriverManager.getConnection(URL, "THope", DATABASEPASSWORD);  Statement statement = conn.createStatement()) {
-            try ( ResultSet result = statement.executeQuery("SELECT score,PaperID FROM StudFormalPaper WHERE PaperID = (SELECT PaperID from Papers Where SubjectID = " + subject.getID() + ") and Email = '" + student.getEmail() + "' ORDER BY Date DESC;")) {
+            try ( ResultSet result = statement.executeQuery("SELECT score,StudFormalPaper.PaperID \n"
+                    + "FROM StudFormalPaper \n"
+                    + "Join Papers on StudFormalPaper.PaperID = Papers.PaperID \n"
+                    + "WHERE Papers.SubjectID = " + subject.getID() + " and Email = '" + student.getEmail() + "' ORDER BY StudFormalPaper.Date DESC;")) {
                 if (result.next()) {
                     score = result.getInt(SCORE);
                     paperid = result.getInt(PAPERID);
