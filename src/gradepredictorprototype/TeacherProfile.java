@@ -35,6 +35,7 @@ public class TeacherProfile extends javax.swing.JFrame {
         usernameLbl = new javax.swing.JLabel();
         changeBtn = new javax.swing.JButton();
         nameLbl = new javax.swing.JLabel();
+        subjectLbl = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         logout = new javax.swing.JMenu();
         exit = new javax.swing.JMenu();
@@ -49,7 +50,8 @@ public class TeacherProfile extends javax.swing.JFrame {
         });
 
         createLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        createLbl.setText("Create new subject here");
+        createLbl.setForeground(new java.awt.Color(153, 153, 153));
+        createLbl.setText("here");
         createLbl.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 createLblMouseClicked(evt);
@@ -92,6 +94,9 @@ public class TeacherProfile extends javax.swing.JFrame {
         nameLbl.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         nameLbl.setText("Name: " + GradePredictorPrototype.getTeacher().getName());
 
+        subjectLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        subjectLbl.setText("Or you can create a new subject");
+
         logout.setText("Log out");
         logout.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -130,9 +135,11 @@ public class TeacherProfile extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 525, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(enterBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(addBox, 0, 335, Short.MAX_VALUE)
-                                .addComponent(createLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(addBox, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(subjectLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(createLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(83, 83, 83))))
         );
         layout.setVerticalGroup(
@@ -149,7 +156,9 @@ public class TeacherProfile extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(enterBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(1, 1, 1)
-                        .addComponent(createLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(createLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(subjectLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(nameLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -191,7 +200,7 @@ public class TeacherProfile extends javax.swing.JFrame {
         // TODO add your handling code here:
         iconLbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/profile"+(iconBox.getSelectedIndex() + 1)+".jpeg")));
         GradePredictorPrototype.setTeacherIcon(iconBox.getSelectedIndex());
-        DatabaseManipulation.updateUserIcon(iconBox.getSelectedIndex(), GradePredictorPrototype.getStudent().getEmail());
+        DatabaseManipulation.updateUserIcon(iconBox.getSelectedIndex(), GradePredictorPrototype.getTeacher().getEmail());
 
     }//GEN-LAST:event_iconBoxItemStateChanged
 
@@ -250,6 +259,7 @@ public class TeacherProfile extends javax.swing.JFrame {
     private javax.swing.JMenu logout;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JLabel nameLbl;
+    private javax.swing.JLabel subjectLbl;
     private javax.swing.JLabel usernameLbl;
     // End of variables declaration//GEN-END:variables
 }

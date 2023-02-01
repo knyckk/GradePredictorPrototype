@@ -73,8 +73,8 @@ public class StudentSubject extends javax.swing.JFrame {
         topic1 = new javax.swing.JLabel();
         topic2 = new javax.swing.JLabel();
         topic3 = new javax.swing.JLabel();
-        classBtn1 = new javax.swing.JButton();
-        classBtn.setVisible(GradePredictorPrototype.getViewing());
+        returnClassBtn = new javax.swing.JButton();
+        returnClassBtn.setVisible(GradePredictorPrototype.getViewing());
         menuBar = new javax.swing.JMenuBar();
         logout = new javax.swing.JMenu();
         exit = new javax.swing.JMenu();
@@ -181,17 +181,20 @@ public class StudentSubject extends javax.swing.JFrame {
 
         method1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         if(methods.size() > 0) {
+            method1.setToolTipText(methods.get(0).getDesc());
             method1.setText("Top Method: " + methods.get(0).getName());
 
         }
 
         method2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         if(methods.size() > 1) {
+            method2.setToolTipText(methods.get(1).getDesc());
             method2.setText("2nd Method: " + methods.get(1).getName());
         }
 
         method3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         if(methods.size() > 2) {
+            method3.setToolTipText(methods.get(1).getDesc());
             method3.setText("3rd Method: " + methods.get(2).getName());
         }
 
@@ -211,11 +214,11 @@ public class StudentSubject extends javax.swing.JFrame {
             topic3.setText("Third Worst topic: " + topics.get(topics.size() - 3).getTopic());
         }
 
-        classBtn1.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        classBtn1.setText("Return to Class");
-        classBtn1.addActionListener(new java.awt.event.ActionListener() {
+        returnClassBtn.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        returnClassBtn.setText("Return to Class");
+        returnClassBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                classBtn1ActionPerformed(evt);
+                returnClassBtnActionPerformed(evt);
             }
         });
 
@@ -267,12 +270,9 @@ public class StudentSubject extends javax.swing.JFrame {
                                 .addComponent(targetLbl)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(targetBox, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 309, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(predictedLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(topic3, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(267, 267, 267))
+                    .addComponent(predictedLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(topic3, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -287,7 +287,7 @@ public class StudentSubject extends javax.swing.JFrame {
                                     .addComponent(joinFld, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGap(128, 128, 128))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(classBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(returnClassBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addContainerGap()))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(profileBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -299,7 +299,7 @@ public class StudentSubject extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(titleLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(classBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(returnClassBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(predictedLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -420,12 +420,12 @@ public class StudentSubject extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_exitMouseClicked
 
-    private void classBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classBtn1ActionPerformed
+    private void returnClassBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnClassBtnActionPerformed
         if (GradePredictorPrototype.getViewing()) {
             new Classes().setVisible(true);
             this.dispose();
         }
-    }//GEN-LAST:event_classBtn1ActionPerformed
+    }//GEN-LAST:event_returnClassBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -466,7 +466,6 @@ public class StudentSubject extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel assessmentLbl;
     private javax.swing.JButton classBtn;
-    private javax.swing.JButton classBtn1;
     private javax.swing.JMenu exit;
     private javax.swing.JButton finalBtn;
     private javax.swing.JTextField joinFld;
@@ -480,6 +479,7 @@ public class StudentSubject extends javax.swing.JFrame {
     private javax.swing.JButton paperBtn;
     private javax.swing.JLabel predictedLbl;
     private javax.swing.JButton profileBtn;
+    private javax.swing.JButton returnClassBtn;
     private javax.swing.JComboBox<String> targetBox;
     private javax.swing.JLabel targetLbl;
     private javax.swing.JLabel titleLbl;

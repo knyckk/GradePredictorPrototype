@@ -23,4 +23,7 @@ public class Method {
     public double getPerformance() {
         return performance;
     }
+    public String getDesc() {
+        return description;
+    }
 }

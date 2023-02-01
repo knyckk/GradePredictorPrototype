@@ -89,15 +89,10 @@
                               <Component id="targetBox" min="-2" pref="323" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="0" pref="309" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="267" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="predictedLbl" min="-2" pref="159" max="-2" attributes="0"/>
-                          <Component id="topic3" alignment="0" min="-2" pref="286" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="32767" attributes="0"/>
-                  </Group>
+                  <Component id="predictedLbl" min="-2" pref="159" max="-2" attributes="0"/>
+                  <Component id="topic3" alignment="0" min="-2" pref="286" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -116,7 +111,7 @@
                           <EmptySpace min="-2" pref="128" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
-                          <Component id="classBtn1" min="-2" pref="165" max="-2" attributes="0"/>
+                          <Component id="returnClassBtn" min="-2" pref="165" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -134,7 +129,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Component id="titleLbl" min="-2" pref="29" max="-2" attributes="0"/>
-                  <Component id="classBtn1" min="-2" pref="55" max="-2" attributes="0"/>
+                  <Component id="returnClassBtn" min="-2" pref="55" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="predictedLbl" min="-2" pref="31" max="-2" attributes="0"/>
@@ -362,7 +357,7 @@
         </Property>
       </Properties>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="if(methods.size() &gt; 0) {&#xd;&#xa;method1.setText(&quot;Top Method: &quot; + methods.get(0).getName());&#xd;&#xa;&#xd;&#xa;}"/>
+        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="if(methods.size() &gt; 0) {&#xa;method1.setToolTipText(methods.get(0).getDesc());&#xa;method1.setText(&quot;Top Method: &quot; + methods.get(0).getName());&#xa;&#xa;}"/>
       </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="method2">
@@ -372,7 +367,7 @@
         </Property>
       </Properties>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="if(methods.size() &gt; 1) {&#xd;&#xa;method2.setText(&quot;2nd Method: &quot; + methods.get(1).getName());&#xd;&#xa;}"/>
+        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="if(methods.size() &gt; 1) {&#xa;method2.setToolTipText(methods.get(1).getDesc());&#xa;method2.setText(&quot;2nd Method: &quot; + methods.get(1).getName());&#xa;}"/>
       </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="method3">
@@ -382,7 +377,7 @@
         </Property>
       </Properties>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="if(methods.size() &gt; 2) {&#xd;&#xa;method3.setText(&quot;3rd Method: &quot; + methods.get(2).getName());&#xd;&#xa;}"/>
+        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="if(methods.size() &gt; 2) {&#xa;method3.setToolTipText(methods.get(1).getDesc());&#xa;method3.setText(&quot;3rd Method: &quot; + methods.get(2).getName());&#xa;}"/>
       </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="topic1">
@@ -418,7 +413,7 @@
         <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="if(topics.size() &gt; 2) {&#xd;&#xa;topic3.setText(&quot;Third Worst topic: &quot; + topics.get(topics.size() - 3).getTopic());&#xd;&#xa;}"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JButton" name="classBtn1">
+    <Component class="javax.swing.JButton" name="returnClassBtn">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Dialog" size="14" style="0"/>
@@ -426,10 +421,10 @@
         <Property name="text" type="java.lang.String" value="Return to Class"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="classBtn1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="returnClassBtnActionPerformed"/>
       </Events>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="classBtn.setVisible(GradePredictorPrototype.getViewing());"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="returnClassBtn.setVisible(GradePredictorPrototype.getViewing());"/>
       </AuxValues>
     </Component>
   </SubComponents>

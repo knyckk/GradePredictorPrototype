@@ -48,7 +48,7 @@ public class GradePredictorPrototype {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     UIManager.put("control", new Color(53, 53, 53));
                     UIManager.put("nimbusLightBackground", new Color(70, 70, 70));
-                    UIManager.put("info", new Color(255, 255, 255));
+                    UIManager.put("info", new Color(70, 70, 70));
                     UIManager.put("nimbusAlertYellow", new Color(0, 255, 255));
                     UIManager.put("nimbusBase", new Color(40, 40, 40));
                     UIManager.put("nimbusDisabledText", new Color(255, 0, 255));
