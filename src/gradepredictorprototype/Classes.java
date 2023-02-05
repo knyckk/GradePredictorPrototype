@@ -83,11 +83,6 @@ public class Classes extends javax.swing.JFrame {
         leaveLbl.setText("Leave Class:");
 
         leaveBox.setModel(new javax.swing.DefaultComboBoxModel<>(DatabaseManipulation.getClasses(GradePredictorPrototype.getTeacher()).stream().filter(x -> x.getSubject().equals(GradePredictorPrototype.getSubject())).map(x -> x.getName()).toArray(String[]::new)));
-        leaveBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                leaveBoxActionPerformed(evt);
-            }
-        });
 
         removeLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         removeLbl.setText("Remove Class:");
@@ -239,7 +234,7 @@ public class Classes extends javax.swing.JFrame {
         if (ValidationRoutines.presenceCheck(createClassFld.getText()) //checks if data has been entered
                 && ValidationRoutines.lengthCheck(0,createClassFld.getText(),32)) {//checks entered data will fit into the database
             DatabaseManipulation.createClass(createClassFld.getText(), GradePredictorPrototype.getTeacher());//creates the class            
-            leaveBox.addItem(createClassFld.getText());
+            leaveBox.addItem(createClassFld.getText());//adds the new class to the functions in the form
             currentBox.addItem(createClassFld.getText());
             removeBox.addItem(createClassFld.getText());
             
@@ -248,51 +243,48 @@ public class Classes extends javax.swing.JFrame {
 
     private void subjectBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subjectBtnActionPerformed
 
-        new TeacherSubject().setVisible(true);
+        new TeacherSubject().setVisible(true); //returns to the subject form
         this.dispose();
     }//GEN-LAST:event_subjectBtnActionPerformed
 
     private void profileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileBtnActionPerformed
 
-        new TeacherProfile().setVisible(true);
+        new TeacherProfile().setVisible(true); //returns to profile form
         this.dispose();
     }//GEN-LAST:event_profileBtnActionPerformed
 
-    private void leaveBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leaveBoxActionPerformed
-
-    }//GEN-LAST:event_leaveBoxActionPerformed
-
     private void joinClassBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_joinClassBtnActionPerformed
-        if (ValidationRoutines.presenceCheck(joinFld.getText())) {
-            DatabaseManipulation.joinClass(joinFld.getText(), GradePredictorPrototype.getTeacher());
+        if (ValidationRoutines.presenceCheck(joinFld.getText())) { //checks that classcode has been entered
+            DatabaseManipulation.joinClass(joinFld.getText(), GradePredictorPrototype.getTeacher()); //joins the class if code was entered
             String[] classes = DatabaseManipulation.getClasses(GradePredictorPrototype.getTeacher()).stream().filter(x -> x.getSubject().equals(GradePredictorPrototype.getSubject())).map(x -> x.getName()).toArray(String[]::new);
             leaveBox.setModel(new javax.swing.DefaultComboBoxModel<>(classes));
-            currentBox.setModel(new javax.swing.DefaultComboBoxModel<>(classes));
+            currentBox.setModel(new javax.swing.DefaultComboBoxModel<>(classes)); //refreshes combo-boxes to include new class
             removeBox.setModel(new javax.swing.DefaultComboBoxModel<>(classes));
         }
     }//GEN-LAST:event_joinClassBtnActionPerformed
 
     private void removeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeBtnActionPerformed
 
-        DatabaseManipulation.deleteClass(removeBox.getSelectedItem().toString());
-        String[] classes = DatabaseManipulation.getClasses(GradePredictorPrototype.getTeacher()).stream().filter(x -> x.getSubject().equals(GradePredictorPrototype.getSubject())).map(x -> x.getName()).toArray(String[]::new);
-        leaveBox.setModel(new javax.swing.DefaultComboBoxModel<>(classes));
-        currentBox.setModel(new javax.swing.DefaultComboBoxModel<>(classes));
-        removeBox.setModel(new javax.swing.DefaultComboBoxModel<>(classes));
+        DatabaseManipulation.deleteClass(removeBox.getSelectedItem().toString()); //deletes the class
+        int toRemove = removeBox.getSelectedIndex(); //gets the index of the deleted class
+        leaveBox.remove(toRemove);
+        currentBox.remove(toRemove); //updates the combo-Boxes
+        removeBox.remove(toRemove);
+        
     }//GEN-LAST:event_removeBtnActionPerformed
 
     private void leaveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leaveBtnActionPerformed
 
-        DatabaseManipulation.leaveClass(leaveBox.getSelectedItem().toString(), GradePredictorPrototype.getTeacher());
-        String[] classes = DatabaseManipulation.getClasses(GradePredictorPrototype.getTeacher()).stream().filter(x -> x.getSubject().equals(GradePredictorPrototype.getSubject())).map(x -> x.getName()).toArray(String[]::new);
-        leaveBox.setModel(new javax.swing.DefaultComboBoxModel<>(classes));
-        currentBox.setModel(new javax.swing.DefaultComboBoxModel<>(classes));
-        removeBox.setModel(new javax.swing.DefaultComboBoxModel<>(classes));
+        DatabaseManipulation.leaveClass(leaveBox.getSelectedItem().toString(), GradePredictorPrototype.getTeacher()); //leaves the class
+        int toRemove = leaveBox.getSelectedIndex();//gets the index of the left class
+        leaveBox.remove(toRemove);
+        currentBox.remove(toRemove);//updates the combo-boxes
+        removeBox.remove(toRemove);
     }//GEN-LAST:event_leaveBtnActionPerformed
 
     private void viewBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewBtnActionPerformed
 
-        new ClassForm(currentBox.getSelectedItem().toString()).setVisible(true);
+        new ClassForm(currentBox.getSelectedItem().toString()).setVisible(true); //opens a single class's form with the new class
         this.dispose();
 
     }//GEN-LAST:event_viewBtnActionPerformed
@@ -308,12 +300,12 @@ public class Classes extends javax.swing.JFrame {
     }//GEN-LAST:event_joinFldActionPerformed
 
     private void logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseClicked
-        new Login().setVisible(true);
+        new Login().setVisible(true); //returns to login form
         this.dispose();
     }//GEN-LAST:event_logoutMouseClicked
 
     private void exitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMouseClicked
-        System.exit(0);
+        System.exit(0); //closes application
     }//GEN-LAST:event_exitMouseClicked
 
     /**

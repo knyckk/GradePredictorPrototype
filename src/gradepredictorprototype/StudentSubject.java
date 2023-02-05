@@ -173,11 +173,6 @@ public class StudentSubject extends javax.swing.JFrame {
                 yearBoxItemStateChanged(evt);
             }
         });
-        yearBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                yearBoxActionPerformed(evt);
-            }
-        });
 
         method1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         if(methods.size() > 0) {
@@ -255,9 +250,9 @@ public class StudentSubject extends javax.swing.JFrame {
                     .addComponent(method2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(topic1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(finalBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(finalBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                     .addComponent(methodLbl)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -266,13 +261,13 @@ public class StudentSubject extends javax.swing.JFrame {
                                     .addComponent(yearLbl)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(yearBox, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(targetLbl)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(targetBox, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(267, 267, 267))
-                    .addComponent(predictedLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(topic3, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(targetBox, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(predictedLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(topic3, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(267, 267, 267)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -352,57 +347,44 @@ public class StudentSubject extends javax.swing.JFrame {
 
     private void profileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileBtnActionPerformed
         // TODO add your handling code here:
-        new StudentProfile().setVisible(true);
+        new StudentProfile().setVisible(true); //returns to profile form
         this.dispose();
     }//GEN-LAST:event_profileBtnActionPerformed
 
     private void targetBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_targetBoxItemStateChanged
-        // TODO add your handling code here:
         DatabaseManipulation.updateTarget(targetBox.getSelectedItem().toString(), GradePredictorPrototype.getStudent().getEmail() + GradePredictorPrototype.getSubject().getID());
     }//GEN-LAST:event_targetBoxItemStateChanged
 
     private void methodsBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_methodsBoxItemStateChanged
-        // TODO add your handling code here:
         DatabaseManipulation.updateStudentMethod(methodsBox.getSelectedItem().toString(), GradePredictorPrototype.getStudent().getEmail() + GradePredictorPrototype.getSubject().getID());
-       
     }//GEN-LAST:event_methodsBoxItemStateChanged
 
     private void classBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classBtnActionPerformed
-        // TODO add your handling code here:
         DatabaseManipulation.joinClass(joinFld.getText(), GradePredictorPrototype.getStudent());
     }//GEN-LAST:event_classBtnActionPerformed
 
     private void paperBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paperBtnActionPerformed
-        // TODO add your handling code here:
         new AddAssessment().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_paperBtnActionPerformed
 
     private void topicsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_topicsBtnActionPerformed
-        // TODO add your handling code here:
         new TopicBreakdown().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_topicsBtnActionPerformed
 
     private void trendsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trendsBtnActionPerformed
-        // TODO add your handling code here:
         new Trends().setVisible(true);
         GradePredictorPrototype.setBoundaries(GradePredictorPrototype.getSubject());
         this.dispose();
     }//GEN-LAST:event_trendsBtnActionPerformed
 
     private void yearBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_yearBoxItemStateChanged
-        // TODO add your handling code here:
         DatabaseManipulation.updateExamDate(yearBox.getSelectedItem().toString(), GradePredictorPrototype.getStudent().getEmail() + GradePredictorPrototype.getSubject().getID());
         GradePredictorPrototype.getStudent().setYear(yearBox.getSelectedItem().toString());
     }//GEN-LAST:event_yearBoxItemStateChanged
 
-    private void yearBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yearBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_yearBoxActionPerformed
-
     private void finalBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finalBtnActionPerformed
-        // TODO add your handling code here:
         new FinalGrade().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_finalBtnActionPerformed
@@ -412,12 +394,12 @@ public class StudentSubject extends javax.swing.JFrame {
     }//GEN-LAST:event_joinFldFocusGained
 
     private void logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseClicked
-        new Login().setVisible(true);
+        new Login().setVisible(true); //returns to login form
         this.dispose();
     }//GEN-LAST:event_logoutMouseClicked
 
     private void exitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMouseClicked
-        System.exit(0);
+        System.exit(0); //closes application
     }//GEN-LAST:event_exitMouseClicked
 
     private void returnClassBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnClassBtnActionPerformed

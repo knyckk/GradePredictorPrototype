@@ -68,8 +68,8 @@
                   <Component id="method3" alignment="1" max="32767" attributes="0"/>
                   <Component id="method2" alignment="1" max="32767" attributes="0"/>
                   <Component id="topic1" alignment="0" max="32767" attributes="0"/>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="finalBtn" alignment="0" min="-2" pref="165" max="-2" attributes="0"/>
                           <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
@@ -88,11 +88,11 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="targetBox" min="-2" pref="323" max="-2" attributes="0"/>
                           </Group>
+                          <Component id="predictedLbl" min="-2" pref="159" max="-2" attributes="0"/>
+                          <Component id="topic3" alignment="0" min="-2" pref="286" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="267" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="predictedLbl" min="-2" pref="159" max="-2" attributes="0"/>
-                  <Component id="topic3" alignment="0" min="-2" pref="286" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -343,7 +343,6 @@
       </Properties>
       <Events>
         <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="yearBoxItemStateChanged"/>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="yearBoxActionPerformed"/>
       </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="yearBox.setSelectedItem(DatabaseManipulation.getExamDate(GradePredictorPrototype.getStudent().getEmail() + GradePredictorPrototype.getSubject().getID()).substring(0,4));&#xd;&#xa;GradePredictorPrototype.getStudent().setYear(yearBox.getSelectedItem().toString());"/>

@@ -344,24 +344,20 @@ public class TopicBreakdown extends javax.swing.JFrame {
     }//GEN-LAST:event_rightBtnActionPerformed
 
     private void profileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileBtnActionPerformed
-        // TODO add your handling code here:
-        new StudentProfile().setVisible(true);
+        new StudentProfile().setVisible(true); //returns to profile form
         this.dispose();
     }//GEN-LAST:event_profileBtnActionPerformed
 
     private void subjectBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subjectBtnActionPerformed
-        // TODO add your handling code here:
-        new StudentSubject().setVisible(true);
+        new StudentSubject().setVisible(true); //returns to the subject form
         this.dispose();
     }//GEN-LAST:event_subjectBtnActionPerformed
 
     private void topicsBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_topicsBoxItemStateChanged
-        // TODO add your handling code here:
         setLabels();
     }//GEN-LAST:event_topicsBoxItemStateChanged
 
     private void leftBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leftBtn1ActionPerformed
-        // TODO add your handling code here:
         int prior = questionIndex1;
         if (questionIndex1 > 0) {
             questionIndex1--;
@@ -378,7 +374,6 @@ public class TopicBreakdown extends javax.swing.JFrame {
     }//GEN-LAST:event_leftBtn1ActionPerformed
 
     private void rightBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rightBtn1ActionPerformed
-        // TODO add your handling code here:
         int prior = questionIndex1;
         if (questionIndex1 < uniqueQuestions.size() - 1) {
             questionIndex1++;
@@ -396,7 +391,6 @@ public class TopicBreakdown extends javax.swing.JFrame {
     }//GEN-LAST:event_rightBtn1ActionPerformed
 
     private void topicsBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_topicsBox1ItemStateChanged
-        // TODO add your handling code here:
         setLabels1();
     }//GEN-LAST:event_topicsBox1ItemStateChanged
 
@@ -405,12 +399,12 @@ public class TopicBreakdown extends javax.swing.JFrame {
     }//GEN-LAST:event_topicsBox1ActionPerformed
 
     private void logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseClicked
-        new Login().setVisible(true);
+        new Login().setVisible(true); //returns to login form
         this.dispose();
     }//GEN-LAST:event_logoutMouseClicked
 
     private void exitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMouseClicked
-        System.exit(0);
+        System.exit(0); //closes application
     }//GEN-LAST:event_exitMouseClicked
 
     private void classBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classBtnActionPerformed

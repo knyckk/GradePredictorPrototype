@@ -134,42 +134,37 @@ public class TeacherSubject extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void classesBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classesBtnActionPerformed
-        // TODO add your handling code here:
         new Classes().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_classesBtnActionPerformed
 
     private void returnBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnBtnActionPerformed
-        // TODO add your handling code here:
-        new TeacherProfile().setVisible(true);
+        new TeacherProfile().setVisible(true); //returns to profile form
         this.dispose();
     }//GEN-LAST:event_returnBtnActionPerformed
 
     private void revisionBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_revisionBtnActionPerformed
-        // TODO add your handling code here:
         new RevisionMethod().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_revisionBtnActionPerformed
 
     private void papersBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_papersBtnActionPerformed
-        // TODO add your handling code here:
         new PaperInfo().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_papersBtnActionPerformed
 
     private void topicsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_topicsBtnActionPerformed
-        // TODO add your handling code here:
         new Topics().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_topicsBtnActionPerformed
 
     private void logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseClicked
-        new Login().setVisible(true);
+        new Login().setVisible(true); //returns to login form
         this.dispose();
     }//GEN-LAST:event_logoutMouseClicked
 
     private void exitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMouseClicked
-        System.exit(0);
+        System.exit(0); //closes application
     }//GEN-LAST:event_exitMouseClicked
 
     /**

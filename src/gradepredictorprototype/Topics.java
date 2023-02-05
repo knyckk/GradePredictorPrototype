@@ -213,13 +213,13 @@ public class Topics extends javax.swing.JFrame {
 
     private void subjectBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subjectBtnActionPerformed
 
-        new TeacherSubject().setVisible(true);
+        new TeacherSubject().setVisible(true); //returns to the subject form
         this.dispose();
     }//GEN-LAST:event_subjectBtnActionPerformed
 
     private void profileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileBtnActionPerformed
 
-        new TeacherProfile().setVisible(true);
+        new TeacherProfile().setVisible(true); //returns to profile form
         this.dispose();
     }//GEN-LAST:event_profileBtnActionPerformed
 
@@ -236,12 +236,12 @@ public class Topics extends javax.swing.JFrame {
     }//GEN-LAST:event_replaceFldFocusGained
 
     private void logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseClicked
-        new Login().setVisible(true);
+        new Login().setVisible(true); //returns to login form
         this.dispose();
     }//GEN-LAST:event_logoutMouseClicked
 
     private void exitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMouseClicked
-        System.exit(0);
+        System.exit(0); //closes application
     }//GEN-LAST:event_exitMouseClicked
 
     private void replaceBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_replaceBtnActionPerformed

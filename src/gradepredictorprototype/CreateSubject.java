@@ -33,7 +33,6 @@ public class CreateSubject extends javax.swing.JFrame {
         nameFld = new javax.swing.JTextField();
         enterBtn = new javax.swing.JButton();
         profileBtn = new javax.swing.JButton();
-        subjectBtn = new javax.swing.JButton();
         menuBar = new javax.swing.JMenuBar();
         logout = new javax.swing.JMenu();
         exit = new javax.swing.JMenu();
@@ -80,14 +79,6 @@ public class CreateSubject extends javax.swing.JFrame {
             }
         });
 
-        subjectBtn.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        subjectBtn.setText("<html>Return to<br/> Subject<html>");
-        subjectBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                subjectBtnActionPerformed(evt);
-            }
-        });
-
         logout.setText("Log out");
         logout.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -122,9 +113,7 @@ public class CreateSubject extends javax.swing.JFrame {
                 .addContainerGap(902, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(profileBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(subjectBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(profileBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(42, 42, 42))
         );
         layout.setVerticalGroup(
@@ -138,9 +127,7 @@ public class CreateSubject extends javax.swing.JFrame {
                     .addComponent(nameFld, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(enterBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 225, Short.MAX_VALUE)
-                .addComponent(subjectBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 295, Short.MAX_VALUE)
                 .addComponent(profileBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(39, 39, 39))
         );
@@ -164,12 +151,12 @@ public class CreateSubject extends javax.swing.JFrame {
     }//GEN-LAST:event_nameFldFocusGained
 
     private void logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseClicked
-        new Login().setVisible(true);
+        new Login().setVisible(true); //returns to login form
         this.dispose();
     }//GEN-LAST:event_logoutMouseClicked
 
     private void exitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMouseClicked
-        System.exit(0);
+        System.exit(0); //closes application
     }//GEN-LAST:event_exitMouseClicked
 
     private void nameFldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nameFldKeyPressed
@@ -183,12 +170,6 @@ public class CreateSubject extends javax.swing.JFrame {
         new StudentProfile().setVisible(true); //returns user to their profile
         this.dispose();
     }//GEN-LAST:event_profileBtnActionPerformed
-
-    private void subjectBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subjectBtnActionPerformed
-
-        new StudentSubject().setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_subjectBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -233,7 +214,6 @@ public class CreateSubject extends javax.swing.JFrame {
     private javax.swing.JTextField nameFld;
     private javax.swing.JLabel nameLbl;
     private javax.swing.JButton profileBtn;
-    private javax.swing.JButton subjectBtn;
     private javax.swing.JLabel titleLbl;
     // End of variables declaration//GEN-END:variables
 }

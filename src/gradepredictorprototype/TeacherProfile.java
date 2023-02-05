@@ -74,11 +74,6 @@ public class TeacherProfile extends javax.swing.JFrame {
                 iconBoxItemStateChanged(evt);
             }
         });
-        iconBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                iconBoxActionPerformed(evt);
-            }
-        });
 
         usernameLbl.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         usernameLbl.setText("Username: " + GradePredictorPrototype.getTeacher().getUsername());
@@ -188,25 +183,20 @@ public class TeacherProfile extends javax.swing.JFrame {
     }//GEN-LAST:event_enterBtnActionPerformed
 
     private void logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseClicked
-        new Login().setVisible(true);
+        new Login().setVisible(true); //returns to login form
         this.dispose();
     }//GEN-LAST:event_logoutMouseClicked
 
     private void exitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMouseClicked
-        System.exit(0);
+        System.exit(0); //closes application
     }//GEN-LAST:event_exitMouseClicked
 
     private void iconBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_iconBoxItemStateChanged
-        // TODO add your handling code here:
         iconLbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/profile"+(iconBox.getSelectedIndex() + 1)+".jpeg")));
         GradePredictorPrototype.setTeacherIcon(iconBox.getSelectedIndex());
         DatabaseManipulation.updateUserIcon(iconBox.getSelectedIndex(), GradePredictorPrototype.getTeacher().getEmail());
 
     }//GEN-LAST:event_iconBoxItemStateChanged
-
-    private void iconBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iconBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_iconBoxActionPerformed
 
     private void changeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeBtnActionPerformed
         new AboutYou().setVisible(true);

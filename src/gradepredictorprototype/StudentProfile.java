@@ -185,12 +185,12 @@ public class StudentProfile extends javax.swing.JFrame {
     }//GEN-LAST:event_addBoxActionPerformed
 
     private void logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseClicked
-        new Login().setVisible(true);
+        new Login().setVisible(true); //returns to login form
         this.dispose();
     }//GEN-LAST:event_logoutMouseClicked
 
     private void exitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMouseClicked
-        System.exit(0);
+        System.exit(0); //closes application
     }//GEN-LAST:event_exitMouseClicked
 
     private void enterBtnKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_enterBtnKeyPressed

@@ -205,9 +205,6 @@
           <StringArray count="0"/>
         </Property>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="leaveBoxActionPerformed"/>
-      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="leaveBox.setModel(new javax.swing.DefaultComboBoxModel&lt;&gt;(DatabaseManipulation.getClasses(GradePredictorPrototype.getTeacher()).stream().filter(x -&gt; x.getSubject().equals(GradePredictorPrototype.getSubject())).map(x -&gt; x.getName()).toArray(String[]::new)));"/>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
