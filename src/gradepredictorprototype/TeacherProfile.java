@@ -177,6 +177,7 @@ public class TeacherProfile extends javax.swing.JFrame {
 
     private void enterBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterBtnActionPerformed
         GradePredictorPrototype.setSubject(addBox.getSelectedIndex() + 1, addBox.getSelectedItem().toString());//enters subject selected
+        GradePredictorPrototype.setBoundaries(GradePredictorPrototype.getSubject());
         new TeacherSubject().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_enterBtnActionPerformed

@@ -324,8 +324,18 @@ public class GradePredictorPrototype {
                 return averageBoundaries[1];
             case 5:
                 return averageBoundaries[0];
-            default:
+            case -1:
+                return averageBoundaries[5] / 1;
+            case -2:
                 return averageBoundaries[5] / 2;
+            case -3:
+                return averageBoundaries[5] / 3;
+            case -4:
+                return averageBoundaries[5] / 4;
+            case -5:
+                return averageBoundaries[5] / 5;
+            default:
+                return averageBoundaries[5] / 6;
         }
     }
 
@@ -365,7 +375,7 @@ public class GradePredictorPrototype {
     }
 
     public static ImageIcon getImageFromClipboard() {
-        Clipboard cb = Toolkit.getDefaultToolkit().getSystemClipboard();        
+        Clipboard cb = Toolkit.getDefaultToolkit().getSystemClipboard();
         Transferable transferable = cb.getContents(null);
         if (transferable != null && transferable.isDataFlavorSupported(DataFlavor.imageFlavor)) {
             try {

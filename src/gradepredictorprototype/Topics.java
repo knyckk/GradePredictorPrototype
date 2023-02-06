@@ -78,6 +78,7 @@ public class Topics extends javax.swing.JFrame {
         removeBox.setModel(new javax.swing.DefaultComboBoxModel<>(DatabaseManipulation.getTopicsFromSubject(GradePredictorPrototype.getSubject()).stream().map(x -> x.getTopic()).toArray(String[]::new)));
 
         removeBtn.setText("Remove");
+        removeBtn.setToolTipText("This will permanently delete the topic, including any questions with it as the topic");
         removeBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 removeBtnActionPerformed(evt);
@@ -251,20 +252,25 @@ public class Topics extends javax.swing.JFrame {
 
     private void replaceBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_replaceBtnActionPerformed
         if (ValidationRoutines.presenceCheck(replaceFld.getText()) && ValidationRoutines.lengthCheck(0, replaceFld.getText(), 128)) {//validates changed topic
-            DatabaseManipulation.updateTopic(replaceBox.getSelectedItem().toString(), replaceFld.getText());//stores changed topic
-            String newTopic = replaceFld.getText();
-            int oldIndex = replaceBox.getSelectedIndex();
-            topicsBox.remove(oldIndex);
-            topicsBox.insertItemAt(newTopic, oldIndex);//updates combo boxes locally
-            removeBox.remove(oldIndex);
-            removeBox.insertItemAt(newTopic, oldIndex);
-            replaceBox.remove(oldIndex);
-            replaceBox.insertItemAt(newTopic, oldIndex);
+            if (DatabaseManipulation.updateTopic(replaceBox.getSelectedItem().toString(), replaceFld.getText())) {//stores changed topic and checks if change occured
+                String newTopic = replaceFld.getText();
+                int oldIndex = replaceBox.getSelectedIndex();
+                topicsBox.removeItemAt(oldIndex);
+                topicsBox.insertItemAt(newTopic, oldIndex);//updates combo boxes locally
+                removeBox.removeItemAt(oldIndex);
+                removeBox.insertItemAt(newTopic, oldIndex);
+                replaceBox.removeItemAt(oldIndex);
+                replaceBox.insertItemAt(newTopic, oldIndex);
+            }
         }
     }//GEN-LAST:event_replaceBtnActionPerformed
 
     private void removeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeBtnActionPerformed
-        
+        DatabaseManipulation.deleteTopic(removeBox.getSelectedItem().toString());//deletes the topic
+        int oldIndex = removeBox.getSelectedIndex();
+        topicsBox.removeItemAt(oldIndex);
+        replaceBox.removeItemAt(oldIndex); //updates the combo boxes
+        removeBox.removeItemAt(oldIndex);
     }//GEN-LAST:event_removeBtnActionPerformed
 
     /**

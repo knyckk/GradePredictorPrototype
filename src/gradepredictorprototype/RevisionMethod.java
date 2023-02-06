@@ -214,9 +214,9 @@ public class RevisionMethod extends javax.swing.JFrame {
     private void removeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeBtnActionPerformed
         DatabaseManipulation.deleteMethod(removeBox.getSelectedItem().toString());//deletes the method
         int index = removeBox.getSelectedIndex(); //gets index of deleted method
-        methodsBox.remove(index);
-        removeBox.remove(index); //updates combo boxes locally
-        replaceBox.remove(index);
+        methodsBox.removeItemAt(index);
+        removeBox.removeItemAt(index); //updates combo boxes locally
+        replaceBox.removeItemAt(index);
     }//GEN-LAST:event_removeBtnActionPerformed
 
     private void subjectBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subjectBtnActionPerformed

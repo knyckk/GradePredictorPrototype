@@ -179,6 +179,7 @@
     <Component class="javax.swing.JButton" name="removeBtn">
       <Properties>
         <Property name="text" type="java.lang.String" value="Remove"/>
+        <Property name="toolTipText" type="java.lang.String" value="This will permanently delete the topic, including any questions with it as the topic"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="removeBtnActionPerformed"/>

@@ -664,15 +664,18 @@ public class DatabaseManipulation {
         }
     }
 
-    public static void updateTopic(String topicName, String newName) {
+    public static boolean updateTopic(String topicName, String newName) {
+        boolean toReturn = false;
         try ( Connection conn = DriverManager.getConnection(URL, "THope", DATABASEPASSWORD);  Statement statement = conn.createStatement()) {
-            if (!(methodExists(newName))) {
+            if (!(topicExists(newName))) {
                 statement.execute("UPDATE " + TOPICS + "\nSET " + TOPIC + " = '" + newName + "' \nWHERE " + TOPIC + " = '" + topicName + "'");
+                toReturn = true;
             }
             conn.close();//closes  the connection
         } catch (SQLException e) {
             System.out.println("ERROR MESSAGE 1!!!!" + e);
         }
+        return toReturn;
     }
 
     public static void updateTarget(String newTarget, String studentSubId) {
@@ -1052,5 +1055,23 @@ public class DatabaseManipulation {
         }
         return toReturn;
     }
+    public static boolean topicExists(String name) {
+        boolean toReturn = false;
+        try ( Connection conn = DriverManager.getConnection(URL, "THope", DATABASEPASSWORD);  Statement statement = conn.createStatement()) {
+            try ( ResultSet result = statement.executeQuery("SELECT " + TOPIC + " FROM " + TOPICS)) {
+                while (result.next()) {
+                    if (result.getString(TOPIC).equals(name)) {
+                        toReturn = true;
+                    }
+                }
+                conn.close();//closes  the connection
+            } catch (SQLException e) {
+                System.out.println("ERROR MESSAGE 2!!!!" + e);
+            }
 
+        } catch (SQLException e) {
+            System.out.println("ERROR MESSAGE 1!!!!" + e);
+        }
+        return toReturn;
+    }
 }
