@@ -134,7 +134,7 @@ public class TeacherSubject extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void classesBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classesBtnActionPerformed
-        new Classes().setVisible(true);
+        new Classes().setVisible(true);//opens classes form
         this.dispose();
     }//GEN-LAST:event_classesBtnActionPerformed
 
@@ -144,17 +144,17 @@ public class TeacherSubject extends javax.swing.JFrame {
     }//GEN-LAST:event_returnBtnActionPerformed
 
     private void revisionBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_revisionBtnActionPerformed
-        new RevisionMethod().setVisible(true);
+        new RevisionMethod().setVisible(true); //opens revision method form
         this.dispose();
     }//GEN-LAST:event_revisionBtnActionPerformed
 
     private void papersBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_papersBtnActionPerformed
-        new PaperInfo().setVisible(true);
+        new PaperInfo().setVisible(true); //opens paper information form
         this.dispose();
     }//GEN-LAST:event_papersBtnActionPerformed
 
     private void topicsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_topicsBtnActionPerformed
-        new Topics().setVisible(true);
+        new Topics().setVisible(true); //opens topic form
         this.dispose();
     }//GEN-LAST:event_topicsBtnActionPerformed
 

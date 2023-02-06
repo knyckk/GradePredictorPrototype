@@ -17,7 +17,7 @@ import javax.swing.UIManager;
  */
 public class SignUp extends javax.swing.JFrame {
 
-    private String code = "completely random and unpredictable";
+    private String code = "";//declare and initialise variables
     private int type = 0;
 
     /**
@@ -194,13 +194,11 @@ public class SignUp extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void studentRdioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_studentRdioActionPerformed
-
-        type = 2;
+        type = 1;//sets new user to be a student
     }//GEN-LAST:event_studentRdioActionPerformed
 
     private void teacherRdioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_teacherRdioActionPerformed
-
-        type = 1;
+        type = 0;//sets new user to be a teacher
     }//GEN-LAST:event_teacherRdioActionPerformed
 
     private void codeFldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codeFldActionPerformed
@@ -208,18 +206,18 @@ public class SignUp extends javax.swing.JFrame {
     }//GEN-LAST:event_codeFldActionPerformed
 
     private void enterBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterBtnActionPerformed
-        if (ValidationRoutines.lengthCheck(0, passwordFld.getText(), 64)) {
-            if (((passwordFld.getText().equals(confirmFld.getText())) && codeFld.getText().equals(code)) && type == 2) {
+        if (ValidationRoutines.lengthCheck(0, passwordFld.getText(), 64)) { //validates password length
+            if (((passwordFld.getText().equals(confirmFld.getText())) && codeFld.getText().equals(code)) && type == 1) {//verifies new student inputs
                 DatabaseManipulation.signUp(emailFld.getText(), passwordFld.getText(), 1);
-                GradePredictorPrototype.setStudent(new User(emailFld.getText(), passwordFld.getText(), 1));
+                GradePredictorPrototype.setStudent(new User(emailFld.getText(), passwordFld.getText(), 1));//creates new student
                 GradePredictorPrototype.setType(1);
-                new AboutYou().setVisible(true);
+                new AboutYou().setVisible(true);//opens about you form
                 this.dispose();
-            } else if (((passwordFld.getText().equals(confirmFld.getText())) && codeFld.getText().equals(code)) && type == 1) {
+            } else if (((passwordFld.getText().equals(confirmFld.getText())) && codeFld.getText().equals(code)) && type == 0) {//verifies new teacher inputs
                 DatabaseManipulation.signUp(emailFld.getText(), passwordFld.getText(), 0);
-                GradePredictorPrototype.setTeacher(new User(emailFld.getText(), passwordFld.getText(), 0));
+                GradePredictorPrototype.setTeacher(new User(emailFld.getText(), passwordFld.getText(), 0));//creates new teacher
                 GradePredictorPrototype.setType(0);
-                new AboutYou().setVisible(true);
+                new AboutYou().setVisible(true);//opens about you form
                 this.dispose();
             }
         }
@@ -227,31 +225,31 @@ public class SignUp extends javax.swing.JFrame {
 
     private void codeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codeBtnActionPerformed
 
-        String from = "GradePredictorNEA@gmail.com";
-        String host = "smtp.gmail.com";
-        String password = "ahsv fdgi aqou uwll";
-        Properties properties = System.getProperties();
-        properties.put("mail.smtp.host", host);
-        properties.put("mail.smtp.user", from);
-        properties.put("mail.smtp.password", password);
-        properties.put("mail.smtp.port", "465");
-        properties.put("mail.smtp.auth", "true");
-        properties.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-        properties.put("mail.debug", "true");
+        String from = "GradePredictorNEA@gmail.com";//sets email to send from
+        String host = "smtp.gmail.com";//uses gmail as a host
+        String password = "ahsv fdgi aqou uwll";//an application password required for java to send emails
+        Properties properties = System.getProperties(); //gets system properties
+        properties.put("mail.smtp.host", host); //sets mail host to gmail
+        properties.put("mail.smtp.user", from); //sets mail user to be the email I am sending from
+        properties.put("mail.smtp.password", password); //sets password to send the email
+        properties.put("mail.smtp.port", "465"); //sets the email port
+        properties.put("mail.smtp.auth", "true"); //will authenticate the email e.g. use the password
+        properties.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory"); //use ssl encrpytion
+        properties.put("mail.debug", "true"); //my code for sending email was guided by the code from https://stackoverflow.com/questions/37938103/how-javax-mail-authenticationfailedexception-failed-to-connect-in-sending-mail
         Session session = Session.getDefaultInstance(properties, new javax.mail.Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(from, password);
 
             }
         });
-        this.code = GradePredictorPrototype.getCode();
-        if (type == 1) {
-            if (ValidationRoutines.teacherEmail(emailFld.getText())) {
+        this.code = GradePredictorPrototype.getCode(); //gets a random verification code
+        if (type == 0) {//if user is signing up as teacher
+            if (ValidationRoutines.teacherEmail(emailFld.getText())) {//validates email
                 try {
                     MimeMessage message = new MimeMessage(session);
                     message.setFrom(new InternetAddress(from));
                     message.addRecipient(Message.RecipientType.TO, new InternetAddress(emailFld.getText()));
-                    message.setSubject("Verification code");
+                    message.setSubject("Verification code"); //sends email with code
                     message.setText("Hi, \nYour verification code is: " + code);
                     Transport transport = session.getTransport("smtp");
                     transport.connect(host, from, password);
@@ -261,13 +259,13 @@ public class SignUp extends javax.swing.JFrame {
                     mex.printStackTrace();
                 }
             }
-        } else if (type == 2) {
-            if (ValidationRoutines.studentEmail(emailFld.getText())) {
+        } else if (type == 1) { /*if user is signing up as a student*/
+            if (ValidationRoutines.studentEmail(emailFld.getText())) { /*validates email*/
                 try {
                     MimeMessage message = new MimeMessage(session);
                     message.setFrom(new InternetAddress(from));
                     message.addRecipient(Message.RecipientType.TO, new InternetAddress(emailFld.getText()));
-                    message.setSubject("Verification code");
+                    message.setSubject("Verification code");//sends email with code
                     message.setText("Hi, \nYour verification code is: " + code);
                     Transport transport = session.getTransport("smtp");
                     transport.connect(host, from, password);
@@ -293,27 +291,27 @@ public class SignUp extends javax.swing.JFrame {
 
     private void passwordFldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_passwordFldFocusGained
 
-        passwordLbl.hide();//hide password text if it is there
+        passwordLbl.setVisible(false);//hide password text if it is there
         passwordFld.selectAll();//automatically selects all text when clicked
     }//GEN-LAST:event_passwordFldFocusGained
 
     private void confirmFldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_confirmFldFocusGained
 
-        confirmLbl.hide();//hide confirm password text if it is there
+        confirmLbl.setVisible(false);//hide confirm password text if it is there
         confirmFld.selectAll();//automatically selects all text when clicked
     }//GEN-LAST:event_confirmFldFocusGained
 
     private void passwordFldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_passwordFldFocusLost
 
         if (passwordFld.getPassword().length == 0) {
-            passwordLbl.show();
+            passwordLbl.setVisible(true);  //reshows password label if no text is entered
         }
     }//GEN-LAST:event_passwordFldFocusLost
 
     private void confirmFldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_confirmFldFocusLost
 
         if (confirmFld.getPassword().length == 0) {
-            confirmLbl.show();
+            confirmLbl.setVisible(true); //reshows confirm label if no text is entered
         }
     }//GEN-LAST:event_confirmFldFocusLost
 
@@ -323,20 +321,20 @@ public class SignUp extends javax.swing.JFrame {
     }//GEN-LAST:event_codeFldFocusGained
 
     private void loginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginMouseClicked
-        new Login().setVisible(true);
+        new Login().setVisible(true); //open a login form
         this.dispose();
     }//GEN-LAST:event_loginMouseClicked
 
     private void codeFldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_codeFldKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) { //if enter key is pressed performs the same code as enterBtnActionPerformed
             if (ValidationRoutines.lengthCheck(0, passwordFld.getText(), 64)
-                    && ((type == 1 && ValidationRoutines.teacherEmail(emailFld.getText())) || (type == 2 && ValidationRoutines.studentEmail(emailFld.getText())))
+                    && ((type == 0 && ValidationRoutines.teacherEmail(emailFld.getText())) || (type == 1 && ValidationRoutines.studentEmail(emailFld.getText())))
                     && ValidationRoutines.lengthCheck(0,emailFld.getText(),64)) {
-                if (((passwordFld.getText().equals(confirmFld.getText())) && codeFld.getText().equals(code)) && type == 2) {
+                if (((passwordFld.getText().equals(confirmFld.getText())) && codeFld.getText().equals(code)) && type == 1) {
                     DatabaseManipulation.signUp(emailFld.getText(), passwordFld.getText(), 1);
                     GradePredictorPrototype.setStudent(new User(emailFld.getText(), passwordFld.getText(), 1));
                     GradePredictorPrototype.setType(1);
-                } else if (((passwordFld.getText().equals(confirmFld.getText())) && codeFld.getText().equals(code)) && type == 1) {
+                } else if (((passwordFld.getText().equals(confirmFld.getText())) && codeFld.getText().equals(code)) && type == 0) {
                     DatabaseManipulation.signUp(emailFld.getText(), passwordFld.getText(), 0);
                     GradePredictorPrototype.setTeacher(new User(emailFld.getText(), passwordFld.getText(), 0));
                     GradePredictorPrototype.setType(0);

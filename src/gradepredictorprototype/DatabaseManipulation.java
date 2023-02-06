@@ -19,10 +19,6 @@ import javax.swing.ImageIcon;
  * @author 1-thope
  */
 public class DatabaseManipulation {
-
-    /**
-     * @param args the command line arguments
-     */
     private static final String DATABASENAME = "THope_test";
     private static final String DATABASEPASSWORD = "mKdvUEKPxX";
     private static final String URL = "jdbc:mysql://computing.gfmat.org:3306/" + DATABASENAME + "?user=THope&useSSL=true"; // final varible names are all caps    
@@ -77,8 +73,6 @@ public class DatabaseManipulation {
     private static final String USERNAME = "UserName";
     private static final String NAME = "Name";
 
-    
-
     public static void signUp(String email, String password, int type) {
         boolean willAdd = true;
         try ( Connection conn = DriverManager.getConnection(URL, "THope", DATABASEPASSWORD);  Statement statement = conn.createStatement()) {
@@ -88,13 +82,13 @@ public class DatabaseManipulation {
                         willAdd = false;
                     }
                 }
-
+                conn.close();//closes  the connection
             } catch (SQLException e) {
                 System.out.println("ERROR MESSAGE 2!!!!" + e);
             }
             if (willAdd) {
-                statement.execute("INSERT INTO " + USERS + "(" + EMAIL + "," + PASSWORD + "," + TYPE + "," + ICON + "," + USERNAME + "," + NAME 
-                        + ") \n VALUES('" + email + "','" + password + "'," + type + ",0,'" + email.split("@")[0] +"','" + email.split("@")[0] +"')");
+                statement.execute("INSERT INTO " + USERS + "(" + EMAIL + "," + PASSWORD + "," + TYPE + "," + ICON + "," + USERNAME + "," + NAME
+                        + ") \n VALUES('" + email + "','" + password + "'," + type + ",0,'" + email.split("@")[0] + "','" + email.split("@")[0] + "')");
             }
         } catch (SQLException e) {
             System.out.println("ERROR MESSAGE 1!!!!" + e);
@@ -105,7 +99,7 @@ public class DatabaseManipulation {
         try ( Connection conn = DriverManager.getConnection(URL, "THope", DATABASEPASSWORD);  Statement statement = conn.createStatement()) {
 
             statement.execute("UPDATE " + USERS + " SET " + USERNAME + " = '" + username + "', " + NAME + " = '" + name + "' WHERE " + EMAIL + " = '" + user.getEmail() + "'");
-            
+            conn.close();//closes  the connection
         } catch (SQLException e) {
             System.out.println("ERROR MESSAGE 1!!!!" + e);
         }
@@ -128,6 +122,7 @@ public class DatabaseManipulation {
                 statement.execute("INSERT INTO " + METHODS + "(" + METHODNAME + "," + DESCRIPTION
                         + ") \n VALUES('" + name + "','" + description + "')");
             }
+            conn.close();//closes  the connection
         } catch (SQLException e) {
             System.out.println("ERROR MESSAGE 1!!!!" + e);
         }
@@ -141,7 +136,7 @@ public class DatabaseManipulation {
             try ( ResultSet result = statement.executeQuery("SELECT " + STUDENTFORMALID + " FROM " + STUDENTFORMAL + " ORDER BY " + STUDENTFORMALID + " DESC")) {
                 result.next();
                 ID = result.getInt(STUDENTFORMALID);
-
+                conn.close();//closes  the connection
             } catch (SQLException e) {
                 System.out.println("ERROR MESSAGE 2!!!!" + e);
             }
@@ -157,7 +152,7 @@ public class DatabaseManipulation {
         try ( Connection conn = DriverManager.getConnection(URL, "THope", DATABASEPASSWORD);  Statement statement = conn.createStatement()) {
 
             statement.execute("INSERT INTO " + STUDENTQUESTION + "\n VALUES(NULL, '" + student.getEmail() + "'," + question.getID() + "," + question.getScore() + "," + paperID + ")");
-
+            conn.close();//closes  the connection
         } catch (SQLException e) {
             System.out.println("ERROR MESSAGE 1!!!!" + e);
         }
@@ -167,7 +162,7 @@ public class DatabaseManipulation {
         try ( Connection conn = DriverManager.getConnection(URL, "THope", DATABASEPASSWORD);  Statement statement = conn.createStatement()) {
 
             statement.execute("INSERT INTO " + STUDENTINFORMAL + "\n VALUES(NULL, '" + student.getEmail() + "','" + java.time.LocalDate.now() + "'," + mark + "," + maxMark + "," + subject.getID() + ")");
-
+            conn.close();//closes  the connection
         } catch (SQLException e) {
             System.out.println("ERROR MESSAGE 1!!!!" + e);
         }
@@ -190,6 +185,7 @@ public class DatabaseManipulation {
                 statement.execute("INSERT INTO " + TOPICS + "(" + TOPIC + " , " + SUBJECTID
                         + ") \n VALUES('" + topic + "'," + subject.getID() + ")");
             }
+            conn.close();//closes  the connection
         } catch (SQLException e) {
             System.out.println("ERROR MESSAGE 1!!!!" + e);
         }
@@ -212,6 +208,7 @@ public class DatabaseManipulation {
                 statement.execute("INSERT INTO " + STUDENTSUB + "(" + STUDENTSUBID + " , " + EMAIL + " , " + SUBJECTID + " , " + DATE
                         + ") \n VALUES('" + student.getEmail() + subject.getID() + "','" + student.getEmail() + "', " + subject.getID() + ", '" + Date.nextYear() + "-06-01')");
             }
+            conn.close();//closes  the connection
         } catch (SQLException e) {
             System.out.println("ERROR MESSAGE 1!!!!" + e);
         }
@@ -236,10 +233,11 @@ public class DatabaseManipulation {
             for (Question question : paper.getQuestions()) {
                 PreparedStatement state = conn.prepareStatement("INSERT INTO " + QUESTIONS + " \n VALUES(NULL, " + question.getMark() + "," + question.getTopic().getID() + ","
                         + ID + ",(?))");
-                state.setBinaryStream(1,GradePredictorPrototype.imageToBinary(question.getQuestion()));
+                state.setBinaryStream(1, GradePredictorPrototype.imageToBinary(question.getQuestion()));
                 state.execute();
-                
+
             }
+            conn.close();//closes  the connection
         } catch (SQLException e) {
             System.out.println("ERROR MESSAGE 1!!!!" + e);
         }
@@ -277,6 +275,7 @@ public class DatabaseManipulation {
                         + " \n VALUES('" + name + "','" + studentCode + "','" + teacherCode + "', " + GradePredictorPrototype.getSubject().getID() + ");");
                 statement.execute("INSERT INTO " + CLASSUSERS + "\n VALUES('" + teacher.getEmail() + name + "','" + teacher.getEmail() + "','" + name + "')");
             }
+            conn.close();//closes  the connection
         } catch (SQLException e) {
             System.out.println("ERROR MESSAGE 1!!!!" + e);
         }
@@ -300,6 +299,7 @@ public class DatabaseManipulation {
                 statement.execute("INSERT INTO " + CLASSUSERS
                         + "\n VALUES('" + teacher.getEmail() + className + "','" + teacher.getEmail() + "','" + className + "')");
             }
+            conn.close();//closes  the connection
         } catch (SQLException e) {
             System.out.println("ERROR MESSAGE 1!!!!" + e);
         }
@@ -322,6 +322,7 @@ public class DatabaseManipulation {
                         + "\nWhere Classes.ClassName = ClassUsers.ClassName and ClassUsers.ClassName = '" + name + "';");
 
             }
+            conn.close();//closes  the connection
         } catch (SQLException e) {
             System.out.println("ERROR MESSAGE 1!!!!" + e);
         }
@@ -346,6 +347,7 @@ public class DatabaseManipulation {
                 statement.execute("INSERT INTO " + CLASSUSERS
                         + "\n VALUES('" + student.getEmail() + className + "','" + student.getEmail() + "','" + className + "')");
             }
+            conn.close();//closes  the connection
         } catch (SQLException e) {
             System.out.println("ERROR MESSAGE 1!!!!" + e);
         }
@@ -368,6 +370,7 @@ public class DatabaseManipulation {
                 statement.execute("INSERT INTO " + SUBJECTS
                         + "\n VALUES(NULL, '" + name + "')");
             }
+            conn.close();//closes  the connection
         } catch (SQLException e) {
             System.out.println("ERROR MESSAGE 1!!!!" + e);
         }
@@ -380,7 +383,7 @@ public class DatabaseManipulation {
                 while (result.next()) {
                     subjects.add(new Subject(result.getInt(SUBJECTID), result.getString(SUBJECTNAME)));
                 }
-
+                conn.close();//closes  the connection
             } catch (SQLException e) {
                 System.out.println("ERROR MESSAGE 2!!!!" + e);
             }
@@ -401,7 +404,7 @@ public class DatabaseManipulation {
                 while (result.next()) {
                     users.add(new User(result.getString(EMAIL), result.getString(PASSWORD), result.getInt(TYPE), result.getString(USERNAME), result.getString(NAME)));
                 }
-
+                conn.close();//closes  the connection
             } catch (SQLException e) {
                 System.out.println("ERROR MESSAGE 2!!!!" + e);
             }
@@ -420,7 +423,7 @@ public class DatabaseManipulation {
                 while (result.next()) {
                     classes.add(new Classroom(result.getString(CLASSNAME), result.getString(STUDENTCODE), result.getString(TEACHERCODE), subjectFromID(result.getInt(SUBJECTID))));
                 }
-
+                conn.close();//closes  the connection
             } catch (SQLException e) {
                 System.out.println("ERROR MESSAGE 2!!!!" + e);
             }
@@ -440,7 +443,7 @@ public class DatabaseManipulation {
                 while (result.next()) {
                     classes.add(new Classroom(result.getString(CLASSNAME), result.getString(STUDENTCODE), result.getString(TEACHERCODE), subjectFromID(result.getInt(SUBJECTID))));
                 }
-
+                conn.close();//closes  the connection
             } catch (SQLException e) {
                 System.out.println("ERROR MESSAGE 2!!!!" + e);
             }
@@ -460,7 +463,7 @@ public class DatabaseManipulation {
                     int[] boundaries = getPaperBoundaries(result.getInt(PAPERID));
                     papers.add(new Paper(questionsFromPaper(result.getInt(PAPERID)).toArray(Question[]::new), result.getInt(PAPERID), Integer.parseInt(result.getString(DATE).substring(0, 4)), result.getInt(PAPERNUM), boundaries[0], boundaries[1], boundaries[2], boundaries[3], boundaries[4], boundaries[5], result.getInt(SUBJECTID), result.getInt(MAXMARK)));
                 }
-
+                conn.close();//closes  the connection
             } catch (SQLException e) {
                 System.out.println("ERROR MESSAGE 2!!!!" + e);
             }
@@ -479,7 +482,7 @@ public class DatabaseManipulation {
                 while (result.next()) {
                     topics.add(new Topic(result.getInt(TOPICID), result.getString(TOPIC)));
                 }
-
+                conn.close();//closes  the connection
             } catch (SQLException e) {
                 System.out.println("ERROR MESSAGE 2!!!!" + e);
             }
@@ -496,14 +499,14 @@ public class DatabaseManipulation {
         try ( Connection conn = DriverManager.getConnection(URL, "THope", DATABASEPASSWORD);  Statement statement = conn.createStatement()) {
             try ( ResultSet result = statement.executeQuery("SELECT * FROM " + QUESTIONS + " WHERE " + PAPERID + " = " + paperID)) {
                 while (result.next()) {
-               
+
                     try {
-                        questions.add(new Question(result.getInt(QUESTIONID), result.getInt(MAXMARK), new ImageIcon((BufferedImage)ImageIO.read(result.getBlob(QUESTION).getBinaryStream())), topicFromTopicID(result.getInt(TOPICID))));
+                        questions.add(new Question(result.getInt(QUESTIONID), result.getInt(MAXMARK), new ImageIcon((BufferedImage) ImageIO.read(result.getBlob(QUESTION).getBinaryStream())), topicFromTopicID(result.getInt(TOPICID))));
                     } catch (IOException e) {
                         System.out.println("Error: " + e);
                     }
                 }
-
+                conn.close();//closes  the connection
             } catch (SQLException e) {
                 System.out.println("ERROR MESSAGE 2!!!!" + e);
             }
@@ -523,14 +526,14 @@ public class DatabaseManipulation {
                     + "inner join Papers on Questions.PaperID = Papers.PaperID\n"
                     + "WHERE Papers.SubjectID = " + subject.getID() + " and StudQuestion.Email = '" + student.getEmail() + "';")) {
                 while (result.next()) {
-               
+
                     try {
-                        questions.add(new Question(result.getInt(QUESTIONID), result.getInt(MAXMARK), result.getInt(MARK), new ImageIcon((BufferedImage)ImageIO.read(result.getBlob(QUESTION).getBinaryStream())), topicFromTopicID(result.getInt(TOPICID))));
+                        questions.add(new Question(result.getInt(QUESTIONID), result.getInt(MAXMARK), result.getInt(MARK), new ImageIcon((BufferedImage) ImageIO.read(result.getBlob(QUESTION).getBinaryStream())), topicFromTopicID(result.getInt(TOPICID))));
                     } catch (IOException e) {
                         System.out.println("Error: " + e);
                     }
                 }
-
+                conn.close();//closes  the connection
             } catch (SQLException e) {
                 System.out.println("ERROR MESSAGE 2!!!!" + e);
             }
@@ -547,7 +550,7 @@ public class DatabaseManipulation {
             try ( ResultSet result = statement.executeQuery("SELECT * FROM " + BOUNDARIES + " WHERE " + BOUNDARYID + " = " + paperID)) {
                 result.next();
                 toReturn = new int[]{result.getInt(ASTAR), result.getInt(A), result.getInt(B), result.getInt(C), result.getInt(D), result.getInt(E)};
-
+                conn.close();//closes  the connection
             } catch (SQLException e) {
                 System.out.println("ERROR MESSAGE 2!!!!" + e);
             }
@@ -565,7 +568,7 @@ public class DatabaseManipulation {
                 while (result.next()) {
                     methods.add(new Method(result.getString(METHODNAME), result.getString(DESCRIPTION)));
                 }
-
+                conn.close();//closes  the connection
             } catch (SQLException e) {
                 System.out.println("ERROR MESSAGE 2!!!!" + e);
             }
@@ -603,7 +606,7 @@ public class DatabaseManipulation {
                 while (result.next()) {
                     percentages.add(new Double[]{0.9 * ((double) result.getInt(MARK) / result.getInt(MAXMARK)), (double) earliest - date.subtract(new Date(result.getString(DATE)))});
                 }
-
+                conn.close();//closes  the connection
             } catch (SQLException e) {
                 System.out.println("ERROR MESSAGE 2!!!!" + e);
             }
@@ -618,15 +621,24 @@ public class DatabaseManipulation {
     public static void deleteMethod(String methodName) {
         try ( Connection conn = DriverManager.getConnection(URL, "THope", DATABASEPASSWORD);  Statement statement = conn.createStatement()) {
             statement.execute("DELETE FROM " + METHODS + " WHERE " + METHODNAME + " = '" + methodName + "';");
+            conn.close();//closes  the connection
         } catch (SQLException e) {
             System.out.println("ERROR MESSAGE 1!!!!" + e);
         }
     }
-
+    public static void deleteTopic(String topicName) {
+        try ( Connection conn = DriverManager.getConnection(URL, "THope", DATABASEPASSWORD);  Statement statement = conn.createStatement()) {
+            statement.execute("DELETE FROM " + TOPICS + " WHERE " + TOPIC + " = '" + topicName + "';");
+            conn.close();//closes  the connection
+        } catch (SQLException e) {
+            System.out.println("ERROR MESSAGE 1!!!!" + e);
+        }
+    }
     public static void deleteClass(String className) {
         try ( Connection conn = DriverManager.getConnection(URL, "THope", DATABASEPASSWORD);  Statement statement = conn.createStatement()) {
             statement.execute("DELETE FROM " + CLASSUSERS + " WHERE " + CLASSNAME + " = '" + className + "'");
             statement.execute("DELETE FROM " + CLASSES + " WHERE " + CLASSNAME + " = '" + className + "'");
+            conn.close();//closes  the connection
         } catch (SQLException e) {
             System.out.println("ERROR MESSAGE 1!!!!" + e);
         }
@@ -635,6 +647,7 @@ public class DatabaseManipulation {
     public static void leaveClass(String className, Teacher teacher) {
         try ( Connection conn = DriverManager.getConnection(URL, "THope", DATABASEPASSWORD);  Statement statement = conn.createStatement()) {
             statement.execute("DELETE FROM " + CLASSUSERS + " WHERE " + CLASSUSERID + " = '" + teacher.getEmail() + className + "'");
+            conn.close();//closes  the connection
         } catch (SQLException e) {
             System.out.println("ERROR MESSAGE 1!!!!" + e);
         }
@@ -645,38 +658,45 @@ public class DatabaseManipulation {
             if (!(methodExists(newName))) {
                 statement.execute("UPDATE " + METHODS + "\nSET " + METHODNAME + " = '" + newName + "' \nWHERE " + METHODNAME + " = '" + methodName + "'");
             }
+            conn.close();//closes  the connection
         } catch (SQLException e) {
             System.out.println("ERROR MESSAGE 1!!!!" + e);
         }
     }
+
     public static void updateTopic(String topicName, String newName) {
         try ( Connection conn = DriverManager.getConnection(URL, "THope", DATABASEPASSWORD);  Statement statement = conn.createStatement()) {
             if (!(methodExists(newName))) {
                 statement.execute("UPDATE " + TOPICS + "\nSET " + TOPIC + " = '" + newName + "' \nWHERE " + TOPIC + " = '" + topicName + "'");
             }
+            conn.close();//closes  the connection
         } catch (SQLException e) {
             System.out.println("ERROR MESSAGE 1!!!!" + e);
         }
     }
+
     public static void updateTarget(String newTarget, String studentSubId) {
         try ( Connection conn = DriverManager.getConnection(URL, "THope", DATABASEPASSWORD);  Statement statement = conn.createStatement()) {
             statement.execute("UPDATE " + STUDENTSUB + "\nSET " + TARGETGRADE + " = '" + newTarget + "' \nWHERE " + STUDENTSUBID + " = '" + studentSubId + "'");
-
+            conn.close();//closes  the connection
         } catch (SQLException e) {
             System.out.println("ERROR MESSAGE 1!!!!" + e);
         }
     }
+
     public static void updateUserIcon(int newIcon, String userID) {
         try ( Connection conn = DriverManager.getConnection(URL, "THope", DATABASEPASSWORD);  Statement statement = conn.createStatement()) {
             statement.execute("UPDATE " + USERS + "\nSET " + ICON + " = " + newIcon + " \nWHERE " + EMAIL + " = '" + userID + "'");
+            conn.close();//closes  the connection
         } catch (SQLException e) {
             System.out.println("ERROR MESSAGE 1!!!!" + e);
         }
     }
+
     public static void updateExamDate(String year, String studentSubId) {
         try ( Connection conn = DriverManager.getConnection(URL, "THope", DATABASEPASSWORD);  Statement statement = conn.createStatement()) {
             statement.execute("UPDATE " + STUDENTSUB + "\nSET " + DATE + " = '" + year + "-06-01" + "' \nWHERE " + STUDENTSUBID + " = '" + studentSubId + "'");
-
+            conn.close();//closes  the connection
         } catch (SQLException e) {
             System.out.println("ERROR MESSAGE 1!!!!" + e);
         }
@@ -685,7 +705,7 @@ public class DatabaseManipulation {
     public static void updatePredicted(String newPredicted, String studentSubId) {
         try ( Connection conn = DriverManager.getConnection(URL, "THope", DATABASEPASSWORD);  Statement statement = conn.createStatement()) {
             statement.execute("UPDATE " + STUDENTSUB + "\nSET " + PREDICTEDGRADE + " = '" + newPredicted + "' \nWHERE " + STUDENTSUBID + " = '" + studentSubId + "'");
-
+            conn.close();//closes  the connection
         } catch (SQLException e) {
             System.out.println("ERROR MESSAGE 1!!!!" + e);
         }
@@ -694,7 +714,7 @@ public class DatabaseManipulation {
     public static void updateFinal(String newPredicted, String studentSubId) {
         try ( Connection conn = DriverManager.getConnection(URL, "THope", DATABASEPASSWORD);  Statement statement = conn.createStatement()) {
             statement.execute("UPDATE " + STUDENTSUB + "\nSET " + FINALGRADE + " = '" + newPredicted + "' \nWHERE " + STUDENTSUBID + " = '" + studentSubId + "'");
-
+            conn.close();//closes  the connection
         } catch (SQLException e) {
             System.out.println("ERROR MESSAGE 1!!!!" + e);
         }
@@ -703,7 +723,7 @@ public class DatabaseManipulation {
     public static void updateStudentMethod(String newMethod, String studentSubId) {
         try ( Connection conn = DriverManager.getConnection(URL, "THope", DATABASEPASSWORD);  Statement statement = conn.createStatement()) {
             statement.execute("UPDATE " + STUDENTSUB + "\nSET " + METHODNAME + " = '" + newMethod + "' \nWHERE " + STUDENTSUBID + " = '" + studentSubId + "'");
-
+            conn.close();//closes  the connection
         } catch (SQLException e) {
             System.out.println("ERROR MESSAGE 1!!!!" + e);
         }
@@ -714,9 +734,9 @@ public class DatabaseManipulation {
         try ( Connection conn = DriverManager.getConnection(URL, "THope", DATABASEPASSWORD);  Statement statement = conn.createStatement()) {
             try ( ResultSet result = statement.executeQuery("SELECT * FROM " + USERS + " WHERE " + EMAIL + " = '" + email + "'")) {
                 while (result.next()) {
-                    toReturn = new Student(result.getString(EMAIL), result.getString(PASSWORD),result.getString(USERNAME), result.getString(NAME), result.getInt(ICON));
+                    toReturn = new Student(result.getString(EMAIL), result.getString(PASSWORD), result.getString(USERNAME), result.getString(NAME), result.getInt(ICON));
                 }
-
+                conn.close();//closes  the connection
             } catch (SQLException e) {
                 System.out.println("ERROR MESSAGE 2!!!!" + e);
             }
@@ -733,7 +753,7 @@ public class DatabaseManipulation {
                 if (result.next()) {
                     toReturn = new Topic(result.getInt(TOPICID), result.getString(TOPIC));
                 }
-
+                conn.close();//closes  the connection
             } catch (SQLException e) {
                 System.out.println("ERROR MESSAGE 2!!!!" + e);
             }
@@ -750,7 +770,7 @@ public class DatabaseManipulation {
                 if (result.next()) {
                     toReturn = new Topic(result.getInt(TOPICID), result.getString(TOPIC));
                 }
-
+                conn.close();//closes  the connection
             } catch (SQLException e) {
                 System.out.println("ERROR MESSAGE 2!!!!" + e);
             }
@@ -765,9 +785,9 @@ public class DatabaseManipulation {
         try ( Connection conn = DriverManager.getConnection(URL, "THope", DATABASEPASSWORD);  Statement statement = conn.createStatement()) {
             try ( ResultSet result = statement.executeQuery("SELECT * FROM " + USERS + " WHERE " + EMAIL + " = '" + email + "'")) {
                 while (result.next()) {
-                    toReturn = new Teacher(result.getString(EMAIL), result.getString(PASSWORD),result.getString(USERNAME), result.getString(NAME), result.getInt(ICON));
+                    toReturn = new Teacher(result.getString(EMAIL), result.getString(PASSWORD), result.getString(USERNAME), result.getString(NAME), result.getInt(ICON));
                 }
-
+                conn.close();//closes  the connection
             } catch (SQLException e) {
                 System.out.println("ERROR MESSAGE 2!!!!" + e);
             }
@@ -776,15 +796,15 @@ public class DatabaseManipulation {
         }
         return toReturn;
     }
-    
+
     public static User userFromEmail(String email) {
         User toReturn = new User("", "", 0);
         try ( Connection conn = DriverManager.getConnection(URL, "THope", DATABASEPASSWORD);  Statement statement = conn.createStatement()) {
             try ( ResultSet result = statement.executeQuery("SELECT * FROM " + USERS + " WHERE " + EMAIL + " = '" + email + "'")) {
                 while (result.next()) {
-                    toReturn = new User(result.getString(EMAIL), result.getString(PASSWORD), result.getInt(TYPE),result.getString(USERNAME), result.getString(NAME), result.getInt(ICON));
+                    toReturn = new User(result.getString(EMAIL), result.getString(PASSWORD), result.getInt(TYPE), result.getString(USERNAME), result.getString(NAME), result.getInt(ICON));
                 }
-
+                conn.close();//closes  the connection
             } catch (SQLException e) {
                 System.out.println("ERROR MESSAGE 2!!!!" + e);
             }
@@ -801,7 +821,7 @@ public class DatabaseManipulation {
                 while (result.next()) {
                     toReturn = new Subject(ID, result.getString(SUBJECTNAME));
                 }
-
+                conn.close();//closes  the connection
             } catch (SQLException e) {
                 System.out.println("ERROR MESSAGE 2!!!!" + e);
             }
@@ -818,7 +838,7 @@ public class DatabaseManipulation {
                 while (result.next()) {
                     toReturn = new Classroom(className, result.getString(STUDENTCODE), result.getString(TEACHERCODE), GradePredictorPrototype.getSubject());
                 }
-
+                conn.close();//closes  the connection
             } catch (SQLException e) {
                 System.out.println("ERROR MESSAGE 2!!!!" + e);
             }
@@ -831,11 +851,12 @@ public class DatabaseManipulation {
     public static String getPredicted(String StudentSubId) {
         String toReturn = "N/A";
         try ( Connection conn = DriverManager.getConnection(URL, "THope", DATABASEPASSWORD);  Statement statement = conn.createStatement()) {
-            try ( ResultSet result = statement.executeQuery("SELECT " + PREDICTEDGRADE + " FROM " + STUDENTSUB + " WHERE " + STUDENTSUBID + " = '" + StudentSubId + "'")) {
+            try ( ResultSet result = statement.executeQuery("SELECT " + PREDICTEDGRADE + " FROM " + STUDENTSUB + " WHERE " +
+                    STUDENTSUBID + " = '" + StudentSubId + "'")) {
                 if (result.next()) {
                     toReturn = result.getString(PREDICTEDGRADE);
                 }
-
+                conn.close();//closes  the connection
             } catch (SQLException e) {
                 System.out.println("ERROR MESSAGE 2!!!!" + e);
             }
@@ -844,7 +865,26 @@ public class DatabaseManipulation {
         }
         return toReturn;
     }
-
+    public static String[] getStudentSubjectInfo(String StudentSubId) {
+        String[] toReturn = {"N/A","N/A","PPQ","2023-01-01"};
+        try ( Connection conn = DriverManager.getConnection(URL, "THope", DATABASEPASSWORD);  Statement statement = conn.createStatement()) {
+            try ( ResultSet result = statement.executeQuery("SELECT " + PREDICTEDGRADE + "," + TARGETGRADE +
+                    "," +METHODNAME + "," + DATE+ " FROM " + STUDENTSUB + " WHERE " + STUDENTSUBID + " = '" + StudentSubId + "'")) {
+                if (result.next()) {
+                    toReturn[0] = result.getString(PREDICTEDGRADE);
+                    toReturn[1] = result.getString(TARGETGRADE);
+                    toReturn[2]= result.getString(METHODNAME);
+                    toReturn[3] = result.getString(DATE);
+                }
+                conn.close();//closes  the connection
+            } catch (SQLException e) {
+                System.out.println("ERROR MESSAGE 2!!!!" + e);
+            }
+        } catch (SQLException e) {
+            System.out.println("ERROR MESSAGE 1!!!!" + e);
+        }
+        return toReturn;
+    }
     public static double getFormalPerformance(Subject subject, Method method) {
         double toReturn = 0;
         int count = 0;
@@ -858,7 +898,7 @@ public class DatabaseManipulation {
                     count++;
                     toReturn += (double) result.getInt(SCORE) / result.getInt(MAXMARK);
                 }
-
+                conn.close();//closes  the connection
             } catch (SQLException e) {
                 System.out.println("ERROR MESSAGE 2!!!!" + e);
             }
@@ -880,7 +920,7 @@ public class DatabaseManipulation {
                     count++;
                     toReturn += (double) result.getInt(MARK) / result.getInt(MAXMARK);
                 }
-
+                conn.close();//closes  the connection
             } catch (SQLException e) {
                 System.out.println("ERROR MESSAGE 2!!!!" + e);
             }
@@ -902,7 +942,7 @@ public class DatabaseManipulation {
                     toReturn += GradePredictorPrototype.ungrade((GradePredictorPrototype.gradeToInt(result.getString(FINALGRADE)) - GradePredictorPrototype.gradeToInt(result.getString(PREDICTEDGRADE))));
                     count += 2;
                 }
-
+                conn.close();//closes  the connection
             } catch (SQLException e) {
                 System.out.println("ERROR MESSAGE 2!!!!" + e);
             }
@@ -925,7 +965,7 @@ public class DatabaseManipulation {
                     score = result.getInt(SCORE);
                     paperid = result.getInt(PAPERID);
                 }
-
+                conn.close();//closes  the connection
             } catch (SQLException e) {
                 System.out.println("ERROR MESSAGE 2!!!!" + e);
             }
@@ -939,11 +979,12 @@ public class DatabaseManipulation {
     public static String getTarget(String StudentSubId) {
         String toReturn = "A*";
         try ( Connection conn = DriverManager.getConnection(URL, "THope", DATABASEPASSWORD);  Statement statement = conn.createStatement()) {
-            try ( ResultSet result = statement.executeQuery("SELECT " + TARGETGRADE + " FROM " + STUDENTSUB + " WHERE " + STUDENTSUBID + " = '" + StudentSubId + "'")) {
+            try ( ResultSet result = statement.executeQuery("SELECT " + TARGETGRADE + " FROM " + STUDENTSUB + " WHERE " + STUDENTSUBID 
+                    + " = '" + StudentSubId + "'")) {
                 if (result.next()) {
                     toReturn = result.getString(TARGETGRADE);
                 }
-
+                conn.close();//closes  the connection
             } catch (SQLException e) {
                 System.out.println("ERROR MESSAGE 2!!!!" + e);
             }
@@ -956,14 +997,15 @@ public class DatabaseManipulation {
     public static String getExamDate(String StudentSubId) {
         String toReturn = "2023-06-01";
         try ( Connection conn = DriverManager.getConnection(URL, "THope", DATABASEPASSWORD);  Statement statement = conn.createStatement()) {
-            try ( ResultSet result = statement.executeQuery("SELECT " + DATE + " FROM " + STUDENTSUB + " WHERE " + STUDENTSUBID + " = '" + StudentSubId + "'")) {
+            try ( ResultSet result = statement.executeQuery("SELECT " + DATE + " FROM " + STUDENTSUB 
+                    + " WHERE " + STUDENTSUBID + " = '" + StudentSubId + "'")) {
                 if (result.next()) {
                     toReturn = result.getString(DATE);
                     if (toReturn == null) {
                         toReturn = "2023-06-01";
                     }
                 }
-
+                conn.close();//closes  the connection
             } catch (SQLException e) {
                 System.out.println("ERROR MESSAGE 2!!!!" + e);
             }
@@ -976,11 +1018,12 @@ public class DatabaseManipulation {
     public static String getMethod(String StudentSubId) {
         String toReturn = "PPQ";
         try ( Connection conn = DriverManager.getConnection(URL, "THope", DATABASEPASSWORD);  Statement statement = conn.createStatement()) {
-            try ( ResultSet result = statement.executeQuery("SELECT " + METHODNAME + " FROM " + STUDENTSUB + " WHERE " + STUDENTSUBID + " = '" + StudentSubId + "'")) {
+            try ( ResultSet result = statement.executeQuery("SELECT " + METHODNAME + " FROM " + STUDENTSUB + " WHERE " + 
+                    STUDENTSUBID + " = '" + StudentSubId + "'")) {
                 if (result.next()) {
                     toReturn = result.getString(METHODNAME);
                 }
-
+                conn.close();//closes  the connection
             } catch (SQLException e) {
                 System.out.println("ERROR MESSAGE 2!!!!" + e);
             }
@@ -999,7 +1042,7 @@ public class DatabaseManipulation {
                         toReturn = true;
                     }
                 }
-
+                conn.close();//closes  the connection
             } catch (SQLException e) {
                 System.out.println("ERROR MESSAGE 2!!!!" + e);
             }

@@ -14,7 +14,7 @@ public class TopicBreakdown extends javax.swing.JFrame {
 
     private ArrayList<Question> questions;
     private ArrayList<Topic> topics;
-    private ArrayList<Question> uniqueQuestions;
+    private ArrayList<Question> uniqueQuestions; //declares variables
     private int questionIndex;
     private int questionIndex1;
 
@@ -24,13 +24,13 @@ public class TopicBreakdown extends javax.swing.JFrame {
     public TopicBreakdown() {
         questions = DatabaseManipulation.studentQuestions(GradePredictorPrototype.getStudent(), GradePredictorPrototype.getSubject());
         questionIndex = 0;
-        questionIndex1 = 0;
+        questionIndex1 = 0; //initialises variables
         topics = new ArrayList<>();
         uniqueQuestions = new ArrayList<>();
         for (int i = 0; i < questions.size(); i++) {
             if ((GradePredictorPrototype.contains(topics, questions.get(i).getTopic()) == -1)) {
                 topics.add(questions.get(i).getTopic());
-            }
+            } //gets all unique topics and questions 
             if (!(GradePredictorPrototype.contains(uniqueQuestions, questions.get(i)))) {
                 uniqueQuestions.add(questions.get(i));
             }
@@ -309,35 +309,31 @@ public class TopicBreakdown extends javax.swing.JFrame {
 
     private void leftBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leftBtnActionPerformed
         // TODO add your handling code here:
-        int prior = questionIndex;
-        if (questionIndex > 0) {
-            questionIndex--;
+        int prior = questionIndex;//sets initial question index
+        if (questionIndex > 0) {//does not allow index to be negative 
+            questionIndex--;//decrements index
             while(!(uniqueQuestions.get(questionIndex).getTopic().equals(topics.get(topicsBox.getSelectedIndex()))) && questionIndex > 0) {
-                questionIndex--;
+                questionIndex--;//only shows question for the selected topic
             }
             if(uniqueQuestions.get(questionIndex).getTopic().equals(topics.get(topicsBox.getSelectedIndex()))) {
-                questionLbl.setIcon(uniqueQuestions.get(questionIndex).getQuestion());
+                questionLbl.setIcon(uniqueQuestions.get(questionIndex).getQuestion());//updates image if changed
             } else{
-                questionIndex = prior;
-                questionLbl.setIcon(uniqueQuestions.get(questionIndex).getQuestion());
+                questionIndex = prior;//resets index if not earlier questions existed
             }
         }
     }//GEN-LAST:event_leftBtnActionPerformed
 
     private void rightBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rightBtnActionPerformed
-        // TODO add your handling code here:
-        
-        int prior = questionIndex;
-        if (questionIndex < uniqueQuestions.size() - 1) {
-            questionIndex++;
+        int prior = questionIndex;//sets initial question index
+        if (questionIndex < uniqueQuestions.size() - 1) {//does not let index be larger than the number of questions
+            questionIndex++;//increments index
             while(!(uniqueQuestions.get(questionIndex).getTopic().equals(topics.get(topicsBox.getSelectedIndex()))) && questionIndex < uniqueQuestions.size() - 1) {
-                questionIndex++;
+                questionIndex++;//only shows questions for selected topic
             }
             if(uniqueQuestions.get(questionIndex).getTopic().equals(topics.get(topicsBox.getSelectedIndex()))) {
-                questionLbl.setIcon(uniqueQuestions.get(questionIndex).getQuestion());
+                questionLbl.setIcon(uniqueQuestions.get(questionIndex).getQuestion());//updates image if changed
             } else {
-                questionIndex = prior;
-                questionLbl.setIcon(uniqueQuestions.get(questionIndex).getQuestion());
+                questionIndex = prior;//resets index if no later questions existed
             }
             
         }
@@ -354,11 +350,11 @@ public class TopicBreakdown extends javax.swing.JFrame {
     }//GEN-LAST:event_subjectBtnActionPerformed
 
     private void topicsBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_topicsBoxItemStateChanged
-        setLabels();
+        setLabels();//sets labels for the left topic
     }//GEN-LAST:event_topicsBoxItemStateChanged
 
     private void leftBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leftBtn1ActionPerformed
-        int prior = questionIndex1;
+        int prior = questionIndex1;//performs the same as leftBtnActionPerformed except on duplicate components allowing for comparision between topics
         if (questionIndex1 > 0) {
             questionIndex1--;
             while(!(uniqueQuestions.get(questionIndex1).getTopic().equals(topics.get(topicsBox1.getSelectedIndex()))) && questionIndex1 > 0) {
@@ -368,13 +364,12 @@ public class TopicBreakdown extends javax.swing.JFrame {
                 questionLbl1.setIcon(uniqueQuestions.get(questionIndex1).getQuestion());
             } else{
                 questionIndex1 = prior;
-                questionLbl1.setIcon(uniqueQuestions.get(questionIndex1).getQuestion());
             }
         }
     }//GEN-LAST:event_leftBtn1ActionPerformed
 
     private void rightBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rightBtn1ActionPerformed
-        int prior = questionIndex1;
+        int prior = questionIndex1; //performs the same as rightBtnActionPerformed except on duplicate components allowing for comparision between topics
         if (questionIndex1 < uniqueQuestions.size() - 1) {
             questionIndex1++;
             while(!(uniqueQuestions.get(questionIndex1).getTopic().equals(topics.get(topicsBox1.getSelectedIndex()))) && questionIndex1 < uniqueQuestions.size() - 1) {
@@ -384,14 +379,13 @@ public class TopicBreakdown extends javax.swing.JFrame {
                 questionLbl1.setIcon(uniqueQuestions.get(questionIndex1).getQuestion());
             } else {
                 questionIndex1 = prior;
-                questionLbl1.setIcon(uniqueQuestions.get(questionIndex1).getQuestion());
             }
             
         }
     }//GEN-LAST:event_rightBtn1ActionPerformed
 
     private void topicsBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_topicsBox1ItemStateChanged
-        setLabels1();
+        setLabels1();//sets labels for the right topic
     }//GEN-LAST:event_topicsBox1ItemStateChanged
 
     private void topicsBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_topicsBox1ActionPerformed
@@ -408,8 +402,8 @@ public class TopicBreakdown extends javax.swing.JFrame {
     }//GEN-LAST:event_exitMouseClicked
 
     private void classBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classBtnActionPerformed
-        if (GradePredictorPrototype.getViewing()) {
-            new Classes().setVisible(true);
+        if (GradePredictorPrototype.getViewing()) { //if a teacher is viewing the student
+            new Classes().setVisible(true); //allows them to return to classes
             this.dispose();
         }
     }//GEN-LAST:event_classBtnActionPerformed

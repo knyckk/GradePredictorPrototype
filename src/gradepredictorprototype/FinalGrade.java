@@ -186,7 +186,7 @@ public class FinalGrade extends javax.swing.JFrame {
     }//GEN-LAST:event_exitMouseClicked
 
     private void gradesBoxKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_gradesBoxKeyPressed
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER) {//if enter key is pressed performs the same code as enterBtnActionPerformed
            DatabaseManipulation.updateFinal(gradesBox.getSelectedItem().toString(), GradePredictorPrototype.getStudent().getEmail() + GradePredictorPrototype.getSubject().getID());
         new StudentSubject().setVisible(true);
         this.dispose();
@@ -194,8 +194,8 @@ public class FinalGrade extends javax.swing.JFrame {
     }//GEN-LAST:event_gradesBoxKeyPressed
 
     private void classBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classBtnActionPerformed
-        if (GradePredictorPrototype.getViewing()) {
-            new Classes().setVisible(true);
+        if (GradePredictorPrototype.getViewing()) { //if a teacher is viewing the student
+            new Classes().setVisible(true); //allows them to return to classes
             this.dispose();
         }
     }//GEN-LAST:event_classBtnActionPerformed

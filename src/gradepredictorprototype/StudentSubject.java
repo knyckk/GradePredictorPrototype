@@ -14,11 +14,14 @@ public class StudentSubject extends javax.swing.JFrame {
     private ArrayList<Method> methods;
     private ArrayList<Question> questions;
     private ArrayList<Topic> topics;
+    private String[] studentSubInfo;
     /**
      * Creates new form StudentSubject
      */
     public StudentSubject() {
         methods = DatabaseManipulation.getMethods();
+        studentSubInfo = DatabaseManipulation.getStudentSubjectInfo(GradePredictorPrototype.getStudent().getEmail() 
+                + GradePredictorPrototype.getSubject().getID());
         if(!methods.isEmpty()) {
             GradePredictorPrototype.top3Methods(methods, 0, methods.size() - 1);
         }
@@ -88,7 +91,7 @@ public class StudentSubject extends javax.swing.JFrame {
         titleLbl.setText(GradePredictorPrototype.getSubject().getName());
         titleLbl.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
 
-        predictedLbl.setText("Predicted Grade: " + DatabaseManipulation.getPredicted(GradePredictorPrototype.getStudent().getEmail() + GradePredictorPrototype.getSubject().getID()));
+        predictedLbl.setText("Predicted Grade: " + studentSubInfo[0]);
         predictedLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         targetLbl.setText("Target Grade:");
@@ -150,15 +153,15 @@ public class StudentSubject extends javax.swing.JFrame {
         });
 
         targetBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A*", "A", "B", "C", "D", "E" }));
-        targetBox.setSelectedItem(DatabaseManipulation.getTarget(GradePredictorPrototype.getStudent().getEmail() + GradePredictorPrototype.getSubject().getID()));
+        targetBox.setSelectedItem(studentSubInfo[1]);//sets the target grade
         targetBox.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 targetBoxItemStateChanged(evt);
             }
         });
 
-        methodsBox.setModel(new javax.swing.DefaultComboBoxModel<>(DatabaseManipulation.getMethods().stream().map(x -> x.getName()).toArray(String[]::new)));
-        methodsBox.setSelectedItem(DatabaseManipulation.getMethod(GradePredictorPrototype.getStudent().getEmail() + GradePredictorPrototype.getSubject().getID()));
+        methodsBox.setModel(new javax.swing.DefaultComboBoxModel<>(methods.stream().map(x -> x.getName()).toArray(String[]::new)));
+        methodsBox.setSelectedItem(studentSubInfo[2]);
         methodsBox.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 methodsBoxItemStateChanged(evt);
@@ -166,7 +169,7 @@ public class StudentSubject extends javax.swing.JFrame {
         });
 
         yearBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2028", "2027", "2026", "2025", "2024", "2023", "2022", "2021" }));
-        yearBox.setSelectedItem(DatabaseManipulation.getExamDate(GradePredictorPrototype.getStudent().getEmail() + GradePredictorPrototype.getSubject().getID()).substring(0,4));
+        yearBox.setSelectedItem(studentSubInfo[3].substring(0,4));
         GradePredictorPrototype.getStudent().setYear(yearBox.getSelectedItem().toString());
         yearBox.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -346,51 +349,50 @@ public class StudentSubject extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void profileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileBtnActionPerformed
-        // TODO add your handling code here:
         new StudentProfile().setVisible(true); //returns to profile form
         this.dispose();
     }//GEN-LAST:event_profileBtnActionPerformed
 
     private void targetBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_targetBoxItemStateChanged
-        DatabaseManipulation.updateTarget(targetBox.getSelectedItem().toString(), GradePredictorPrototype.getStudent().getEmail() + GradePredictorPrototype.getSubject().getID());
+        DatabaseManipulation.updateTarget(targetBox.getSelectedItem().toString(), GradePredictorPrototype.getStudent().getEmail() + GradePredictorPrototype.getSubject().getID());//updates target when changed
     }//GEN-LAST:event_targetBoxItemStateChanged
 
     private void methodsBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_methodsBoxItemStateChanged
-        DatabaseManipulation.updateStudentMethod(methodsBox.getSelectedItem().toString(), GradePredictorPrototype.getStudent().getEmail() + GradePredictorPrototype.getSubject().getID());
+        DatabaseManipulation.updateStudentMethod(methodsBox.getSelectedItem().toString(), GradePredictorPrototype.getStudent().getEmail() + GradePredictorPrototype.getSubject().getID());//updates method when changed
     }//GEN-LAST:event_methodsBoxItemStateChanged
 
     private void classBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classBtnActionPerformed
-        DatabaseManipulation.joinClass(joinFld.getText(), GradePredictorPrototype.getStudent());
+        DatabaseManipulation.joinClass(joinFld.getText(), GradePredictorPrototype.getStudent());//joins class from class code entered
     }//GEN-LAST:event_classBtnActionPerformed
 
     private void paperBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paperBtnActionPerformed
-        new AddAssessment().setVisible(true);
+        new AddAssessment().setVisible(true);//goes into add assessment form
         this.dispose();
     }//GEN-LAST:event_paperBtnActionPerformed
 
     private void topicsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_topicsBtnActionPerformed
-        new TopicBreakdown().setVisible(true);
+        new TopicBreakdown().setVisible(true);//goes into topic breakdown form
         this.dispose();
     }//GEN-LAST:event_topicsBtnActionPerformed
 
     private void trendsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trendsBtnActionPerformed
-        new Trends().setVisible(true);
-        GradePredictorPrototype.setBoundaries(GradePredictorPrototype.getSubject());
+        new Trends().setVisible(true);//goes into trend form
+        GradePredictorPrototype.setBoundaries(GradePredictorPrototype.getSubject());//updates gradeboundaries incase they have changed since creating subject form
         this.dispose();
     }//GEN-LAST:event_trendsBtnActionPerformed
 
     private void yearBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_yearBoxItemStateChanged
-        DatabaseManipulation.updateExamDate(yearBox.getSelectedItem().toString(), GradePredictorPrototype.getStudent().getEmail() + GradePredictorPrototype.getSubject().getID());
-        GradePredictorPrototype.getStudent().setYear(yearBox.getSelectedItem().toString());
+        DatabaseManipulation.updateExamDate(yearBox.getSelectedItem().toString(), GradePredictorPrototype.getStudent().getEmail() + GradePredictorPrototype.getSubject().getID());//updates exam year when changed
+        GradePredictorPrototype.getStudent().setYear(yearBox.getSelectedItem().toString());//updates exam year locally
     }//GEN-LAST:event_yearBoxItemStateChanged
 
     private void finalBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finalBtnActionPerformed
-        new FinalGrade().setVisible(true);
+        new FinalGrade().setVisible(true);//opens final grade form
         this.dispose();
     }//GEN-LAST:event_finalBtnActionPerformed
 
     private void joinFldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_joinFldFocusGained
-        joinFld.selectAll();
+        joinFld.selectAll();//selects all text when clicked
     }//GEN-LAST:event_joinFldFocusGained
 
     private void logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseClicked
@@ -403,8 +405,8 @@ public class StudentSubject extends javax.swing.JFrame {
     }//GEN-LAST:event_exitMouseClicked
 
     private void returnClassBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnClassBtnActionPerformed
-        if (GradePredictorPrototype.getViewing()) {
-            new Classes().setVisible(true);
+        if (GradePredictorPrototype.getViewing()) { //if a teacher is viewing the student
+            new Classes().setVisible(true); //allows them to return to classes
             this.dispose();
         }
     }//GEN-LAST:event_returnClassBtnActionPerformed

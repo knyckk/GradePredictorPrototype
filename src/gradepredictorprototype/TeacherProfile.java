@@ -167,8 +167,8 @@ public class TeacherProfile extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void createLblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_createLblMouseClicked
-        // TODO add your handling code here:
-        new CreateSubject().setVisible(true);
+        new CreateSubject().setVisible(true);//enters create subject form
+        this.dispose();
     }//GEN-LAST:event_createLblMouseClicked
 
     private void addBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBoxActionPerformed
@@ -176,8 +176,7 @@ public class TeacherProfile extends javax.swing.JFrame {
     }//GEN-LAST:event_addBoxActionPerformed
 
     private void enterBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterBtnActionPerformed
-        // TODO add your handling code here:
-        GradePredictorPrototype.setSubject(addBox.getSelectedIndex() + 1, addBox.getSelectedItem().toString());
+        GradePredictorPrototype.setSubject(addBox.getSelectedIndex() + 1, addBox.getSelectedItem().toString());//enters subject selected
         new TeacherSubject().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_enterBtnActionPerformed
@@ -193,13 +192,13 @@ public class TeacherProfile extends javax.swing.JFrame {
 
     private void iconBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_iconBoxItemStateChanged
         iconLbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/profile"+(iconBox.getSelectedIndex() + 1)+".jpeg")));
-        GradePredictorPrototype.setTeacherIcon(iconBox.getSelectedIndex());
+        GradePredictorPrototype.setTeacherIcon(iconBox.getSelectedIndex());//updates icon image when changed
         DatabaseManipulation.updateUserIcon(iconBox.getSelectedIndex(), GradePredictorPrototype.getTeacher().getEmail());
 
     }//GEN-LAST:event_iconBoxItemStateChanged
 
     private void changeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeBtnActionPerformed
-        new AboutYou().setVisible(true);
+        new AboutYou().setVisible(true);//goes into about you form
         this.dispose();
     }//GEN-LAST:event_changeBtnActionPerformed
 

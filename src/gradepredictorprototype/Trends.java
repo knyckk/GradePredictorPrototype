@@ -180,8 +180,8 @@ public class Trends extends javax.swing.JFrame {
     }//GEN-LAST:event_exitMouseClicked
 
     private void classBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classBtnActionPerformed
-        if (GradePredictorPrototype.getViewing()) {
-            new Classes().setVisible(true);
+        if (GradePredictorPrototype.getViewing()) { //if a teacher is viewing the student
+            new Classes().setVisible(true); //allows them to return to classes
             this.dispose();
         }
     }//GEN-LAST:event_classBtnActionPerformed

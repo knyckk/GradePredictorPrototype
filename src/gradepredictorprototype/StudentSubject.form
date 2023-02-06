@@ -206,7 +206,7 @@
         </Property>
       </Properties>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="predictedLbl.setText(&quot;Predicted Grade: &quot; + DatabaseManipulation.getPredicted(GradePredictorPrototype.getStudent().getEmail() + GradePredictorPrototype.getSubject().getID()));"/>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="predictedLbl.setText(&quot;Predicted Grade: &quot; + studentSubInfo[0]);"/>
       </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="targetLbl">
@@ -307,7 +307,7 @@
         <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="targetBoxItemStateChanged"/>
       </Events>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="targetBox.setSelectedItem(DatabaseManipulation.getTarget(GradePredictorPrototype.getStudent().getEmail() + GradePredictorPrototype.getSubject().getID()));"/>
+        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="targetBox.setSelectedItem(studentSubInfo[1]);//sets the target grade"/>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
     </Component>
@@ -321,8 +321,8 @@
         <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="methodsBoxItemStateChanged"/>
       </Events>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="methodsBox.setSelectedItem(DatabaseManipulation.getMethod(GradePredictorPrototype.getStudent().getEmail() + GradePredictorPrototype.getSubject().getID()));"/>
-        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="methodsBox.setModel(new javax.swing.DefaultComboBoxModel&lt;&gt;(DatabaseManipulation.getMethods().stream().map(x -&gt; x.getName()).toArray(String[]::new)));"/>
+        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="methodsBox.setSelectedItem(studentSubInfo[2]);"/>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="methodsBox.setModel(new javax.swing.DefaultComboBoxModel&lt;&gt;(methods.stream().map(x -&gt; x.getName()).toArray(String[]::new)));"/>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
     </Component>
@@ -345,7 +345,7 @@
         <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="yearBoxItemStateChanged"/>
       </Events>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="yearBox.setSelectedItem(DatabaseManipulation.getExamDate(GradePredictorPrototype.getStudent().getEmail() + GradePredictorPrototype.getSubject().getID()).substring(0,4));&#xd;&#xa;GradePredictorPrototype.getStudent().setYear(yearBox.getSelectedItem().toString());"/>
+        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="yearBox.setSelectedItem(studentSubInfo[3].substring(0,4));&#xd;&#xa;GradePredictorPrototype.getStudent().setYear(yearBox.getSelectedItem().toString());"/>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
     </Component>

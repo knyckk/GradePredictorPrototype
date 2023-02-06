@@ -78,6 +78,11 @@ public class Topics extends javax.swing.JFrame {
         removeBox.setModel(new javax.swing.DefaultComboBoxModel<>(DatabaseManipulation.getTopicsFromSubject(GradePredictorPrototype.getSubject()).stream().map(x -> x.getTopic()).toArray(String[]::new)));
 
         removeBtn.setText("Remove");
+        removeBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeBtnActionPerformed(evt);
+            }
+        });
 
         replaceLbl.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         replaceLbl.setText("Replace:");
@@ -202,12 +207,12 @@ public class Topics extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
-        if (ValidationRoutines.presenceCheck(newTopicFld.getText()) && ValidationRoutines.lengthCheck(0, newTopicFld.getText(), 128)) {
-            DatabaseManipulation.createTopic(newTopicFld.getText(), GradePredictorPrototype.getSubject());
-            ArrayList<Topic> topics = DatabaseManipulation.getTopicsFromSubject(GradePredictorPrototype.getSubject());
-            topicsBox.setModel(new javax.swing.DefaultComboBoxModel<>(topics.stream().map(x -> x.getTopic()).toArray(String[]::new)));
-            removeBox.setModel(new javax.swing.DefaultComboBoxModel<>(topics.stream().map(x -> x.getTopic()).toArray(String[]::new)));
-            replaceBox.setModel(new javax.swing.DefaultComboBoxModel<>(topics.stream().map(x -> x.getTopic()).toArray(String[]::new)));
+        if (ValidationRoutines.presenceCheck(newTopicFld.getText()) && ValidationRoutines.lengthCheck(0, newTopicFld.getText(), 128)) {//validates new topic
+            DatabaseManipulation.createTopic(newTopicFld.getText(), GradePredictorPrototype.getSubject());//stores new topic
+            String newTopic = newTopicFld.getText();
+            topicsBox.addItem(newTopic);//updates combo boxes
+            removeBox.addItem(newTopic);
+            replaceBox.addItem(newTopic);
         }
     }//GEN-LAST:event_addBtnActionPerformed
 
@@ -245,14 +250,22 @@ public class Topics extends javax.swing.JFrame {
     }//GEN-LAST:event_exitMouseClicked
 
     private void replaceBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_replaceBtnActionPerformed
-        if (ValidationRoutines.presenceCheck(replaceFld.getText()) && ValidationRoutines.lengthCheck(0, replaceFld.getText(), 128)) {
-            DatabaseManipulation.updateTopic(replaceBox.getSelectedItem().toString(), replaceFld.getText());
-            ArrayList<Topic> topics = DatabaseManipulation.getTopicsFromSubject(GradePredictorPrototype.getSubject());
-            topicsBox.setModel(new javax.swing.DefaultComboBoxModel<>(topics.stream().map(x -> x.getTopic()).toArray(String[]::new)));
-            removeBox.setModel(new javax.swing.DefaultComboBoxModel<>(topics.stream().map(x -> x.getTopic()).toArray(String[]::new)));
-            replaceBox.setModel(new javax.swing.DefaultComboBoxModel<>(topics.stream().map(x -> x.getTopic()).toArray(String[]::new)));
+        if (ValidationRoutines.presenceCheck(replaceFld.getText()) && ValidationRoutines.lengthCheck(0, replaceFld.getText(), 128)) {//validates changed topic
+            DatabaseManipulation.updateTopic(replaceBox.getSelectedItem().toString(), replaceFld.getText());//stores changed topic
+            String newTopic = replaceFld.getText();
+            int oldIndex = replaceBox.getSelectedIndex();
+            topicsBox.remove(oldIndex);
+            topicsBox.insertItemAt(newTopic, oldIndex);//updates combo boxes locally
+            removeBox.remove(oldIndex);
+            removeBox.insertItemAt(newTopic, oldIndex);
+            replaceBox.remove(oldIndex);
+            replaceBox.insertItemAt(newTopic, oldIndex);
         }
     }//GEN-LAST:event_replaceBtnActionPerformed
+
+    private void removeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeBtnActionPerformed
+        
+    }//GEN-LAST:event_removeBtnActionPerformed
 
     /**
      * @param args the command line arguments

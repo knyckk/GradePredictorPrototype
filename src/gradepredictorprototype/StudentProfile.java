@@ -172,11 +172,10 @@ public class StudentProfile extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void enterBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterBtnActionPerformed
-        // TODO add your handling code here:
-        GradePredictorPrototype.setSubject(addBox.getSelectedIndex() + 1, addBox.getSelectedItem().toString());
-        GradePredictorPrototype.setBoundaries(GradePredictorPrototype.getSubject());
-        DatabaseManipulation.createStudentSub(GradePredictorPrototype.getStudent(), GradePredictorPrototype.getSubject());
-        new StudentSubject().setVisible(true);
+        GradePredictorPrototype.setSubject(addBox.getSelectedIndex() + 1, addBox.getSelectedItem().toString()); //sets subject to the subject being entered
+        GradePredictorPrototype.setBoundaries(GradePredictorPrototype.getSubject()); //gets the average grade boundaries for the subject
+        DatabaseManipulation.createStudentSub(GradePredictorPrototype.getStudent(), GradePredictorPrototype.getSubject()); //creates the student subject in the database
+        new StudentSubject().setVisible(true);//opens subject form
         this.dispose();
     }//GEN-LAST:event_enterBtnActionPerformed
 
@@ -194,7 +193,7 @@ public class StudentProfile extends javax.swing.JFrame {
     }//GEN-LAST:event_exitMouseClicked
 
     private void enterBtnKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_enterBtnKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) { //if enter key is pressed does the same code as enterBtnActionPerformed
             GradePredictorPrototype.setSubject(addBox.getSelectedIndex() + 1, addBox.getSelectedItem().toString());
             GradePredictorPrototype.setBoundaries(GradePredictorPrototype.getSubject());
             DatabaseManipulation.createStudentSub(GradePredictorPrototype.getStudent(), GradePredictorPrototype.getSubject());
@@ -203,17 +202,17 @@ public class StudentProfile extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_enterBtnKeyPressed
     private void classBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classBtnActionPerformed
-        if (GradePredictorPrototype.getViewing()) {
-            new Classes().setVisible(true);
+        if (GradePredictorPrototype.getViewing()) { //if a teacher is viewing the student
+            new Classes().setVisible(true); //allows them to return to classes
             this.dispose();
         }
     }//GEN-LAST:event_classBtnActionPerformed
 
     private void iconBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_iconBoxItemStateChanged
         // TODO add your handling code here:
-        iconLbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/profile" + (iconBox.getSelectedIndex() + 1) + ".jpeg")));
-        GradePredictorPrototype.setStudentIcon(iconBox.getSelectedIndex());
-        DatabaseManipulation.updateUserIcon(iconBox.getSelectedIndex(), GradePredictorPrototype.getStudent().getEmail());
+        iconLbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/profile" + (iconBox.getSelectedIndex() + 1) + ".jpeg")));//updates the image to the icon the user set
+        GradePredictorPrototype.setStudentIcon(iconBox.getSelectedIndex()); //sets the icon locally
+        DatabaseManipulation.updateUserIcon(iconBox.getSelectedIndex(), GradePredictorPrototype.getStudent().getEmail()); //stores new icon value
 
     }//GEN-LAST:event_iconBoxItemStateChanged
 
@@ -222,7 +221,7 @@ public class StudentProfile extends javax.swing.JFrame {
     }//GEN-LAST:event_iconBoxActionPerformed
 
     private void changeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeBtnActionPerformed
-        new AboutYou().setVisible(true);
+        new AboutYou().setVisible(true);//goes into about you form
         this.dispose();
     }//GEN-LAST:event_changeBtnActionPerformed
 
