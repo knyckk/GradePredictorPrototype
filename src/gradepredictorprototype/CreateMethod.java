@@ -186,11 +186,11 @@ public class CreateMethod extends javax.swing.JFrame {
     }//GEN-LAST:event_profileBtnActionPerformed
 
     private void enterBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterBtnActionPerformed
-        if (ValidationRoutines.presenceCheck(nameFld.getText())
-                && ValidationRoutines.lengthCheck(0,nameFld.getText(),32)
-                && ValidationRoutines.lengthCheck(0,descriptionFld.getText(),128)) {
-            DatabaseManipulation.createMethod(nameFld.getText(), descriptionFld.getText());
-            new RevisionMethod().setVisible(true);
+        if (ValidationRoutines.presenceCheck(nameFld.getText()) //validates data
+                && ValidationRoutines.lengthCheck(0, nameFld.getText(), 32)
+                && ValidationRoutines.lengthCheck(0, descriptionFld.getText(), 128)) {
+            DatabaseManipulation.createMethod(nameFld.getText(), descriptionFld.getText());//If valid creates a new method
+            new RevisionMethod().setVisible(true); //returns to revision method form
             this.dispose();
         }
     }//GEN-LAST:event_enterBtnActionPerformed
@@ -216,9 +216,13 @@ public class CreateMethod extends javax.swing.JFrame {
 
     private void descriptionFldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_descriptionFldKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            DatabaseManipulation.createMethod(nameFld.getText(), descriptionFld.getText());
-            new RevisionMethod().setVisible(true);
-            this.dispose();
+            if (ValidationRoutines.presenceCheck(nameFld.getText()) //validates data
+                    && ValidationRoutines.lengthCheck(0, nameFld.getText(), 32)
+                    && ValidationRoutines.lengthCheck(0, descriptionFld.getText(), 128)) {
+                DatabaseManipulation.createMethod(nameFld.getText(), descriptionFld.getText());//if valid creates new method
+                new RevisionMethod().setVisible(true);//returns to revision method form
+                this.dispose();
+            }
         }
     }//GEN-LAST:event_descriptionFldKeyPressed
 

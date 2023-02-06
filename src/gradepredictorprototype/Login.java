@@ -49,22 +49,12 @@ public class Login extends javax.swing.JFrame {
         passwordFld.setBackground(new java.awt.Color(53, 53, 53));
         passwordFld.setForeground(new java.awt.Color(255, 255, 255));
         passwordFld.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-        passwordFld.addCaretListener(new javax.swing.event.CaretListener() {
-            public void caretUpdate(javax.swing.event.CaretEvent evt) {
-                passwordFldCaretUpdate(evt);
-            }
-        });
         passwordFld.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 passwordFldFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 passwordFldFocusLost(evt);
-            }
-        });
-        passwordFld.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passwordFldActionPerformed(evt);
             }
         });
         passwordFld.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -84,11 +74,6 @@ public class Login extends javax.swing.JFrame {
         emailFld.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 emailFldFocusGained(evt);
-            }
-        });
-        emailFld.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                emailFldActionPerformed(evt);
             }
         });
         getContentPane().add(emailFld, new org.netbeans.lib.awtextra.AbsoluteConstraints(432, 185, -1, -1));
@@ -125,98 +110,84 @@ public class Login extends javax.swing.JFrame {
 
     private void passwordFldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_passwordFldFocusGained
 
-        passwordLbl.hide();//hide password text if it is there
+        passwordLbl.setVisible(false);//hide password text if it is there
         passwordFld.selectAll();//automatically selects all text when clicked
     }//GEN-LAST:event_passwordFldFocusGained
 
     private void passwordFldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_passwordFldFocusLost
 
-        if (passwordFld.getPassword().length == 0) {
-            passwordLbl.show();
+        if (passwordFld.getPassword().length == 0) {//if no text has been entered
+            passwordLbl.setVisible(true);//reshows the password text
         }
     }//GEN-LAST:event_passwordFldFocusLost
 
     private void emailFldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_emailFldFocusGained
-
         emailFld.selectAll();//automatically selects all text when clicked
     }//GEN-LAST:event_emailFldFocusGained
 
-    private void emailFldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailFldActionPerformed
-
-    }//GEN-LAST:event_emailFldActionPerformed
-
-    private void passwordFldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordFldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_passwordFldActionPerformed
-
     private void enterBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterBtnActionPerformed
-        // TODO add your handling code here:
-
-        User user = DatabaseManipulation.userFromEmail(emailFld.getText());
-        if (user.getEmail().equals("")) {
-            errorLbl.setText("Email not found");
+        User user = DatabaseManipulation.userFromEmail(emailFld.getText());//gets the current user from the email
+        if (user.getEmail().equals("")) {//if the user could not be found
+            errorLbl.setText("Email not found");//provides an error message
             errorLbl.setVisible(true);
         } else {
-            errorLbl.setVisible(false);
+            errorLbl.setVisible(false);//hides error message when email has been corrected
 
-            if (passwordFld.getText().equals(user.getPassword()) 
-                    && ValidationRoutines.presenceCheck(passwordFld.getText())) {
-                
-                if (user.getType() == 0) {
-                    GradePredictorPrototype.setTeacher(user);
+            if (passwordFld.getText().equals(user.getPassword()) //verifies the entered password
+                    && ValidationRoutines.presenceCheck(passwordFld.getText())) {//and validates text has been entered
+
+                if (user.getType() == 0) {//if user is a teacher
+                    GradePredictorPrototype.setTeacher(user);//sets user
                     GradePredictorPrototype.setType(0);
-                    new TeacherProfile().setVisible(true);
+                    new TeacherProfile().setVisible(true);//opens teacher profile form
                     this.dispose();
-                } else if (user.getType() == 1) {
-                    GradePredictorPrototype.setStudent(user);
+                } else if (user.getType() == 1) {//if user is a student
+                    GradePredictorPrototype.setStudent(user);//sets user
                     GradePredictorPrototype.setType(1);
-                    new StudentProfile().setVisible(true);
+                    new StudentProfile().setVisible(true);//opens student profile form
                     this.dispose();
                 }
             } else {
-                errorLbl.setText("Password not found");
+                errorLbl.setText("Password not found");//if password was incorrect an error messaqe is shown
                 errorLbl.setVisible(true);
             }
         }
     }//GEN-LAST:event_enterBtnActionPerformed
 
-    private void passwordFldCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_passwordFldCaretUpdate
-
-    }//GEN-LAST:event_passwordFldCaretUpdate
-
     private void signUpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signUpMouseClicked
-        new SignUp().setVisible(true);
+        new SignUp().setVisible(true);//opens sign up form
         this.dispose();
     }//GEN-LAST:event_signUpMouseClicked
 
     private void passwordFldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passwordFldKeyPressed
-       if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
-           User user = DatabaseManipulation.userFromEmail(emailFld.getText());
-        if (user.getEmail().equals("")) {
-            errorLbl.setText("Email not found");
-            errorLbl.setVisible(true);
-        } else {
-            errorLbl.setVisible(false);
-
-            if (passwordFld.getText().equals(user.getPassword()) && ValidationRoutines.presenceCheck(passwordFld.getText())) {
-
-                if (user.getType() == 0) {
-                    GradePredictorPrototype.setTeacher(user);
-                    GradePredictorPrototype.setType(0);
-                    new TeacherProfile().setVisible(true);
-                    this.dispose();
-                } else if (user.getType() == 1) {
-                    GradePredictorPrototype.setStudent(user);
-                    GradePredictorPrototype.setType(1);
-                    new StudentProfile().setVisible(true);
-                    this.dispose();
-                }
-            } else {
-                errorLbl.setText("Password not found");
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {//if enter key is pressed
+            User user = DatabaseManipulation.userFromEmail(emailFld.getText());//gets the current user from the email
+            if (user.getEmail().equals("")) {//if the user could not be found
+                errorLbl.setText("Email not found");//provides an error message
                 errorLbl.setVisible(true);
+            } else {
+                errorLbl.setVisible(false);//hides error message when email has been corrected
+
+                if (passwordFld.getText().equals(user.getPassword()) //verifies the entered password
+                        && ValidationRoutines.presenceCheck(passwordFld.getText())) {//and validates text has been entered
+
+                    if (user.getType() == 0) {//if user is a teacher
+                        GradePredictorPrototype.setTeacher(user);//sets user
+                        GradePredictorPrototype.setType(0);
+                        new TeacherProfile().setVisible(true);//opens teacher profile form
+                        this.dispose();
+                    } else if (user.getType() == 1) {//if user is a student
+                        GradePredictorPrototype.setStudent(user);//sets user
+                        GradePredictorPrototype.setType(1);
+                        new StudentProfile().setVisible(true);//opens student profile form
+                        this.dispose();
+                    }
+                } else {
+                    errorLbl.setText("Password not found");//if password was incorrect an error messaqe is shown
+                    errorLbl.setVisible(true);
+                }
             }
         }
-       }
     }//GEN-LAST:event_passwordFldKeyPressed
 
     /**

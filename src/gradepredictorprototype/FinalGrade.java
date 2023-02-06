@@ -161,20 +161,17 @@ public class FinalGrade extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void enterBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterBtnActionPerformed
-        // TODO add your handling code here:
-        DatabaseManipulation.updateFinal(gradesBox.getSelectedItem().toString(), GradePredictorPrototype.getStudent().getEmail() + GradePredictorPrototype.getSubject().getID());
-        new StudentSubject().setVisible(true);
+        DatabaseManipulation.updateFinal(gradesBox.getSelectedItem().toString(), GradePredictorPrototype.getStudent().getEmail() + GradePredictorPrototype.getSubject().getID());//updates final grade
+        new StudentSubject().setVisible(true);//returns to the subject form
         this.dispose();
     }//GEN-LAST:event_enterBtnActionPerformed
 
     private void profileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileBtnActionPerformed
-        // TODO add your handling code here:
         new StudentProfile().setVisible(true); //returns to profile form
         this.dispose();
     }//GEN-LAST:event_profileBtnActionPerformed
 
     private void subjectBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subjectBtnActionPerformed
-        // TODO add your handling code here:
         new StudentSubject().setVisible(true); //returns to the subject form
         this.dispose();
     }//GEN-LAST:event_subjectBtnActionPerformed

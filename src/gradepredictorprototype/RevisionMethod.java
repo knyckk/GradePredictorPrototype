@@ -207,17 +207,16 @@ public class RevisionMethod extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void createMethodBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createMethodBtnActionPerformed
-
-        new CreateMethod().setVisible(true);
+        new CreateMethod().setVisible(true); //enters create method form
         this.dispose();
     }//GEN-LAST:event_createMethodBtnActionPerformed
 
     private void removeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeBtnActionPerformed
-
-        DatabaseManipulation.deleteMethod(removeBox.getSelectedItem().toString());
-        methodsBox.setModel(new javax.swing.DefaultComboBoxModel<>(DatabaseManipulation.getMethods().stream().map(x -> x.getName()).toArray(String[]::new)));
-        removeBox.setModel(new javax.swing.DefaultComboBoxModel<>(DatabaseManipulation.getMethods().stream().map(x -> x.getName()).toArray(String[]::new)));
-        replaceBox.setModel(new javax.swing.DefaultComboBoxModel<>(DatabaseManipulation.getMethods().stream().map(x -> x.getName()).toArray(String[]::new)));
+        DatabaseManipulation.deleteMethod(removeBox.getSelectedItem().toString());//deletes the method
+        int index = removeBox.getSelectedIndex(); //gets index of deleted method
+        methodsBox.remove(index);
+        removeBox.remove(index); //updates combo boxes locally
+        replaceBox.remove(index);
     }//GEN-LAST:event_removeBtnActionPerformed
 
     private void subjectBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subjectBtnActionPerformed
@@ -233,11 +232,12 @@ public class RevisionMethod extends javax.swing.JFrame {
     }//GEN-LAST:event_profileBtnActionPerformed
 
     private void renameBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_renameBtnActionPerformed
-        if (ValidationRoutines.lengthCheck(0, nameFld.getText(), 32)) {
-            DatabaseManipulation.updateMethod(removeBox.getSelectedItem().toString(), nameFld.getText());
-            methodsBox.setModel(new javax.swing.DefaultComboBoxModel<>(DatabaseManipulation.getMethods().stream().map(x -> x.getName()).toArray(String[]::new)));
-            removeBox.setModel(new javax.swing.DefaultComboBoxModel<>(DatabaseManipulation.getMethods().stream().map(x -> x.getName()).toArray(String[]::new)));
-            replaceBox.setModel(new javax.swing.DefaultComboBoxModel<>(DatabaseManipulation.getMethods().stream().map(x -> x.getName()).toArray(String[]::new)));
+        if (ValidationRoutines.lengthCheck(0, nameFld.getText(), 32)) { //validates inputs
+            DatabaseManipulation.updateMethod(removeBox.getSelectedItem().toString(), nameFld.getText()); //updates the method
+            String newMethod = nameFld.getText(); //stores method locally 
+            methodsBox.addItem(newMethod);
+            removeBox.addItem(newMethod); //updates boxes locally
+            replaceBox.addItem(newMethod);
     }//GEN-LAST:event_renameBtnActionPerformed
     }
     private void nameFldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nameFldFocusGained

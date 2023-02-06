@@ -140,8 +140,8 @@ public class CreateSubject extends javax.swing.JFrame {
     }//GEN-LAST:event_nameFldActionPerformed
 
     private void enterBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterBtnActionPerformed
-        if(ValidationRoutines.lengthCheck(0,nameFld.getText(),32)) {
-            DatabaseManipulation.makeSubject(nameFld.getText());
+        if(ValidationRoutines.lengthCheck(0,nameFld.getText(),32)) { //validates data
+            DatabaseManipulation.makeSubject(nameFld.getText());//makes subject if valid
         }
     }//GEN-LAST:event_enterBtnActionPerformed
 
@@ -160,8 +160,10 @@ public class CreateSubject extends javax.swing.JFrame {
     }//GEN-LAST:event_exitMouseClicked
 
     private void nameFldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nameFldKeyPressed
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
-           DatabaseManipulation.makeSubject(nameFld.getText());
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER) {//checks enter key is pressed
+           if(ValidationRoutines.lengthCheck(0,nameFld.getText(),32)) { //validates data
+            DatabaseManipulation.makeSubject(nameFld.getText());//makes subject if valid
+        }
        }
     }//GEN-LAST:event_nameFldKeyPressed
 

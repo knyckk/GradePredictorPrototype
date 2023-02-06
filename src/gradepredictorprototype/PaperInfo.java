@@ -333,14 +333,22 @@ public class PaperInfo extends javax.swing.JFrame {
         if (ValidationRoutines.isInt(AStarFld.getText())
                 && ValidationRoutines.isInt(AFld.getText())
                 && ValidationRoutines.isInt(BFld.getText())
-                && ValidationRoutines.isInt(CFld.getText())
+                && ValidationRoutines.isInt(CFld.getText())//validates inputs
                 && ValidationRoutines.isInt(DFld.getText())
                 && ValidationRoutines.isInt(EFld.getText())
                 && ValidationRoutines.isDate(yearFld.getText() + "-01-01")
                 && ValidationRoutines.isInt(howManyFld.getText())
                 && ValidationRoutines.isInt(numberFld.getText())) {
-                    Paper paper = new Paper(Integer.valueOf(howManyFld.getText()), Integer.valueOf(yearFld.getText()), Integer.valueOf(numberFld.getText()), Integer.valueOf(AStarFld.getText()), Integer.valueOf(AFld.getText()), Integer.valueOf(BFld.getText()), Integer.valueOf(CFld.getText()), Integer.valueOf(DFld.getText()), Integer.valueOf(EFld.getText()));
-                    new CreatePaper(paper).setVisible(true);
+                    Paper paper = new Paper(Integer.valueOf(howManyFld.getText()), 
+                            Integer.valueOf(yearFld.getText()), 
+                            Integer.valueOf(numberFld.getText()), 
+                            Integer.valueOf(AStarFld.getText()), 
+                            Integer.valueOf(AFld.getText()), 
+                            Integer.valueOf(BFld.getText()), //initialises the paper locally
+                            Integer.valueOf(CFld.getText()), 
+                            Integer.valueOf(DFld.getText()), 
+                            Integer.valueOf(EFld.getText()));
+                    new CreatePaper(paper).setVisible(true); //goes into the create paper form for further information
                     this.dispose();
         }
     }//GEN-LAST:event_enterBtnActionPerformed

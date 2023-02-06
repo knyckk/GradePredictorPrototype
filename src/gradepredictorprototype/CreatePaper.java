@@ -14,7 +14,7 @@ import javax.swing.ImageIcon;
 public class CreatePaper extends javax.swing.JFrame {
 
     private Paper paper;
-    private int index;
+    private int index; //creates variables
     private int[] topics;
     private ImageIcon question = new ImageIcon();
 
@@ -23,7 +23,7 @@ public class CreatePaper extends javax.swing.JFrame {
      */
     public CreatePaper(Paper paper) {
         index = 0;
-        this.paper = paper;
+        this.paper = paper; //initialises variables
         topics = new int[paper.numOfQuestions()];        
         initComponents();
     }
@@ -83,11 +83,6 @@ public class CreatePaper extends javax.swing.JFrame {
         markFld.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 markFldFocusGained(evt);
-            }
-        });
-        markFld.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                markFldKeyReleased(evt);
             }
         });
 
@@ -238,45 +233,45 @@ public class CreatePaper extends javax.swing.JFrame {
 
     private void rightBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rightBtnActionPerformed
         if (ValidationRoutines.isInt(markFld.getText())
-                ) {
-            if (index < paper.numOfQuestions() - 1) {
-                paper.addQuestion(index, new Question(Integer.valueOf(markFld.getText()), question, topicsBox.getSelectedItem().toString()));
-                topics[index] = topicsBox.getSelectedIndex();
-                index += 1;
-                questionNumLbl.setText("Question " + (index + 1));
+                ) { // validates input
+            if (index < paper.numOfQuestions() - 1) { //makes sure you cannot go past then number of questions that exists
+                paper.addQuestion(index, new Question(Integer.valueOf(markFld.getText()), question, topicsBox.getSelectedItem().toString())); //adds the question to the paper
+                topics[index] = topicsBox.getSelectedIndex(); //stores the topic locally
+                index += 1; //increments the index
+                questionNumLbl.setText("Question " + (index + 1));//updates labels
                 markFld.setText(String.valueOf(paper.getQuestion(index).getMark()));
                 questionLbl.setIcon(paper.getQuestion(index).getQuestion());
-                question = paper.getQuestion(index).getQuestion();
-                topicsBox.setSelectedIndex(topics[index]);
+                question = paper.getQuestion(index).getQuestion();//gets the new question
+                topicsBox.setSelectedIndex(topics[index]);//updates topics box
             }
         } else {            
-            markFld.setText("Please enter a number");
+            markFld.setText("Please enter a number"); //if validation routine fails, gives an error message
         }
     }//GEN-LAST:event_rightBtnActionPerformed
 
     private void leftBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leftBtnActionPerformed
         if (ValidationRoutines.isInt(markFld.getText())
-                ) {
-            if (index > 0) {
-                paper.addQuestion(index, new Question(Integer.valueOf(markFld.getText()), question, topicsBox.getSelectedItem().toString()));
-                topics[index] = topicsBox.getSelectedIndex();
-                index -= 1;
-                questionNumLbl.setText("Question " + (index + 1));
+                ) {//validates input
+            if (index > 0) {//does not allow index to be negative
+                paper.addQuestion(index, new Question(Integer.valueOf(markFld.getText()), question, topicsBox.getSelectedItem().toString()));//adds the question to the paper
+                topics[index] = topicsBox.getSelectedIndex(); //stores topic locally
+                index -= 1;//increments the index
+                questionNumLbl.setText("Question " + (index + 1));//updates labels
                 markFld.setText(String.valueOf(paper.getQuestion(index).getMark()));
                 questionLbl.setIcon(paper.getQuestion(index).getQuestion());
-                question = paper.getQuestion(index).getQuestion();
-                topicsBox.setSelectedIndex(topics[index]);
+                question = paper.getQuestion(index).getQuestion();//gets the new question
+                topicsBox.setSelectedIndex(topics[index]);//updates topic box
             }
         }   else {
-                markFld.setText("Please enter a number");
+                markFld.setText("Please enter a number");//if validation routine fails, gives an error message
         }
 
     }//GEN-LAST:event_leftBtnActionPerformed
 
     private void createBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBtnActionPerformed
-        paper.addQuestion(index, new Question(Integer.valueOf(markFld.getText()), question, topicsBox.getSelectedItem().toString()));
-        DatabaseManipulation.createPaper(paper, GradePredictorPrototype.getSubject());
-        new TeacherSubject().setVisible(true);
+        paper.addQuestion(index, new Question(Integer.valueOf(markFld.getText()), question, topicsBox.getSelectedItem().toString())); //saves current question
+        DatabaseManipulation.createPaper(paper, GradePredictorPrototype.getSubject());//creates the paper
+        new TeacherSubject().setVisible(true);//returns to subject form
         this.dispose();
 
     }//GEN-LAST:event_createBtnActionPerformed
@@ -295,15 +290,9 @@ public class CreatePaper extends javax.swing.JFrame {
         System.exit(0); //closes application
     }//GEN-LAST:event_exitMouseClicked
 
-    private void markFldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_markFldKeyReleased
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_markFldKeyReleased
-
     private void questionBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_questionBtnActionPerformed
-        // TODO add your handling code here:
-        question = GradePredictorPrototype.getImageFromClipboard();
-        questionLbl.setIcon(question);
+        question = GradePredictorPrototype.getImageFromClipboard(); //gets question from clipboard
+        questionLbl.setIcon(question);//updates label
     }//GEN-LAST:event_questionBtnActionPerformed
 
     /**
