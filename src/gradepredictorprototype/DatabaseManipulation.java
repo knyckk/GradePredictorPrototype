@@ -19,6 +19,7 @@ import javax.swing.ImageIcon;
  * @author 1-thope
  */
 public class DatabaseManipulation {
+
     private static final String DATABASENAME = "THope_test";
     private static final String DATABASEPASSWORD = "mKdvUEKPxX";
     private static final String URL = "jdbc:mysql://computing.gfmat.org:3306/" + DATABASENAME + "?user=THope&useSSL=true"; // final varible names are all caps    
@@ -168,14 +169,16 @@ public class DatabaseManipulation {
         }
     }
 
-    public static void createTopic(String topic, Subject subject) {
+    public static int createTopic(String topic, Subject subject) {
         boolean willAdd = true;
+        int maxID = 0;
         try ( Connection conn = DriverManager.getConnection(URL, "THope", DATABASEPASSWORD);  Statement statement = conn.createStatement()) {
-            try ( ResultSet result = statement.executeQuery("SELECT " + TOPIC + " FROM " + TOPICS)) {
+            try ( ResultSet result = statement.executeQuery("SELECT " + TOPIC + ","  + TOPICID  + " FROM " + TOPICS)) {
                 while (result.next()) {
                     if (result.getString(TOPIC).equals(topic)) {
                         willAdd = false;
                     }
+                    maxID = result.getInt(TOPICID);
                 }
 
             } catch (SQLException e) {
@@ -189,6 +192,7 @@ public class DatabaseManipulation {
         } catch (SQLException e) {
             System.out.println("ERROR MESSAGE 1!!!!" + e);
         }
+        return maxID;
     }
 
     public static void createStudentSub(Student student, Subject subject) {
@@ -243,7 +247,7 @@ public class DatabaseManipulation {
         }
     }
 
-    public static void createClass(String name, Teacher teacher) {
+    public static void createClass(String name, User teacher) {
         boolean newCode = true;
         boolean willAdd = true;
         String studentCode = "";
@@ -281,7 +285,7 @@ public class DatabaseManipulation {
         }
     }
 
-    public static void joinClass(String code, Teacher teacher) {
+    public static void joinClass(String code, User teacher) {
         boolean willAdd = false;
         String className = "";
         try ( Connection conn = DriverManager.getConnection(URL, "THope", DATABASEPASSWORD);  Statement statement = conn.createStatement()) {
@@ -435,7 +439,7 @@ public class DatabaseManipulation {
 
     }
 
-    public static ArrayList<Classroom> getClasses(Teacher teacher) {
+    public static ArrayList<Classroom> getClasses(User teacher) {
         ArrayList<Classroom> classes = new ArrayList<>();
         try ( Connection conn = DriverManager.getConnection(URL, "THope", DATABASEPASSWORD);  Statement statement = conn.createStatement()) {
             try ( ResultSet result = statement.executeQuery("SELECT Classes.ClassName, StudCode, TeacherCode, SubjectID FROM Classes\n"
@@ -621,19 +625,32 @@ public class DatabaseManipulation {
     public static void deleteMethod(String methodName) {
         try ( Connection conn = DriverManager.getConnection(URL, "THope", DATABASEPASSWORD);  Statement statement = conn.createStatement()) {
             statement.execute("DELETE FROM " + METHODS + " WHERE " + METHODNAME + " = '" + methodName + "';");
+            statement.execute("ALTER TABLE " + METHODS + " AUTO_INCREMENT = 1;");
             conn.close();//closes  the connection
         } catch (SQLException e) {
             System.out.println("ERROR MESSAGE 1!!!!" + e);
         }
     }
-    public static void deleteTopic(String topicName) {
+
+    public static boolean deleteTopic(int topicID) {
+        boolean toReturn = true;
         try ( Connection conn = DriverManager.getConnection(URL, "THope", DATABASEPASSWORD);  Statement statement = conn.createStatement()) {
-            statement.execute("DELETE FROM " + TOPICS + " WHERE " + TOPIC + " = '" + topicName + "';");
+            try ( ResultSet result = statement.executeQuery("SELECT TopicID FROM " + QUESTIONS + " where TopicId = " + topicID + " GROUP BY TopicID;")) {
+                toReturn = result.next();
+            } catch (SQLException e) {
+                System.out.println("ERROR MESSAGE 2!!!!" + e);
+            }
+            if (!toReturn) {
+                statement.execute("DELETE FROM " + TOPICS + " WHERE " + TOPICID + " = '" + topicID + "';");
+                statement.execute("ALTER TABLE " + TOPICS + " AUTO_INCREMENT = 1;");
+            }
             conn.close();//closes  the connection
         } catch (SQLException e) {
             System.out.println("ERROR MESSAGE 1!!!!" + e);
         }
+        return !toReturn;
     }
+
     public static void deleteClass(String className) {
         try ( Connection conn = DriverManager.getConnection(URL, "THope", DATABASEPASSWORD);  Statement statement = conn.createStatement()) {
             statement.execute("DELETE FROM " + CLASSUSERS + " WHERE " + CLASSNAME + " = '" + className + "'");
@@ -644,7 +661,7 @@ public class DatabaseManipulation {
         }
     }
 
-    public static void leaveClass(String className, Teacher teacher) {
+    public static void leaveClass(String className, User teacher) {
         try ( Connection conn = DriverManager.getConnection(URL, "THope", DATABASEPASSWORD);  Statement statement = conn.createStatement()) {
             statement.execute("DELETE FROM " + CLASSUSERS + " WHERE " + CLASSUSERID + " = '" + teacher.getEmail() + className + "'");
             conn.close();//closes  the connection
@@ -783,12 +800,12 @@ public class DatabaseManipulation {
         return toReturn;
     }
 
-    public static Teacher teacherFromEmail(String email) {
-        Teacher toReturn = new Teacher("", "");
+    public static User teacherFromEmail(String email) {
+        User toReturn = new User("", "", 0);
         try ( Connection conn = DriverManager.getConnection(URL, "THope", DATABASEPASSWORD);  Statement statement = conn.createStatement()) {
             try ( ResultSet result = statement.executeQuery("SELECT * FROM " + USERS + " WHERE " + EMAIL + " = '" + email + "'")) {
                 while (result.next()) {
-                    toReturn = new Teacher(result.getString(EMAIL), result.getString(PASSWORD), result.getString(USERNAME), result.getString(NAME), result.getInt(ICON));
+                    toReturn = new User(result.getString(EMAIL), result.getString(PASSWORD), 0, result.getString(USERNAME), result.getString(NAME), result.getInt(ICON));
                 }
                 conn.close();//closes  the connection
             } catch (SQLException e) {
@@ -854,8 +871,8 @@ public class DatabaseManipulation {
     public static String getPredicted(String StudentSubId) {
         String toReturn = "N/A";
         try ( Connection conn = DriverManager.getConnection(URL, "THope", DATABASEPASSWORD);  Statement statement = conn.createStatement()) {
-            try ( ResultSet result = statement.executeQuery("SELECT " + PREDICTEDGRADE + " FROM " + STUDENTSUB + " WHERE " +
-                    STUDENTSUBID + " = '" + StudentSubId + "'")) {
+            try ( ResultSet result = statement.executeQuery("SELECT " + PREDICTEDGRADE + " FROM " + STUDENTSUB + " WHERE "
+                    + STUDENTSUBID + " = '" + StudentSubId + "'")) {
                 if (result.next()) {
                     toReturn = result.getString(PREDICTEDGRADE);
                 }
@@ -868,15 +885,16 @@ public class DatabaseManipulation {
         }
         return toReturn;
     }
+
     public static String[] getStudentSubjectInfo(String StudentSubId) {
-        String[] toReturn = {"N/A","N/A","PPQ","2023-01-01"};
+        String[] toReturn = {"N/A", "N/A", "PPQ", "2023-01-01"};
         try ( Connection conn = DriverManager.getConnection(URL, "THope", DATABASEPASSWORD);  Statement statement = conn.createStatement()) {
-            try ( ResultSet result = statement.executeQuery("SELECT " + PREDICTEDGRADE + "," + TARGETGRADE +
-                    "," +METHODNAME + "," + DATE+ " FROM " + STUDENTSUB + " WHERE " + STUDENTSUBID + " = '" + StudentSubId + "'")) {
+            try ( ResultSet result = statement.executeQuery("SELECT " + PREDICTEDGRADE + "," + TARGETGRADE
+                    + "," + METHODNAME + "," + DATE + " FROM " + STUDENTSUB + " WHERE " + STUDENTSUBID + " = '" + StudentSubId + "'")) {
                 if (result.next()) {
                     toReturn[0] = result.getString(PREDICTEDGRADE);
                     toReturn[1] = result.getString(TARGETGRADE);
-                    toReturn[2]= result.getString(METHODNAME);
+                    toReturn[2] = result.getString(METHODNAME);
                     toReturn[3] = result.getString(DATE);
                 }
                 conn.close();//closes  the connection
@@ -888,6 +906,7 @@ public class DatabaseManipulation {
         }
         return toReturn;
     }
+
     public static double getFormalPerformance(Subject subject, Method method) {
         double toReturn = 0;
         int count = 0;
@@ -982,7 +1001,7 @@ public class DatabaseManipulation {
     public static String getTarget(String StudentSubId) {
         String toReturn = "A*";
         try ( Connection conn = DriverManager.getConnection(URL, "THope", DATABASEPASSWORD);  Statement statement = conn.createStatement()) {
-            try ( ResultSet result = statement.executeQuery("SELECT " + TARGETGRADE + " FROM " + STUDENTSUB + " WHERE " + STUDENTSUBID 
+            try ( ResultSet result = statement.executeQuery("SELECT " + TARGETGRADE + " FROM " + STUDENTSUB + " WHERE " + STUDENTSUBID
                     + " = '" + StudentSubId + "'")) {
                 if (result.next()) {
                     toReturn = result.getString(TARGETGRADE);
@@ -1000,7 +1019,7 @@ public class DatabaseManipulation {
     public static String getExamDate(String StudentSubId) {
         String toReturn = "2023-06-01";
         try ( Connection conn = DriverManager.getConnection(URL, "THope", DATABASEPASSWORD);  Statement statement = conn.createStatement()) {
-            try ( ResultSet result = statement.executeQuery("SELECT " + DATE + " FROM " + STUDENTSUB 
+            try ( ResultSet result = statement.executeQuery("SELECT " + DATE + " FROM " + STUDENTSUB
                     + " WHERE " + STUDENTSUBID + " = '" + StudentSubId + "'")) {
                 if (result.next()) {
                     toReturn = result.getString(DATE);
@@ -1021,8 +1040,8 @@ public class DatabaseManipulation {
     public static String getMethod(String StudentSubId) {
         String toReturn = "PPQ";
         try ( Connection conn = DriverManager.getConnection(URL, "THope", DATABASEPASSWORD);  Statement statement = conn.createStatement()) {
-            try ( ResultSet result = statement.executeQuery("SELECT " + METHODNAME + " FROM " + STUDENTSUB + " WHERE " + 
-                    STUDENTSUBID + " = '" + StudentSubId + "'")) {
+            try ( ResultSet result = statement.executeQuery("SELECT " + METHODNAME + " FROM " + STUDENTSUB + " WHERE "
+                    + STUDENTSUBID + " = '" + StudentSubId + "'")) {
                 if (result.next()) {
                     toReturn = result.getString(METHODNAME);
                 }
@@ -1055,6 +1074,7 @@ public class DatabaseManipulation {
         }
         return toReturn;
     }
+
     public static boolean topicExists(String name) {
         boolean toReturn = false;
         try ( Connection conn = DriverManager.getConnection(URL, "THope", DATABASEPASSWORD);  Statement statement = conn.createStatement()) {

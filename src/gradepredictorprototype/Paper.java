@@ -14,76 +14,76 @@ public class Paper {
     private Question[] questions;
     private int year;
     private int number;
-    private int[] boundaries;
+    private int[] boundaries;//declare variables
     private int PaperID;
     private int subjectID;
     private int maxMark;
     private int score;
-    public Paper(int numOfQuestions, int year, int number, int AStar, int A, int B, int C, int D, int E) {
+    public Paper(int numOfQuestions, int year, int number, int AStar, int A, int B, int C, int D, int E) {//constructor for creating a new paper
         questions = new Question[numOfQuestions];
         this.year = year;
-        this.number = number;
+        this.number = number;//initialises variables
         boundaries = new int[] {AStar, A, B, C , D ,E};
         for(int i = 0; i<numOfQuestions;i++) {
             questions[i] = new Question(0,new ImageIcon(),"topic");
         }
     }
-    public Paper(Question[] questions, int ID, int year, int number, int AStar, int A, int B, int C, int D, int E, int subject, int max) {
+    public Paper(Question[] questions, int ID, int year, int number, int AStar, int A, int B, int C, int D, int E, int subject, int max) {//constructor for creating an existing paper
         this.year = year;
         this.PaperID = ID;
         this.number = number;
-        boundaries = new int[] {AStar, A, B, C , D ,E};
+        boundaries = new int[] {AStar, A, B, C , D ,E};//initialise variables
         this.questions = questions;
         this.subjectID = subject;
         this.maxMark = max;
     }
-    public void addQuestion(int index, Question question) {
-        score -= questions[index].getScore();
-        maxMark -= questions[index].getMark();
-        questions[index] = question;
-        score += questions[index].getScore();
+    public void addQuestion(int index, Question question) {//method to add or change a question at an index
+        score -= questions[index].getScore();//removes score for original question at index
+        maxMark -= questions[index].getMark();//reduces paper mark
+        questions[index] = question;//changes question
+        score += questions[index].getScore();//sets new score and mark
         maxMark += questions[index].getMark();
     }
     public Question getQuestion(int index) {
-        return questions[index];
+        return questions[index];//returns question at index
     }
     public int numOfQuestions() {
-        return questions.length;
+        return questions.length;//returns number of questions in the paper
     }
     public int[] getBoundaries() {
-        return boundaries;
+        return boundaries;//returns paper boundaries
     }
     public int getYear() {
-        return year;
+        return year; //returns paper year
     }
     public int getNum() {
-        return number;
+        return number; //returns paper number
     }
     public Question[] getQuestions() {
-        return questions;
+        return questions; //returns questions
     }
     @Override
     public String toString() {
-        return String.valueOf(year) + " Paper " + String.valueOf(number);
+        return String.valueOf(year) + " Paper " + String.valueOf(number); //returns a string in form yyyy paper x
     }
     public void setSubject(int subject) {
-        this.subjectID = subject;
+        this.subjectID = subject;//sets subject paper is for as subjectID
     }
     public int getSubject() {
-        return subjectID;
+        return subjectID; //returns subjectID
     }
     public int getID() {
-        return  PaperID;
+        return  PaperID; //returns paper id
     }
     public int getMax() {
-        return maxMark;
+        return maxMark; //returns max possible marks in paper
     }
     public int getScore() {
-        return score;
+        return score; //returns score achieved by student in paper
     }
     public void setQuestionScore(int questionIndex, int score) {
-        this.score -= questions[questionIndex].getScore();
-        questions[questionIndex].setScore(score);
-        this.score += score;
+        this.score -= questions[questionIndex].getScore();//reduces score with old question score
+        questions[questionIndex].setScore(score); //sets question new score
+        this.score += score;//increases score with new question score
     }
 }

@@ -11,22 +11,22 @@ package gradepredictorprototype;
 public class Classroom {
     private String classname;
     private String studentCode;
-    private String teacherCode;
+    private String teacherCode; // declare variables
     private Subject subject;
     public Classroom(String classname, String studentCode, String teacherCode, Subject subject) {
         this.classname = classname;
-        this.studentCode = studentCode;
+        this.studentCode = studentCode; // initialise variables
         this.teacherCode = teacherCode;
         this.subject = subject;
     }
-    public boolean studentCodeExists(String code) {
-        boolean toReturn = false;
+    public boolean studentCodeExists(String code) {//method to check student code is equal to inputed code
+        boolean toReturn = false;//sets default output to false
         if(studentCode.equals(code)) {
-            toReturn = true;
+            toReturn = true;//returns  true if  they match
         }
         return toReturn;
     }
-    public boolean teacherCodeExists(String code) {
+    public boolean teacherCodeExists(String code) {//the same method as studentCodeExists except for teacher codes
         boolean toReturn = false;
         if(teacherCode.equals(code)) {
             toReturn = true;
@@ -34,15 +34,15 @@ public class Classroom {
         return toReturn;
     }
     public String getName() {
-        return this.classname;
+        return this.classname;//returns class name
     }
     public Subject getSubject() {
-        return this.subject;
+        return this.subject;//returns subject class is a part of
     }
     public String getStudentCode() {
-        return studentCode;
+        return studentCode;//returns student code
     }
     public String getTeacherCode() {
-        return teacherCode;
+        return teacherCode;//returns teacher code
     }
 }

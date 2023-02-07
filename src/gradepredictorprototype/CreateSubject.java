@@ -169,7 +169,7 @@ public class CreateSubject extends javax.swing.JFrame {
 
     private void profileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileBtnActionPerformed
 
-        new StudentProfile().setVisible(true); //returns user to their profile
+        new TeacherProfile().setVisible(true); //returns user to their profile
         this.dispose();
     }//GEN-LAST:event_profileBtnActionPerformed
 

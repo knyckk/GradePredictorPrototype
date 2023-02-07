@@ -12,10 +12,13 @@ import java.util.ArrayList;
  */
 public class Topics extends javax.swing.JFrame {
 
+    private ArrayList<Topic> topics;
+
     /**
      * Creates new form Topics
      */
     public Topics() {
+        topics = DatabaseManipulation.getTopicsFromSubject(GradePredictorPrototype.getSubject());
         initComponents();
     }
 
@@ -51,7 +54,7 @@ public class Topics extends javax.swing.JFrame {
         titleLbl.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         titleLbl.setText("Topics");
 
-        topicsBox.setModel(new javax.swing.DefaultComboBoxModel<>(DatabaseManipulation.getTopicsFromSubject(GradePredictorPrototype.getSubject()).stream().map(x -> x.getTopic()).toArray(String[]::new)));
+        topicsBox.setModel(new javax.swing.DefaultComboBoxModel<>(topics.stream().map(x -> x.getTopic()).toArray(String[]::new)));
         topicsBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 topicsBoxActionPerformed(evt);
@@ -75,10 +78,10 @@ public class Topics extends javax.swing.JFrame {
         removeLbl.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         removeLbl.setText("Remove Topic:");
 
-        removeBox.setModel(new javax.swing.DefaultComboBoxModel<>(DatabaseManipulation.getTopicsFromSubject(GradePredictorPrototype.getSubject()).stream().map(x -> x.getTopic()).toArray(String[]::new)));
+        removeBox.setModel(new javax.swing.DefaultComboBoxModel<>(topics.stream().map(x -> x.getTopic()).toArray(String[]::new)));
 
         removeBtn.setText("Remove");
-        removeBtn.setToolTipText("This will permanently delete the topic, including any questions with it as the topic");
+        removeBtn.setToolTipText("This will permanently delete the topic as long as it does not appear in any exam questions");
         removeBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 removeBtnActionPerformed(evt);
@@ -91,7 +94,7 @@ public class Topics extends javax.swing.JFrame {
         withLbl.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         withLbl.setText("with:");
 
-        replaceBox.setModel(new javax.swing.DefaultComboBoxModel<>(DatabaseManipulation.getTopicsFromSubject(GradePredictorPrototype.getSubject()).stream().map(x -> x.getTopic()).toArray(String[]::new)));
+        replaceBox.setModel(new javax.swing.DefaultComboBoxModel<>(topics.stream().map(x -> x.getTopic()).toArray(String[]::new)));
 
         replaceFld.setText("Topic");
         replaceFld.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -209,8 +212,9 @@ public class Topics extends javax.swing.JFrame {
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
         if (ValidationRoutines.presenceCheck(newTopicFld.getText()) && ValidationRoutines.lengthCheck(0, newTopicFld.getText(), 128)) {//validates new topic
-            DatabaseManipulation.createTopic(newTopicFld.getText(), GradePredictorPrototype.getSubject());//stores new topic
+            int maxID = DatabaseManipulation.createTopic(newTopicFld.getText(), GradePredictorPrototype.getSubject());//stores new topic
             String newTopic = newTopicFld.getText();
+            topics.add(new Topic(maxID + 1, newTopic));
             topicsBox.addItem(newTopic);//updates combo boxes
             removeBox.addItem(newTopic);
             replaceBox.addItem(newTopic);
@@ -266,11 +270,13 @@ public class Topics extends javax.swing.JFrame {
     }//GEN-LAST:event_replaceBtnActionPerformed
 
     private void removeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeBtnActionPerformed
-        DatabaseManipulation.deleteTopic(removeBox.getSelectedItem().toString());//deletes the topic
-        int oldIndex = removeBox.getSelectedIndex();
-        topicsBox.removeItemAt(oldIndex);
-        replaceBox.removeItemAt(oldIndex); //updates the combo boxes
-        removeBox.removeItemAt(oldIndex);
+        if (DatabaseManipulation.deleteTopic(topics.get(removeBox.getSelectedIndex()).getID())) {//deletes the topic
+            int oldIndex = removeBox.getSelectedIndex();
+            topics.remove(oldIndex);
+            topicsBox.removeItemAt(oldIndex);
+            replaceBox.removeItemAt(oldIndex); //updates the combo boxes
+            removeBox.removeItemAt(oldIndex);
+        }
     }//GEN-LAST:event_removeBtnActionPerformed
 
     /**

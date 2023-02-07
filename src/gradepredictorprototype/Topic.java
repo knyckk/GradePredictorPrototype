@@ -12,44 +12,44 @@ public class Topic {
 
     private int topicID;
     private String topic;
-    private int overall;
+    private int overall;//declares variables
     private int count;
     public Topic(int ID, String topic) {
         this.topic = topic;
         topicID = ID;
-        count =0;
+        count =0;//initialise variables
         overall = 0;
     }
 
     public String getTopic() {
-        return topic;
+        return topic;//returns the topic
     }
     public int getID() {
-        return topicID;
+        return topicID;//returns the ID
     }
     @Override
-    public boolean equals(Object compare) {
+    public boolean equals(Object compare) {//compares a topic to an object for equality 
         if(this == compare) {
-            return true;
+            return true;//checks if they are equal
         }
         if(!(compare instanceof Topic)) {
-            return false;
+            return false;//checks if compared  object is a topic
         }
-        Topic compared = (Topic) compare;
+        Topic compared = (Topic) compare;//casts compared object into a topic
         
         if(this.topicID == compared.topicID 
-                && this.topic.equals(compared.topic)) {
+                && this.topic.equals(compared.topic)) {//compares variables
             return true;
     }
         return false;
     }
     public void addOverall(int score) {
-        overall += score;
+        overall += score;//adds a score to a total
     }
     public void incrementCount() {
-        count++;
+        count++;//increments a counter
     }
     public double getOverall() {
-        return (double) overall/count;
+        return (double) overall/count;//averages score
     }
 }

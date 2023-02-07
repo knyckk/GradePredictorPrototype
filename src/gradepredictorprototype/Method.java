@@ -10,20 +10,20 @@ package gradepredictorprototype;
  */
 public class Method {
     private String name;
-    private String description;
+    private String description;//declares variables
     private double performance;
     public Method(String name, String description) {
-        this.name = name;
+        this.name = name;//initialises variables
         this.description = description;
-        this.performance = (DatabaseManipulation.getFormalPerformance(GradePredictorPrototype.getSubject(), this) + DatabaseManipulation.getInformalPerformance(GradePredictorPrototype.getSubject(), this) + DatabaseManipulation.getGradePerformance(GradePredictorPrototype.getSubject(), this)) / 3; 
+        this.performance = (DatabaseManipulation.getFormalPerformance(GradePredictorPrototype.getSubject(), this) + DatabaseManipulation.getInformalPerformance(GradePredictorPrototype.getSubject(), this) + DatabaseManipulation.getGradePerformance(GradePredictorPrototype.getSubject(), this)) / 3; //performance is the average of the 3 types of performances 
     }
     public String getName() {
-        return name;
+        return name;//returns method name
     }
     public double getPerformance() {
-        return performance;
+        return performance;//returns performance
     }
     public String getDesc() {
-        return description;
+        return description;//returns description
     }
 }

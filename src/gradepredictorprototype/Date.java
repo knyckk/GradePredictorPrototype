@@ -10,7 +10,7 @@ package gradepredictorprototype;
  */
 public class Date {
     private int day;
-    private int month;
+    private int month; //declares variables
     private int year;
     public Date(String date) { // date in form yyyy-mm-dd
         year = Integer.parseInt(date.substring(0, 4));
@@ -18,19 +18,19 @@ public class Date {
         day = Integer.parseInt(date.substring(8,10));
     }
     public int getMonth() {
-        return this.month;
+        return this.month; // returns the month for the date
     }
     public int getYear() {
-        return this.year;
+        return this.year;//returns the year for the date
     }
-    public int subtract(Date date) {
-        int toReturn = 0;
-        toReturn += this.getMonth();
-        toReturn += (12 *(this.year - date.getYear())) - date.getMonth();
+    public int subtract(Date date) {//returns the difference between 2 dates in months
+        int toReturn = 0;//sets initial difference to 0
+        toReturn += this.getMonth();//adds this dates months
+        toReturn += (12 *(this.year - date.getYear())) - date.getMonth();//adds 12 months for every year difference between them and takes the second dates number of months
         return toReturn;
     }
     
-    public static int nextYear() {   
+    public static int nextYear() {   //returns the following year for the date
         return Integer.parseInt(java.time.LocalDate.now().toString().substring(0,4)) + 1;
     }
 }

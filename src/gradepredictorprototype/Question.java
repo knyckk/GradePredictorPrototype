@@ -12,47 +12,47 @@ import javax.swing.ImageIcon;
  */
 public class Question {
     private int maxMark = 0;
-    private ImageIcon question;
+    private ImageIcon question;//declares variables
     private Topic topic;
     private int score = 0;
     private int QuestionID;
-    public Question(int max, ImageIcon question, String topic) {
+    public Question(int max, ImageIcon question, String topic) {//constructor for creating a new question
         this.topic = DatabaseManipulation.topicFromTopic(topic);
-        maxMark = max;
+        maxMark = max;//initialise variables
         this.question = question;
     }
-    public Question(int ID,int max, ImageIcon question, Topic topic) {
+    public Question(int ID,int max, ImageIcon question, Topic topic) {//constructor for loading an existing question as a teacher
         this.topic = topic;
         this.QuestionID = ID;
-        maxMark = max;
+        maxMark = max;//initialise variables 
         this.question = question;
     }
-    public Question(int ID, int max, int score, ImageIcon question, Topic topic) {
+    public Question(int ID, int max, int score, ImageIcon question, Topic topic) {//constructor for loading a question with a  score e.g. a students question
         this.topic = topic;
         this.QuestionID = ID;
-        this.score = score;
+        this.score = score;//initialise variables
         maxMark = max;
         this.question = question;
     }
     public int getMark() {
-        return maxMark;
+        return maxMark;//returns question max mark
     }
     public ImageIcon getQuestion() {
-        return question;
+        return question;//returns question
     }
     public Topic getTopic() {
-        return topic;
+        return topic;//returns topic question is part of 
     }
     public void setScore(int mark) {
-        score = mark;
+        score = mark;//sets question score
     }
     public int getScore() {
-        return score;
+        return score;//gets question score
     }
     public int getID() {
-        return QuestionID;
+        return QuestionID;//gets questionID
     }
     public boolean equals(Question question) {
-        return this.QuestionID == question.getID();
+        return this.QuestionID == question.getID();//compares 2 questions for equality
     }
 } 

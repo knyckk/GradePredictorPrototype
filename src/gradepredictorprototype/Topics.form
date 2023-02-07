@@ -137,7 +137,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="topicsBoxActionPerformed"/>
       </Events>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="topicsBox.setModel(new javax.swing.DefaultComboBoxModel&lt;&gt;(DatabaseManipulation.getTopicsFromSubject(GradePredictorPrototype.getSubject()).stream().map(x -&gt; x.getTopic()).toArray(String[]::new)));"/>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="topicsBox.setModel(new javax.swing.DefaultComboBoxModel&lt;&gt;(topics.stream().map(x -&gt; x.getTopic()).toArray(String[]::new)));"/>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
     </Component>
@@ -172,14 +172,14 @@
         </Property>
       </Properties>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="removeBox.setModel(new javax.swing.DefaultComboBoxModel&lt;&gt;(DatabaseManipulation.getTopicsFromSubject(GradePredictorPrototype.getSubject()).stream().map(x -&gt; x.getTopic()).toArray(String[]::new)));"/>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="removeBox.setModel(new javax.swing.DefaultComboBoxModel&lt;&gt;(topics.stream().map(x -&gt; x.getTopic()).toArray(String[]::new)));"/>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
     </Component>
     <Component class="javax.swing.JButton" name="removeBtn">
       <Properties>
         <Property name="text" type="java.lang.String" value="Remove"/>
-        <Property name="toolTipText" type="java.lang.String" value="This will permanently delete the topic, including any questions with it as the topic"/>
+        <Property name="toolTipText" type="java.lang.String" value="This will permanently delete the topic as long as it does not appear in any exam questions"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="removeBtnActionPerformed"/>
@@ -208,7 +208,7 @@
         </Property>
       </Properties>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="replaceBox.setModel(new javax.swing.DefaultComboBoxModel&lt;&gt;(DatabaseManipulation.getTopicsFromSubject(GradePredictorPrototype.getSubject()).stream().map(x -&gt; x.getTopic()).toArray(String[]::new)));"/>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="replaceBox.setModel(new javax.swing.DefaultComboBoxModel&lt;&gt;(topics.stream().map(x -&gt; x.getTopic()).toArray(String[]::new)));"/>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
     </Component>

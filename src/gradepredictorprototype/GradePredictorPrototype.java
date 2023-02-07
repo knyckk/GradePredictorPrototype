@@ -30,7 +30,7 @@ import javax.swing.UIManager;
  */
 public class GradePredictorPrototype {
 
-    private static Teacher teacher;
+    private static User teacher;
     private static Student student;
     private static Subject subject;
     private static double[] averageBoundaries;
@@ -80,7 +80,7 @@ public class GradePredictorPrototype {
     }
 
     public static void setTeacher(User user) {
-        teacher = new Teacher(user.getEmail(), user.getPassword(), user.getUsername(), user.getName(), user.getIcon());
+        teacher = new User(user.getEmail(), user.getPassword(),0, user.getUsername(), user.getName(), user.getIcon());
     }
 
     public static void setStudent(User user) {
@@ -103,7 +103,7 @@ public class GradePredictorPrototype {
         subject = new Subject(ID, name);
     }
 
-    public static Teacher getTeacher() {
+    public static User getTeacher() {
         return teacher;
     }
 

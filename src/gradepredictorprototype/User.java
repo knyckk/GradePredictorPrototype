@@ -11,29 +11,29 @@ package gradepredictorprototype;
 public class User {
     private String email;
     private String password;
-    private String name;
+    private String name;//declares variable
     private String username;
     private int type; // 0 is teacher, 1 is student
     public int icon;
-    public User(String email, String password, int type) {
+    public User(String email, String password, int type) {//signing up constructor
         this.email = email;
-        this.password = password;
+        this.password = password;//initialises variables
         this.type = type;
     }
-    public User(String email, String password, int type, int icon) {
+    public User(String email, String password, int type, int icon) {//logging in constructor
         this.email = email;
         this.password = password;
         this.type = type;
         this.icon = icon;
     }
-    public User(String email, String password, int type, String username, String name) {
+    public User(String email, String password, int type, String username, String name) {//constructor without icon
         this.email = email;
         this.password = password;
         this.type = type;
         this.username = username;
         this.name = name;
     }
-    public User(String email, String password, int type, String username, String name, int icon) {
+    public User(String email, String password, int type, String username, String name, int icon) {//constructor with all variables
         this.email = email;
         this.password = password;
         this.type = type;
@@ -42,28 +42,28 @@ public class User {
         this.icon = icon;
     }
     public String getEmail() {
-        return email;
+        return email;//returns email
     }
     public void setNames(String username, String name) {
         this.username = username;
-        this.name = name;
+        this.name = name;//sets names
     }
     public void setIcon(int icon) {
-        this.icon = icon;
+        this.icon = icon;//sets icon
     }
     public String getName() {
-        return name;
+        return name;//gets name
     }
     public String getUsername() {
-        return username;
+        return username;//gets username
     }
     public String getPassword() {
-        return password;
+        return password;//gets password
     }
     public int getType() {
-        return type;
+        return type;//gets type (student or teacher)
     }
     public int getIcon() {
-        return icon;
+        return icon;//gets icon
     }
 }
