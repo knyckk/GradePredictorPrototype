@@ -17,7 +17,7 @@ public class Question {
     private int score = 0;
     private int QuestionID;
     public Question(int max, ImageIcon question, String topic) {//constructor for creating a new question
-        this.topic = DatabaseManipulation.topicFromTopic(topic);
+        this.topic = DatabaseManipulation.topicFromTopic(topic,GradePredictorPrototype.getSubject());
         maxMark = max;//initialise variables
         this.question = question;
     }
