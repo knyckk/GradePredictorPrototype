@@ -217,83 +217,83 @@ public class GradePredictorPrototype {
             while (methods.get(tmphigh).getPerformance() > pivot && tmphigh > low) {//finds a method after the pivot that should be before the pivot
                 tmphigh--;
             }
-            if (tmplow <= tmphigh) {
+            if (tmplow <= tmphigh) {//if lower index is still lower than higher index
                 tmpswap = methods.get(tmplow);
-                methods.set(tmplow, methods.get(tmphigh));
+                methods.set(tmplow, methods.get(tmphigh));//swaps revision methods that should be either sides of pivots
                 methods.set(tmphigh, tmpswap);
-                tmplow++;
+                tmplow++;//increments and decrements indexes
                 tmphigh--;
             }
         }
         if (low < tmphigh) {
-            top3Methods(methods, low, tmphigh);
+            top3Methods(methods, low, tmphigh);//calls quick sort on low end of array
         }
         if (high > tmplow) {
-            top3Methods(methods, tmplow, high);
+            top3Methods(methods, tmplow, high);//calls quicksort on top end of array
         }
     }
 
-    public static void top3Topics(ArrayList<Topic> topics, int low, int high) {
-        double pivot = topics.get((low + high) / 2).getOverall();
+    public static void top3Topics(ArrayList<Topic> topics, int low, int high) {//recursive quick sort to sort topics by performance
+        double pivot = topics.get((low + high) / 2).getOverall();//sets pivot as performance  of middle topic in list
         Topic tmpswap;
-        int tmplow = low;
+        int tmplow = low;//declare and initialise variables
         int tmphigh = high;
-        while (tmplow <= tmphigh) {
-            while (topics.get(tmplow).getOverall() < pivot && tmplow < high) {
+        while (tmplow <= tmphigh) {//until the low index has become greater than the high index
+            while (topics.get(tmplow).getOverall() < pivot && tmplow < high) {//finds a topic below the pivot topic that should be above the pivot
                 tmplow++;
             }
-            while (topics.get(tmphigh).getOverall() > pivot && tmphigh > low) {
+            while (topics.get(tmphigh).getOverall() > pivot && tmphigh > low) {//finds a topic above the pivot that should be below it
                 tmphigh--;
             }
-            if (tmplow <= tmphigh) {
+            if (tmplow <= tmphigh) {//given that the top topic is still lower than the bottom topic
                 tmpswap = topics.get(tmplow);
-                topics.set(tmplow, topics.get(tmphigh));
+                topics.set(tmplow, topics.get(tmphigh));//swaps high and low topic
                 topics.set(tmphigh, tmpswap);
-                tmplow++;
-                tmphigh--;
+                tmplow++;//increments low index
+                tmphigh--;//decrements high index
             }
         }
         if (low < tmphigh) {
-            top3Topics(topics, low, tmphigh);
+            top3Topics(topics, low, tmphigh);//calls quick sort on bottom end of list
         }
         if (high > tmplow) {
-            top3Topics(topics, tmplow, high);
+            top3Topics(topics, tmplow, high);//calls quick sort on top end of list
         }
     }
 
-    public static String getTrend() {
-        ArrayList<Double[]> coordinates = DatabaseManipulation.getPercentages(GradePredictorPrototype.getStudent(), GradePredictorPrototype.getSubject(), new Date(student.getDate()));
+    public static String getTrend() {//method to get the current students pre
+        ArrayList<Double[]> coordinates = DatabaseManipulation.getPercentages(getStudent(), getSubject(), new Date(student.getDate()));//sets coordinates to be the percentage in a paper for y and date for x
         double sigmaX = 0;
-        double sigmaY = 0;
+        double sigmaY = 0;//declare and initialise variables
         double sigmaXY = 0;
         double sigmaXSquared = 0;
-        for (int i = 0; i < coordinates.size() - 1; i++) {
+        for (int i = 0; i < coordinates.size() - 1; i++) {//for every coordinate 
             double y1 = coordinates.get(i)[0];
             double x1 = coordinates.get(i)[1];
             sigmaX += x1;
-            sigmaXSquared += x1 * x1;
+            sigmaXSquared += x1 * x1;//totals the x, y, x squared , and xy product for coordinates
             sigmaY += y1;
             sigmaXY += x1 * y1;
         }
-        double constant = (sigmaY * sigmaXSquared - sigmaX * sigmaXY) / ((coordinates.size() - 1) * sigmaXSquared - sigmaX * sigmaX);
-        double gradient = ((coordinates.size() - 1) * sigmaXY - sigmaX * sigmaY) / ((coordinates.size() - 1) * sigmaXSquared - sigmaX * sigmaX);
+        double constant = (sigmaY * sigmaXSquared - sigmaX * sigmaXY) / ((coordinates.size() - 1) * sigmaXSquared - sigmaX * sigmaX);//calculates y intercept for  line of best fit
+        double gradient = ((coordinates.size() - 1) * sigmaXY - sigmaX * sigmaY) / ((coordinates.size() - 1) * sigmaXSquared - sigmaX * sigmaX);//calculates gradient of line of best fit    
         double finalX = coordinates.get(coordinates.size() - 1)[0];
-        double finalY = (gradient * finalX) + constant;
-        DatabaseManipulation.updatePredicted(grade(finalY), student.getEmail() + subject.getID());
-        return "Based on Trend: " + String.valueOf(100 * finalY).substring(0, 4) + "% - " + grade(finalY);
+        double finalY = (gradient * finalX) + constant;//calculates expected percentage based on trend
+        DatabaseManipulation.updatePredicted(grade(finalY), student.getEmail() + subject.getID());//stores predicted grade
+        return "Based on Trend: " + String.valueOf(100 * finalY).substring(0, 4) + "% - " + grade(finalY);//returns predicted grade
     }
 
-    public static String getAverage() {
-        ArrayList<Double[]> coordinates = DatabaseManipulation.getPercentages(GradePredictorPrototype.getStudent(), GradePredictorPrototype.getSubject(), new Date(student.getDate()));
+    public static String getAverage() {//a method to get average performance for current student in current exam
+        ArrayList<Double[]> coordinates = DatabaseManipulation.getPercentages(getStudent(), getSubject(), new Date(student.getDate()));//sets coordinates to be the percentage in a paper for y and date for x
         double total = 0;
-        for (int i = 0; i < coordinates.size() - 1; i++) {
-            total += coordinates.get(i)[0];
+        for (int i = 0; i < coordinates.size() - 1; i++) {//for every coordinate
+            total += coordinates.get(i)[0];//totals performance
         }
 
-        return "Based on Average: " + String.valueOf((100 * total / (coordinates.size() - 1))).substring(0, 4) + "% - " + grade(total / (coordinates.size() - 1));
+        return "Based on Average: " + String.valueOf((100 * total / (coordinates.size() - 1))).substring(0, 4) + "% - " + grade(total / (coordinates.size() - 1));//returns average performance
     }
 
-    public static String grade(double grade) {
+    public static String grade(double grade) {//grades a percentage using average grade boundaries for a subject
         if (grade >= averageBoundaries[0]) {
             return "A*";
         } else if (grade >= averageBoundaries[1]) {
@@ -310,7 +310,7 @@ public class GradePredictorPrototype {
         return "fail";
     }
 
-    public static double ungrade(int grade) {
+    public static double ungrade(int grade) {//ungrades a subject based on an integer calcualted from grade
         switch (grade) {
             case 0:
                 return averageBoundaries[5];
@@ -323,7 +323,7 @@ public class GradePredictorPrototype {
             case 4:
                 return averageBoundaries[1];
             case 5:
-                return averageBoundaries[0];
+                return averageBoundaries[0];//case 5 is best (A*) or if using a difference of 2 grades, (A* from predicted E) returns  grade boundary for an A*
             case -1:
                 return averageBoundaries[5] / 1;
             case -2:
@@ -333,13 +333,13 @@ public class GradePredictorPrototype {
             case -4:
                 return averageBoundaries[5] / 4;
             case -5:
-                return averageBoundaries[5] / 5;
+                return averageBoundaries[5] / 5;//case -5 is worst, only appears for difference of 2 grades, such as getting an E when predicted grade was an A*
             default:
                 return averageBoundaries[5] / 6;
         }
     }
 
-    public static String grade(int grade, int[] boundaries) {
+    public static String grade(int grade, int[] boundaries) {//grades a mark using a specific paper's grade boundaries
 
         if (grade >= boundaries[0]) {
             return "A*";
@@ -347,7 +347,7 @@ public class GradePredictorPrototype {
             return "A";
         } else if (grade >= boundaries[2]) {
             return "B";
-        } else if (grade >= boundaries[3]) {
+        } else if (grade >= boundaries[3]) {//returns the achieved grade
             return "C";
         } else if (grade >= boundaries[4]) {
             return "D";
@@ -357,7 +357,7 @@ public class GradePredictorPrototype {
         return "fail";
     }
 
-    public static int gradeToInt(String grade) {
+    public static int gradeToInt(String grade) {//converts a grade into an integer representation with A* = 5 and E or fail = 0
         switch (grade) {
             case "A*":
                 return 5;
@@ -374,37 +374,37 @@ public class GradePredictorPrototype {
         }
     }
 
-    public static ImageIcon getImageFromClipboard() {
-        Clipboard cb = Toolkit.getDefaultToolkit().getSystemClipboard();
-        Transferable transferable = cb.getContents(null);
-        if (transferable != null && transferable.isDataFlavorSupported(DataFlavor.imageFlavor)) {
+    public static ImageIcon getImageFromClipboard() {//a method to paste an image from the clipboard
+        Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();//gets the system clipboard
+        Transferable transferable = clipboard.getContents(null);//gets the contents of the clipboard
+        if (transferable != null && transferable.isDataFlavorSupported(DataFlavor.imageFlavor)) {//if contents exist and are an image
             try {
-                return new ImageIcon((Image) transferable.getTransferData(DataFlavor.imageFlavor));
+                return new ImageIcon((Image) transferable.getTransferData(DataFlavor.imageFlavor));//trys to convert content into an image Icon data type to be returned
             } catch (UnsupportedFlavorException | IOException e) {
-                System.out.println("Error: " + e);
+                System.out.println("Error: " + e);//if an error occurs prints error information
             }
 
         }
-        return null;
+        return null;//if error occured returns a null image
     }
 
-    public static ByteArrayInputStream imageToBinary(ImageIcon img) {
+    public static ByteArrayInputStream imageToBinary(ImageIcon img) {//a method to convert an image icon into a byte array input stream
         try {
-            BufferedImage sourceImage = new BufferedImage(
+            BufferedImage sourceImage = new BufferedImage(//initialises a buffered image of the same dimensions as the image icon
                     img.getIconWidth(),
                     img.getIconHeight(),
                     BufferedImage.TYPE_INT_RGB);
             Graphics g = sourceImage.createGraphics();
-            img.paintIcon(null, g, 0, 0);
+            img.paintIcon(null, g, 0, 0);//draws the image icon onto the buffered image
             g.dispose();
 
-            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-            ImageIO.write(sourceImage, "jpg", outputStream);
-            ByteArrayInputStream toReturn = new ByteArrayInputStream(outputStream.toByteArray());
-            return toReturn;
+            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();//creates a ByteArrayOutputStream datatype
+            ImageIO.write(sourceImage, "jpg", outputStream);//writes the buffered image onto the ByteArrayOutputStream
+            ByteArrayInputStream toReturn = new ByteArrayInputStream(outputStream.toByteArray());//creates the ByteArrayInputStream from the outputStream
+            return toReturn;//returns ByteArrayInputStream
         } catch (IOException e) {
-            System.out.println("Error: " + e);
+            System.out.println("Error: " + e);//prints error if one occurs
         }
-        return null;
+        return null;//returns null if error occurs
     }
 }
