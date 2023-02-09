@@ -11,7 +11,7 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
-import java.awt.datatransfer.Transferable;
+import java.awt.datatransfer.Transferable;//library imports
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
@@ -33,9 +33,9 @@ public class GradePredictorPrototype {
     private static User teacher;
     private static Student student;
     private static Subject subject;
-    private static double[] averageBoundaries;
+    private static double[] averageBoundaries;//declares variables
     private static int type;
-    private static boolean viewing = false;
+    private static boolean viewing = false;//not viewing by default
 
     /**
      * @param args the command line arguments
@@ -53,7 +53,7 @@ public class GradePredictorPrototype {
                     UIManager.put("nimbusBase", new Color(40, 40, 40));
                     UIManager.put("nimbusDisabledText", new Color(255, 0, 255));
                     UIManager.put("nimbusFocus", new Color(210, 210, 210));
-                    UIManager.put("nimbusGreen", new Color(0, 255, 0));
+                    UIManager.put("nimbusGreen", new Color(0, 255, 0));//sets look and feel of application
                     UIManager.put("nimbusInfoBlue", new Color(110, 110, 110));
                     UIManager.put("nimbusOrange", new Color(81, 83, 255));
                     UIManager.put("nimbusRed", new Color(255, 100, 255));
@@ -71,150 +71,150 @@ public class GradePredictorPrototype {
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             System.out.println("Error: " + ex);
         }
-        new Login().setVisible(true);
+        new Login().setVisible(true);//opens login form
 
     }
 
     public static void setTeacher(String email) {
-        teacher = DatabaseManipulation.teacherFromEmail(email);
+        teacher = DatabaseManipulation.teacherFromEmail(email);//sets teacher from a teacher's email
     }
 
-    public static void setTeacher(User user) {
+    public static void setTeacher(User user) {//sets teacher from a user instance
         teacher = new User(user.getEmail(), user.getPassword(),0, user.getUsername(), user.getName(), user.getIcon());
     }
 
-    public static void setStudent(User user) {
+    public static void setStudent(User user) {//sets student from a user instance
         student = new Student(user.getEmail(), user.getPassword(), user.getUsername(), user.getName(), user.getIcon());
     }
 
     public static void setStudentIcon(int newIcon) {
-        student.setIcon(newIcon);
+        student.setIcon(newIcon);//sets a students Icon
     }
 
     public static void setTeacherIcon(int newIcon) {
-        teacher.setIcon(newIcon);
+        teacher.setIcon(newIcon);//sets a teacher's Icon
     }
 
     public static void setStudent(String email) {
-        student = DatabaseManipulation.studentFromEmail(email);
+        student = DatabaseManipulation.studentFromEmail(email);//sets student from a student's email
     }
 
     public static void setSubject(int ID, String name) {
-        subject = new Subject(ID, name);
+        subject = new Subject(ID, name);//sets subject from Id and name
     }
 
     public static User getTeacher() {
-        return teacher;
+        return teacher;//returns the teacher
     }
 
     public static void setViewing(boolean view) {
-        viewing = view;
+        viewing = view;//sets viewing true or false
     }
 
-    public static void setNames(String username, String name, int type) {
+    public static void setNames(String username, String name, int type) {//sets a name and username for a user
         if (type == 0) {
-            teacher.setNames(username, name);
+            teacher.setNames(username, name);//sets teacher names
         } else if (type == 1) {
-            student.setNames(username, name);
+            student.setNames(username, name);//sets student names
         }
     }
 
-    public static User getUser() {
+    public static User getUser() {//gets the current user
         User toReturn = new User("", "", 1);
         if (type == 0) {
-            toReturn = teacher;
+            toReturn = teacher;//returns teacher if teacher is current user
         } else if (type == 1) {
-            toReturn = student;
+            toReturn = student;///returns student if student is current user
         }
         return toReturn;
     }
 
     public static void setType(int input) {
-        type = input;
+        type = input;//sets what current user type is
     }
 
     public static Student getStudent() {
-        return student;
+        return student;//gets current student
     }
 
     public static Subject getSubject() {
-        return subject;
+        return subject;//gets current subject
     }
 
     public static boolean getViewing() {
-        return viewing;
+        return viewing;//gets if a teacher is viewing a student's forms
     }
 
-    public static String getCode() {
-        String code;
-        Random random = new Random();
-        code = Character.toString((char) (random.nextInt(26) + 65))
-                + random.nextInt(10)
-                + Character.toString((char) (random.nextInt(26) + 65))
-                + Character.toString((char) (random.nextInt(26) + 97))
-                + random.nextInt(10)
-                + random.nextInt(10)
-                + Character.toString((char) (random.nextInt(26) + 97));
-        return code;
+    public static String getCode() {//a method to get a random code
+        String code;//code returned will be in form l0lU00U
+        Random random = new Random();//creates a random number generator
+        code = Character.toString((char) (random.nextInt(26) + 65))//creates a random lower case letter
+                + random.nextInt(10)//creates a random digit
+                + Character.toString((char) (random.nextInt(26) + 65))//creates a random lower case letter
+                + Character.toString((char) (random.nextInt(26) + 97))//creates a random upper case letter
+                + random.nextInt(10)//creates a random digit
+                + random.nextInt(10)//creates a random digit
+                + Character.toString((char) (random.nextInt(26) + 97));//creates a random upper case letter
+        return code;//returns code
     }
 
     public static int contains(ArrayList<Topic> topics, Topic topic) { //list of topics will not neccesarily be sorted so need to use a linear search
-        int toReturn = -1;
+        int toReturn = -1;//returns index of topic that is looked for
         int i = 0;
-        boolean found = false;
-        while (i < topics.size() && !found) {
-            found = topics.get(i).equals(topic);
+        boolean found = false;//sets to false by default, assumes topic is not in list
+        while (i < topics.size() && !found) {//iterates over list until topic is found or end of list reached
+            found = topics.get(i).equals(topic);//if topic is found
             if (found) {
-                toReturn = i;
+                toReturn = i;//stores index topic was found at
             }
             i++;
         }
-        return toReturn;
+        return toReturn;//returns index if found or -1 if not found
     }
 
-    public static boolean contains(ArrayList<Question> questions, Question question) { //list of topics will not neccesarily be sorted so need to use a linear search
+    public static boolean contains(ArrayList<Question> questions, Question question) { //list of questions will not neccesarily be sorted so need to use a linear search
         int i = 0;
-        boolean found = false;
-        while (i < questions.size() && !found) {
-            found = questions.get(i).equals(question);
+        boolean found = false;//assumes list does not contain question by default
+        while (i < questions.size() && !found) {//iterates over list until question found or end of list reached
+            found = questions.get(i).equals(question);//stores if question is found
             i++;
         }
-        return found;
+        return found;//outputs if topic is found
     }
 
-    public static void setBoundaries(Subject subject) {
-        ArrayList<Paper> papers = DatabaseManipulation.getPapers(subject);
+    public static void setBoundaries(Subject subject) {//sets average grade boundaries for a subject
+        ArrayList<Paper> papers = DatabaseManipulation.getPapers(subject);//gets all papers for the subject
         double Astar = 0;
         double A = 0;
-        double B = 0;
+        double B = 0;//declare and initialise variables
         double C = 0;
         double D = 0;
         double E = 0;
         int size = papers.size();
-        for (int i = 0; i < papers.size(); i++) {
+        for (int i = 0; i < papers.size(); i++) {//iterates over every paper
             int boundaries[] = papers.get(i).getBoundaries();
             int mark = papers.get(i).getMax();
             Astar += (double) boundaries[0] / mark;
             A += (double) boundaries[1] / mark;
-            B += (double) boundaries[2] / mark;
+            B += (double) boundaries[2] / mark;//totals grade boundaries as percentages
             C += (double) boundaries[3] / mark;
             D += (double) boundaries[4] / mark;
             E += (double) boundaries[5] / mark;
         }
-        averageBoundaries = new double[]{Astar / size, A / size, B / size, C / size, D / size, E / size};
+        averageBoundaries = new double[]{Astar / size, A / size, B / size, C / size, D / size, E / size};//sets average grade boundaries
 
     }
 
-    public static void top3Methods(ArrayList<Method> methods, int low, int high) {
-        double pivot = methods.get((low + high) / 2).getPerformance();
+    public static void top3Methods(ArrayList<Method> methods, int low, int high) {//recursive quick sort to sort revision methods
+        double pivot = methods.get((low + high) / 2).getPerformance();//sets pivot to be middle revision method performance
         Method tmpswap;
-        int tmplow = low;
+        int tmplow = low;//declare and initialise variables
         int tmphigh = high;
-        while (tmplow <= tmphigh) {
-            while (methods.get(tmplow).getPerformance() < pivot && tmplow < high) {
+        while (tmplow <= tmphigh) {//until the low index has become greater than the high index
+            while (methods.get(tmplow).getPerformance() < pivot && tmplow < high) {//finds a method before the pivot that has performance greater than the pivot
                 tmplow++;
             }
-            while (methods.get(tmphigh).getPerformance() > pivot && tmphigh > low) {
+            while (methods.get(tmphigh).getPerformance() > pivot && tmphigh > low) {//finds a method after the pivot that should be before the pivot
                 tmphigh--;
             }
             if (tmplow <= tmphigh) {
