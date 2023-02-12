@@ -4,12 +4,10 @@
  */
 package gradepredictorprototype;
 
-import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.util.*;
 import javax.mail.*;
 import javax.mail.internet.*;
-import javax.swing.UIManager;
 
 /**
  *
@@ -17,8 +15,8 @@ import javax.swing.UIManager;
  */
 public class SignUp extends javax.swing.JFrame {
 
-    private String code = "";//declare and initialise variables
-    private int type = 0;
+    private String code = null;//declare and initialise variables
+    private int type = -1;
 
     /**
      * Creates new form SignUp
@@ -206,16 +204,16 @@ public class SignUp extends javax.swing.JFrame {
     }//GEN-LAST:event_codeFldActionPerformed
 
     private void enterBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterBtnActionPerformed
-        if (ValidationRoutines.lengthCheck(0, passwordFld.getText(), 64)) { //validates password length
-            if (((passwordFld.getText().equals(confirmFld.getText())) && codeFld.getText().equals(code)) && type == 1) {//verifies new student inputs
+        if (ValidationRoutines.lengthCheck(0, passwordFld.getText(), 64) && ValidationRoutines.presenceCheck(codeFld.getText())) { //validates password length
+            if (((passwordFld.getText().equals(confirmFld.getText())) && codeFld.getText().equals(code)) && type == 1 && ValidationRoutines.studentEmail(emailFld.getText())) {//verifies new student inputs
                 DatabaseManipulation.signUp(emailFld.getText(), passwordFld.getText(), 1);
-                GradePredictorPrototype.setStudent(new User(emailFld.getText(), passwordFld.getText(), 1));//creates new student
+                GradePredictorPrototype.setStudent(new User(emailFld.getText(), passwordFld.getText(), 1, emailFld.getText().split("@")[0], emailFld.getText().split("@")[0], 0));//creates new student
                 GradePredictorPrototype.setType(1);
                 new AboutYou().setVisible(true);//opens about you form
                 this.dispose();
-            } else if (((passwordFld.getText().equals(confirmFld.getText())) && codeFld.getText().equals(code)) && type == 0) {//verifies new teacher inputs
+            } else if (((passwordFld.getText().equals(confirmFld.getText())) && codeFld.getText().equals(code)) && type == 0 && ValidationRoutines.teacherEmail(emailFld.getText())) {//verifies new teacher inputs
                 DatabaseManipulation.signUp(emailFld.getText(), passwordFld.getText(), 0);
-                GradePredictorPrototype.setTeacher(new User(emailFld.getText(), passwordFld.getText(), 0));//creates new teacher
+                GradePredictorPrototype.setTeacher(new User(emailFld.getText(), passwordFld.getText(), 0, emailFld.getText().split("@")[0], emailFld.getText().split("@")[0], 0));//creates new teacher
                 GradePredictorPrototype.setType(0);
                 new AboutYou().setVisible(true);//opens about you form
                 this.dispose();

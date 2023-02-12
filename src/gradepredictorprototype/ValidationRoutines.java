@@ -14,15 +14,17 @@ import static java.lang.Character.isDigit;
  */
 public class ValidationRoutines {
     public static boolean studentEmail(String inEmail) {
+        boolean length = lengthCheck(0 , inEmail, 64);
         inEmail = inEmail.trim();
         String regex = "^1-[a-zA-Z]{1,63}@bayhouse.gfmat.org$";//checks email is in form 1-xxxx@bayhouse.gfmat.org (student email form at clients school)
-        return inEmail.matches(regex);
+        return length && inEmail.matches(regex);
 
     }
     public static boolean teacherEmail(String inEmail) {
+        boolean length = lengthCheck(0 , inEmail, 64);
         inEmail = inEmail.trim();
         String regex = "^[a-zA-Z]{1,63}@bayhouse.gfmat.org$";//checks email is in form xxxx@bayhouse.gfmat.org (teacher email form at clients school)
-        return inEmail.matches(regex);
+        return length && inEmail.matches(regex);
 
     }
 

@@ -74,7 +74,14 @@ public class GradePredictorPrototype {
         new Login().setVisible(true);//opens login form
 
     }
-
+    public static void reset() {
+        teacher =  null;
+        student =  null;
+        subject = null;//resets variables when a user logs out
+        averageBoundaries = null;
+        type = 0;
+        viewing = false;
+    }
     public static void setTeacher(String email) {
         teacher = DatabaseManipulation.teacherFromEmail(email);//sets teacher from a teacher's email
     }

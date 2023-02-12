@@ -9,8 +9,6 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
@@ -77,20 +75,20 @@ public class DatabaseManipulation {
     public static void signUp(String email, String password, int type) {//method for creating new user
         boolean willAdd = true; //will add data by default
         try ( Connection conn = DriverManager.getConnection(URL, "THope", DATABASEPASSWORD);  Statement statement = conn.createStatement()) { // creates the connection
-            try ( ResultSet result = statement.executeQuery("SELECT " + EMAIL + " FROM " + USERS)) {//gets emails of all users
+            try ( ResultSet result = statement.executeQuery("SELECT " + EMAIL + " FROM " + USERS + ";")) {//gets emails of all users
                 while (result.next()) { //for every result
                     if (result.getString(EMAIL).equals(email)) {//checks email exists
                         willAdd = false; //key exists so data will not be added
                     }
-                }
-                conn.close();//closes  the connection
+                }                
             } catch (SQLException e) {
                 System.out.println("ERROR MESSAGE 2!!!!" + e); //error message in select statements
             }
             if (willAdd) {
                 statement.execute("INSERT INTO " + USERS + "(" + EMAIL + "," + PASSWORD + "," + TYPE + "," + ICON + "," + USERNAME + "," + NAME
-                        + ") \n VALUES('" + email + "','" + password + "'," + type + ",0,'" + email.split("@")[0] + "','" + email.split("@")[0] + "')");//creates new user
+                        + ") \n VALUES('" + email + "','" + password + "'," + type + ",0,'" + email.split("@")[0] + "','" + email.split("@")[0] + "');");//creates new user
             }
+            conn.close();//closes  the connection
         } catch (SQLException e) {
             System.out.println("ERROR MESSAGE 1!!!!" + e); //error message in sql statement or connections
         }
@@ -406,7 +404,7 @@ public class DatabaseManipulation {
                     + "JOIN ClassUsers on Users.Email = ClassUsers.Email\n"//selects all students in a class
                     + "WHERE ClassUsers.ClassName = '" + name + "' AND Users.type = 1")) {
                 while (result.next()) { //for every result
-                    users.add(new User(result.getString(EMAIL), result.getString(PASSWORD), result.getInt(TYPE), result.getString(USERNAME), result.getString(NAME)));//adds students to  a list
+                    users.add(new User(result.getString(EMAIL), result.getString(PASSWORD), result.getInt(TYPE), result.getString(USERNAME), result.getString(NAME), result.getInt(ICON)));//adds students to  a list
                 }
                 conn.close();//closes  the connection
             } catch (SQLException e) {
