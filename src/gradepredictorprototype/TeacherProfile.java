@@ -9,13 +9,14 @@ package gradepredictorprototype;
  * @author kingt
  */
 public class TeacherProfile extends javax.swing.JFrame {
+
     /**
      * Creates new form TeacherProfile
      */
     public TeacherProfile() {
         initComponents();
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -25,7 +26,7 @@ public class TeacherProfile extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        addBox = new javax.swing.JComboBox<>();
+        subjectBox = new javax.swing.JComboBox<>();
         createLbl = new javax.swing.JLabel();
         enterBtn = new javax.swing.JButton();
         iconLbl = new javax.swing.JLabel();
@@ -40,10 +41,10 @@ public class TeacherProfile extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        addBox.setModel(new javax.swing.DefaultComboBoxModel<>(DatabaseManipulation.getSubjects().stream().map(x -> x.getName()).toArray(String[]::new)));
-        addBox.addActionListener(new java.awt.event.ActionListener() {
+        subjectBox.setModel(new javax.swing.DefaultComboBoxModel<>(DatabaseManipulation.getSubjects().stream().map(x -> x.getName()).toArray(String[]::new)));
+        subjectBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addBoxActionPerformed(evt);
+                subjectBoxActionPerformed(evt);
             }
         });
 
@@ -128,7 +129,7 @@ public class TeacherProfile extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 525, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(enterBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(addBox, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(subjectBox, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(subjectLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -145,7 +146,7 @@ public class TeacherProfile extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(iconBox, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(addBox, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(subjectBox, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(enterBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(1, 1, 1)
@@ -169,15 +170,17 @@ public class TeacherProfile extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_createLblMouseClicked
 
-    private void addBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBoxActionPerformed
+    private void subjectBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subjectBoxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_addBoxActionPerformed
+    }//GEN-LAST:event_subjectBoxActionPerformed
 
     private void enterBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterBtnActionPerformed
-        GradePredictorPrototype.setSubject(addBox.getSelectedIndex() + 1, addBox.getSelectedItem().toString());//enters subject selected
-        GradePredictorPrototype.setBoundaries(GradePredictorPrototype.getSubject());
-        new TeacherSubject().setVisible(true);
-        this.dispose();
+        if (subjectBox.getSelectedItem() != null) {
+            GradePredictorPrototype.setSubject(subjectBox.getSelectedIndex() + 1, subjectBox.getSelectedItem().toString());//enters subject selected
+            GradePredictorPrototype.setBoundaries(GradePredictorPrototype.getSubject());
+            new TeacherSubject().setVisible(true);
+            this.dispose();
+        }
     }//GEN-LAST:event_enterBtnActionPerformed
 
     private void logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseClicked
@@ -190,7 +193,7 @@ public class TeacherProfile extends javax.swing.JFrame {
     }//GEN-LAST:event_exitMouseClicked
 
     private void iconBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_iconBoxItemStateChanged
-        iconLbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/profile"+(iconBox.getSelectedIndex() + 1)+".jpeg")));
+        iconLbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/profile" + (iconBox.getSelectedIndex() + 1) + ".jpeg")));
         GradePredictorPrototype.setTeacherIcon(iconBox.getSelectedIndex());//updates icon image when changed
         DatabaseManipulation.updateUserIcon(iconBox.getSelectedIndex(), GradePredictorPrototype.getTeacher().getEmail());
 
@@ -237,7 +240,6 @@ public class TeacherProfile extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> addBox;
     private javax.swing.JButton changeBtn;
     private javax.swing.JLabel createLbl;
     private javax.swing.JButton enterBtn;
@@ -247,6 +249,7 @@ public class TeacherProfile extends javax.swing.JFrame {
     private javax.swing.JMenu logout;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JLabel nameLbl;
+    private javax.swing.JComboBox<String> subjectBox;
     private javax.swing.JLabel subjectLbl;
     private javax.swing.JLabel usernameLbl;
     // End of variables declaration//GEN-END:variables

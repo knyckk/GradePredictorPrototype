@@ -28,7 +28,7 @@ public class StudentProfile extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        addBox = new javax.swing.JComboBox<>();
+        subjectBox = new javax.swing.JComboBox<>();
         enterBtn = new javax.swing.JButton();
         classBtn = new javax.swing.JButton();
         classBtn.setVisible(GradePredictorPrototype.getViewing());
@@ -43,11 +43,11 @@ public class StudentProfile extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        addBox.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        addBox.setModel(new javax.swing.DefaultComboBoxModel<>(DatabaseManipulation.getSubjects().stream().map(x -> x.getName()).toArray(String[]::new)));
-        addBox.addActionListener(new java.awt.event.ActionListener() {
+        subjectBox.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        subjectBox.setModel(new javax.swing.DefaultComboBoxModel<>(DatabaseManipulation.getSubjects().stream().map(x -> x.getName()).toArray(String[]::new)));
+        subjectBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addBoxActionPerformed(evt);
+                subjectBoxActionPerformed(evt);
             }
         });
 
@@ -136,7 +136,7 @@ public class StudentProfile extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(enterBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(addBox, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(subjectBox, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(129, 129, 129))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -153,7 +153,7 @@ public class StudentProfile extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(classBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(45, 45, 45)
-                        .addComponent(addBox, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(subjectBox, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(enterBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(iconLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -172,16 +172,18 @@ public class StudentProfile extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void enterBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterBtnActionPerformed
-        GradePredictorPrototype.setSubject(addBox.getSelectedIndex() + 1, addBox.getSelectedItem().toString()); //sets subject to the subject being entered
-        GradePredictorPrototype.setBoundaries(GradePredictorPrototype.getSubject()); //gets the average grade boundaries for the subject
-        DatabaseManipulation.createStudentSub(GradePredictorPrototype.getStudent(), GradePredictorPrototype.getSubject()); //creates the student subject in the database
-        new StudentSubject().setVisible(true);//opens subject form
-        this.dispose();
+        if (subjectBox.getSelectedItem() != null) {
+            GradePredictorPrototype.setSubject(subjectBox.getSelectedIndex() + 1, subjectBox.getSelectedItem().toString()); //sets subject to the subject being entered
+            GradePredictorPrototype.setBoundaries(GradePredictorPrototype.getSubject()); //gets the average grade boundaries for the subject
+            DatabaseManipulation.createStudentSub(GradePredictorPrototype.getStudent(), GradePredictorPrototype.getSubject()); //creates the student subject in the database
+            new StudentSubject().setVisible(true);//opens subject form
+            this.dispose();
+        }
     }//GEN-LAST:event_enterBtnActionPerformed
 
-    private void addBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBoxActionPerformed
+    private void subjectBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subjectBoxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_addBoxActionPerformed
+    }//GEN-LAST:event_subjectBoxActionPerformed
 
     private void logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseClicked
         new Login().setVisible(true); //returns to login form
@@ -194,7 +196,7 @@ public class StudentProfile extends javax.swing.JFrame {
 
     private void enterBtnKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_enterBtnKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) { //if enter key is pressed does the same code as enterBtnActionPerformed
-            GradePredictorPrototype.setSubject(addBox.getSelectedIndex() + 1, addBox.getSelectedItem().toString());
+            GradePredictorPrototype.setSubject(subjectBox.getSelectedIndex() + 1, subjectBox.getSelectedItem().toString());
             GradePredictorPrototype.setBoundaries(GradePredictorPrototype.getSubject());
             DatabaseManipulation.createStudentSub(GradePredictorPrototype.getStudent(), GradePredictorPrototype.getSubject());
             new StudentSubject().setVisible(true);
@@ -261,7 +263,6 @@ public class StudentProfile extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> addBox;
     private javax.swing.JButton changeBtn;
     private javax.swing.JButton classBtn;
     private javax.swing.JButton enterBtn;
@@ -271,6 +272,7 @@ public class StudentProfile extends javax.swing.JFrame {
     private javax.swing.JMenu logout;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JLabel nameLbl;
+    private javax.swing.JComboBox<String> subjectBox;
     private javax.swing.JLabel usernameLbl;
     // End of variables declaration//GEN-END:variables
 }

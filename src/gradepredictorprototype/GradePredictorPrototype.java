@@ -74,20 +74,22 @@ public class GradePredictorPrototype {
         new Login().setVisible(true);//opens login form
 
     }
+
     public static void reset() {
-        teacher =  null;
-        student =  null;
+        teacher = null;
+        student = null;
         subject = null;//resets variables when a user logs out
         averageBoundaries = null;
         type = 0;
         viewing = false;
     }
+
     public static void setTeacher(String email) {
         teacher = DatabaseManipulation.teacherFromEmail(email);//sets teacher from a teacher's email
     }
 
     public static void setTeacher(User user) {//sets teacher from a user instance
-        teacher = new User(user.getEmail(), user.getPassword(),0, user.getUsername(), user.getName(), user.getIcon());
+        teacher = new User(user.getEmail(), user.getPassword(), 0, user.getUsername(), user.getName(), user.getIcon());
     }
 
     public static void setStudent(User user) {//sets student from a user instance
@@ -165,16 +167,25 @@ public class GradePredictorPrototype {
         return code;//returns code
     }
 
-    public static int contains(ArrayList<Topic> topics, Topic topic) { //list of topics will not neccesarily be sorted so need to use a linear search
+    public static int contains(ArrayList<Topic> topics, Topic topic) { //list of topics will be sorted so can use a binary search
         int toReturn = -1;//returns index of topic that is looked for
         int i = 0;
+        int low = 0;
+        int high = topics.size() - 1;
+        int mid = (low + high) / 2;
         boolean found = false;//sets to false by default, assumes topic is not in list
-        while (i < topics.size() && !found) {//iterates over list until topic is found or end of list reached
-            found = topics.get(i).equals(topic);//if topic is found
-            if (found) {
-                toReturn = i;//stores index topic was found at
+        while (mid < topics.size() && mid >= 0 && !found) {//iterates over list until topic is found or end of list reached
+            if (topics.get(mid).getID() > topic.getID()) {//looks at lower half is mid is larger
+                high = mid - 1;
+                mid = (low + high) / 2;
+            } else if (topics.get(mid).getID() < topic.getID()) {//looks at upper half if mid is smaller
+                low = mid + 1;
+                mid = (low + high) / 2;
+            } else if (topics.get(mid).getID() == topic.getID()) {
+                found = topics.get(mid).equals(topic);//if topic is found
+                toReturn = mid;
             }
-            i++;
+
         }
         return toReturn;//returns index if found or -1 if not found
     }
@@ -270,34 +281,40 @@ public class GradePredictorPrototype {
 
     public static String getTrend() {//method to get the current students pre
         ArrayList<Double[]> coordinates = DatabaseManipulation.getPercentages(getStudent(), getSubject(), new Date(student.getDate()));//sets coordinates to be the percentage in a paper for y and date for x
-        double sigmaX = 0;
-        double sigmaY = 0;//declare and initialise variables
-        double sigmaXY = 0;
-        double sigmaXSquared = 0;
-        for (int i = 0; i < coordinates.size() - 1; i++) {//for every coordinate 
-            double y1 = coordinates.get(i)[0];
-            double x1 = coordinates.get(i)[1];
-            sigmaX += x1;
-            sigmaXSquared += x1 * x1;//totals the x, y, x squared , and xy product for coordinates
-            sigmaY += y1;
-            sigmaXY += x1 * y1;
+        if (coordinates.size() > 1) {
+            double sigmaX = 0;
+            double sigmaY = 0;//declare and initialise variables
+            double sigmaXY = 0;
+            double sigmaXSquared = 0;
+            for (int i = 0; i < coordinates.size() - 1; i++) {//for every coordinate 
+                double y1 = coordinates.get(i)[0];
+                double x1 = coordinates.get(i)[1];
+                sigmaX += x1;
+                sigmaXSquared += x1 * x1;//totals the x, y, x squared , and xy product for coordinates
+                sigmaY += y1;
+                sigmaXY += x1 * y1;
+            }
+            double constant = (sigmaY * sigmaXSquared - sigmaX * sigmaXY) / ((coordinates.size() - 1) * sigmaXSquared - sigmaX * sigmaX);//calculates y intercept for  line of best fit
+            double gradient = ((coordinates.size() - 1) * sigmaXY - sigmaX * sigmaY) / ((coordinates.size() - 1) * sigmaXSquared - sigmaX * sigmaX);//calculates gradient of line of best fit    
+            double finalX = coordinates.get(coordinates.size() - 1)[0];
+            double finalY = (gradient * finalX) + constant;//calculates expected percentage based on trend
+            DatabaseManipulation.updatePredicted(grade(finalY), student.getEmail() + subject.getID());//stores predicted grade
+            return "Based on Trend: " + String.valueOf(100 * finalY).substring(0, 4) + "% - " + grade(finalY);//returns predicted grade
         }
-        double constant = (sigmaY * sigmaXSquared - sigmaX * sigmaXY) / ((coordinates.size() - 1) * sigmaXSquared - sigmaX * sigmaX);//calculates y intercept for  line of best fit
-        double gradient = ((coordinates.size() - 1) * sigmaXY - sigmaX * sigmaY) / ((coordinates.size() - 1) * sigmaXSquared - sigmaX * sigmaX);//calculates gradient of line of best fit    
-        double finalX = coordinates.get(coordinates.size() - 1)[0];
-        double finalY = (gradient * finalX) + constant;//calculates expected percentage based on trend
-        DatabaseManipulation.updatePredicted(grade(finalY), student.getEmail() + subject.getID());//stores predicted grade
-        return "Based on Trend: " + String.valueOf(100 * finalY).substring(0, 4) + "% - " + grade(finalY);//returns predicted grade
+        return "Based on Trend: N/A";
     }
 
     public static String getAverage() {//a method to get average performance for current student in current exam
         ArrayList<Double[]> coordinates = DatabaseManipulation.getPercentages(getStudent(), getSubject(), new Date(student.getDate()));//sets coordinates to be the percentage in a paper for y and date for x
-        double total = 0;
-        for (int i = 0; i < coordinates.size() - 1; i++) {//for every coordinate
-            total += coordinates.get(i)[0];//totals performance
-        }
+        if (coordinates.size() > 1) {
+            double total = 0;
+            for (int i = 0; i < coordinates.size() - 1; i++) {//for every coordinate
+                total += coordinates.get(i)[0];//totals performance
+            }
 
-        return "Based on Average: " + String.valueOf((100 * total / (coordinates.size() - 1))).substring(0, 4) + "% - " + grade(total / (coordinates.size() - 1));//returns average performance
+            return "Based on Average: " + String.valueOf((100 * total / (coordinates.size() - 1))).substring(0, 4) + "% - " + grade(total / (coordinates.size() - 1));//returns average performance
+        }
+        return "Based on Average: N/A";
     }
 
     public static String grade(double grade) {//grades a percentage using average grade boundaries for a subject

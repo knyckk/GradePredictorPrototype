@@ -312,12 +312,12 @@ public class TopicBreakdown extends javax.swing.JFrame {
         int prior = questionIndex;//sets initial question index
         if (questionIndex > 0) {//does not allow index to be negative 
             questionIndex--;//decrements index
-            while(!(uniqueQuestions.get(questionIndex).getTopic().equals(topics.get(topicsBox.getSelectedIndex()))) && questionIndex > 0) {
+            while (!(uniqueQuestions.get(questionIndex).getTopic().equals(topics.get(topicsBox.getSelectedIndex()))) && questionIndex > 0) {
                 questionIndex--;//only shows question for the selected topic
             }
-            if(uniqueQuestions.get(questionIndex).getTopic().equals(topics.get(topicsBox.getSelectedIndex()))) {
+            if (uniqueQuestions.get(questionIndex).getTopic().equals(topics.get(topicsBox.getSelectedIndex()))) {
                 questionLbl.setIcon(uniqueQuestions.get(questionIndex).getQuestion());//updates image if changed
-            } else{
+            } else {
                 questionIndex = prior;//resets index if not earlier questions existed
             }
         }
@@ -327,15 +327,15 @@ public class TopicBreakdown extends javax.swing.JFrame {
         int prior = questionIndex;//sets initial question index
         if (questionIndex < uniqueQuestions.size() - 1) {//does not let index be larger than the number of questions
             questionIndex++;//increments index
-            while(!(uniqueQuestions.get(questionIndex).getTopic().equals(topics.get(topicsBox.getSelectedIndex()))) && questionIndex < uniqueQuestions.size() - 1) {
+            while (!(uniqueQuestions.get(questionIndex).getTopic().equals(topics.get(topicsBox.getSelectedIndex()))) && questionIndex < uniqueQuestions.size() - 1) {
                 questionIndex++;//only shows questions for selected topic
             }
-            if(uniqueQuestions.get(questionIndex).getTopic().equals(topics.get(topicsBox.getSelectedIndex()))) {
+            if (uniqueQuestions.get(questionIndex).getTopic().equals(topics.get(topicsBox.getSelectedIndex()))) {
                 questionLbl.setIcon(uniqueQuestions.get(questionIndex).getQuestion());//updates image if changed
             } else {
                 questionIndex = prior;//resets index if no later questions existed
             }
-            
+
         }
     }//GEN-LAST:event_rightBtnActionPerformed
 
@@ -357,12 +357,12 @@ public class TopicBreakdown extends javax.swing.JFrame {
         int prior = questionIndex1;//performs the same as leftBtnActionPerformed except on duplicate components allowing for comparision between topics
         if (questionIndex1 > 0) {
             questionIndex1--;
-            while(!(uniqueQuestions.get(questionIndex1).getTopic().equals(topics.get(topicsBox1.getSelectedIndex()))) && questionIndex1 > 0) {
+            while (!(uniqueQuestions.get(questionIndex1).getTopic().equals(topics.get(topicsBox1.getSelectedIndex()))) && questionIndex1 > 0) {
                 questionIndex1--;
             }
-            if(uniqueQuestions.get(questionIndex1).getTopic().equals(topics.get(topicsBox1.getSelectedIndex()))) {
+            if (uniqueQuestions.get(questionIndex1).getTopic().equals(topics.get(topicsBox1.getSelectedIndex()))) {
                 questionLbl1.setIcon(uniqueQuestions.get(questionIndex1).getQuestion());
-            } else{
+            } else {
                 questionIndex1 = prior;
             }
         }
@@ -372,15 +372,15 @@ public class TopicBreakdown extends javax.swing.JFrame {
         int prior = questionIndex1; //performs the same as rightBtnActionPerformed except on duplicate components allowing for comparision between topics
         if (questionIndex1 < uniqueQuestions.size() - 1) {
             questionIndex1++;
-            while(!(uniqueQuestions.get(questionIndex1).getTopic().equals(topics.get(topicsBox1.getSelectedIndex()))) && questionIndex1 < uniqueQuestions.size() - 1) {
+            while (!(uniqueQuestions.get(questionIndex1).getTopic().equals(topics.get(topicsBox1.getSelectedIndex()))) && questionIndex1 < uniqueQuestions.size() - 1) {
                 questionIndex1++;
             }
-            if(uniqueQuestions.get(questionIndex1).getTopic().equals(topics.get(topicsBox1.getSelectedIndex()))) {
+            if (uniqueQuestions.get(questionIndex1).getTopic().equals(topics.get(topicsBox1.getSelectedIndex()))) {
                 questionLbl1.setIcon(uniqueQuestions.get(questionIndex1).getQuestion());
             } else {
                 questionIndex1 = prior;
             }
-            
+
         }
     }//GEN-LAST:event_rightBtn1ActionPerformed
 
@@ -443,36 +443,48 @@ public class TopicBreakdown extends javax.swing.JFrame {
         });
     }
 
-    public void setLabels() {
+    public void setLabels() {//sets left labels
         int count = 0;
-        int score = 0;
+        int score = 0;//declare and initialise variables
         int marks = 0;
         double percentage = 0;
-        for (int i = 0; i < questions.size(); i++) {
-            if (questions.get(i).getTopic().equals(topics.get(topicsBox.getSelectedIndex()))) {
+        for (int i = 0; i < questions.size(); i++) {//for each question
+            if (questions.get(i).getTopic().equals(topics.get(topicsBox.getSelectedIndex()))) {//if the question is for the selected topic
                 count++;
-                marks += questions.get(i).getMark();
+                marks += questions.get(i).getMark();//adds that question's data
                 score += questions.get(i).getScore();
-                percentage += (double) questions.get(i).getScore() / questions.get(i).getMark();
+                percentage += (double) questions.get(i).getScore() / questions.get(i).getMark();//adds percentage
             }
         }
         testedLbl.setText("Times tested: " + count);
         marksLbl.setText("Marks tested: " + marks);
-        meanMarksLbl.setText("Mean marks per question: " + (marks / count));
-        overallLbl.setText("Overall percentage: " + (int) (100 * ((double) score / marks)) + "%");
-        meanLbl.setText("Mean percentage: " + (int) (100 * percentage / count) + "%");
-        gradeLbl.setText("Topic Grade: " + GradePredictorPrototype.grade(percentage / count));
-        questionIndex = 0;
-        while(!(uniqueQuestions.get(questionIndex).getTopic().equals(topics.get(topicsBox.getSelectedIndex()))) && questionIndex < uniqueQuestions.size() - 1) {
-            questionIndex++;
-        }
-        if(!(uniqueQuestions.get(questionIndex).getTopic().equals(topics.get(topicsBox.getSelectedIndex())))) {
-            questionLbl.setText("Question not found");
+        if (count > 0 && marks > 0) {
+            meanMarksLbl.setText("Mean marks per question: " + (marks / count));
+            overallLbl.setText("Overall percentage: " + (int) (100 * ((double) score / marks)) + "%");//sets labels
+            meanLbl.setText("Mean percentage: " + (int) (100 * percentage / count) + "%");
+            gradeLbl.setText("Topic Grade: " + GradePredictorPrototype.grade(percentage / count));
         } else {
-            questionLbl.setIcon(uniqueQuestions.get(questionIndex).getQuestion());
+            meanMarksLbl.setText("Mean marks per question: N/A");
+            overallLbl.setText("Overall percentage: N/A");//sets labels
+            meanLbl.setText("Mean percentage: N/A");
+            gradeLbl.setText("Topic Grade: N/A");
+        }
+        questionIndex = 0;
+        if (!uniqueQuestions.isEmpty()) {
+            while (!(uniqueQuestions.get(questionIndex).getTopic().equals(topics.get(topicsBox.getSelectedIndex()))) && questionIndex < uniqueQuestions.size() - 1) {//until a question for the current topic is selected 
+                questionIndex++;//increments question index
+            }
+            if (!(uniqueQuestions.get(questionIndex).getTopic().equals(topics.get(topicsBox.getSelectedIndex())))) {//if no question is found for index
+                questionLbl.setText("Question not found");//sets text to question not found
+            } else {
+                questionLbl.setIcon(uniqueQuestions.get(questionIndex).getQuestion());//sets question if question is found
+            }
+        } else {
+            questionLbl.setText("Question not found");//sets text to question not found
         }
     }
-    public void setLabels1() {
+
+    public void setLabels1() {//method to perform the same action as setLabels, but on right components rather than left
         int count = 0;
         int score = 0;
         int marks = 0;
@@ -487,18 +499,29 @@ public class TopicBreakdown extends javax.swing.JFrame {
         }
         testedLbl1.setText("Times tested: " + count);
         marksLbl1.setText("Marks tested: " + marks);
-        meanMarksLbl1.setText("Mean marks per question: " + (marks / count));
-        overallLbl1.setText("Overall percentage: " + (int) (100 * ((double) score / marks)) + "%");
-        meanLbl1.setText("Mean percentage: " + (int) (100 * percentage / count) + "%");
-        gradeLbl1.setText("Topic Grade: " + GradePredictorPrototype.grade(percentage / count));
-        questionIndex1 = 0;
-        while(!(uniqueQuestions.get(questionIndex1).getTopic().equals(topics.get(topicsBox1.getSelectedIndex()))) && questionIndex1 < uniqueQuestions.size() - 1) {
-            questionIndex1++;
-        }
-        if(!(uniqueQuestions.get(questionIndex1).getTopic().equals(topics.get(topicsBox1.getSelectedIndex())))) {
-            questionLbl1.setText("Question not found");
+        if (count > 0 && marks > 0) {
+            meanMarksLbl1.setText("Mean marks per question: " + (marks / count));
+            overallLbl1.setText("Overall percentage: " + (int) (100 * ((double) score / marks)) + "%");//sets labels
+            meanLbl1.setText("Mean percentage: " + (int) (100 * percentage / count) + "%");
+            gradeLbl1.setText("Topic Grade: " + GradePredictorPrototype.grade(percentage / count));
         } else {
-            questionLbl1.setIcon(uniqueQuestions.get(questionIndex1).getQuestion());
+            meanMarksLbl1.setText("Mean marks per question: N/A");
+            overallLbl1.setText("Overall percentage: N/A");//sets labels
+            meanLbl1.setText("Mean percentage: N/A");
+            gradeLbl1.setText("Topic Grade: N/A");
+        }
+        questionIndex1 = 0;
+        if (uniqueQuestions.size() > 0) {
+            while (!(uniqueQuestions.get(questionIndex1).getTopic().equals(topics.get(topicsBox1.getSelectedIndex()))) && questionIndex1 < uniqueQuestions.size() - 1) {
+                questionIndex1++;
+            }
+            if (!(uniqueQuestions.get(questionIndex1).getTopic().equals(topics.get(topicsBox1.getSelectedIndex())))) {
+                questionLbl1.setText("Question not found");
+            } else {
+                questionLbl1.setIcon(uniqueQuestions.get(questionIndex1).getQuestion());
+            }
+        } else {
+            questionLbl1.setText("Question not found");//sets text to question not found
         }
     }
 

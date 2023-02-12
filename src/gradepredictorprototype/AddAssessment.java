@@ -114,7 +114,12 @@ public class AddAssessment extends javax.swing.JFrame {
         });
 
         questionLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        questionLbl.setIcon(papers.get(papersBox.getSelectedIndex()).getQuestion(questionIndex).getQuestion());
+        if(papers.size() > 0) {
+            questionLbl.setIcon(papers.get(papersBox.getSelectedIndex()).getQuestion(questionIndex).getQuestion());
+        } else {
+            questionLbl.setText("No paper found");
+            questionMarkFld.setEditable(false);
+        }
 
         rightBtn.setText(">");
         rightBtn.addActionListener(new java.awt.event.ActionListener() {

@@ -244,7 +244,7 @@
         </Property>
       </Properties>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="questionLbl.setIcon(papers.get(papersBox.getSelectedIndex()).getQuestion(questionIndex).getQuestion());"/>
+        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="if(papers.size() &gt; 0) {&#xa;questionLbl.setIcon(papers.get(papersBox.getSelectedIndex()).getQuestion(questionIndex).getQuestion());&#xa;} else {&#xa;questionLbl.setText(&quot;No paper found&quot;);&#xa;questionMarkFld.setEditable(false);&#xa;}"/>
       </AuxValues>
     </Component>
     <Component class="javax.swing.JButton" name="rightBtn">

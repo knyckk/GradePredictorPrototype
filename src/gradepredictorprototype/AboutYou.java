@@ -45,6 +45,11 @@ public class AboutYou extends javax.swing.JFrame {
         });
 
         usernameFld.setText("Username");
+        usernameFld.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                usernameFldFocusGained(evt);
+            }
+        });
         usernameFld.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 usernameFldMouseClicked(evt);
@@ -171,6 +176,10 @@ public class AboutYou extends javax.swing.JFrame {
         }
         }
     }//GEN-LAST:event_usernameFldKeyPressed
+
+    private void usernameFldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_usernameFldFocusGained
+        usernameFld.selectAll();//automatically selects all text when tabbed onto
+    }//GEN-LAST:event_usernameFldFocusGained
 
     /**
      * @param args the command line arguments

@@ -526,7 +526,8 @@ public class DatabaseManipulation {
                     + "From StudQuestion \n"
                     + "inner join Questions on StudQuestion.QuestionID = Questions.QuestionID\n"//selects question data for a student
                     + "inner join Papers on Questions.PaperID = Papers.PaperID\n"
-                    + "WHERE Papers.SubjectID = " + subject.getID() + " and StudQuestion.Email = '" + student.getEmail() + "';")) {
+                    + "WHERE Papers.SubjectID = " + subject.getID() + " and StudQuestion.Email = '" + student.getEmail() + "'"
+                            + "ORDER BY TopicID;")) { 
                 while (result.next()) { //for every result
 
                     try {
@@ -974,8 +975,8 @@ public class DatabaseManipulation {
 
     public static String getMostRecent(Subject subject, Student student) {//method to get most recent grade achieved by a student in a subject
         String toReturn = "N/A";
-        int score = 0;
-        int paperid = 1;
+        int score = -1;
+        int paperid = -1;
         try ( Connection conn = DriverManager.getConnection(URL, "THope", DATABASEPASSWORD);  Statement statement = conn.createStatement()) { // creates the connection
             try ( ResultSet result = statement.executeQuery("SELECT score,StudFormalPaper.PaperID \n"
                     + "FROM StudFormalPaper \n"//selects the formal papers sat by a student in descending order (by date sat)
@@ -989,7 +990,9 @@ public class DatabaseManipulation {
             } catch (SQLException e) {
                 System.out.println("ERROR MESSAGE 2!!!!" + e); //error message in select statements
             }
-            toReturn = GradePredictorPrototype.grade(score, getPaperBoundaries(paperid));//grades the paper and stores grade
+            if(paperid != -1) {
+                toReturn = GradePredictorPrototype.grade(score, getPaperBoundaries(paperid));//grades the paper and stores grade
+                }
         } catch (SQLException e) {
             System.out.println("ERROR MESSAGE 1!!!!" + e); //error message in sql statement or connections
         }
