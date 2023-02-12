@@ -232,12 +232,12 @@ public class Classes extends javax.swing.JFrame {
 
     private void createClassBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createClassBtnActionPerformed
         if (ValidationRoutines.presenceCheck(createClassFld.getText()) //checks if data has been entered
-                && ValidationRoutines.lengthCheck(0,createClassFld.getText(),32)) {//checks entered data will fit into the database
-            DatabaseManipulation.createClass(createClassFld.getText(), GradePredictorPrototype.getTeacher());//creates the class            
-            leaveBox.addItem(createClassFld.getText());//adds the new class to the functions in the form
-            currentBox.addItem(createClassFld.getText());
-            removeBox.addItem(createClassFld.getText());
-            
+                && ValidationRoutines.lengthCheck(0, createClassFld.getText(), 32)) {//checks entered data will fit into the database
+            if (DatabaseManipulation.createClass(createClassFld.getText(), GradePredictorPrototype.getTeacher())) {//creates the class            
+                leaveBox.addItem(createClassFld.getText());//adds the new class to the functions in the form
+                currentBox.addItem(createClassFld.getText());
+                removeBox.addItem(createClassFld.getText());
+            }
         }
     }//GEN-LAST:event_createClassBtnActionPerformed
 
@@ -264,29 +264,30 @@ public class Classes extends javax.swing.JFrame {
     }//GEN-LAST:event_joinClassBtnActionPerformed
 
     private void removeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeBtnActionPerformed
-
-        DatabaseManipulation.deleteClass(removeBox.getSelectedItem().toString()); //deletes the class
-        int toRemove = removeBox.getSelectedIndex(); //gets the index of the deleted class
-        leaveBox.remove(toRemove);
-        currentBox.remove(toRemove); //updates the combo-Boxes
-        removeBox.remove(toRemove);
-        
+        if (removeBox.getSelectedItem() != null) {
+            DatabaseManipulation.deleteClass(removeBox.getSelectedItem().toString()); //deletes the class
+            int toRemove = removeBox.getSelectedIndex(); //gets the index of the deleted class
+            leaveBox.remove(toRemove);
+            currentBox.remove(toRemove); //updates the combo-Boxes
+            removeBox.remove(toRemove);
+        }
     }//GEN-LAST:event_removeBtnActionPerformed
 
     private void leaveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leaveBtnActionPerformed
-
-        DatabaseManipulation.leaveClass(leaveBox.getSelectedItem().toString(), GradePredictorPrototype.getTeacher()); //leaves the class
-        int toRemove = leaveBox.getSelectedIndex();//gets the index of the left class
-        leaveBox.remove(toRemove);
-        currentBox.remove(toRemove);//updates the combo-boxes
-        removeBox.remove(toRemove);
+        if (leaveBox.getSelectedItem() != null) {
+            DatabaseManipulation.leaveClass(leaveBox.getSelectedItem().toString(), GradePredictorPrototype.getTeacher()); //leaves the class
+            int toRemove = leaveBox.getSelectedIndex();//gets the index of the left class
+            leaveBox.remove(toRemove);
+            currentBox.remove(toRemove);//updates the combo-boxes
+            removeBox.remove(toRemove);
+        }
     }//GEN-LAST:event_leaveBtnActionPerformed
 
     private void viewBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewBtnActionPerformed
-
-        new ClassForm(currentBox.getSelectedItem().toString()).setVisible(true); //opens a single class's form with the new class
-        this.dispose();
-
+        if (currentBox.getSelectedItem() != null) {
+            new ClassForm(currentBox.getSelectedItem().toString()).setVisible(true); //opens a single class's form with the new class
+            this.dispose();
+        }
     }//GEN-LAST:event_viewBtnActionPerformed
 
     private void createClassFldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createClassFldActionPerformed

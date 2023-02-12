@@ -80,7 +80,7 @@ public class DatabaseManipulation {
                     if (result.getString(EMAIL).equals(email)) {//checks email exists
                         willAdd = false; //key exists so data will not be added
                     }
-                }                
+                }
             } catch (SQLException e) {
                 System.out.println("ERROR MESSAGE 2!!!!" + e); //error message in select statements
             }
@@ -245,7 +245,7 @@ public class DatabaseManipulation {
         }
     }
 
-    public static void createClass(String name, User teacher) {//method for creating a class
+    public static boolean createClass(String name, User teacher) {//method for creating a class
         boolean newCode = true; //assumes code is being already used by default
         boolean willAdd = true; //will add data by default
         String studentCode = "";//declares variables
@@ -281,6 +281,7 @@ public class DatabaseManipulation {
         } catch (SQLException e) {
             System.out.println("ERROR MESSAGE 1!!!!" + e); //error message in sql statement or connections
         }
+        return willAdd;
     }
 
     public static void joinClass(String code, User teacher) {//method for joining a class as a teacher
@@ -297,9 +298,18 @@ public class DatabaseManipulation {
                 System.out.println("ERROR MESSAGE 2!!!!" + e); //error message in select statements
             }
             if (willAdd) {
+                try ( ResultSet result = statement.executeQuery("SELECT " + CLASSUSERID + " FROM " + CLASSUSERS + " WHERE " + CLASSUSERID + " = '" + teacher.getEmail() + className + "'")) {//selects class name for class with a specific teacher code
+                    if (result.next()) {
+                        willAdd = false;//if user is already in the class, will not add them again
+                    }
 
-                statement.execute("INSERT INTO " + CLASSUSERS//joins the class
-                        + "\n VALUES('" + teacher.getEmail() + className + "','" + teacher.getEmail() + "','" + className + "')");
+                } catch (SQLException e) {
+                    System.out.println("ERROR MESSAGE 2!!!!" + e); //error message in select statements
+                }
+                if (willAdd) {
+                    statement.execute("INSERT INTO " + CLASSUSERS//joins the class
+                            + "\n VALUES('" + teacher.getEmail() + className + "','" + teacher.getEmail() + "','" + className + "')");
+                }
             }
             conn.close();//closes  the connection
         } catch (SQLException e) {
@@ -337,8 +347,7 @@ public class DatabaseManipulation {
         try ( Connection conn = DriverManager.getConnection(URL, "THope", DATABASEPASSWORD);  Statement statement = conn.createStatement()) { // creates the connection
             try ( ResultSet result = statement.executeQuery("SELECT " + CLASSNAME + " FROM " + CLASSES + " WHERE " + STUDENTCODE + " = '" + code + "'")) {//selects class name for class with a specific student code
                 if (result.next()) {
-                    className = result.getString(CLASSNAME);
-                    System.out.println(className);//if  class exists code is correct and can be joined
+                    className = result.getString(CLASSNAME);//if  class exists code is correct and can be joined
                     willAdd = true;
                 }
 
@@ -346,8 +355,18 @@ public class DatabaseManipulation {
                 System.out.println("ERROR MESSAGE 2!!!!" + e); //error message in select statements
             }
             if (willAdd) {
-                statement.execute("INSERT INTO " + CLASSUSERS//joins class
-                        + "\n VALUES('" + student.getEmail() + className + "','" + student.getEmail() + "','" + className + "')");
+                try ( ResultSet result = statement.executeQuery("SELECT " + CLASSUSERID + " FROM " + CLASSUSERS + " WHERE " + CLASSUSERID + " = '" + student.getEmail() + className + "'")) {//selects class name for class with a specific teacher code
+                    if (result.next()) {
+                        willAdd = false;//if user is already in the class, will not add them again
+                    }
+
+                } catch (SQLException e) {
+                    System.out.println("ERROR MESSAGE 2!!!!" + e); //error message in select statements
+                }
+                if (willAdd) {
+                    statement.execute("INSERT INTO " + CLASSUSERS//joins class
+                            + "\n VALUES('" + student.getEmail() + className + "','" + student.getEmail() + "','" + className + "')");
+                }
             }
             conn.close();//closes  the connection
         } catch (SQLException e) {
@@ -527,7 +546,7 @@ public class DatabaseManipulation {
                     + "inner join Questions on StudQuestion.QuestionID = Questions.QuestionID\n"//selects question data for a student
                     + "inner join Papers on Questions.PaperID = Papers.PaperID\n"
                     + "WHERE Papers.SubjectID = " + subject.getID() + " and StudQuestion.Email = '" + student.getEmail() + "'"
-                            + "ORDER BY TopicID;")) { 
+                    + "ORDER BY TopicID;")) {
                 while (result.next()) { //for every result
 
                     try {
@@ -640,7 +659,7 @@ public class DatabaseManipulation {
                 System.out.println("ERROR MESSAGE 2!!!!" + e); //error message in select statements
             }
             if (!toReturn) {//if topic is not used
-                statement.execute("DELETE FROM " + TOPICS + " WHERE " + TOPICID + " = '" + topicID + "' AND " + SUBJECTID + " = " + subject.getID() +";");//deletes topic
+                statement.execute("DELETE FROM " + TOPICS + " WHERE " + TOPICID + " = '" + topicID + "' AND " + SUBJECTID + " = " + subject.getID() + ";");//deletes topic
                 statement.execute("ALTER TABLE " + TOPICS + " AUTO_INCREMENT = 1;");//resets key auto increment
             }
             conn.close();//closes  the connection
@@ -680,10 +699,10 @@ public class DatabaseManipulation {
         }
     }
 
-    public static boolean updateTopic(String topicName, String newName,Subject subject) {//method for changing a topic's name
+    public static boolean updateTopic(String topicName, String newName, Subject subject) {//method for changing a topic's name
         boolean toReturn = false;
         try ( Connection conn = DriverManager.getConnection(URL, "THope", DATABASEPASSWORD);  Statement statement = conn.createStatement()) { // creates the connection
-            if (!(topicExists(newName ,subject))) {//if  topic does not exist for a subject
+            if (!(topicExists(newName, subject))) {//if  topic does not exist for a subject
                 statement.execute("UPDATE " + TOPICS + "\nSET " + TOPIC + " = '" + newName + "' \nWHERE " + TOPIC + " = '" + topicName + "'");//updates the topic name
                 toReturn = true;//sets that topic name was updated
             }
@@ -990,9 +1009,9 @@ public class DatabaseManipulation {
             } catch (SQLException e) {
                 System.out.println("ERROR MESSAGE 2!!!!" + e); //error message in select statements
             }
-            if(paperid != -1) {
+            if (paperid != -1) {
                 toReturn = GradePredictorPrototype.grade(score, getPaperBoundaries(paperid));//grades the paper and stores grade
-                }
+            }
         } catch (SQLException e) {
             System.out.println("ERROR MESSAGE 1!!!!" + e); //error message in sql statement or connections
         }
@@ -1076,7 +1095,7 @@ public class DatabaseManipulation {
         return toReturn;//returns if name is used
     }
 
-    public static boolean topicExists(String name,Subject subject) {//method to return if a topic exists
+    public static boolean topicExists(String name, Subject subject) {//method to return if a topic exists
         boolean toReturn = false;
         try ( Connection conn = DriverManager.getConnection(URL, "THope", DATABASEPASSWORD);  Statement statement = conn.createStatement()) { // creates the connection
             try ( ResultSet result = statement.executeQuery("SELECT " + TOPIC + " FROM " + TOPICS + " WHERE SubjectID = " + subject.getID())) {//selects topics for a subject
