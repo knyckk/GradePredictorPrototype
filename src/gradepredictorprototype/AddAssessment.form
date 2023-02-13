@@ -244,7 +244,7 @@
         </Property>
       </Properties>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="if(papers.size() &gt; 0) {&#xa;questionLbl.setIcon(papers.get(papersBox.getSelectedIndex()).getQuestion(questionIndex).getQuestion());&#xa;} else {&#xa;questionLbl.setText(&quot;No paper found&quot;);&#xa;questionMarkFld.setEditable(false);&#xa;}"/>
+        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="if(papers.size() &gt; 0) {&#xa;questionLbl.setIcon(papers.get(papersBox.getSelectedIndex()).getQuestion(questionIndex).getQuestion());&#xa;} else {&#xa;questionLbl.setText(&quot;No paper found&quot;);&#xa;questionMarkFld.setEditable(false);&#xa;rightBtn.setEnabled(false);&#xa;leftBtn.setEnabled(false);&#xa;}"/>
       </AuxValues>
     </Component>
     <Component class="javax.swing.JButton" name="rightBtn">
@@ -354,6 +354,7 @@
           </Properties>
           <Events>
             <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="totalFldFocusGained"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="totalFldActionPerformed"/>
           </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="totalFld.setVisible(false);"/>

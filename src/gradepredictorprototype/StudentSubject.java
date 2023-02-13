@@ -198,18 +198,18 @@ public class StudentSubject extends javax.swing.JFrame {
 
         topic1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         if(topics.size() > 0) {
-            topic1.setText("Worst topic: " + topics.get(topics.size() - 1).getTopic());
+            topic1.setText("Worst topic: " + topics.get(0).getTopic());
         }
 
         topic2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         if(topics.size() > 1) {
-            topic2.setText("2nd Worst topic: " + topics.get(topics.size() - 2).getTopic());
+            topic2.setText("2nd Worst topic: " + topics.get(1).getTopic());
         }
 
         topic3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         topic3.setPreferredSize(null);
         if(topics.size() > 2) {
-            topic3.setText("Third Worst topic: " + topics.get(topics.size() - 3).getTopic());
+            topic3.setText("Third Worst topic: " + topics.get(2).getTopic());
         }
 
         returnClassBtn.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
@@ -334,7 +334,7 @@ public class StudentSubject extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(classBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(joinFld, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(11, 11, 11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(topic2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(topic3, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -342,7 +342,7 @@ public class StudentSubject extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(finalBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(profileBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         pack();

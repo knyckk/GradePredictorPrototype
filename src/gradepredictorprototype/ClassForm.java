@@ -183,8 +183,8 @@ public class ClassForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void nameBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameBtnActionPerformed
-        if (ValidationRoutines.presenceCheck(nameFld.getText())  //checks a new name has been entered
-                && ValidationRoutines.lengthCheck(0,nameFld.getText(),32)) { //and it will fit in the database
+        if (ValidationRoutines.presenceCheck(nameFld.getText()) //checks a new name has been entered
+                && ValidationRoutines.lengthCheck(0, nameFld.getText(), 32)) { //and it will fit in the database
             boolean changed = DatabaseManipulation.updateClass(classroom.getName(), nameFld.getText()); //checks if the class name was updated
             if (changed) { //if it was it will change the name locally in the form
                 titleLbl.setText(nameFld.getText());
@@ -209,14 +209,16 @@ public class ClassForm extends javax.swing.JFrame {
     }//GEN-LAST:event_nameFldFocusGained
 
     private void studentsBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_studentsBoxActionPerformed
-        
+
     }//GEN-LAST:event_studentsBoxActionPerformed
 
     private void studentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_studentBtnActionPerformed
-        GradePredictorPrototype.setViewing(true); //when a teacher chooses to view a student sets a boolean to flag that as true
-        GradePredictorPrototype.setStudent(students.get(studentsBox.getSelectedIndex()));//sets the student to the student the teacher selected
-        new StudentProfile().setVisible(true);//opens that student's profile
-        this.dispose();
+        if (studentsBox.getSelectedItem() != null) {
+            GradePredictorPrototype.setViewing(true); //when a teacher chooses to view a student sets a boolean to flag that as true
+            GradePredictorPrototype.setStudent(students.get(studentsBox.getSelectedIndex()));//sets the student to the student the teacher selected
+            new StudentProfile().setVisible(true);//opens that student's profile
+            this.dispose();
+        }
     }//GEN-LAST:event_studentBtnActionPerformed
     private void logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseClicked
         new Login().setVisible(true);//returns to login form

@@ -174,7 +174,7 @@
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="topic2" min="-2" pref="24" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="topic3" min="-2" pref="24" max="-2" attributes="0"/>
@@ -183,7 +183,7 @@
                   <Component id="finalBtn" alignment="3" min="-2" pref="55" max="-2" attributes="0"/>
                   <Component id="profileBtn" alignment="3" min="-2" pref="55" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="16" max="32767" attributes="0"/>
+              <EmptySpace pref="18" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -386,7 +386,7 @@
         </Property>
       </Properties>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="if(topics.size() &gt; 0) {&#xd;&#xa;topic1.setText(&quot;Worst topic: &quot; + topics.get(topics.size() - 1).getTopic());&#xd;&#xa;}"/>
+        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="if(topics.size() &gt; 0) {&#xa;topic1.setText(&quot;Worst topic: &quot; + topics.get(0).getTopic());&#xa;}"/>
       </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="topic2">
@@ -396,7 +396,7 @@
         </Property>
       </Properties>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="if(topics.size() &gt; 1) {&#xd;&#xa;topic2.setText(&quot;2nd Worst topic: &quot; + topics.get(topics.size() - 2).getTopic());&#xd;&#xa;}"/>
+        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="if(topics.size() &gt; 1) {&#xa;topic2.setText(&quot;2nd Worst topic: &quot; + topics.get(1).getTopic());&#xa;}"/>
       </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="topic3">
@@ -409,7 +409,7 @@
         </Property>
       </Properties>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="if(topics.size() &gt; 2) {&#xd;&#xa;topic3.setText(&quot;Third Worst topic: &quot; + topics.get(topics.size() - 3).getTopic());&#xd;&#xa;}"/>
+        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="if(topics.size() &gt; 2) {&#xa;topic3.setText(&quot;Third Worst topic: &quot; + topics.get(2).getTopic());&#xa;}"/>
       </AuxValues>
     </Component>
     <Component class="javax.swing.JButton" name="returnClassBtn">

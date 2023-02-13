@@ -172,15 +172,13 @@ public class GradePredictorPrototype {
         int i = 0;
         int low = 0;
         int high = topics.size() - 1;
-        int mid = (low + high) / 2;
         boolean found = false;//sets to false by default, assumes topic is not in list
-        while (mid < topics.size() && mid >= 0 && !found) {//iterates over list until topic is found or end of list reached
+        while (low <= high && !found) {//iterates over list until topic is found or end of list reached
+            int mid = (low + high) / 2;
             if (topics.get(mid).getID() > topic.getID()) {//looks at lower half is mid is larger
                 high = mid - 1;
-                mid = (low + high) / 2;
             } else if (topics.get(mid).getID() < topic.getID()) {//looks at upper half if mid is smaller
                 low = mid + 1;
-                mid = (low + high) / 2;
             } else if (topics.get(mid).getID() == topic.getID()) {
                 found = topics.get(mid).equals(topic);//if topic is found
                 toReturn = mid;
@@ -294,12 +292,14 @@ public class GradePredictorPrototype {
                 sigmaY += y1;
                 sigmaXY += x1 * y1;
             }
-            double constant = (sigmaY * sigmaXSquared - sigmaX * sigmaXY) / ((coordinates.size() - 1) * sigmaXSquared - sigmaX * sigmaX);//calculates y intercept for  line of best fit
-            double gradient = ((coordinates.size() - 1) * sigmaXY - sigmaX * sigmaY) / ((coordinates.size() - 1) * sigmaXSquared - sigmaX * sigmaX);//calculates gradient of line of best fit    
-            double finalX = coordinates.get(coordinates.size() - 1)[0];
-            double finalY = (gradient * finalX) + constant;//calculates expected percentage based on trend
-            DatabaseManipulation.updatePredicted(grade(finalY), student.getEmail() + subject.getID());//stores predicted grade
-            return "Based on Trend: " + String.valueOf(100 * finalY).substring(0, 4) + "% - " + grade(finalY);//returns predicted grade
+            if (sigmaX > 0) {
+                double constant = (sigmaY * sigmaXSquared - sigmaX * sigmaXY) / ((coordinates.size() - 1) * sigmaXSquared - sigmaX * sigmaX);//calculates y intercept for  line of best fit
+                double gradient = ((coordinates.size() - 1) * sigmaXY - sigmaX * sigmaY) / ((coordinates.size() - 1) * sigmaXSquared - sigmaX * sigmaX);//calculates gradient of line of best fit    
+                double finalX = coordinates.get(coordinates.size() - 1)[0];
+                double finalY = (gradient * finalX) + constant;//calculates expected percentage based on trend
+                DatabaseManipulation.updatePredicted(grade(finalY), student.getEmail() + subject.getID());//stores predicted grade
+                return "Based on Trend: " + String.valueOf(100 * finalY).substring(0, 4) + "% - " + grade(finalY);//returns predicted grade
+            }
         }
         return "Based on Trend: N/A";
     }

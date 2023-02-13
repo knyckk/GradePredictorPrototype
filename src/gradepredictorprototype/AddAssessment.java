@@ -11,9 +11,11 @@ import java.util.ArrayList;
  * @author kingt
  */
 public class AddAssessment extends javax.swing.JFrame {
+
     private ArrayList<Paper> papers; // a variable to store all past assessments
     private int questionIndex; // a variable to store the question number being viewed
-    
+    private int maxQuestion = 1;
+
     /**
      * Creates new form AddAssessment
      */
@@ -119,6 +121,8 @@ public class AddAssessment extends javax.swing.JFrame {
         } else {
             questionLbl.setText("No paper found");
             questionMarkFld.setEditable(false);
+            rightBtn.setEnabled(false);
+            leftBtn.setEnabled(false);
         }
 
         rightBtn.setText(">");
@@ -165,6 +169,11 @@ public class AddAssessment extends javax.swing.JFrame {
         totalFld.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 totalFldFocusGained(evt);
+            }
+        });
+        totalFld.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                totalFldActionPerformed(evt);
             }
         });
 
@@ -317,20 +326,20 @@ public class AddAssessment extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void profileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileBtnActionPerformed
-        
+
         new StudentProfile().setVisible(true); //returns user to their profile
         this.dispose();
     }//GEN-LAST:event_profileBtnActionPerformed
 
     private void subjectBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subjectBtnActionPerformed
-        
+
         new StudentSubject().setVisible(true); //returns user to their subject
         this.dispose();
     }//GEN-LAST:event_subjectBtnActionPerformed
 
     private void leftBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leftBtnActionPerformed
-        
-        if(questionIndex > 0) { //checks that question will not go below 1 if reduced
+
+        if (questionIndex > 0) { //checks that question will not go below 1 if reduced
             questionIndex--; //if it wont, it reduces question index
             questionLbl.setIcon(papers.get(papersBox.getSelectedIndex()).getQuestion(questionIndex).getQuestion()); //and sets a label to be the correct question, at a maximum size of 250 pixles 
             questionMarkFld.setText(String.valueOf(papers.get(papersBox.getSelectedIndex()).getQuestion(questionIndex).getScore())); // sets the label to be the stored mark incase they are returning to a question
@@ -338,42 +347,46 @@ public class AddAssessment extends javax.swing.JFrame {
     }//GEN-LAST:event_leftBtnActionPerformed
 
     private void rightBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rightBtnActionPerformed
-        
-        if(questionIndex < (papers.get(papersBox.getSelectedIndex()).numOfQuestions() - 1)) { //checks question will not become greater than the number of questions their are
+
+        if (questionIndex < (papers.get(papersBox.getSelectedIndex()).numOfQuestions() - 1)) { //checks question will not become greater than the number of questions their are
             questionIndex++;//if it wont it increments the question
             questionLbl.setIcon(papers.get(papersBox.getSelectedIndex()).getQuestion(questionIndex).getQuestion());//and sets a label to be the correct question, at a maximum size of 250 pixles 
             questionMarkFld.setText(String.valueOf(papers.get(papersBox.getSelectedIndex()).getQuestion(questionIndex).getScore()));// sets the label to be the stored mark incase they are returning to a question
         }
+        if (questionIndex + 1 > maxQuestion) {
+            maxQuestion = questionIndex + 1;
+        }
     }//GEN-LAST:event_rightBtnActionPerformed
 
     private void papersBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_papersBoxActionPerformed
-        
+
     }//GEN-LAST:event_papersBoxActionPerformed
 
     private void papersBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_papersBoxItemStateChanged
-        
+
         questionIndex = 0; // when the selected paper changes resets to question 1
+        maxQuestion = 1;
         questionLbl.setIcon(papers.get(papersBox.getSelectedIndex()).getQuestion(questionIndex).getQuestion());//and sets a label to be the correct question, at a maximum size of 250 pixles 
         questionMarkFld.setText(String.valueOf(papers.get(papersBox.getSelectedIndex()).getQuestion(questionIndex).getScore()));// sets the label to be the stored mark incase they are returning to a question
     }//GEN-LAST:event_papersBoxItemStateChanged
 
     private void typeBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_typeBoxActionPerformed
-        
+
     }//GEN-LAST:event_typeBoxActionPerformed
 
     private void typeBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_typeBoxItemStateChanged
-        
-        if(typeBox.getSelectedIndex() == 0) { //checks the paper type is set to formal, if so hides informal components and shows formal components
+
+        if (typeBox.getSelectedIndex() == 0) { //checks the paper type is set to formal, if so hides informal components and shows formal components
             totalLbl.setVisible(false);
             scoreLbl.setVisible(false);
             scoreFld.setVisible(false);
-            totalFld.setVisible(false); 
+            totalFld.setVisible(false);
             papersBox.setVisible(true);
             rightBtn.setVisible(true);
             leftBtn.setVisible(true);
             questionLbl.setVisible(true);
             questionMarkFld.setVisible(true);
-        } else if(typeBox.getSelectedIndex() == 1) {
+        } else if (typeBox.getSelectedIndex() == 1) {
             papersBox.setVisible(false);
             rightBtn.setVisible(false);
             leftBtn.setVisible(false);
@@ -387,30 +400,38 @@ public class AddAssessment extends javax.swing.JFrame {
     }//GEN-LAST:event_typeBoxItemStateChanged
 
     private void createPaperBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createPaperBtnActionPerformed
-        
-        if(typeBox.getSelectedIndex() == 0) { //checks if the user is entering a formal paper
-            DatabaseManipulation.addFormalPaper(GradePredictorPrototype.getStudent(), papers.get(papersBox.getSelectedIndex())); /*if so this paper's informationn is stored in the database*/
-            new StudentSubject().setVisible(true);//returns to the student subject form
-            this.dispose(); //closes this form
-        } else if(typeBox.getSelectedIndex() == 1 && ValidationRoutines.isInt(scoreFld.getText()) && ValidationRoutines.isInt(totalFld.getText())) { /*checks if an informal paper has been selected*/
-            DatabaseManipulation.addInformalPaper(GradePredictorPrototype.getStudent(), GradePredictorPrototype.getSubject(), Integer.parseInt(scoreFld.getText()), Integer.parseInt(totalFld.getText())); //paper data is stored in database
-            new StudentSubject().setVisible(true);//returns to the subject form
-            this.dispose();
+
+        if (typeBox.getSelectedIndex() == 0 && papersBox.getSelectedItem() != null) {
+            if (maxQuestion == papers.get(papersBox.getSelectedIndex()).numOfQuestions()) { //checks if the user is entering a formal paper
+                DatabaseManipulation.addFormalPaper(GradePredictorPrototype.getStudent(), papers.get(papersBox.getSelectedIndex()));
+                /*if so this paper's informationn is stored in the database*/
+                new StudentSubject().setVisible(true);//returns to the student subject form 
+                this.dispose(); //closes this form   
+            }
+        } else if (typeBox.getSelectedIndex() == 1 && ValidationRoutines.presenceCheck(scoreFld.getText()) && ValidationRoutines.presenceCheck(totalFld.getText())) {
+            /*checks if an informal paper has been selected*/
+            if (ValidationRoutines.isInt(scoreFld.getText()) && ValidationRoutines.isInt(totalFld.getText())) {
+                if (ValidationRoutines.rangeCheck("0", scoreFld.getText(), totalFld.getText())) {
+                    DatabaseManipulation.addInformalPaper(GradePredictorPrototype.getStudent(), GradePredictorPrototype.getSubject(), Integer.parseInt(scoreFld.getText()), Integer.parseInt(totalFld.getText())); //paper data is stored in database    
+                    new StudentSubject().setVisible(true);//returns to the subject form
+                    this.dispose();
+                }
+            }
         }
     }//GEN-LAST:event_createPaperBtnActionPerformed
 
     private void totalFldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_totalFldFocusGained
-        
+
         totalFld.selectAll();//automatically selects all text when clicked
     }//GEN-LAST:event_totalFldFocusGained
 
     private void scoreFldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_scoreFldFocusGained
-        
+
         scoreFld.selectAll();//automatically selects all text when clicked
     }//GEN-LAST:event_scoreFldFocusGained
 
     private void questionMarkFldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_questionMarkFldFocusGained
-        
+
         questionMarkFld.selectAll();//automatically selects all text when clicked
     }//GEN-LAST:event_questionMarkFldFocusGained
 
@@ -424,11 +445,13 @@ public class AddAssessment extends javax.swing.JFrame {
     }//GEN-LAST:event_exitMouseClicked
 
     private void questionMarkFldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_questionMarkFldKeyReleased
-        if(ValidationRoutines.isInt(questionMarkFld.getText())) { //when the user types in the mark field, checks if they typed a number
-            if(ValidationRoutines.rangeCheck("0", questionMarkFld.getText(),String.valueOf(papers.get(papersBox.getSelectedIndex()).getQuestion(questionIndex).getMark()) )) {//if it was a number,checks the number of marks scored is greater than 0 but less that the maximum marks for the paper
-                papers.get(papersBox.getSelectedIndex()).setQuestionScore(questionIndex,Integer.parseInt(questionMarkFld.getText())); //saves  the number of marks locally
+        if (ValidationRoutines.presenceCheck(questionMarkFld.getText())) {
+            if (ValidationRoutines.isInt(questionMarkFld.getText())) { //when the user types in the mark field, checks if they typed a number
+                if (ValidationRoutines.rangeCheck("0", questionMarkFld.getText(), String.valueOf(papers.get(papersBox.getSelectedIndex()).getQuestion(questionIndex).getMark()))) {//if it was a number,checks the number of marks scored is greater than 0 but less that the maximum marks for the paper
+                    papers.get(papersBox.getSelectedIndex()).setQuestionScore(questionIndex, Integer.parseInt(questionMarkFld.getText())); //saves  the number of marks locally
+                }
+
             }
-            
         }
     }//GEN-LAST:event_questionMarkFldKeyReleased
 
@@ -438,6 +461,10 @@ public class AddAssessment extends javax.swing.JFrame {
             this.dispose();
         }
     }//GEN-LAST:event_classBtnActionPerformed
+
+    private void totalFldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totalFldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_totalFldActionPerformed
 
     /**
      * @param args the command line arguments

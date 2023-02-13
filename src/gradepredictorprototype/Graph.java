@@ -62,7 +62,7 @@ public class Graph extends JPanel {
 
             g1.setPaint(Color.WHITE);
             g1.draw(new Line2D.Double(mar, height - mar - constant * scale, mar + finalX * x, height - mar - finalY * scale));//draws trend line
-            g1.setPaint(Color.LIGHT_GRAY);
+            g1.setPaint(Color.ORANGE);
             g1.draw(new Line2D.Double(mar, height - mar - average * scale, mar + finalX * x, height - mar - average * scale));//draws average line
             double x1 = coordinates.get(coordinates.size() - 2)[1];//sets x to most recent exam sat
             double y1 = x1 * gradient + constant;//sets y coordinate for expected score at date for most recent exam
