@@ -75,11 +75,9 @@ public class DatabaseManipulation {
     public static void signUp(String email, String password, int type) {//method for creating new user
         boolean willAdd = true; //will add data by default
         try ( Connection conn = DriverManager.getConnection(URL, "THope", DATABASEPASSWORD);  Statement statement = conn.createStatement()) { // creates the connection
-            try ( ResultSet result = statement.executeQuery("SELECT " + EMAIL + " FROM " + USERS + ";")) {//gets emails of all users
-                while (result.next()) { //for every result
-                    if (result.getString(EMAIL).equals(email)) {//checks email exists
-                        willAdd = false; //key exists so data will not be added
-                    }
+            try ( ResultSet result = statement.executeQuery("SELECT " + EMAIL + " FROM " + USERS + " WHERE " + EMAIL + " = '" + email + "';")) {//gets emails of all users
+                if (result.next()) { //checks email exists
+                    willAdd = false; //key exists so data will not be added
                 }
             } catch (SQLException e) {
                 System.out.println("ERROR MESSAGE 2!!!!" + e); //error message in select statements
@@ -107,11 +105,9 @@ public class DatabaseManipulation {
     public static void createMethod(String name, String description) {//method for creating new revision method
         boolean willAdd = true; //will add data by default
         try ( Connection conn = DriverManager.getConnection(URL, "THope", DATABASEPASSWORD);  Statement statement = conn.createStatement()) { // creates the connection
-            try ( ResultSet result = statement.executeQuery("SELECT " + METHODNAME + " FROM " + METHODS)) {//selects method names from methods
-                while (result.next()) { //for every result
-                    if (result.getString(METHODNAME).equals(name)) {
-                        willAdd = false; //key exists so data will not be added
-                    }
+            try ( ResultSet result = statement.executeQuery("SELECT " + METHODNAME + " FROM " + METHODS + " WHERE " + METHODNAME + " = '" + name + "';")) {//selects method names from methods
+                if (result.next()) { //for every result                     
+                    willAdd = false; //key exists so data will not be added    
                 }
 
             } catch (SQLException e) {
@@ -171,14 +167,18 @@ public class DatabaseManipulation {
         boolean willAdd = true; //will add data by default
         int maxID = 0;
         try ( Connection conn = DriverManager.getConnection(URL, "THope", DATABASEPASSWORD);  Statement statement = conn.createStatement()) { // creates the connection
-            try ( ResultSet result = statement.executeQuery("SELECT * FROM " + TOPICS)) {//retrieves topic data
-                while (result.next()) { //for every result
-                    if (result.getString(TOPIC).equals(topic) && result.getInt(SUBJECTID) == subject.getID()) {
-                        willAdd = false; //key exists so data will not be added
-                    }
-                    maxID = result.getInt(TOPICID);//increments topic Id so max will be set last
+            try ( ResultSet result = statement.executeQuery("SELECT * FROM " + TOPICS + " WHERE " + TOPIC + " = '" + topic + "' AND " + SUBJECTID + " = " + subject.getID())) {//retrieves topic data
+                if (result.next()) { //for every result
+                    willAdd = false; //key exists so data will not be added
                 }
 
+            } catch (SQLException e) {
+                System.out.println("ERROR MESSAGE 2!!!!" + e); //error message in select statements
+            }
+            try ( ResultSet result = statement.executeQuery("SELECT MAX(TopicID) FROM " + TOPICS)) {//retrieves topic data
+                if (result.next()) { //for every result
+                    maxID = result.getInt("MAX(" + TOPICID + ")");//increments topic Id so max will be set last
+                }
             } catch (SQLException e) {
                 System.out.println("ERROR MESSAGE 2!!!!" + e); //error message in select statements
             }
@@ -196,11 +196,9 @@ public class DatabaseManipulation {
     public static void createStudentSub(Student student, Subject subject) {//method for creating a student subject
         boolean willAdd = true; //will add data by default
         try ( Connection conn = DriverManager.getConnection(URL, "THope", DATABASEPASSWORD);  Statement statement = conn.createStatement()) { // creates the connection
-            try ( ResultSet result = statement.executeQuery("SELECT " + STUDENTSUBID + " FROM " + STUDENTSUB)) {//selects StudentsubjectID from database
-                while (result.next()) { //for every result
-                    if (result.getString(STUDENTSUBID).equals(student.getEmail() + subject.getID())) {//checks ID already exists before adding it 
-                        willAdd = false; //key exists so data will not be added
-                    }
+            try ( ResultSet result = statement.executeQuery("SELECT " + STUDENTSUBID + " FROM " + STUDENTSUB + " WHERE " + STUDENTSUBID + " = '" + student.getEmail() + subject.getID() + "';")) {//selects StudentsubjectID from database
+                if (result.next()) { //checks ID already exists before adding it 
+                    willAdd = false; //key exists so data will not be added
                 }
 
             } catch (SQLException e) {
@@ -223,10 +221,10 @@ public class DatabaseManipulation {
             statement.execute("INSERT INTO " + BOUNDARIES + " \n VALUES(NULL, " + paper.getBoundaries()[0] + "," + paper.getBoundaries()[1] + ","
                     + paper.getBoundaries()[2] + "," + paper.getBoundaries()[3] + "," + paper.getBoundaries()[4] + ","
                     + paper.getBoundaries()[5] + ")");//inserts paper boundaries 
-            try ( ResultSet result = statement.executeQuery("SELECT " + BOUNDARYID + " FROM " + BOUNDARIES + " ORDER BY " + BOUNDARYID + " DESC")) {//gets boundary ids ordered descendingly
-                result.next();
-                ID = result.getInt(BOUNDARYID);//gets largest boundary ID
-
+            try ( ResultSet result = statement.executeQuery("SELECT MAX(" + BOUNDARYID + ") FROM " + BOUNDARIES)) {//gets boundary ids ordered descendingly
+                if (result.next()) {
+                    ID = result.getInt("MAX(" + BOUNDARYID + ")");//gets largest boundary ID
+                }
             } catch (SQLException e) {
                 System.out.println("ERROR MESSAGE 2!!!!" + e); //error message in select statements
             }
@@ -253,11 +251,13 @@ public class DatabaseManipulation {
         int i = 0;
         Classroom[] classes = getClasses().toArray(Classroom[]::new);//gets classes teacher is in
         try ( Connection conn = DriverManager.getConnection(URL, "THope", DATABASEPASSWORD);  Statement statement = conn.createStatement()) { // creates the connection
-            while (willAdd && i < classes.length) {//for every class
-                if (classes[i].getName().equals(name)) {//compares name of new class with name of class teacher is in
-                    willAdd = false; //key exists so data will not be added
+            try ( ResultSet result = statement.executeQuery("SELECT * FROM " + CLASSES + " WHERE " + CLASSNAME + " = '" + name + "'")) {//selects class name for class with a specific teacher code
+                if (result.next()) {
+                    willAdd = false;//if class exists will not change name
                 }
-                i++;//goes to next class
+
+            } catch (SQLException e) {
+                System.out.println("ERROR MESSAGE 2!!!!" + e); //error message in select statements
             }
             if (willAdd) {//if class name doesnt exist
                 while (newCode) {//until unique codes are created
@@ -320,13 +320,14 @@ public class DatabaseManipulation {
     public static boolean updateClass(String name, String newName) {//method for changing class name
         boolean willAdd = true; //will add data by default
         int i = 0;
-        Classroom[] classes = getClasses().toArray(Classroom[]::new);
         try ( Connection conn = DriverManager.getConnection(URL, "THope", DATABASEPASSWORD);  Statement statement = conn.createStatement()) { // creates the connection
-            while (willAdd && i < classes.length) {
-                if (classes[i].getName().equals(newName)) {//makes sure classname doesnt already exist
-                    willAdd = false; //key exists so data will not be added
+            try ( ResultSet result = statement.executeQuery("SELECT * FROM " + CLASSES + " WHERE " + CLASSNAME + " = '" + newName + "'")) {//selects class name for class with a specific teacher code
+                if (result.next()) {
+                    willAdd = false;//if class exists will not change name
                 }
-                i++;
+
+            } catch (SQLException e) {
+                System.out.println("ERROR MESSAGE 2!!!!" + e); //error message in select statements
             }
             if (willAdd) {
                 statement.execute("Update Classes,ClassUsers"//changes classname
@@ -945,7 +946,7 @@ public class DatabaseManipulation {
         } catch (SQLException e) {
             System.out.println("ERROR MESSAGE 1!!!!" + e); //error message in sql statement or connections
         }
-        if(count == 0) {
+        if (count == 0) {
             count = 1;
         }
         return toReturn / count;//returns the average percentage achieved
@@ -970,7 +971,7 @@ public class DatabaseManipulation {
         } catch (SQLException e) {
             System.out.println("ERROR MESSAGE 1!!!!" + e); //error message in sql statement or connections
         }
-        if(count == 0) {
+        if (count == 0) {
             count = 1;
         }
         return toReturn / count;//returns average percentage
@@ -983,9 +984,9 @@ public class DatabaseManipulation {
             try ( ResultSet result = statement.executeQuery("Select PredictedGrade,TargetGrade,FinalGrade\n"
                     + "From StudentSub\n"//selects grades for students who used a certain revision method and have achieved a final grade
                     + "where StudentSub.MethodName = '" + method.getName() + "' and FinalGrade IS NOT NULL "
-                            + "AND TargetGrade IS NOT NULL "
-                            + "AND PredictedGrade IS NOT NULL "
-                            + "AND StudentSub.SubjectID = " + subject.getID())) {
+                    + "AND TargetGrade IS NOT NULL "
+                    + "AND PredictedGrade IS NOT NULL "
+                    + "AND StudentSub.SubjectID = " + subject.getID())) {
                 while (result.next()) { //for every result
                     toReturn += GradePredictorPrototype.ungrade((GradePredictorPrototype.gradeToInt(result.getString(FINALGRADE)) - GradePredictorPrototype.gradeToInt(result.getString(TARGETGRADE))));//calculates a percentage based on the difference between achieved grade and target grade and average grade boundaries
                     toReturn += GradePredictorPrototype.ungrade((GradePredictorPrototype.gradeToInt(result.getString(FINALGRADE)) - GradePredictorPrototype.gradeToInt(result.getString(PREDICTEDGRADE))));//calculates a percentage difference between achieved and predicted grade and average grade boundaries
@@ -998,7 +999,7 @@ public class DatabaseManipulation {
         } catch (SQLException e) {
             System.out.println("ERROR MESSAGE 1!!!!" + e); //error message in sql statement or connections
         }
-        if(count == 0) {
+        if (count == 0) {
             count = 1;
         }
         return toReturn / count;//returns average percentage from grade differences
