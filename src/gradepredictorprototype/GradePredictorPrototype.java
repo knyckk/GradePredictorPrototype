@@ -229,10 +229,10 @@ public class GradePredictorPrototype {
         int tmplow = low;//declare and initialise variables
         int tmphigh = high;
         while (tmplow <= tmphigh) {//until the low index has become greater than the high index
-            while (methods.get(tmplow).getPerformance() < pivot && tmplow < high) {//finds a method before the pivot that has performance greater than the pivot
+            while (methods.get(tmplow).getPerformance() > pivot && tmplow < high) {//finds a method before the pivot that has performance less than the pivot
                 tmplow++;
             }
-            while (methods.get(tmphigh).getPerformance() > pivot && tmphigh > low) {//finds a method after the pivot that should be before the pivot
+            while (methods.get(tmphigh).getPerformance() < pivot && tmphigh > low) {//finds a method after the pivot that should be before the pivot
                 tmphigh--;
             }
             if (tmplow <= tmphigh) {//if lower index is still lower than higher index

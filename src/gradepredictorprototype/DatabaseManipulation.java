@@ -905,7 +905,7 @@ public class DatabaseManipulation {
     }
 
     public static String[] getStudentSubjectInfo(String StudentSubId) {//method to retrieve predicted,target,achieved grades as well as revision methods for a student in a subject
-        String[] toReturn = {"N/A", "N/A", "PPQ", "2023-01-01"};
+        String[] toReturn = {"N/A", "N/A", "N/A", "2023-01-01"};
         try ( Connection conn = DriverManager.getConnection(URL, "THope", DATABASEPASSWORD);  Statement statement = conn.createStatement()) { // creates the connection
             try ( ResultSet result = statement.executeQuery("SELECT " + PREDICTEDGRADE + "," + TARGETGRADE//selects studentSubject data for a single student
                     + "," + METHODNAME + "," + DATE + " FROM " + STUDENTSUB + " WHERE " + STUDENTSUBID + " = '" + StudentSubId + "'")) {
@@ -945,6 +945,9 @@ public class DatabaseManipulation {
         } catch (SQLException e) {
             System.out.println("ERROR MESSAGE 1!!!!" + e); //error message in sql statement or connections
         }
+        if(count == 0) {
+            count = 1;
+        }
         return toReturn / count;//returns the average percentage achieved
     }
 
@@ -967,6 +970,9 @@ public class DatabaseManipulation {
         } catch (SQLException e) {
             System.out.println("ERROR MESSAGE 1!!!!" + e); //error message in sql statement or connections
         }
+        if(count == 0) {
+            count = 1;
+        }
         return toReturn / count;//returns average percentage
     }
 
@@ -976,7 +982,10 @@ public class DatabaseManipulation {
         try ( Connection conn = DriverManager.getConnection(URL, "THope", DATABASEPASSWORD);  Statement statement = conn.createStatement()) { // creates the connection
             try ( ResultSet result = statement.executeQuery("Select PredictedGrade,TargetGrade,FinalGrade\n"
                     + "From StudentSub\n"//selects grades for students who used a certain revision method and have achieved a final grade
-                    + "where StudentSub.MethodName = '" + method.getName() + "' and FinalGrade IS NOT NULL AND StudentSub.SubjectID = " + subject.getID())) {
+                    + "where StudentSub.MethodName = '" + method.getName() + "' and FinalGrade IS NOT NULL "
+                            + "AND TargetGrade IS NOT NULL "
+                            + "AND PredictedGrade IS NOT NULL "
+                            + "AND StudentSub.SubjectID = " + subject.getID())) {
                 while (result.next()) { //for every result
                     toReturn += GradePredictorPrototype.ungrade((GradePredictorPrototype.gradeToInt(result.getString(FINALGRADE)) - GradePredictorPrototype.gradeToInt(result.getString(TARGETGRADE))));//calculates a percentage based on the difference between achieved grade and target grade and average grade boundaries
                     toReturn += GradePredictorPrototype.ungrade((GradePredictorPrototype.gradeToInt(result.getString(FINALGRADE)) - GradePredictorPrototype.gradeToInt(result.getString(PREDICTEDGRADE))));//calculates a percentage difference between achieved and predicted grade and average grade boundaries
@@ -988,6 +997,9 @@ public class DatabaseManipulation {
             }
         } catch (SQLException e) {
             System.out.println("ERROR MESSAGE 1!!!!" + e); //error message in sql statement or connections
+        }
+        if(count == 0) {
+            count = 1;
         }
         return toReturn / count;//returns average percentage from grade differences
     }
