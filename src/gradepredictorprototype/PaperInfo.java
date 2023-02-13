@@ -330,6 +330,15 @@ public class PaperInfo extends javax.swing.JFrame {
     }//GEN-LAST:event_profileBtnActionPerformed
 
     private void enterBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterBtnActionPerformed
+        if (ValidationRoutines.presenceCheck(AStarFld.getText())
+                && ValidationRoutines.presenceCheck(AFld.getText())
+                && ValidationRoutines.presenceCheck(BFld.getText())
+                && ValidationRoutines.presenceCheck(CFld.getText())//validates inputs
+                && ValidationRoutines.presenceCheck(DFld.getText())
+                && ValidationRoutines.presenceCheck(EFld.getText())
+                && ValidationRoutines.presenceCheck(yearFld.getText())
+                && ValidationRoutines.presenceCheck(howManyFld.getText())
+                && ValidationRoutines.presenceCheck(numberFld.getText())) {
         if (ValidationRoutines.isInt(AStarFld.getText())
                 && ValidationRoutines.isInt(AFld.getText())
                 && ValidationRoutines.isInt(BFld.getText())
@@ -339,17 +348,22 @@ public class PaperInfo extends javax.swing.JFrame {
                 && ValidationRoutines.isDate(yearFld.getText() + "-01-01")
                 && ValidationRoutines.isInt(howManyFld.getText())
                 && ValidationRoutines.isInt(numberFld.getText())) {
-                    Paper paper = new Paper(Integer.valueOf(howManyFld.getText()), 
-                            Integer.valueOf(yearFld.getText()), 
-                            Integer.valueOf(numberFld.getText()), 
-                            Integer.valueOf(AStarFld.getText()), 
-                            Integer.valueOf(AFld.getText()), 
-                            Integer.valueOf(BFld.getText()), //initialises the paper locally
-                            Integer.valueOf(CFld.getText()), 
-                            Integer.valueOf(DFld.getText()), 
-                            Integer.valueOf(EFld.getText()));
-                    new CreatePaper(paper).setVisible(true); //goes into the create paper form for further information
-                    this.dispose();
+            if (ValidationRoutines.rangeCheck("0", EFld.getText(), DFld.getText())
+                    && ValidationRoutines.rangeCheck(DFld.getText(), CFld.getText(), BFld.getText())
+                    && ValidationRoutines.rangeCheck(BFld.getText(), AFld.getText(), AStarFld.getText())) {
+                Paper paper = new Paper(Integer.parseInt(howManyFld.getText()),
+                        Integer.parseInt(yearFld.getText()),
+                        Integer.parseInt(numberFld.getText()),
+                        Integer.parseInt(AStarFld.getText()),
+                        Integer.parseInt(AFld.getText()),
+                        Integer.parseInt(BFld.getText()), //initialises the paper locally
+                        Integer.parseInt(CFld.getText()),
+                        Integer.parseInt(DFld.getText()),
+                        Integer.parseInt(EFld.getText()));
+                new CreatePaper(paper).setVisible(true); //goes into the create paper form for further information
+                this.dispose();
+            }
+        }
         }
     }//GEN-LAST:event_enterBtnActionPerformed
 

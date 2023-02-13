@@ -25,7 +25,7 @@ public class Paper {
         this.number = number;//initialises variables
         boundaries = new int[] {AStar, A, B, C , D ,E};
         for(int i = 0; i<numOfQuestions;i++) {
-            questions[i] = new Question(0,new ImageIcon(),"topic");
+            questions[i] = new Question(0,null,"topic");
         }
     }
     public Paper(Question[] questions, int ID, int year, int number, int AStar, int A, int B, int C, int D, int E, int subject, int max) {//constructor for creating an existing paper

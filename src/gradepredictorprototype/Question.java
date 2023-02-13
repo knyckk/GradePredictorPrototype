@@ -55,4 +55,7 @@ public class Question {
     public boolean equals(Question question) {
         return this.QuestionID == question.getID();//compares 2 questions for equality
     }
+    public boolean isNull() {
+        return this.question == null;
+    }
 } 

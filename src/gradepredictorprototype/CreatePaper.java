@@ -4,7 +4,6 @@
  */
 package gradepredictorprototype;
 
-
 import javax.swing.ImageIcon;
 
 /**
@@ -16,7 +15,8 @@ public class CreatePaper extends javax.swing.JFrame {
     private Paper paper;
     private int index; //creates variables
     private int[] topics;
-    private ImageIcon question = new ImageIcon();
+    private ImageIcon question = null;
+    private int maxQuestion;
 
     /**
      * Creates new form CreatePaper
@@ -24,7 +24,8 @@ public class CreatePaper extends javax.swing.JFrame {
     public CreatePaper(Paper paper) {
         index = 0;
         this.paper = paper; //initialises variables
-        topics = new int[paper.numOfQuestions()];        
+        topics = new int[paper.numOfQuestions()];
+        maxQuestion = 1;
         initComponents();
     }
 
@@ -232,48 +233,57 @@ public class CreatePaper extends javax.swing.JFrame {
     }//GEN-LAST:event_profileBtnActionPerformed
 
     private void rightBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rightBtnActionPerformed
-        if (ValidationRoutines.isInt(markFld.getText())
-                ) { // validates input
-            if (index < paper.numOfQuestions() - 1) { //makes sure you cannot go past then number of questions that exists
-                paper.addQuestion(index, new Question(Integer.valueOf(markFld.getText()), question, topicsBox.getSelectedItem().toString())); //adds the question to the paper
-                topics[index] = topicsBox.getSelectedIndex(); //stores the topic locally
-                index += 1; //increments the index
-                questionNumLbl.setText("Question " + (index + 1));//updates labels
-                markFld.setText(String.valueOf(paper.getQuestion(index).getMark()));
-                questionLbl.setIcon(paper.getQuestion(index).getQuestion());
-                question = paper.getQuestion(index).getQuestion();//gets the new question
-                topicsBox.setSelectedIndex(topics[index]);//updates topics box
+        if (ValidationRoutines.presenceCheck(markFld.getText()) && topicsBox.getSelectedItem() != null) {
+            if (ValidationRoutines.isInt(markFld.getText()) && question != null) { // validates input 
+                if (index < paper.numOfQuestions() - 1 && Integer.parseInt(markFld.getText()) > 0) { //makes sure you cannot go past then number of questions that exists
+                    paper.addQuestion(index, new Question(Integer.parseInt(markFld.getText()), question, topicsBox.getSelectedItem().toString())); //adds the question to the paper
+                    topics[index] = topicsBox.getSelectedIndex(); //stores the topic locally
+                    index += 1; //increments the index
+                    questionNumLbl.setText("Question " + (index + 1));//updates labels
+                    markFld.setText(String.valueOf(paper.getQuestion(index).getMark()));
+                    questionLbl.setIcon(paper.getQuestion(index).getQuestion());
+                    question = paper.getQuestion(index).getQuestion();//gets the new question
+                    topicsBox.setSelectedIndex(topics[index]);//updates topics box
+                    if (index + 1 > maxQuestion) {
+                        maxQuestion = index + 1;
+                    }
+                }
+            } else {
+                markFld.setText("Please enter a number or question"); //if validation routine fails, gives an error message
             }
-        } else {            
-            markFld.setText("Please enter a number"); //if validation routine fails, gives an error message
         }
     }//GEN-LAST:event_rightBtnActionPerformed
 
     private void leftBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leftBtnActionPerformed
-        if (ValidationRoutines.isInt(markFld.getText())
-                ) {//validates input
-            if (index > 0) {//does not allow index to be negative
-                paper.addQuestion(index, new Question(Integer.valueOf(markFld.getText()), question, topicsBox.getSelectedItem().toString()));//adds the question to the paper
-                topics[index] = topicsBox.getSelectedIndex(); //stores topic locally
-                index -= 1;//increments the index
-                questionNumLbl.setText("Question " + (index + 1));//updates labels
-                markFld.setText(String.valueOf(paper.getQuestion(index).getMark()));
-                questionLbl.setIcon(paper.getQuestion(index).getQuestion());
-                question = paper.getQuestion(index).getQuestion();//gets the new question
-                topicsBox.setSelectedIndex(topics[index]);//updates topic box
+        if (ValidationRoutines.presenceCheck(markFld.getText()) && topicsBox.getSelectedItem() != null) {
+            if (ValidationRoutines.isInt(markFld.getText()) && question != null) {//validates input
+                if (index > 0 && Integer.parseInt(markFld.getText()) > 0) {//does not allow index to be negative
+                    paper.addQuestion(index, new Question(Integer.parseInt(markFld.getText()), question, topicsBox.getSelectedItem().toString()));//adds the question to the paper
+                    topics[index] = topicsBox.getSelectedIndex(); //stores topic locally
+                    index -= 1;//increments the index
+                    questionNumLbl.setText("Question " + (index + 1));//updates labels
+                    markFld.setText(String.valueOf(paper.getQuestion(index).getMark()));
+                    questionLbl.setIcon(paper.getQuestion(index).getQuestion());
+                    question = paper.getQuestion(index).getQuestion();//gets the new question
+                    topicsBox.setSelectedIndex(topics[index]);//updates topic box
+                }
+            } else {
+                markFld.setText("Please enter a number or question");//if validation routine fails, gives an error message
             }
-        }   else {
-                markFld.setText("Please enter a number");//if validation routine fails, gives an error message
         }
-
     }//GEN-LAST:event_leftBtnActionPerformed
 
     private void createBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBtnActionPerformed
-        paper.addQuestion(index, new Question(Integer.valueOf(markFld.getText()), question, topicsBox.getSelectedItem().toString())); //saves current question
-        DatabaseManipulation.createPaper(paper, GradePredictorPrototype.getSubject());//creates the paper
-        new TeacherSubject().setVisible(true);//returns to subject form
-        this.dispose();
-
+        if (ValidationRoutines.presenceCheck(markFld.getText()) && topicsBox.getSelectedItem() != null) {
+            if (ValidationRoutines.isInt(markFld.getText()) && question != null) {
+                if (maxQuestion == paper.numOfQuestions() && paper.getMax() + Integer.parseInt(markFld.getText()) > paper.getBoundaries()[0] && Integer.parseInt(markFld.getText()) > 0) {
+                    paper.addQuestion(index, new Question(Integer.parseInt(markFld.getText()), question, topicsBox.getSelectedItem().toString())); //saves current question
+                    DatabaseManipulation.createPaper(paper, GradePredictorPrototype.getSubject());//creates the paper
+                    new TeacherSubject().setVisible(true);//returns to subject form
+                    this.dispose();
+                }
+            }
+        }
     }//GEN-LAST:event_createBtnActionPerformed
 
     private void markFldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_markFldFocusGained
@@ -291,8 +301,12 @@ public class CreatePaper extends javax.swing.JFrame {
     }//GEN-LAST:event_exitMouseClicked
 
     private void questionBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_questionBtnActionPerformed
-        question = GradePredictorPrototype.getImageFromClipboard(); //gets question from clipboard
-        questionLbl.setIcon(question);//updates label
+        ImageIcon temp = GradePredictorPrototype.getImageFromClipboard();//gets question from clipboard        
+        if (temp != null) {
+            question = temp;
+            questionLbl.setIcon(question);//updates label
+        }
+
     }//GEN-LAST:event_questionBtnActionPerformed
 
     /**
