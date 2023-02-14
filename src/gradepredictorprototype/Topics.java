@@ -255,8 +255,8 @@ public class Topics extends javax.swing.JFrame {
     }//GEN-LAST:event_exitMouseClicked
 
     private void replaceBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_replaceBtnActionPerformed
-        if (ValidationRoutines.presenceCheck(replaceFld.getText()) && ValidationRoutines.lengthCheck(0, replaceFld.getText(), 128)) {//validates changed topic
-            if (DatabaseManipulation.updateTopic(replaceBox.getSelectedItem().toString(), replaceFld.getText(),GradePredictorPrototype.getSubject())) {//stores changed topic and checks if change occured
+        if (ValidationRoutines.presenceCheck(replaceFld.getText()) && ValidationRoutines.lengthCheck(0, replaceFld.getText(), 128) && replaceBox.getSelectedItem() != null) {//validates changed topic 
+            if (DatabaseManipulation.updateTopic(replaceBox.getSelectedItem().toString(), replaceFld.getText(), GradePredictorPrototype.getSubject())) {//stores changed topic and checks if change occured
                 String newTopic = replaceFld.getText();
                 int oldIndex = replaceBox.getSelectedIndex();
                 topicsBox.removeItemAt(oldIndex);
@@ -270,12 +270,14 @@ public class Topics extends javax.swing.JFrame {
     }//GEN-LAST:event_replaceBtnActionPerformed
 
     private void removeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeBtnActionPerformed
-        if (DatabaseManipulation.deleteTopic(topics.get(removeBox.getSelectedIndex()).getID(),GradePredictorPrototype.getSubject())) {//deletes the topic
-            int oldIndex = removeBox.getSelectedIndex();
-            topics.remove(oldIndex);
-            topicsBox.removeItemAt(oldIndex);
-            replaceBox.removeItemAt(oldIndex); //updates the combo boxes  if topic was deleted
-            removeBox.removeItemAt(oldIndex);
+        if (removeBox.getSelectedItem() != null) {
+            if (DatabaseManipulation.deleteTopic(topics.get(removeBox.getSelectedIndex()).getID(), GradePredictorPrototype.getSubject())) {//deletes the topic
+                int oldIndex = removeBox.getSelectedIndex();
+                topics.remove(oldIndex);
+                topicsBox.removeItemAt(oldIndex);
+                replaceBox.removeItemAt(oldIndex); //updates the combo boxes  if topic was deleted
+                removeBox.removeItemAt(oldIndex);
+            }
         }
     }//GEN-LAST:event_removeBtnActionPerformed
 

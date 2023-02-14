@@ -212,15 +212,16 @@ public class RevisionMethod extends javax.swing.JFrame {
     }//GEN-LAST:event_createMethodBtnActionPerformed
 
     private void removeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeBtnActionPerformed
-        DatabaseManipulation.deleteMethod(removeBox.getSelectedItem().toString());//deletes the method
-        int index = removeBox.getSelectedIndex(); //gets index of deleted method
-        methodsBox.removeItemAt(index);
-        removeBox.removeItemAt(index); //updates combo boxes locally
-        replaceBox.removeItemAt(index);
+        if (removeBox.getSelectedItem() != null) {
+            DatabaseManipulation.deleteMethod(removeBox.getSelectedItem().toString());//deletes the method
+            int index = removeBox.getSelectedIndex(); //gets index of deleted method
+            methodsBox.removeItemAt(index);
+            removeBox.removeItemAt(index); //updates combo boxes locally
+            replaceBox.removeItemAt(index);
+        }
     }//GEN-LAST:event_removeBtnActionPerformed
 
     private void subjectBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subjectBtnActionPerformed
-
         new TeacherSubject().setVisible(true); //returns to the subject form
         this.dispose();
     }//GEN-LAST:event_subjectBtnActionPerformed
@@ -232,12 +233,19 @@ public class RevisionMethod extends javax.swing.JFrame {
     }//GEN-LAST:event_profileBtnActionPerformed
 
     private void renameBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_renameBtnActionPerformed
-        if (ValidationRoutines.lengthCheck(0, nameFld.getText(), 32)) { //validates inputs
-            DatabaseManipulation.updateMethod(removeBox.getSelectedItem().toString(), nameFld.getText()); //updates the method
-            String newMethod = nameFld.getText(); //stores method locally 
-            methodsBox.addItem(newMethod);
-            removeBox.addItem(newMethod); //updates boxes locally
-            replaceBox.addItem(newMethod);
+        if (replaceBox.getSelectedItem() != null) {
+            if (ValidationRoutines.lengthCheck(0, nameFld.getText(), 32)) { //validates inputs
+                DatabaseManipulation.updateMethod(replaceBox.getSelectedItem().toString(), nameFld.getText()); //updates the method
+                String newMethod = nameFld.getText(); //stores method locally 
+                int oldIndex = replaceBox.getSelectedIndex();
+                methodsBox.removeItemAt(oldIndex);
+                methodsBox.insertItemAt(newMethod, oldIndex);
+                removeBox.removeItemAt(oldIndex);
+                removeBox.insertItemAt(newMethod, oldIndex);//update combo Boxes
+                replaceBox.removeItemAt(oldIndex);
+                replaceBox.insertItemAt(newMethod, oldIndex);
+            }
+
     }//GEN-LAST:event_renameBtnActionPerformed
     }
     private void nameFldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nameFldFocusGained
