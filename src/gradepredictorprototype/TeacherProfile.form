@@ -52,17 +52,22 @@
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="changeBtn" alignment="0" min="-2" pref="165" max="-2" attributes="0"/>
-                          <Component id="nameLbl" alignment="0" min="-2" pref="149" max="-2" attributes="0"/>
-                          <Component id="usernameLbl" alignment="0" min="-2" pref="149" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="nameLbl" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="usernameLbl" alignment="0" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="16" pref="16" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="1001" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="iconBox" alignment="0" max="32767" attributes="0"/>
                           <Component id="iconLbl" alignment="0" min="-2" pref="223" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="525" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="enterBtn" min="-2" pref="165" max="-2" attributes="0"/>
                           <Component id="subjectBox" min="-2" pref="335" max="-2" attributes="0"/>
