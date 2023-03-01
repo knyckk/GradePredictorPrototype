@@ -241,10 +241,13 @@ public class RevisionMethod extends javax.swing.JFrame {
                 int oldIndex = replaceBox.getSelectedIndex();
                 methodsBox.removeItemAt(oldIndex);
                 methodsBox.insertItemAt(newMethod, oldIndex);
+                methodsBox.setSelectedIndex(0);
                 removeBox.removeItemAt(oldIndex);
                 removeBox.insertItemAt(newMethod, oldIndex);//update combo Boxes
+                removeBox.setSelectedIndex(0);
                 replaceBox.removeItemAt(oldIndex);
                 replaceBox.insertItemAt(newMethod, oldIndex);
+                replaceBox.setSelectedIndex(oldIndex);
             }
 
     }//GEN-LAST:event_renameBtnActionPerformed

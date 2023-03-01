@@ -261,10 +261,13 @@ public class Topics extends javax.swing.JFrame {
                 int oldIndex = replaceBox.getSelectedIndex();
                 topicsBox.removeItemAt(oldIndex);
                 topicsBox.insertItemAt(newTopic, oldIndex);//updates combo boxes locally
+                topicsBox.setSelectedIndex(0);
                 removeBox.removeItemAt(oldIndex);
                 removeBox.insertItemAt(newTopic, oldIndex);
+                removeBox.setSelectedIndex(0);
                 replaceBox.removeItemAt(oldIndex);
                 replaceBox.insertItemAt(newTopic, oldIndex);
+                replaceBox.setSelectedIndex(oldIndex);
             }
         }
     }//GEN-LAST:event_replaceBtnActionPerformed
