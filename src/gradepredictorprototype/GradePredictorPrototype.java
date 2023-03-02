@@ -169,7 +169,6 @@ public class GradePredictorPrototype {
 
     public static int contains(ArrayList<Topic> topics, Topic topic) { //list of topics will be sorted so can use a binary search
         int toReturn = -1;//returns index of topic that is looked for
-        int i = 0;
         int low = 0;
         int high = topics.size() - 1;
         boolean found = false;//sets to false by default, assumes topic is not in list
