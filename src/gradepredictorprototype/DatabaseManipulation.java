@@ -917,23 +917,7 @@ public class DatabaseManipulation {
         return toReturn;//returns the class
     }
 
-    public static String getPredicted(String StudentSubId) {//method for getting predicted grade for a student in a subject
-        String toReturn = "N/A";
-        try ( Connection conn = DriverManager.getConnection(URL, "THope", DATABASEPASSWORD);  Statement statement = conn.createStatement()) { // creates the connection
-            try ( ResultSet result = statement.executeQuery("SELECT " + PREDICTEDGRADE + " FROM " + STUDENTSUB + " WHERE "//selects predicted grade
-                    + STUDENTSUBID + " = '" + StudentSubId + "'")) {
-                if (result.next()) {
-                    toReturn = result.getString(PREDICTEDGRADE);//stores predicted grade
-                }
-                conn.close();//closes  the connection
-            } catch (SQLException e) {
-                System.out.println("ERROR MESSAGE 2!!!!" + e); //error message in select statements
-            }
-        } catch (SQLException e) {
-            System.out.println("ERROR MESSAGE 1!!!!" + e); //error message in sql statement or connections
-        }
-        return toReturn;//returns predicted grade
-    }
+    
 
     public static String[] getStudentSubjectInfo(String StudentSubId) {//method to retrieve predicted,target,achieved grades as well as revision methods for a student in a subject
         String[] toReturn = {"N/A", "N/A", "N/A", "2023-01-01"};
@@ -1059,63 +1043,6 @@ public class DatabaseManipulation {
             System.out.println("ERROR MESSAGE 1!!!!" + e); //error message in sql statement or connections
         }
         return toReturn;//returns grade
-    }
-
-    public static String getTarget(String StudentSubId) {//method to get a students subject target grade
-        String toReturn = "A*";
-        try ( Connection conn = DriverManager.getConnection(URL, "THope", DATABASEPASSWORD);  Statement statement = conn.createStatement()) { // creates the connection
-            try ( ResultSet result = statement.executeQuery("SELECT " + TARGETGRADE + " FROM " + STUDENTSUB + " WHERE " + STUDENTSUBID//selects a students target grade for a subject
-                    + " = '" + StudentSubId + "'")) {
-                if (result.next()) {
-                    toReturn = result.getString(TARGETGRADE);
-                }
-                conn.close();//closes  the connection
-            } catch (SQLException e) {
-                System.out.println("ERROR MESSAGE 2!!!!" + e); //error message in select statements
-            }
-        } catch (SQLException e) {
-            System.out.println("ERROR MESSAGE 1!!!!" + e); //error message in sql statement or connections
-        }
-        return toReturn;//returns the target grade
-    }
-
-    public static String getExamDate(String StudentSubId) {//method to return when a student is sitting their exams in a subject
-        String toReturn = "2023-06-01";
-        try ( Connection conn = DriverManager.getConnection(URL, "THope", DATABASEPASSWORD);  Statement statement = conn.createStatement()) { // creates the connection
-            try ( ResultSet result = statement.executeQuery("SELECT " + DATE + " FROM " + STUDENTSUB//selects the date the student is sitting a certain subject's paper
-                    + " WHERE " + STUDENTSUBID + " = '" + StudentSubId + "'")) {
-                if (result.next()) {
-                    toReturn = result.getString(DATE);
-                    if (toReturn == null) {
-                        toReturn = "2023-06-01";//returned date is june 2023 by default
-                    }
-                }
-                conn.close();//closes  the connection
-            } catch (SQLException e) {
-                System.out.println("ERROR MESSAGE 2!!!!" + e); //error message in select statements
-            }
-        } catch (SQLException e) {
-            System.out.println("ERROR MESSAGE 1!!!!" + e); //error message in sql statement or connections
-        }
-        return toReturn;//returns date
-    }
-
-    public static String getMethod(String StudentSubId) {//method used to return what revision method a student uses for a subject
-        String toReturn = "PPQ";
-        try ( Connection conn = DriverManager.getConnection(URL, "THope", DATABASEPASSWORD);  Statement statement = conn.createStatement()) { // creates the connection
-            try ( ResultSet result = statement.executeQuery("SELECT " + METHODNAME + " FROM " + STUDENTSUB + " WHERE "//selects revision method used bby a student in a subject
-                    + STUDENTSUBID + " = '" + StudentSubId + "'")) {
-                if (result.next()) {
-                    toReturn = result.getString(METHODNAME);
-                }
-                conn.close();//closes  the connection
-            } catch (SQLException e) {
-                System.out.println("ERROR MESSAGE 2!!!!" + e); //error message in select statements
-            }
-        } catch (SQLException e) {
-            System.out.println("ERROR MESSAGE 1!!!!" + e); //error message in sql statement or connections
-        }
-        return toReturn;//returns the method
     }
 
     public static boolean methodExists(String name) {//method to return if a method already exists

@@ -187,15 +187,7 @@ public class GradePredictorPrototype {
         return toReturn;//returns index if found or -1 if not found
     }
 
-    public static boolean contains(ArrayList<Question> questions, Question question) { //list of questions will not neccesarily be sorted so need to use a linear search
-        int i = 0;
-        boolean found = false;//assumes list does not contain question by default
-        while (i < questions.size() && !found) {//iterates over list until question found or end of list reached
-            found = questions.get(i).equals(question);//stores if question is found
-            i++;
-        }
-        return found;//outputs if topic is found
-    }
+    
 
     public static void setBoundaries(Subject subject) {//sets average grade boundaries for a subject
         ArrayList<Paper> papers = DatabaseManipulation.getPapers(subject);//gets all papers for the subject
