@@ -13,6 +13,7 @@ import java.util.ArrayList;
 public class TopicBreakdown extends javax.swing.JFrame {
 
     private ArrayList<Question> questions;
+    private ArrayList<Question> allQuestions;
     private ArrayList<Topic> topics;
     private ArrayList<Question> uniqueQuestions; //declares variables
     private int questionIndex;
@@ -23,6 +24,7 @@ public class TopicBreakdown extends javax.swing.JFrame {
      */
     public TopicBreakdown() {
         questions = DatabaseManipulation.studentQuestions(GradePredictorPrototype.getStudent(), GradePredictorPrototype.getSubject());
+        allQuestions = DatabaseManipulation.subjectQuestions(GradePredictorPrototype.getSubject());
         questionIndex = 0;
         questionIndex1 = 0; //initialises variables
         topics = new ArrayList<>();
@@ -30,9 +32,12 @@ public class TopicBreakdown extends javax.swing.JFrame {
         for (int i = 0; i < questions.size(); i++) {
             if ((GradePredictorPrototype.contains(topics, questions.get(i).getTopic()) == -1)) {
                 topics.add(questions.get(i).getTopic());
-            } //gets all unique topics and questions 
-            if (!(GradePredictorPrototype.contains(uniqueQuestions, questions.get(i)))) {
-                uniqueQuestions.add(questions.get(i));
+            } //gets all tested topics 
+            
+        }
+        for(int i = 0; i < allQuestions.size(); i++) {
+            if (!(GradePredictorPrototype.contains(uniqueQuestions, allQuestions.get(i)))) {
+                uniqueQuestions.add(allQuestions.get(i));//gets all questions 
             }
         }
         initComponents();

@@ -46,11 +46,12 @@ public class CreatePaper extends javax.swing.JFrame {
         markFld = new javax.swing.JTextField();
         topicLbl = new javax.swing.JLabel();
         topicsBox = new javax.swing.JComboBox<>();
-        questionLbl = new javax.swing.JLabel();
+        questionIconLbl = new javax.swing.JLabel();
         subjectBtn = new javax.swing.JButton();
         profileBtn = new javax.swing.JButton();
         createBtn = new javax.swing.JButton();
         questionBtn = new javax.swing.JButton();
+        questionLbl = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         logout = new javax.swing.JMenu();
         exit = new javax.swing.JMenu();
@@ -92,8 +93,7 @@ public class CreatePaper extends javax.swing.JFrame {
 
         topicsBox.setModel(new javax.swing.DefaultComboBoxModel<>(DatabaseManipulation.getTopicsFromSubject(GradePredictorPrototype.getSubject()).stream().map(x -> x.getTopic()).toArray(String[]::new)));
 
-        questionLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        questionLbl.setText("Question:");
+        questionIconLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         subjectBtn.setText("Return to Subject");
         subjectBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -124,6 +124,8 @@ public class CreatePaper extends javax.swing.JFrame {
             }
         });
 
+        questionLbl.setText("Question:");
+
         logout.setText("Log out");
         logout.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -150,36 +152,35 @@ public class CreatePaper extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(createBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(createBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(questionIconLbl, javax.swing.GroupLayout.DEFAULT_SIZE, 848, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(profileBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(subjectBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(questionLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(questionLbl, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
-                                .addGap(614, 614, 614))
+                                .addComponent(topicLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(topicsBox, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(questionBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(titleLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(topicLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(topicsBox, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(questionBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(titleLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(maxMarkLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(markFld, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(leftBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(questionNumLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(rightBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addGap(486, 486, 486)))
+                                .addComponent(maxMarkLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(markFld, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(leftBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(questionNumLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(rightBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -211,8 +212,10 @@ public class CreatePaper extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(questionLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                        .addGap(147, 147, 147)
+                        .addComponent(questionLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(questionIconLbl, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(createBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
         );
@@ -241,7 +244,7 @@ public class CreatePaper extends javax.swing.JFrame {
                     index += 1; //increments the index
                     questionNumLbl.setText("Question " + (index + 1));//updates labels
                     markFld.setText(String.valueOf(paper.getQuestion(index).getMark()));
-                    questionLbl.setIcon(paper.getQuestion(index).getQuestion());
+                    questionIconLbl.setIcon(paper.getQuestion(index).getQuestion());
                     question = paper.getQuestion(index).getQuestion();//gets the new question
                     topicsBox.setSelectedIndex(topics[index]);//updates topics box
                     if (index + 1 > maxQuestion) {
@@ -263,7 +266,7 @@ public class CreatePaper extends javax.swing.JFrame {
                     index -= 1;//increments the index
                     questionNumLbl.setText("Question " + (index + 1));//updates labels
                     markFld.setText(String.valueOf(paper.getQuestion(index).getMark()));
-                    questionLbl.setIcon(paper.getQuestion(index).getQuestion());
+                    questionIconLbl.setIcon(paper.getQuestion(index).getQuestion());
                     question = paper.getQuestion(index).getQuestion();//gets the new question
                     topicsBox.setSelectedIndex(topics[index]);//updates topic box
                 }
@@ -304,7 +307,7 @@ public class CreatePaper extends javax.swing.JFrame {
         ImageIcon temp = GradePredictorPrototype.getImageFromClipboard();//gets question from clipboard        
         if (temp != null) {
             question = temp;
-            questionLbl.setIcon(question);//updates label
+            questionIconLbl.setIcon(question);//updates label
         }
 
     }//GEN-LAST:event_questionBtnActionPerformed
@@ -353,6 +356,7 @@ public class CreatePaper extends javax.swing.JFrame {
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JButton profileBtn;
     private javax.swing.JButton questionBtn;
+    private javax.swing.JLabel questionIconLbl;
     private javax.swing.JLabel questionLbl;
     private javax.swing.JLabel questionNumLbl;
     private javax.swing.JButton rightBtn;

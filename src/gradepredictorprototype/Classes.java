@@ -59,6 +59,11 @@ public class Classes extends javax.swing.JFrame {
         });
 
         createClassFld.setText("Class name");
+        createClassFld.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                createClassFldMouseClicked(evt);
+            }
+        });
         createClassFld.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 createClassFldActionPerformed(evt);
@@ -73,6 +78,11 @@ public class Classes extends javax.swing.JFrame {
         });
 
         joinFld.setText("Teacher code");
+        joinFld.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                joinFldMouseClicked(evt);
+            }
+        });
         joinFld.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 joinFldActionPerformed(evt);
@@ -255,11 +265,13 @@ public class Classes extends javax.swing.JFrame {
 
     private void joinClassBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_joinClassBtnActionPerformed
         if (ValidationRoutines.presenceCheck(joinFld.getText())) { //checks that classcode has been entered
-            DatabaseManipulation.joinClass(joinFld.getText(), GradePredictorPrototype.getTeacher()); //joins the class if code was entered
-            String[] classes = DatabaseManipulation.getClasses(GradePredictorPrototype.getTeacher()).stream().filter(x -> x.getSubject().equals(GradePredictorPrototype.getSubject())).map(x -> x.getName()).toArray(String[]::new);
-            leaveBox.setModel(new javax.swing.DefaultComboBoxModel<>(classes));
-            currentBox.setModel(new javax.swing.DefaultComboBoxModel<>(classes)); //refreshes combo-boxes to include new class
-            removeBox.setModel(new javax.swing.DefaultComboBoxModel<>(classes));
+            String className = DatabaseManipulation.joinClass(joinFld.getText(), GradePredictorPrototype.getTeacher()); //joins the class if code was entered
+            if(className != null) {
+                leaveBox.addItem(className);
+                currentBox.addItem(className); //refreshes combo-boxes to include new class
+                removeBox.addItem(className);
+            }
+            
         }
     }//GEN-LAST:event_joinClassBtnActionPerformed
 
@@ -267,9 +279,9 @@ public class Classes extends javax.swing.JFrame {
         if (removeBox.getSelectedItem() != null) {
             DatabaseManipulation.deleteClass(removeBox.getSelectedItem().toString()); //deletes the class
             int toRemove = removeBox.getSelectedIndex(); //gets the index of the deleted class
-            leaveBox.remove(toRemove);
-            currentBox.remove(toRemove); //updates the combo-Boxes
-            removeBox.remove(toRemove);
+            leaveBox.removeItemAt(toRemove);
+            currentBox.removeItemAt(toRemove); //updates the combo-Boxes
+            removeBox.removeItemAt(toRemove);
         }
     }//GEN-LAST:event_removeBtnActionPerformed
 
@@ -277,9 +289,9 @@ public class Classes extends javax.swing.JFrame {
         if (leaveBox.getSelectedItem() != null) {
             DatabaseManipulation.leaveClass(leaveBox.getSelectedItem().toString(), GradePredictorPrototype.getTeacher()); //leaves the class
             int toRemove = leaveBox.getSelectedIndex();//gets the index of the left class
-            leaveBox.remove(toRemove);
-            currentBox.remove(toRemove);//updates the combo-boxes
-            removeBox.remove(toRemove);
+            leaveBox.removeItemAt(toRemove);
+            currentBox.removeItemAt(toRemove);//updates the combo-boxes
+            removeBox.removeItemAt(toRemove);
         }
     }//GEN-LAST:event_leaveBtnActionPerformed
 
@@ -292,12 +304,11 @@ public class Classes extends javax.swing.JFrame {
 
     private void createClassFldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createClassFldActionPerformed
 
-        createClassFld.selectAll();//automatically selects all text when clicked
+        
     }//GEN-LAST:event_createClassFldActionPerformed
 
     private void joinFldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_joinFldActionPerformed
 
-        joinFld.selectAll();//automatically selects all text when clicked
     }//GEN-LAST:event_joinFldActionPerformed
 
     private void logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseClicked
@@ -308,6 +319,14 @@ public class Classes extends javax.swing.JFrame {
     private void exitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMouseClicked
         System.exit(0); //closes application
     }//GEN-LAST:event_exitMouseClicked
+
+    private void joinFldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_joinFldMouseClicked
+        joinFld.selectAll();//automatically selects all text when clicked
+    }//GEN-LAST:event_joinFldMouseClicked
+
+    private void createClassFldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_createClassFldMouseClicked
+        createClassFld.selectAll();//automatically selects all text when clicked
+    }//GEN-LAST:event_createClassFldMouseClicked
 
     /**
      * @param args the command line arguments

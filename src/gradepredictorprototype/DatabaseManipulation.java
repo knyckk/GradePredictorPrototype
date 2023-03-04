@@ -284,7 +284,8 @@ public class DatabaseManipulation {
         return willAdd;
     }
 
-    public static void joinClass(String code, User teacher) {//method for joining a class as a teacher
+    public static String joinClass(String code, User teacher) {//method for joining a class as a teacher
+        String toReturn = null;
         boolean willAdd = false; //assumes code is wrong to begin with
         String className = "";
         try ( Connection conn = DriverManager.getConnection(URL, "THope", DATABASEPASSWORD);  Statement statement = conn.createStatement()) { // creates the connection
@@ -309,12 +310,14 @@ public class DatabaseManipulation {
                 if (willAdd) {
                     statement.execute("INSERT INTO " + CLASSUSERS//joins the class
                             + "\n VALUES('" + teacher.getEmail() + className + "','" + teacher.getEmail() + "','" + className + "')");
+                    toReturn = className;
                 }
             }
             conn.close();//closes  the connection
         } catch (SQLException e) {
             System.out.println("ERROR MESSAGE 1!!!!" + e); //error message in sql statement or connections
         }
+        return toReturn;
     }
 
     public static boolean updateClass(String name, String newName) {//method for changing class name
@@ -542,16 +545,17 @@ public class DatabaseManipulation {
     public static ArrayList<Question> studentQuestions(Student student, Subject subject) {//method for retrieving all questions complete by a student
         ArrayList<Question> questions = new ArrayList<>();
         try ( Connection conn = DriverManager.getConnection(URL, "THope", DATABASEPASSWORD);  Statement statement = conn.createStatement()) { // creates the connection
-            try ( ResultSet result = statement.executeQuery("SELECT StudQuestion.Mark, Questions.MaxMark, Questions.TopicID, StudQuestion.QuestionID, Questions.Question\n"
+            try ( ResultSet result = statement.executeQuery("SELECT Topics.Topic, StudQuestion.Mark, Questions.MaxMark, Questions.TopicID, StudQuestion.QuestionID, Questions.Question\n"
                     + "From StudQuestion \n"
                     + "inner join Questions on StudQuestion.QuestionID = Questions.QuestionID\n"//selects question data for a student
+                    + "inner join Topics on Questions.TopicID = Topics.TopicID\n"
                     + "inner join Papers on Questions.PaperID = Papers.PaperID\n"
                     + "WHERE Papers.SubjectID = " + subject.getID() + " and StudQuestion.Email = '" + student.getEmail() + "'"
-                    + "ORDER BY TopicID;")) {
+                    + "ORDER BY Questions.TopicID;")) {
                 while (result.next()) { //for every result
 
                     try {
-                        questions.add(new Question(result.getInt(QUESTIONID), result.getInt(MAXMARK), result.getInt(MARK), new ImageIcon((BufferedImage) ImageIO.read(result.getBlob(QUESTION).getBinaryStream())), topicFromTopicID(result.getInt(TOPICID))));//adds question to a list
+                        questions.add(new Question(result.getInt(QUESTIONID), result.getInt(MAXMARK), result.getInt(MARK), new ImageIcon((BufferedImage) ImageIO.read(result.getBlob(QUESTION).getBinaryStream())), new Topic(result.getInt(TOPICID), result.getString(TOPIC))));//adds question to a list
                     } catch (IOException e) {
                         System.out.println("Error: " + e);
                     }
@@ -566,7 +570,33 @@ public class DatabaseManipulation {
         }
         return questions;//returns list of questions
     }
+    public static ArrayList<Question> subjectQuestions(Subject subject) {//method for retrieving all questions complete by a student
+        ArrayList<Question> questions = new ArrayList<>();
+        try ( Connection conn = DriverManager.getConnection(URL, "THope", DATABASEPASSWORD);  Statement statement = conn.createStatement()) { // creates the connection
+            try ( ResultSet result = statement.executeQuery("SELECT Questions.MaxMark, Questions.QuestionID, Questions.TopicID, Topics.Topic, Questions.Question\n"
+                    + "From Questions \n"
+                    + "inner join Topics on Topics.TopicID = Questions.TopicID\n"//selects question data for a student
+                    + "inner join Papers on Questions.PaperID = Papers.PaperID\n"
+                    + "WHERE Papers.SubjectID = " + subject.getID() +"\n"
+                    + "ORDER BY Questions.TopicID;")) {
+                while (result.next()) { //for every result
 
+                    try {
+                        questions.add(new Question(result.getInt(QUESTIONID), result.getInt(MAXMARK), new ImageIcon((BufferedImage) ImageIO.read(result.getBlob(QUESTION).getBinaryStream())), new Topic(result.getInt(TOPICID), result.getString(TOPIC))));//adds question to a list
+                    } catch (IOException e) {
+                        System.out.println("Error: " + e);
+                    }
+                }
+                conn.close();//closes  the connection
+            } catch (SQLException e) {
+                System.out.println("ERROR MESSAGE 2!!!!" + e); //error message in select statements
+            }
+
+        } catch (SQLException e) {
+            System.out.println("ERROR MESSAGE 1!!!!" + e); //error message in sql statement or connections
+        }
+        return questions;//returns list of questions
+    }
     public static int[] getPaperBoundaries(int paperID) {//method for retrieving a papers boundaries
         int[] toReturn = new int[6];
         try ( Connection conn = DriverManager.getConnection(URL, "THope", DATABASEPASSWORD);  Statement statement = conn.createStatement()) { // creates the connection

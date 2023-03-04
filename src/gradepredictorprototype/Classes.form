@@ -172,6 +172,7 @@
         <Property name="text" type="java.lang.String" value="Class name"/>
       </Properties>
       <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="createClassFldMouseClicked"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="createClassFldActionPerformed"/>
       </Events>
     </Component>
@@ -188,6 +189,7 @@
         <Property name="text" type="java.lang.String" value="Teacher code"/>
       </Properties>
       <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="joinFldMouseClicked"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="joinFldActionPerformed"/>
       </Events>
     </Component>
