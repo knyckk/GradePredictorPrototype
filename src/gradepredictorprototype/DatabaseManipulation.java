@@ -657,6 +657,14 @@ public class DatabaseManipulation {
             try ( ResultSet result = statement.executeQuery("SELECT Mark, MaxMark, Date FROM StudInformalPaper "//gets informal data for a student
                     + "WHERE StudInformalPaper.SubjectID = " + subject.getID() + " and StudInformalPaper.Email = '" + student.getEmail() + "' ORDER BY StudInformalPaper.Date ASC;")) {
                 while (result.next()) { //for every result
+                    if (i == 0 || (i== 1 && (Math.abs(date.subtract(new Date(result.getString(DATE))))) > earliest)) {
+                        int tmp = Math.abs(date.subtract(new Date(result.getString(DATE)))) - earliest;//finds  the earliest paper sat
+                        for(Double[] coordinate: percentages) {
+                            coordinate[1] = coordinate[1] + tmp;
+                        }
+                        earliest += tmp;
+                        i = 1;
+                    }
                     percentages.add(new Double[]{0.9 * ((double) result.getInt(MARK) / result.getInt(MAXMARK)), (double) earliest - date.subtract(new Date(result.getString(DATE)))});//adds informal data coordinates in the same way as formal data was added
                 }
                 conn.close();//closes  the connection
