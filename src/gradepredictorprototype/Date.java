@@ -9,13 +9,11 @@ package gradepredictorprototype;
  * @author kingt
  */
 public class Date {
-    private int day;
     private int month; //declares variables
     private int year;
     public Date(String date) { // date in form yyyy-mm-dd
         year = Integer.parseInt(date.substring(0, 4));
         month = Integer.parseInt(date.substring(5,7));
-        day = Integer.parseInt(date.substring(8,10));
     }
     public int getMonth() {
         return this.month; // returns the month for the date

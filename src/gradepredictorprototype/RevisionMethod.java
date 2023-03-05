@@ -37,7 +37,7 @@ public class RevisionMethod extends javax.swing.JFrame {
         toLbl = new javax.swing.JLabel();
         nameFld = new javax.swing.JTextField();
         replaceBox = new javax.swing.JComboBox<>();
-        jLabel1 = new javax.swing.JLabel();
+        removeLbl = new javax.swing.JLabel();
         createMethodBtn = new javax.swing.JButton();
         removeBtn = new javax.swing.JButton();
         subjectBtn = new javax.swing.JButton();
@@ -50,7 +50,6 @@ public class RevisionMethod extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(51, 51, 51));
         setMinimumSize(new java.awt.Dimension(1200, 600));
-        setPreferredSize(new java.awt.Dimension(1200, 600));
 
         titleLbl.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         titleLbl.setText("Revision Methods");
@@ -79,8 +78,8 @@ public class RevisionMethod extends javax.swing.JFrame {
 
         replaceBox.setModel(new javax.swing.DefaultComboBoxModel<>(DatabaseManipulation.getMethods().stream().map(x -> x.getName()).toArray(String[]::new)));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel1.setText("Remove revision method:");
+        removeLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        removeLbl.setText("Remove revision method:");
 
         createMethodBtn.setText("Add method");
         createMethodBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -147,7 +146,7 @@ public class RevisionMethod extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(removeBox, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(removeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(removeLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(31, 31, 31)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(nameFld, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -187,7 +186,7 @@ public class RevisionMethod extends javax.swing.JFrame {
                 .addGap(3, 3, 3)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                        .addComponent(removeLbl)
                         .addGap(6, 6, 6)
                         .addComponent(removeBox, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(6, 6, 6)
@@ -311,7 +310,6 @@ public class RevisionMethod extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton createMethodBtn;
     private javax.swing.JMenu exit;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu logout;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JComboBox<String> methodsBox;
@@ -320,6 +318,7 @@ public class RevisionMethod extends javax.swing.JFrame {
     private javax.swing.JButton profileBtn;
     private javax.swing.JComboBox<String> removeBox;
     private javax.swing.JButton removeBtn;
+    private javax.swing.JLabel removeLbl;
     private javax.swing.JButton renameBtn;
     private javax.swing.JComboBox<String> replaceBox;
     private javax.swing.JButton subjectBtn;

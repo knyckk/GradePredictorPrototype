@@ -54,7 +54,6 @@ public class DatabaseManipulation {
     private static final String STUDENTCODE = "StudCode";
     private static final String TEACHERCODE = "TeacherCode";
     private static final String CLASSES = "Classes";
-    private static final String CLASSID = "ClassID";
     private static final String CLASSNAME = "ClassName";
     private static final String CLASSUSERS = "ClassUsers";
     private static final String CLASSUSERID = "ClassUserID";
