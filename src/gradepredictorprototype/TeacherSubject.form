@@ -61,7 +61,7 @@
           </Group>
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace pref="1024" max="32767" attributes="0"/>
-              <Component id="returnBtn" min="-2" pref="165" max="-2" attributes="0"/>
+              <Component id="profileBtn" min="-2" pref="165" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -80,7 +80,7 @@
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="topicsBtn" min="-2" pref="55" max="-2" attributes="0"/>
               <EmptySpace pref="208" max="32767" attributes="0"/>
-              <Component id="returnBtn" min="-2" pref="55" max="-2" attributes="0"/>
+              <Component id="profileBtn" min="-2" pref="55" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -129,12 +129,12 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="topicsBtnActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="returnBtn">
+    <Component class="javax.swing.JButton" name="profileBtn">
       <Properties>
         <Property name="text" type="java.lang.String" value="Return to Profile"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="returnBtnActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="profileBtnActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

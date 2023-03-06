@@ -9,17 +9,17 @@ package gradepredictorprototype;
  * @author kingt
  */
 public class Subject {
-    private int SubjectID;
-    private String SubjectName;//declares variables
+    private int subjectID;
+    private String subjectName;//declares variables
     public Subject(int ID, String name) {
-        SubjectID = ID;//initialise variables
-        SubjectName = name;
+        subjectID = ID;//initialise variables
+        subjectName = name;
     }
     public String getName() {
-        return this.SubjectName;//returns name
+        return this.subjectName;//returns name
     }
     public int getID() {
-        return this.SubjectID;//returns ID
+        return this.subjectID;//returns ID
     }
     @Override
     public boolean equals(Object compare) {//method for comparing equality of a subject and an object
@@ -32,8 +32,8 @@ public class Subject {
         }
         Subject compared = (Subject) compare;//casts compared into a subject
         
-        if(this.SubjectID == compared.SubjectID 
-                && this.SubjectName.equals(compared.SubjectName)) {//compares variables for equality
+        if(this.subjectID == compared.subjectID 
+                && this.subjectName.equals(compared.subjectName)) {//compares variables for equality
             toReturn = true;
     }
         return toReturn;

@@ -79,7 +79,7 @@ public class DatabaseManipulation {
                     willAdd = false; //key exists so data will not be added
                 }
             } catch (SQLException e) {
-                System.out.println("ERROR MESSAGE 2!!!!" + e); //error message in select statements
+                System.out.println("database error occured!" + e); //error message in select statements
             }
             if (willAdd) {
                 statement.execute("INSERT INTO " + USERS + "(" + EMAIL + "," + PASSWORD + "," + TYPE + "," + ICON + "," + USERNAME + "," + NAME
@@ -87,7 +87,7 @@ public class DatabaseManipulation {
             }
             conn.close();//closes  the connection
         } catch (SQLException e) {
-            System.out.println("ERROR MESSAGE 1!!!!" + e); //error message in sql statement or connections
+            System.out.println("connection error occured!" + e); //error message in sql statement or connections
         }
     }
 
@@ -97,7 +97,7 @@ public class DatabaseManipulation {
             statement.execute("UPDATE " + USERS + " SET " + USERNAME + " = '" + username + "', " + NAME + " = '" + name + "' WHERE " + EMAIL + " = '" + user.getEmail() + "'");//updates username and name
             conn.close();//closes  the connection
         } catch (SQLException e) {
-            System.out.println("ERROR MESSAGE 1!!!!" + e); //error message in sql statement or connections
+            System.out.println("connection error occured!" + e); //error message in sql statement or connections
         }
     }
 
@@ -110,7 +110,7 @@ public class DatabaseManipulation {
                 }
 
             } catch (SQLException e) {
-                System.out.println("ERROR MESSAGE 2!!!!" + e); //error message in select statements
+                System.out.println("database error occured!" + e); //error message in select statements
             }
             if (willAdd) {
                 statement.execute("INSERT INTO " + METHODS + "(" + METHODNAME + "," + DESCRIPTION
@@ -118,7 +118,7 @@ public class DatabaseManipulation {
             }
             conn.close();//closes  the connection
         } catch (SQLException e) {
-            System.out.println("ERROR MESSAGE 1!!!!" + e); //error message in sql statement or connections
+            System.out.println("connection error occured!" + e); //error message in sql statement or connections
         }
     }
 
@@ -132,13 +132,13 @@ public class DatabaseManipulation {
                 ID = result.getInt(STUDENTFORMALID);
                 conn.close();//closes  the connection
             } catch (SQLException e) {
-                System.out.println("ERROR MESSAGE 2!!!!" + e); //error message in select statements
+                System.out.println("database error occured!" + e); //error message in select statements
             }
             for (Question question : paper.getQuestions()) {
                 addQuestion(student, question, ID);
             }
         } catch (SQLException e) {
-            System.out.println("ERROR MESSAGE 1!!!!" + e); //error message in sql statement or connections
+            System.out.println("connection error occured!" + e); //error message in sql statement or connections
         }
     }
 
@@ -148,7 +148,7 @@ public class DatabaseManipulation {
             statement.execute("INSERT INTO " + STUDENTQUESTION + "\n VALUES(NULL, '" + student.getEmail() + "'," + question.getID() + "," + question.getScore() + "," + paperID + ")");//inserts the students data
             conn.close();//closes  the connection
         } catch (SQLException e) {
-            System.out.println("ERROR MESSAGE 1!!!!" + e); //error message in sql statement or connections
+            System.out.println("connection error occured!" + e); //error message in sql statement or connections
         }
     }
 
@@ -158,7 +158,7 @@ public class DatabaseManipulation {
             statement.execute("INSERT INTO " + STUDENTINFORMAL + "\n VALUES(NULL, '" + student.getEmail() + "','" + java.time.LocalDate.now() + "'," + mark + "," + maxMark + "," + subject.getID() + ")");//inserts the students data
             conn.close();//closes  the connection
         } catch (SQLException e) {
-            System.out.println("ERROR MESSAGE 1!!!!" + e); //error message in sql statement or connections
+            System.out.println("connection error occured!" + e); //error message in sql statement or connections
         }
     }
 
@@ -172,14 +172,14 @@ public class DatabaseManipulation {
                 }
 
             } catch (SQLException e) {
-                System.out.println("ERROR MESSAGE 2!!!!" + e); //error message in select statements
+                System.out.println("database error occured!" + e); //error message in select statements
             }
             try ( ResultSet result = statement.executeQuery("SELECT MAX(TopicID) FROM " + TOPICS)) {//retrieves topic data
                 if (result.next()) { //for every result
                     maxID = result.getInt("MAX(" + TOPICID + ")");//increments topic Id so max will be set last
                 }
             } catch (SQLException e) {
-                System.out.println("ERROR MESSAGE 2!!!!" + e); //error message in select statements
+                System.out.println("database error occured!" + e); //error message in select statements
             }
             if (willAdd) {
                 statement.execute("INSERT INTO " + TOPICS + "(" + TOPIC + " , " + SUBJECTID
@@ -187,7 +187,7 @@ public class DatabaseManipulation {
             }
             conn.close();//closes  the connection
         } catch (SQLException e) {
-            System.out.println("ERROR MESSAGE 1!!!!" + e); //error message in sql statement or connections
+            System.out.println("connection error occured!" + e); //error message in sql statement or connections
         }
         return maxID;
     }
@@ -201,7 +201,7 @@ public class DatabaseManipulation {
                 }
 
             } catch (SQLException e) {
-                System.out.println("ERROR MESSAGE 2!!!!" + e); //error message in select statements
+                System.out.println("database error occured!" + e); //error message in select statements
             }
             if (willAdd) {
                 statement.execute("INSERT INTO " + STUDENTSUB + "(" + STUDENTSUBID + " , " + EMAIL + " , " + SUBJECTID + " , " + DATE
@@ -209,7 +209,7 @@ public class DatabaseManipulation {
             }
             conn.close();//closes  the connection
         } catch (SQLException e) {
-            System.out.println("ERROR MESSAGE 1!!!!" + e); //error message in sql statement or connections
+            System.out.println("connection error occured!" + e); //error message in sql statement or connections
         }
     }
 
@@ -225,7 +225,7 @@ public class DatabaseManipulation {
                     ID = result.getInt("MAX(" + BOUNDARYID + ")");//gets largest boundary ID
                 }
             } catch (SQLException e) {
-                System.out.println("ERROR MESSAGE 2!!!!" + e); //error message in select statements
+                System.out.println("database error occured!" + e); //error message in select statements
             }
             statement.execute("INSERT INTO " + PAPERS + " \n VALUES(NULL, '" + paper.getYear() + "-06-01'," + paper.getNum() + ","
                     + ID + "," + subject.getID() + "," + paper.getMax() + ")");//creates the paper 
@@ -238,7 +238,7 @@ public class DatabaseManipulation {
             }
             conn.close();//closes  the connection
         } catch (SQLException e) {
-            System.out.println("ERROR MESSAGE 1!!!!" + e); //error message in sql statement or connections
+            System.out.println("connection error occured!" + e); //error message in sql statement or connections
         }
     }
 
@@ -256,7 +256,7 @@ public class DatabaseManipulation {
                 }
 
             } catch (SQLException e) {
-                System.out.println("ERROR MESSAGE 2!!!!" + e); //error message in select statements
+                System.out.println("database error occured!" + e); //error message in select statements
             }
             if (willAdd) {//if class name doesnt exist
                 while (newCode) {//until unique codes are created
@@ -278,7 +278,7 @@ public class DatabaseManipulation {
             }
             conn.close();//closes  the connection
         } catch (SQLException e) {
-            System.out.println("ERROR MESSAGE 1!!!!" + e); //error message in sql statement or connections
+            System.out.println("connection error occured!" + e); //error message in sql statement or connections
         }
         return willAdd;
     }
@@ -295,7 +295,7 @@ public class DatabaseManipulation {
                 }
 
             } catch (SQLException e) {
-                System.out.println("ERROR MESSAGE 2!!!!" + e); //error message in select statements
+                System.out.println("database error occured!" + e); //error message in select statements
             }
             if (willAdd) {
                 try ( ResultSet result = statement.executeQuery("SELECT " + CLASSUSERID + " FROM " + CLASSUSERS + " WHERE " + CLASSUSERID + " = '" + teacher.getEmail() + className + "'")) {//selects class name for class with a specific teacher code
@@ -304,7 +304,7 @@ public class DatabaseManipulation {
                     }
 
                 } catch (SQLException e) {
-                    System.out.println("ERROR MESSAGE 2!!!!" + e); //error message in select statements
+                    System.out.println("database error occured!" + e); //error message in select statements
                 }
                 if (willAdd) {
                     statement.execute("INSERT INTO " + CLASSUSERS//joins the class
@@ -314,7 +314,7 @@ public class DatabaseManipulation {
             }
             conn.close();//closes  the connection
         } catch (SQLException e) {
-            System.out.println("ERROR MESSAGE 1!!!!" + e); //error message in sql statement or connections
+            System.out.println("connection error occured!" + e); //error message in sql statement or connections
         }
         return toReturn;
     }
@@ -329,7 +329,7 @@ public class DatabaseManipulation {
                 }
 
             } catch (SQLException e) {
-                System.out.println("ERROR MESSAGE 2!!!!" + e); //error message in select statements
+                System.out.println("database error occured!" + e); //error message in select statements
             }
             if (willAdd) {
                 statement.execute("Update Classes,ClassUsers"//changes classname
@@ -339,7 +339,7 @@ public class DatabaseManipulation {
             }
             conn.close();//closes  the connection
         } catch (SQLException e) {
-            System.out.println("ERROR MESSAGE 1!!!!" + e); //error message in sql statement or connections
+            System.out.println("connection error occured!" + e); //error message in sql statement or connections
         }
         return willAdd;
     }
@@ -355,7 +355,7 @@ public class DatabaseManipulation {
                 }
 
             } catch (SQLException e) {
-                System.out.println("ERROR MESSAGE 2!!!!" + e); //error message in select statements
+                System.out.println("database error occured!" + e); //error message in select statements
             }
             if (willAdd) {
                 try ( ResultSet result = statement.executeQuery("SELECT " + CLASSUSERID + " FROM " + CLASSUSERS + " WHERE " + CLASSUSERID + " = '" + student.getEmail() + className + "'")) {//selects class name for class with a specific teacher code
@@ -364,7 +364,7 @@ public class DatabaseManipulation {
                     }
 
                 } catch (SQLException e) {
-                    System.out.println("ERROR MESSAGE 2!!!!" + e); //error message in select statements
+                    System.out.println("database error occured!" + e); //error message in select statements
                 }
                 if (willAdd) {
                     statement.execute("INSERT INTO " + CLASSUSERS//joins class
@@ -373,7 +373,7 @@ public class DatabaseManipulation {
             }
             conn.close();//closes  the connection
         } catch (SQLException e) {
-            System.out.println("ERROR MESSAGE 1!!!!" + e); //error message in sql statement or connections
+            System.out.println("connection error occured!" + e); //error message in sql statement or connections
         }
     }
 
@@ -388,7 +388,7 @@ public class DatabaseManipulation {
                 }
 
             } catch (SQLException e) {
-                System.out.println("ERROR MESSAGE 2!!!!" + e); //error message in select statements
+                System.out.println("database error occured!" + e); //error message in select statements
             }
             if (willAdd) {
                 statement.execute("INSERT INTO " + SUBJECTS//inserts new subject
@@ -396,7 +396,7 @@ public class DatabaseManipulation {
             }
             conn.close();//closes  the connection
         } catch (SQLException e) {
-            System.out.println("ERROR MESSAGE 1!!!!" + e); //error message in sql statement or connections
+            System.out.println("connection error occured!" + e); //error message in sql statement or connections
         }
     }
 
@@ -409,11 +409,11 @@ public class DatabaseManipulation {
                 }
                 conn.close();//closes  the connection
             } catch (SQLException e) {
-                System.out.println("ERROR MESSAGE 2!!!!" + e); //error message in select statements
+                System.out.println("database error occured!" + e); //error message in select statements
             }
 
         } catch (SQLException e) {
-            System.out.println("ERROR MESSAGE 1!!!!" + e); //error message in sql statement or connections
+            System.out.println("connection error occured!" + e); //error message in sql statement or connections
         }
         return subjects;//returns list of subjects
 
@@ -430,11 +430,11 @@ public class DatabaseManipulation {
                 }
                 conn.close();//closes  the connection
             } catch (SQLException e) {
-                System.out.println("ERROR MESSAGE 2!!!!" + e); //error message in select statements
+                System.out.println("database error occured!" + e); //error message in select statements
             }
 
         } catch (SQLException e) {
-            System.out.println("ERROR MESSAGE 1!!!!" + e); //error message in sql statement or connections
+            System.out.println("connection error occured!" + e); //error message in sql statement or connections
         }
         return users;//returns list of students
 
@@ -449,11 +449,11 @@ public class DatabaseManipulation {
                 }//adds class to list
                 conn.close();//closes  the connection
             } catch (SQLException e) {
-                System.out.println("ERROR MESSAGE 2!!!!" + e); //error message in select statements
+                System.out.println("database error occured!" + e); //error message in select statements
             }
 
         } catch (SQLException e) {
-            System.out.println("ERROR MESSAGE 1!!!!" + e); //error message in sql statement or connections
+            System.out.println("connection error occured!" + e); //error message in sql statement or connections
         }
         return classes;//returns list of classes
 
@@ -469,11 +469,11 @@ public class DatabaseManipulation {
                 }//adds classes  to a list
                 conn.close();//closes  the connection
             } catch (SQLException e) {
-                System.out.println("ERROR MESSAGE 2!!!!" + e); //error message in select statements
+                System.out.println("database error occured!" + e); //error message in select statements
             }
 
         } catch (SQLException e) {
-            System.out.println("ERROR MESSAGE 1!!!!" + e); //error message in sql statement or connections
+            System.out.println("connection error occured!" + e); //error message in sql statement or connections
         }
         return classes;//returns list of classes
 
@@ -489,11 +489,11 @@ public class DatabaseManipulation {
                 }
                 conn.close();//closes  the connection
             } catch (SQLException e) {
-                System.out.println("ERROR MESSAGE 2!!!!" + e); //error message in select statements
+                System.out.println("database error occured!" + e); //error message in select statements
             }
 
         } catch (SQLException e) {
-            System.out.println("ERROR MESSAGE 1!!!!" + e); //error message in sql statement or connections
+            System.out.println("connection error occured!" + e); //error message in sql statement or connections
         }
         return papers;//returns list of papers
 
@@ -508,11 +508,11 @@ public class DatabaseManipulation {
                 }
                 conn.close();//closes  the connection
             } catch (SQLException e) {
-                System.out.println("ERROR MESSAGE 2!!!!" + e); //error message in select statements
+                System.out.println("database error occured!" + e); //error message in select statements
             }
 
         } catch (SQLException e) {
-            System.out.println("ERROR MESSAGE 1!!!!" + e); //error message in sql statement or connections
+            System.out.println("connection error occured!" + e); //error message in sql statement or connections
         }
         return topics;//returns list of topics
 
@@ -532,11 +532,11 @@ public class DatabaseManipulation {
                 }
                 conn.close();//closes  the connection
             } catch (SQLException e) {
-                System.out.println("ERROR MESSAGE 2!!!!" + e); //error message in select statements
+                System.out.println("database error occured!" + e); //error message in select statements
             }
 
         } catch (SQLException e) {
-            System.out.println("ERROR MESSAGE 1!!!!" + e); //error message in sql statement or connections
+            System.out.println("connection error occured!" + e); //error message in sql statement or connections
         }
         return questions;//returns questions as list
     }
@@ -561,11 +561,11 @@ public class DatabaseManipulation {
                 }
                 conn.close();//closes  the connection
             } catch (SQLException e) {
-                System.out.println("ERROR MESSAGE 2!!!!" + e); //error message in select statements
+                System.out.println("database error occured!" + e); //error message in select statements
             }
 
         } catch (SQLException e) {
-            System.out.println("ERROR MESSAGE 1!!!!" + e); //error message in sql statement or connections
+            System.out.println("connection error occured!" + e); //error message in sql statement or connections
         }
         return questions;//returns list of questions
     }
@@ -588,11 +588,11 @@ public class DatabaseManipulation {
                 }
                 conn.close();//closes  the connection
             } catch (SQLException e) {
-                System.out.println("ERROR MESSAGE 2!!!!" + e); //error message in select statements
+                System.out.println("database error occured!" + e); //error message in select statements
             }
 
         } catch (SQLException e) {
-            System.out.println("ERROR MESSAGE 1!!!!" + e); //error message in sql statement or connections
+            System.out.println("connection error occured!" + e); //error message in sql statement or connections
         }
         return questions;//returns list of questions
     }
@@ -604,11 +604,11 @@ public class DatabaseManipulation {
                 toReturn = new int[]{result.getInt(ASTAR), result.getInt(A), result.getInt(B), result.getInt(C), result.getInt(D), result.getInt(E)};
                 conn.close();//closes  the connection
             } catch (SQLException e) {
-                System.out.println("ERROR MESSAGE 2!!!!" + e); //error message in select statements
+                System.out.println("database error occured!" + e); //error message in select statements
             }
 
         } catch (SQLException e) {
-            System.out.println("ERROR MESSAGE 1!!!!" + e); //error message in sql statement or connections
+            System.out.println("connection error occured!" + e); //error message in sql statement or connections
         }
         return toReturn;//returns paper boundaries
     }
@@ -622,11 +622,11 @@ public class DatabaseManipulation {
                 }
                 conn.close();//closes  the connection
             } catch (SQLException e) {
-                System.out.println("ERROR MESSAGE 2!!!!" + e); //error message in select statements
+                System.out.println("database error occured!" + e); //error message in select statements
             }
 
         } catch (SQLException e) {
-            System.out.println("ERROR MESSAGE 1!!!!" + e); //error message in sql statement or connections
+            System.out.println("connection error occured!" + e); //error message in sql statement or connections
         }
         return methods;//returns list of revision methods
 
@@ -651,7 +651,7 @@ public class DatabaseManipulation {
                 }
 
             } catch (SQLException e) {
-                System.out.println("ERROR MESSAGE 2!!!!" + e); //error message in select statements
+                System.out.println("database error occured!" + e); //error message in select statements
             }
             try ( ResultSet result = statement.executeQuery("SELECT Mark, MaxMark, Date FROM StudInformalPaper "//gets informal data for a student
                     + "WHERE StudInformalPaper.SubjectID = " + subject.getID() + " and StudInformalPaper.Email = '" + student.getEmail() + "' ORDER BY StudInformalPaper.Date ASC;")) {
@@ -668,10 +668,10 @@ public class DatabaseManipulation {
                 }
                 conn.close();//closes  the connection
             } catch (SQLException e) {
-                System.out.println("ERROR MESSAGE 2!!!!" + e); //error message in select statements
+                System.out.println("database error occured!" + e); //error message in select statements
             }
         } catch (SQLException e) {
-            System.out.println("ERROR MESSAGE 1!!!!" + e); //error message in sql statement or connections
+            System.out.println("connection error occured!" + e); //error message in sql statement or connections
         }
         percentages.add(new Double[]{(double) earliest});//adds  the earlist paper as a reference
         return percentages;//returns coordinates
@@ -684,7 +684,7 @@ public class DatabaseManipulation {
             statement.execute("ALTER TABLE " + METHODS + " AUTO_INCREMENT = 1;");//resets primary key auto increment
             conn.close();//closes  the connection
         } catch (SQLException e) {
-            System.out.println("ERROR MESSAGE 1!!!!" + e); //error message in sql statement or connections
+            System.out.println("connection error occured!" + e); //error message in sql statement or connections
         }
     }
 
@@ -694,7 +694,7 @@ public class DatabaseManipulation {
             try ( ResultSet result = statement.executeQuery("SELECT TopicID FROM " + QUESTIONS + " where TopicId = " + topicID + " GROUP BY TopicID;")) {//selects topicIDs that appear in questions
                 toReturn = result.next();//will not change if topic is used
             } catch (SQLException e) {
-                System.out.println("ERROR MESSAGE 2!!!!" + e); //error message in select statements
+                System.out.println("database error occured!" + e); //error message in select statements
             }
             if (!toReturn) {//if topic is not used
                 statement.execute("DELETE FROM " + TOPICS + " WHERE " + TOPICID + " = '" + topicID + "' AND " + SUBJECTID + " = " + subject.getID() + ";");//deletes topic
@@ -702,7 +702,7 @@ public class DatabaseManipulation {
             }
             conn.close();//closes  the connection
         } catch (SQLException e) {
-            System.out.println("ERROR MESSAGE 1!!!!" + e); //error message in sql statement or connections
+            System.out.println("connection error occured!" + e); //error message in sql statement or connections
         }
         return !toReturn;//returns whether or not topic was deleted
     }
@@ -713,7 +713,7 @@ public class DatabaseManipulation {
             statement.execute("DELETE FROM " + CLASSES + " WHERE " + CLASSNAME + " = '" + className + "'");//deletes the class
             conn.close();//closes  the connection
         } catch (SQLException e) {
-            System.out.println("ERROR MESSAGE 1!!!!" + e); //error message in sql statement or connections
+            System.out.println("connection error occured!" + e); //error message in sql statement or connections
         }
     }
 
@@ -722,7 +722,7 @@ public class DatabaseManipulation {
             statement.execute("DELETE FROM " + CLASSUSERS + " WHERE " + CLASSUSERID + " = '" + teacher.getEmail() + className + "'");//removes the teacher from the class
             conn.close();//closes  the connection
         } catch (SQLException e) {
-            System.out.println("ERROR MESSAGE 1!!!!" + e); //error message in sql statement or connections
+            System.out.println("connection error occured!" + e); //error message in sql statement or connections
         }
     }
 
@@ -733,7 +733,7 @@ public class DatabaseManipulation {
             }
             conn.close();//closes  the connection
         } catch (SQLException e) {
-            System.out.println("ERROR MESSAGE 1!!!!" + e); //error message in sql statement or connections
+            System.out.println("connection error occured!" + e); //error message in sql statement or connections
         }
     }
 
@@ -746,7 +746,7 @@ public class DatabaseManipulation {
             }
             conn.close();//closes  the connection
         } catch (SQLException e) {
-            System.out.println("ERROR MESSAGE 1!!!!" + e); //error message in sql statement or connections
+            System.out.println("connection error occured!" + e); //error message in sql statement or connections
         }
         return toReturn;//returns if topic name was updated
     }
@@ -756,7 +756,7 @@ public class DatabaseManipulation {
             statement.execute("UPDATE " + STUDENTSUB + "\nSET " + TARGETGRADE + " = '" + newTarget + "' \nWHERE " + STUDENTSUBID + " = '" + studentSubId + "'");//changes a student's target grade for a subject
             conn.close();//closes  the connection
         } catch (SQLException e) {
-            System.out.println("ERROR MESSAGE 1!!!!" + e); //error message in sql statement or connections
+            System.out.println("connection error occured!" + e); //error message in sql statement or connections
         }
     }
 
@@ -765,7 +765,7 @@ public class DatabaseManipulation {
             statement.execute("UPDATE " + USERS + "\nSET " + ICON + " = " + newIcon + " \nWHERE " + EMAIL + " = '" + userID + "'");//changes a user's icon
             conn.close();//closes  the connection
         } catch (SQLException e) {
-            System.out.println("ERROR MESSAGE 1!!!!" + e); //error message in sql statement or connections
+            System.out.println("connection error occured!" + e); //error message in sql statement or connections
         }
     }
 
@@ -774,7 +774,7 @@ public class DatabaseManipulation {
             statement.execute("UPDATE " + STUDENTSUB + "\nSET " + DATE + " = '" + year + "-06-01" + "' \nWHERE " + STUDENTSUBID + " = '" + studentSubId + "'");//changes a students exam date for a subject
             conn.close();//closes  the connection
         } catch (SQLException e) {
-            System.out.println("ERROR MESSAGE 1!!!!" + e); //error message in sql statement or connections
+            System.out.println("connection error occured!" + e); //error message in sql statement or connections
         }
     }
 
@@ -783,7 +783,7 @@ public class DatabaseManipulation {
             statement.execute("UPDATE " + STUDENTSUB + "\nSET " + PREDICTEDGRADE + " = '" + newPredicted + "' \nWHERE " + STUDENTSUBID + " = '" + studentSubId + "'");//changes a students predicted grade for a subject
             conn.close();//closes  the connection
         } catch (SQLException e) {
-            System.out.println("ERROR MESSAGE 1!!!!" + e); //error message in sql statement or connections
+            System.out.println("connection error occured!" + e); //error message in sql statement or connections
         }
     }
 
@@ -792,7 +792,7 @@ public class DatabaseManipulation {
             statement.execute("UPDATE " + STUDENTSUB + "\nSET " + FINALGRADE + " = '" + newPredicted + "' \nWHERE " + STUDENTSUBID + " = '" + studentSubId + "'");//changes a students final grade in a subject
             conn.close();//closes  the connection
         } catch (SQLException e) {
-            System.out.println("ERROR MESSAGE 1!!!!" + e); //error message in sql statement or connections
+            System.out.println("connection error occured!" + e); //error message in sql statement or connections
         }
     }
 
@@ -801,7 +801,7 @@ public class DatabaseManipulation {
             statement.execute("UPDATE " + STUDENTSUB + "\nSET " + METHODNAME + " = '" + newMethod + "' \nWHERE " + STUDENTSUBID + " = '" + studentSubId + "'");//changes the revision method used by a student for a subject
             conn.close();//closes  the connection
         } catch (SQLException e) {
-            System.out.println("ERROR MESSAGE 1!!!!" + e); //error message in sql statement or connections
+            System.out.println("connection error occured!" + e); //error message in sql statement or connections
         }
     }
 
@@ -814,10 +814,10 @@ public class DatabaseManipulation {
                 }
                 conn.close();//closes  the connection
             } catch (SQLException e) {
-                System.out.println("ERROR MESSAGE 2!!!!" + e); //error message in select statements
+                System.out.println("database error occured!" + e); //error message in select statements
             }
         } catch (SQLException e) {
-            System.out.println("ERROR MESSAGE 1!!!!" + e); //error message in sql statement or connections
+            System.out.println("connection error occured!" + e); //error message in sql statement or connections
         }
         return toReturn;//returns student
     }
@@ -831,10 +831,10 @@ public class DatabaseManipulation {
                 }
                 conn.close();//closes  the connection
             } catch (SQLException e) {
-                System.out.println("ERROR MESSAGE 2!!!!" + e); //error message in select statements
+                System.out.println("database error occured!" + e); //error message in select statements
             }
         } catch (SQLException e) {
-            System.out.println("ERROR MESSAGE 1!!!!" + e); //error message in sql statement or connections
+            System.out.println("connection error occured!" + e); //error message in sql statement or connections
         }
         return toReturn;//returns topic
     }
@@ -848,10 +848,10 @@ public class DatabaseManipulation {
                 }
                 conn.close();//closes  the connection
             } catch (SQLException e) {
-                System.out.println("ERROR MESSAGE 2!!!!" + e); //error message in select statements
+                System.out.println("database error occured!" + e); //error message in select statements
             }
         } catch (SQLException e) {
-            System.out.println("ERROR MESSAGE 1!!!!" + e); //error message in sql statement or connections
+            System.out.println("connection error occured!" + e); //error message in sql statement or connections
         }
         return toReturn;//returns topic
     }
@@ -865,10 +865,10 @@ public class DatabaseManipulation {
                 }
                 conn.close();//closes  the connection
             } catch (SQLException e) {
-                System.out.println("ERROR MESSAGE 2!!!!" + e); //error message in select statements
+                System.out.println("database error occured!" + e); //error message in select statements
             }
         } catch (SQLException e) {
-            System.out.println("ERROR MESSAGE 1!!!!" + e); //error message in sql statement or connections
+            System.out.println("connection error occured!" + e); //error message in sql statement or connections
         }
         return toReturn;//returns teacher
     }
@@ -882,10 +882,10 @@ public class DatabaseManipulation {
                 }
                 conn.close();//closes  the connection
             } catch (SQLException e) {
-                System.out.println("ERROR MESSAGE 2!!!!" + e); //error message in select statements
+                System.out.println("database error occured!" + e); //error message in select statements
             }
         } catch (SQLException e) {
-            System.out.println("ERROR MESSAGE 1!!!!" + e); //error message in sql statement or connections
+            System.out.println("connection error occured!" + e); //error message in sql statement or connections
         }
         return toReturn;//returns user
     }
@@ -899,10 +899,10 @@ public class DatabaseManipulation {
                 }
                 conn.close();//closes  the connection
             } catch (SQLException e) {
-                System.out.println("ERROR MESSAGE 2!!!!" + e); //error message in select statements
+                System.out.println("database error occured!" + e); //error message in select statements
             }
         } catch (SQLException e) {
-            System.out.println("ERROR MESSAGE 1!!!!" + e); //error message in sql statement or connections
+            System.out.println("connection error occured!" + e); //error message in sql statement or connections
         }
         return toReturn;//returns subject
     }
@@ -916,10 +916,10 @@ public class DatabaseManipulation {
                 }
                 conn.close();//closes  the connection
             } catch (SQLException e) {
-                System.out.println("ERROR MESSAGE 2!!!!" + e); //error message in select statements
+                System.out.println("database error occured!" + e); //error message in select statements
             }
         } catch (SQLException e) {
-            System.out.println("ERROR MESSAGE 1!!!!" + e); //error message in sql statement or connections
+            System.out.println("connection error occured!" + e); //error message in sql statement or connections
         }
         return toReturn;//returns the class
     }
@@ -939,10 +939,10 @@ public class DatabaseManipulation {
                 }
                 conn.close();//closes  the connection
             } catch (SQLException e) {
-                System.out.println("ERROR MESSAGE 2!!!!" + e); //error message in select statements
+                System.out.println("database error occured!" + e); //error message in select statements
             }
         } catch (SQLException e) {
-            System.out.println("ERROR MESSAGE 1!!!!" + e); //error message in sql statement or connections
+            System.out.println("connection error occured!" + e); //error message in sql statement or connections
         }
         return toReturn;//returns student subject data
     }
@@ -962,10 +962,10 @@ public class DatabaseManipulation {
                 }
                 conn.close();//closes  the connection
             } catch (SQLException e) {
-                System.out.println("ERROR MESSAGE 2!!!!" + e); //error message in select statements
+                System.out.println("database error occured!" + e); //error message in select statements
             }
         } catch (SQLException e) {
-            System.out.println("ERROR MESSAGE 1!!!!" + e); //error message in sql statement or connections
+            System.out.println("connection error occured!" + e); //error message in sql statement or connections
         }
         if (count == 0) {
             count = 1;
@@ -987,10 +987,10 @@ public class DatabaseManipulation {
                 }
                 conn.close();//closes  the connection
             } catch (SQLException e) {
-                System.out.println("ERROR MESSAGE 2!!!!" + e); //error message in select statements
+                System.out.println("database error occured!" + e); //error message in select statements
             }
         } catch (SQLException e) {
-            System.out.println("ERROR MESSAGE 1!!!!" + e); //error message in sql statement or connections
+            System.out.println("connection error occured!" + e); //error message in sql statement or connections
         }
         if (count == 0) {
             count = 1;
@@ -1015,10 +1015,10 @@ public class DatabaseManipulation {
                 }
                 conn.close();//closes  the connection
             } catch (SQLException e) {
-                System.out.println("ERROR MESSAGE 2!!!!" + e); //error message in select statements
+                System.out.println("database error occured!" + e); //error message in select statements
             }
         } catch (SQLException e) {
-            System.out.println("ERROR MESSAGE 1!!!!" + e); //error message in sql statement or connections
+            System.out.println("connection error occured!" + e); //error message in sql statement or connections
         }
         if (count == 0) {
             count = 1;
@@ -1041,13 +1041,13 @@ public class DatabaseManipulation {
                 }
                 conn.close();//closes  the connection
             } catch (SQLException e) {
-                System.out.println("ERROR MESSAGE 2!!!!" + e); //error message in select statements
+                System.out.println("database error occured!" + e); //error message in select statements
             }
             if (paperid != -1) {
                 toReturn = GradePredictorPrototype.grade(score, getPaperBoundaries(paperid));//grades the paper and stores grade
             }
         } catch (SQLException e) {
-            System.out.println("ERROR MESSAGE 1!!!!" + e); //error message in sql statement or connections
+            System.out.println("connection error occured!" + e); //error message in sql statement or connections
         }
         return toReturn;//returns grade
     }
@@ -1063,11 +1063,11 @@ public class DatabaseManipulation {
                 }
                 conn.close();//closes  the connection
             } catch (SQLException e) {
-                System.out.println("ERROR MESSAGE 2!!!!" + e); //error message in select statements
+                System.out.println("database error occured!" + e); //error message in select statements
             }
 
         } catch (SQLException e) {
-            System.out.println("ERROR MESSAGE 1!!!!" + e); //error message in sql statement or connections
+            System.out.println("connection error occured!" + e); //error message in sql statement or connections
         }
         return toReturn;//returns if name is used
     }
@@ -1083,11 +1083,11 @@ public class DatabaseManipulation {
                 }
                 conn.close();//closes  the connection
             } catch (SQLException e) {
-                System.out.println("ERROR MESSAGE 2!!!!" + e); //error message in select statements
+                System.out.println("database error occured!" + e); //error message in select statements
             }
 
         } catch (SQLException e) {
-            System.out.println("ERROR MESSAGE 1!!!!" + e); //error message in sql statement or connections
+            System.out.println("connection error occured!" + e); //error message in sql statement or connections
         }
         return toReturn;//returns if name is used
     }

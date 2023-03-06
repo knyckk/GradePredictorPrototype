@@ -15,7 +15,7 @@ public class Paper {
     private int year;
     private int number;
     private int[] boundaries;//declare variables
-    private int PaperID;
+    private int paperID;
     private int subjectID;
     private int maxMark;
     private int score;
@@ -30,7 +30,7 @@ public class Paper {
     }
     public Paper(Question[] questions, int ID, int year, int number, int AStar, int A, int B, int C, int D, int E, int subject, int max) {//constructor for creating an existing paper
         this.year = year;
-        this.PaperID = ID;
+        this.paperID = ID;
         this.number = number;
         boundaries = new int[] {AStar, A, B, C , D ,E};//initialise variables
         this.questions = questions;
@@ -73,7 +73,7 @@ public class Paper {
         return subjectID; //returns subjectID
     }
     public int getID() {
-        return  PaperID; //returns paper id
+        return  paperID; //returns paper id
     }
     public int getMax() {
         return maxMark; //returns max possible marks in paper

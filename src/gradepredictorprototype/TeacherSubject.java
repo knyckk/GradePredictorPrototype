@@ -30,7 +30,7 @@ public class TeacherSubject extends javax.swing.JFrame {
         papersBtn = new javax.swing.JButton();
         classesBtn = new javax.swing.JButton();
         topicsBtn = new javax.swing.JButton();
-        returnBtn = new javax.swing.JButton();
+        profileBtn = new javax.swing.JButton();
         menuBar = new javax.swing.JMenuBar();
         logout = new javax.swing.JMenu();
         exit = new javax.swing.JMenu();
@@ -68,10 +68,10 @@ public class TeacherSubject extends javax.swing.JFrame {
             }
         });
 
-        returnBtn.setText("Return to Profile");
-        returnBtn.addActionListener(new java.awt.event.ActionListener() {
+        profileBtn.setText("Return to Profile");
+        profileBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                returnBtnActionPerformed(evt);
+                profileBtnActionPerformed(evt);
             }
         });
 
@@ -109,7 +109,7 @@ public class TeacherSubject extends javax.swing.JFrame {
                 .addContainerGap(853, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(1024, Short.MAX_VALUE)
-                .addComponent(returnBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(profileBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -126,7 +126,7 @@ public class TeacherSubject extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(topicsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 208, Short.MAX_VALUE)
-                .addComponent(returnBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(profileBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -138,10 +138,10 @@ public class TeacherSubject extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_classesBtnActionPerformed
 
-    private void returnBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnBtnActionPerformed
+    private void profileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileBtnActionPerformed
         new TeacherProfile().setVisible(true); //returns to profile form
         this.dispose();
-    }//GEN-LAST:event_returnBtnActionPerformed
+    }//GEN-LAST:event_profileBtnActionPerformed
 
     private void revisionBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_revisionBtnActionPerformed
         new RevisionMethod().setVisible(true); //opens revision method form
@@ -208,7 +208,7 @@ public class TeacherSubject extends javax.swing.JFrame {
     private javax.swing.JMenu logout;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JButton papersBtn;
-    private javax.swing.JButton returnBtn;
+    private javax.swing.JButton profileBtn;
     private javax.swing.JButton revisionBtn;
     private javax.swing.JLabel titleLbl;
     private javax.swing.JButton topicsBtn;
