@@ -37,7 +37,7 @@ public class Login extends javax.swing.JFrame {
         errorLbl = new javax.swing.JLabel();
         errorLbl.hide();
         orLbl = new javax.swing.JLabel();
-        signUp = new javax.swing.JLabel();
+        signUpLbl = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1200, 600));
@@ -97,14 +97,14 @@ public class Login extends javax.swing.JFrame {
         orLbl.setText("or you can sign up");
         getContentPane().add(orLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(432, 370, -1, 20));
 
-        signUp.setForeground(new java.awt.Color(153, 153, 153));
-        signUp.setText("here");
-        signUp.addMouseListener(new java.awt.event.MouseAdapter() {
+        signUpLbl.setForeground(new java.awt.Color(153, 153, 153));
+        signUpLbl.setText("here");
+        signUpLbl.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                signUpMouseClicked(evt);
+                signUpLblMouseClicked(evt);
             }
         });
-        getContentPane().add(signUp, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 370, -1, 20));
+        getContentPane().add(signUpLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 370, -1, 20));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -155,10 +155,10 @@ public class Login extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_enterBtnActionPerformed
 
-    private void signUpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signUpMouseClicked
+    private void signUpLblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signUpLblMouseClicked
         new SignUp().setVisible(true);//opens sign up form
         this.dispose();
-    }//GEN-LAST:event_signUpMouseClicked
+    }//GEN-LAST:event_signUpLblMouseClicked
 
     private void passwordFldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passwordFldKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {//if enter key is pressed
@@ -234,6 +234,6 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel orLbl;
     private javax.swing.JPasswordField passwordFld;
     private javax.swing.JLabel passwordLbl;
-    private javax.swing.JLabel signUp;
+    private javax.swing.JLabel signUpLbl;
     // End of variables declaration//GEN-END:variables
 }

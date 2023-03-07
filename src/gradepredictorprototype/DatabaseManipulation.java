@@ -7,6 +7,7 @@ package gradepredictorprototype;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.sql.*;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
@@ -70,7 +71,7 @@ public class DatabaseManipulation {
     private static final String SCORE = "Score";
     private static final String USERNAME = "UserName";
     private static final String NAME = "Name";
-
+    
     public static void signUp(String email, String password, int type) {//method for creating new user
         boolean willAdd = true; //will add data by default
         try ( Connection conn = DriverManager.getConnection(URL, "THope", DATABASEPASSWORD);  Statement statement = conn.createStatement()) { // creates the connection
