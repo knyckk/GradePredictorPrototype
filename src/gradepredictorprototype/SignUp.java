@@ -21,7 +21,7 @@ public class SignUp extends javax.swing.JFrame {
     /**
      * Creates new form SignUp
      */
-    public SignUp() {
+    public SignUp() {       
         initComponents();
     }
 
@@ -47,7 +47,7 @@ public class SignUp extends javax.swing.JFrame {
         passwordFld = new javax.swing.JPasswordField();
         confirmFld = new javax.swing.JPasswordField();
         orLbl = new javax.swing.JLabel();
-        login = new javax.swing.JLabel();
+        loginLbl = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("SignUp");
@@ -179,14 +179,14 @@ public class SignUp extends javax.swing.JFrame {
         orLbl.setText("or you can login");
         getContentPane().add(orLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 440, -1, 20));
 
-        login.setForeground(new java.awt.Color(153, 153, 153));
-        login.setText("here");
-        login.addMouseListener(new java.awt.event.MouseAdapter() {
+        loginLbl.setForeground(new java.awt.Color(153, 153, 153));
+        loginLbl.setText("here");
+        loginLbl.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                loginMouseClicked(evt);
+                loginLblMouseClicked(evt);
             }
         });
-        getContentPane().add(login, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 440, -1, 20));
+        getContentPane().add(loginLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 440, -1, 20));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -318,10 +318,10 @@ public class SignUp extends javax.swing.JFrame {
         codeFld.selectAll();//automatically selects all text when clicked
     }//GEN-LAST:event_codeFldFocusGained
 
-    private void loginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginMouseClicked
+    private void loginLblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginLblMouseClicked
         new Login().setVisible(true); //open a login form
         this.dispose();
-    }//GEN-LAST:event_loginMouseClicked
+    }//GEN-LAST:event_loginLblMouseClicked
 
     private void codeFldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_codeFldKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) { //if enter key is pressed performs the same code as enterBtnActionPerformed
@@ -388,7 +388,7 @@ public class SignUp extends javax.swing.JFrame {
     private javax.swing.JLabel confirmLbl;
     private javax.swing.JTextField emailFld;
     private javax.swing.JButton enterBtn;
-    private javax.swing.JLabel login;
+    private javax.swing.JLabel loginLbl;
     private javax.swing.JLabel orLbl;
     private javax.swing.JPasswordField passwordFld;
     private javax.swing.JLabel passwordLbl;

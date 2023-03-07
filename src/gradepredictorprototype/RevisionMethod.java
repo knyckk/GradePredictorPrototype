@@ -17,7 +17,7 @@ public class RevisionMethod extends javax.swing.JFrame {
     /**
      * Creates new form RevisionMethod
      */
-    public RevisionMethod() {
+    public RevisionMethod() {        
         initComponents();
     }
 
