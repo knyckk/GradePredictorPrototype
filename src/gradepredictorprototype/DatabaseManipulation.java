@@ -7,7 +7,6 @@ package gradepredictorprototype;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.lang.reflect.Field;
 import java.sql.*;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
@@ -248,7 +247,7 @@ public class DatabaseManipulation {
         boolean willAdd = true; //will add data by default
         String studentCode = "";//declares variables
         String teacherCode = "";
-        int i = 0;
+        int i;
         Classroom[] classes = getClasses().toArray(Classroom[]::new);//gets classes teacher is in
         try ( Connection conn = DriverManager.getConnection(URL, "THope", DATABASEPASSWORD);  Statement statement = conn.createStatement()) { // creates the connection
             try ( ResultSet result = statement.executeQuery("SELECT * FROM " + CLASSES + " WHERE " + CLASSNAME + " = '" + name + "'")) {//selects class name for class with a specific teacher code
@@ -287,11 +286,10 @@ public class DatabaseManipulation {
     public static String joinClass(String code, User teacher) {//method for joining a class as a teacher
         String toReturn = null;
         boolean willAdd = false; //assumes code is wrong to begin with
-        String className = "";
         try ( Connection conn = DriverManager.getConnection(URL, "THope", DATABASEPASSWORD);  Statement statement = conn.createStatement()) { // creates the connection
             try ( ResultSet result = statement.executeQuery("SELECT " + CLASSNAME + " FROM " + CLASSES + " WHERE " + TEACHERCODE + " = '" + code + "'")) {//selects class name for class with a specific teacher code
                 if (result.next()) {
-                    className = result.getString(CLASSNAME);
+                    toReturn = result.getString(CLASSNAME);
                     willAdd = true;//if code exists will join class
                 }
 
@@ -299,8 +297,9 @@ public class DatabaseManipulation {
                 System.out.println("database error occured!" + e); //error message in select statements
             }
             if (willAdd) {
-                try ( ResultSet result = statement.executeQuery("SELECT " + CLASSUSERID + " FROM " + CLASSUSERS + " WHERE " + CLASSUSERID + " = '" + teacher.getEmail() + className + "'")) {//selects class name for class with a specific teacher code
+                try ( ResultSet result = statement.executeQuery("SELECT " + CLASSUSERID + " FROM " + CLASSUSERS + " WHERE " + CLASSUSERID + " = '" + teacher.getEmail() + toReturn + "'")) {//selects class name for class with a specific teacher code
                     if (result.next()) {
+                        toReturn = null;
                         willAdd = false;//if user is already in the class, will not add them again
                     }
 
@@ -309,8 +308,8 @@ public class DatabaseManipulation {
                 }
                 if (willAdd) {
                     statement.execute("INSERT INTO " + CLASSUSERS//joins the class
-                            + "\n VALUES('" + teacher.getEmail() + className + "','" + teacher.getEmail() + "','" + className + "')");
-                    toReturn = className;
+                            + "\n VALUES('" + teacher.getEmail() + toReturn + "','" + teacher.getEmail() + "','" + toReturn + "')");
+                   
                 }
             }
             conn.close();//closes  the connection
@@ -322,7 +321,6 @@ public class DatabaseManipulation {
 
     public static boolean updateClass(String name, String newName) {//method for changing class name
         boolean willAdd = true; //will add data by default
-        int i = 0;
         try ( Connection conn = DriverManager.getConnection(URL, "THope", DATABASEPASSWORD);  Statement statement = conn.createStatement()) { // creates the connection
             try ( ResultSet result = statement.executeQuery("SELECT * FROM " + CLASSES + " WHERE " + CLASSNAME + " = '" + newName + "'")) {//selects class name for class with a specific teacher code
                 if (result.next()) {
@@ -636,7 +634,7 @@ public class DatabaseManipulation {
     public static ArrayList<Double[]> getPercentages(Student student, Subject subject, Date date) {//method for retrieving all coordinates to be used in grade prediction
         ArrayList<Double[]> percentages = new ArrayList<>();
         int earliest = 0;//declare and initialise variables
-        int i = 0;
+        boolean earlier = true;
         try ( Connection conn = DriverManager.getConnection(URL, "THope", DATABASEPASSWORD);  Statement statement = conn.createStatement()) { // creates the connection
             try ( ResultSet result = statement.executeQuery("SELECT StudFormalPaper.Score, Papers.MaxMark, StudFormalPaper.Date\n"
                     + "From StudFormalPaper \n"//selects formal papers sat by a student in ascending date order (date when paper sat by student)
@@ -644,9 +642,9 @@ public class DatabaseManipulation {
                     + "WHERE Papers.SubjectID = " + subject.getID() + " and StudFormalPaper.Email = '" + student.getEmail() + "' ORDER BY StudFormalPaper.Date ASC;")) {
 
                 while (result.next()) { //for every result
-                    if (i == 0) {
+                    if (earlier) {
                         earliest = Math.abs(date.subtract(new Date(result.getString(DATE))));//finds  the earliest paper sat
-                        i = 1;
+                        earlier = false;
                     }
                     percentages.add(new Double[]{(double) result.getInt(SCORE) / result.getInt(MAXMARK), (double) earliest - date.subtract(new Date(result.getString(DATE)))});//adds coordinate with percentage for y and number of months after first paper as x
                 }
@@ -657,13 +655,13 @@ public class DatabaseManipulation {
             try ( ResultSet result = statement.executeQuery("SELECT Mark, MaxMark, Date FROM StudInformalPaper "//gets informal data for a student
                     + "WHERE StudInformalPaper.SubjectID = " + subject.getID() + " and StudInformalPaper.Email = '" + student.getEmail() + "' ORDER BY StudInformalPaper.Date ASC;")) {
                 while (result.next()) { //for every result
-                    if (i == 0 || (i== 1 && (Math.abs(date.subtract(new Date(result.getString(DATE))))) > earliest)) {
+                    if (earlier || (!earlier  && (Math.abs(date.subtract(new Date(result.getString(DATE))))) > earliest)) {
                         int tmp = Math.abs(date.subtract(new Date(result.getString(DATE)))) - earliest;//finds  the earliest paper sat
                         for(Double[] coordinate: percentages) {
                             coordinate[1] = coordinate[1] + tmp;
                         }
                         earliest += tmp;
-                        i = 1;
+                        earlier = false;
                     }
                     percentages.add(new Double[]{0.9 * ((double) result.getInt(MARK) / result.getInt(MAXMARK)), (double) earliest - date.subtract(new Date(result.getString(DATE)))});//adds informal data coordinates in the same way as formal data was added
                 }
