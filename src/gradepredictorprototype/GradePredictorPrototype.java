@@ -199,7 +199,7 @@ public class GradePredictorPrototype {
         double E = 0;
         int size = papers.size();
         for (int i = 0; i < papers.size(); i++) {//iterates over every paper
-            int boundaries[] = papers.get(i).getBoundaries();
+            int[] boundaries = papers.get(i).getBoundaries();
             int mark = papers.get(i).getMax();
             Astar += (double) boundaries[0] / mark;
             A += (double) boundaries[1] / mark;
