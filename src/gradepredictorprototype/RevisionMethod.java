@@ -237,16 +237,16 @@ public class RevisionMethod extends javax.swing.JFrame {
             if (ValidationRoutines.lengthCheck(0, nameFld.getText(), 32)) { //validates inputs
                 DatabaseManipulation.updateMethod(replaceBox.getSelectedItem().toString(), nameFld.getText()); //updates the method
                 String newMethod = nameFld.getText(); //stores method locally 
-                int oldIndex = replaceBox.getSelectedIndex();
-                methodsBox.removeItemAt(oldIndex);
-                methodsBox.insertItemAt(newMethod, oldIndex);
+                int index = replaceBox.getSelectedIndex();
+                methodsBox.removeItemAt(index);
+                methodsBox.insertItemAt(newMethod, index);
                 methodsBox.setSelectedIndex(0);
-                removeBox.removeItemAt(oldIndex);
-                removeBox.insertItemAt(newMethod, oldIndex);//update combo Boxes
+                removeBox.removeItemAt(index);
+                removeBox.insertItemAt(newMethod, index);//update combo Boxes
                 removeBox.setSelectedIndex(0);
-                replaceBox.removeItemAt(oldIndex);
-                replaceBox.insertItemAt(newMethod, oldIndex);
-                replaceBox.setSelectedIndex(oldIndex);
+                replaceBox.removeItemAt(index);
+                replaceBox.insertItemAt(newMethod, index);
+                replaceBox.setSelectedIndex(index);
             }
 
     }//GEN-LAST:event_renameBtnActionPerformed
