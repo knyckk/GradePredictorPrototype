@@ -48,6 +48,7 @@ public class SignUp extends javax.swing.JFrame {
         confirmFld = new javax.swing.JPasswordField();
         orLbl = new javax.swing.JLabel();
         loginLbl = new javax.swing.JLabel();
+        errorLbl = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("SignUp");
@@ -188,6 +189,11 @@ public class SignUp extends javax.swing.JFrame {
         });
         getContentPane().add(loginLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 440, -1, 20));
 
+        errorLbl.setForeground(new java.awt.Color(255, 51, 51));
+        errorLbl.setText("<html> Error Sending email <br/>Try again later</html>");
+        errorLbl.setVisible(false);
+        getContentPane().add(errorLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 260, 120, 50));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -254,7 +260,8 @@ public class SignUp extends javax.swing.JFrame {
                     transport.sendMessage(message, message.getAllRecipients());
                     transport.close();
                 } catch (MessagingException mex) {
-                    mex.printStackTrace();
+                    System.out.println("Error: " + mex);
+                    errorLbl.setVisible(true); //shows an error message if email cant be sent
                 }
             }
         } else if (type == 1) { /*if user is signing up as a student*/
@@ -270,7 +277,8 @@ public class SignUp extends javax.swing.JFrame {
                     transport.sendMessage(message, message.getAllRecipients());
                     transport.close();
                 } catch (MessagingException mex) {
-                    mex.printStackTrace();
+                    System.out.println("Error: " + mex);
+                    errorLbl.setVisible(true);//shows an error message if email cant be sent
                 }
             }
 
@@ -388,6 +396,7 @@ public class SignUp extends javax.swing.JFrame {
     private javax.swing.JLabel confirmLbl;
     private javax.swing.JTextField emailFld;
     private javax.swing.JButton enterBtn;
+    private javax.swing.JLabel errorLbl;
     private javax.swing.JLabel loginLbl;
     private javax.swing.JLabel orLbl;
     private javax.swing.JPasswordField passwordFld;
