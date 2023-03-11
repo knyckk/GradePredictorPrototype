@@ -56,10 +56,8 @@ public class Graph extends JPanel {
             }
             double constant = (sigmaY * sigmaXSquared - sigmaX * sigmaXY) / ((coordinates.size() - 1) * sigmaXSquared - sigmaX * sigmaX);//calculates the y intercept of trend line
             double gradient = ((coordinates.size() - 1) * sigmaXY - sigmaX * sigmaY) / ((coordinates.size() - 1) * sigmaXSquared - sigmaX * sigmaX);//calculates gradient of trend line
-
             finalY = (gradient * finalX) + constant;//sets y value expected when exam is sat
             setAverage();//sets average
-
             g1.setPaint(Color.WHITE);
             g1.draw(new Line2D.Double(mar, height - mar - constant * scale, mar + finalX * x, height - mar - finalY * scale));//draws trend line
             g1.setPaint(Color.ORANGE);
